@@ -53,10 +53,10 @@ const hubs = [
 ];
 
 const partners = [
-  { src: '/images/homev2/partner-sussex.png', alt: 'University of Sussex' },
-  { src: '/images/homev2/partner-bsms.png', alt: 'Brighton and Sussex Medical School' },
-  { src: '/images/homev2/partner-brighton.png', alt: 'University of Brighton' },
-  { src: '/images/homev2/partner-nhs.png', alt: 'NHS' },
+  { src: '/images/homev2/partner-sussex.png', alt: 'University of Sussex', tall: true },
+  { src: '/images/homev2/partner-bsms.png', alt: 'Brighton and Sussex Medical School', tall: false },
+  { src: '/images/homev2/partner-brighton.png', alt: 'University of Brighton', tall: false },
+  { src: '/images/homev2/partner-nhs.png', alt: 'NHS Sussex', tall: false },
 ];
 
 function formatDate(d: Date) {
@@ -88,8 +88,16 @@ function formatDay(d: Date) {
     />
     <div class="hero-overlay" aria-hidden="true"></div>
     <div class="container hero-content">
-      <h1>Sussex Cancer Research Centre</h1>
-      <p>
+      <h1 class="sr-only">Sussex Cancer Research Centre</h1>
+      <div class="hero-logo-plate">
+        <img
+          src="/images/brand/scrc-logo-seagull.png"
+          alt="Sussex Cancer Research Centre"
+          width="360"
+          height="120"
+        />
+      </div>
+      <p class="hero-mission">
         Uniting university research, NHS trusts, and people with experience of cancer across Sussex
         to translate bench discoveries into life-saving patient care.
       </p>
@@ -105,7 +113,12 @@ function formatDay(d: Date) {
     <div class="container">
       <div class="partner-strip-grid">
         {partners.map((partner) => (
-          <img src={partner.src} alt={partner.alt} loading="eager" />
+          <img
+            src={partner.src}
+            alt={partner.alt}
+            class={partner.tall ? 'partner-logo partner-logo--tall' : 'partner-logo'}
+            loading="eager"
+          />
         ))}
       </div>
     </div>
@@ -244,10 +257,37 @@ function formatDay(d: Date) {
 </BaseLayout>
 
 <style>
+  .hero--v2 {
+    min-height: clamp(330px, 43vh, 430px);
+    padding-block: clamp(2.25rem, 4.5vw, 3.5rem);
+  }
+
+  .hero-logo-plate {
+    display: inline-block;
+    background: rgba(255, 255, 255, 0.94);
+    backdrop-filter: blur(8px);
+    padding: clamp(0.75rem, 1.5vw, 1.1rem) clamp(1.15rem, 2.5vw, 1.75rem);
+    border-radius: 14px;
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.24);
+    margin-bottom: 1.25rem;
+  }
+
+  .hero-logo-plate img {
+    height: clamp(58px, 7.5vw, 94px);
+    width: auto;
+    object-fit: contain;
+  }
+
+  .hero-mission {
+    max-width: 680px;
+    font-size: clamp(1rem, 1.35vw, 1.18rem);
+    margin-bottom: 1.35rem;
+  }
+
   .partner-strip {
     background: var(--scrc-white);
     border-bottom: 1px solid var(--scrc-border);
-    padding-block: 1.4rem;
+    padding-block: 1.75rem;
   }
 
   .partner-strip-grid {
@@ -255,26 +295,35 @@ function formatDay(d: Date) {
     flex-wrap: wrap;
     align-items: center;
     justify-content: space-around;
-    gap: 1.5rem 2.5rem;
+    gap: 1.75rem 2.75rem;
   }
 
-  .partner-strip-grid img {
-    height: 44px;
+  .partner-logo {
+    height: 62px;
     width: auto;
-    max-width: 190px;
+    max-width: 260px;
     object-fit: contain;
-    opacity: 0.88;
-    transition: opacity var(--transition);
+    opacity: 0.9;
+    transition: opacity var(--transition), transform var(--transition);
   }
 
-  .partner-strip-grid img:hover {
+  .partner-logo--tall {
+    height: 76px;
+  }
+
+  .partner-logo:hover {
     opacity: 1;
+    transform: translateY(-1px);
   }
 
   @media (max-width: 640px) {
-    .partner-strip-grid img {
-      height: 34px;
-      max-width: 140px;
+    .partner-logo {
+      height: 46px;
+      max-width: 170px;
+    }
+
+    .partner-logo--tall {
+      height: 58px;
     }
   }
 </style>
