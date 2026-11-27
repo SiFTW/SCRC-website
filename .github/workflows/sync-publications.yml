@@ -52,6 +52,7 @@ jobs:
             --days "$DAYS" \
             $EXTRA_ARGS \
             --summary-out /tmp/sync-summary.md
+          python3 scripts/enrich_publications.py
 
       - name: Check for changes
         id: diff

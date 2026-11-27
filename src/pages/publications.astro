@@ -1,13 +1,226 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import publications from '../data/publications.json';
+import rawPublications from '../data/publications.json';
+
+interface AuthorLink {
+  slug: string;
+  name: string;
+  display: string;
+  isFirst?: boolean;
+  isLast?: boolean;
+  isSussex?: boolean;
+}
+
+interface Publication {
+  citation: string;
+  title?: string;
+  journal?: string;
+  year: number;
+  pubDate?: string;
+  abstract: string;
+  doiUrl: string;
+  interests?: string[];
+  scrcAuthors?: string[];
+  authorLinks?: AuthorLink[];
+  sussexLeadAuthor?: boolean;
+  journalImpactScore?: number;
+}
+
+const publications = (rawPublications as Publication[]).slice().sort((a, b) =>
+  (b.pubDate || `${b.year}-01-01`).localeCompare(a.pubDate || `${a.year}-01-01`)
+);
 
 const years = Array.from(new Set(publications.map((p) => p.year))).sort((a, b) => b - a);
+const latestYear = years[0] || new Date().getFullYear();
+
+// Featured Papers: top 8 from the latest year in highest-impact journals with Sussex 1st or last author
+const featuredCandidates = publications
+  .filter((p) => p.year === latestYear && p.sussexLeadAuthor && p.title && p.journal)
+  .sort((a, b) => {
+    const scoreDiff = (b.journalImpactScore || 0) - (a.journalImpactScore || 0);
+    if (scoreDiff !== 0) return scoreDiff;
+    return (b.pubDate || '').localeCompare(a.pubDate || '');
+  });
+
+const featuredPapers: Publication[] = [];
+const journalCap = new Map<string, number>();
+for (const p of featuredCandidates) {
+  const jKey = (p.journal || '').toLowerCase().split(':')[0].trim();
+  const used = journalCap.get(jKey) || 0;
+  if (used >= 2) continue;
+  featuredPapers.push(p);
+  journalCap.set(jKey, used + 1);
+  if (featuredPapers.length >= 8) break;
+}
+
+// Count research interests across all publications
+const interestCounts = new Map<string, number>();
+publications.forEach((p) => {
+  (p.interests || []).forEach((tag) => {
+    interestCounts.set(tag, (interestCounts.get(tag) || 0) + 1);
+  });
+});
+const interests = Array.from(interestCounts.entries()).sort((a, b) => b[1] - a[1]);
+
+// Group publications by Year-Month (YYYY-MM) for clean Month + Year separators
+const monthNames = [
+  'January', 'February', 'March', 'April', 'May', 'June',
+  'July', 'August', 'September', 'October', 'November', 'December',
+];
+
+function formatMonthYear(pubDate: string | undefined, year: number): { key: string; label: string; year: number } {
+  if (pubDate && /^\d{4}-\d{2}/.test(pubDate)) {
+    const y = Number(pubDate.slice(0, 4));
+    const m = Number(pubDate.slice(5, 7));
+    if (m >= 1 && m <= 12) {
+      return { key: `${y}-${String(m).padStart(2, '0')}`, label: `${monthNames[m - 1]} ${y}`, year: y };
+    }
+  }
+  return { key: `${year}-00`, label: `${year}`, year };
+}
+
+function escapeHtml(s: string): string {
+  return s
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;');
+}
+
+function escapeRegExp(s: string): string {
+  return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+}
+
+function renderCitationHtml(pub: Publication): { html: string; extraAuthors: AuthorLink[] } {
+  const cite = pub.citation || '';
+  const links = pub.authorLinks || [];
+  if (links.length === 0) {
+    return { html: escapeHtml(cite), extraAuthors: [] };
+  }
+
+  const yearIdx = cite.search(/\(\d{4}\)/);
+  const authorPart = yearIdx > 0 ? cite.slice(0, yearIdx) : cite;
+  const restPart = yearIdx > 0 ? cite.slice(yearIdx) : '';
+
+  let highlighted = escapeHtml(authorPart);
+  const linkedSlugs = new Set<string>();
+
+  for (const a of links) {
+    // Extract surname + first initial to match APA forms like "Mitchell, S. A." or "Mitchell, S."
+    const nameParts = a.name
+      .replace(/^(?:prof(?:essor)?\.?|dr\.?|dame|sir)\s+/i, '')
+      .trim()
+      .split(/\s+/);
+    const surname = nameParts[nameParts.length - 1] || '';
+    const firstInit = (nameParts[0] || '')[0] || '';
+    if (!surname || surname.length < 2) continue;
+
+    // Match "Surname, F. ..." (up to 3 initials) not already inside an <a> tag
+    const pattern = new RegExp(
+      `(?<!<a[^>]*>)(?<!["'>/])\\b(${escapeRegExp(escapeHtml(surname))},\\s*${escapeRegExp(firstInit)}\\.(?:\\s*[A-Z]\\.)*)`,
+      'i'
+    );
+
+    if (pattern.test(highlighted)) {
+      highlighted = highlighted.replace(
+        pattern,
+        `<a href="/directory/${a.slug}" class="scrc-author-link" title="View ${escapeHtml(a.name)}'s SCRC profile">$1</a>`
+      );
+      linkedSlugs.add(a.slug);
+    }
+  }
+
+  const extraAuthors = links.filter((a) => !linkedSlugs.has(a.slug));
+  return {
+    html: highlighted + escapeHtml(restPart),
+    extraAuthors,
+  };
+}
+
+// Build ordered month groups
+interface MonthGroup {
+  key: string;
+  label: string;
+  year: number;
+  showYearDivider: boolean;
+  items: {
+    pub: Publication;
+    citationHtml: string;
+    extraAuthors: AuthorLink[];
+    searchText: string;
+    interestsPipe: string;
+  }[];
+}
+
+const monthGroups: MonthGroup[] = [];
+const groupMap = new Map<string, MonthGroup>();
+let lastSeenYear: number | null = null;
+
+for (const pub of publications) {
+  const { key, label, year } = formatMonthYear(pub.pubDate, pub.year);
+  let grp = groupMap.get(key);
+  if (!grp) {
+    grp = {
+      key,
+      label,
+      year,
+      showYearDivider: lastSeenYear !== year,
+      items: [],
+    };
+    lastSeenYear = year;
+    groupMap.set(key, grp);
+    monthGroups.push(grp);
+  }
+  const { html, extraAuthors } = renderCitationHtml(pub);
+  const authorNames = (pub.authorLinks || []).map((a) => a.name).join(' ');
+  const interestsList = pub.interests || [];
+  grp.items.push({
+    pub,
+    citationHtml: html,
+    extraAuthors,
+    searchText: `${pub.citation} ${pub.title || ''} ${pub.journal || ''} ${authorNames} ${interestsList.join(' ')} ${pub.abstract || ''}`.toLowerCase(),
+    interestsPipe: interestsList.map((i) => i.toLowerCase()).join('|'),
+  });
+}
+
+function formatShortMonthYear(pubDate: string | undefined, year: number): string {
+  return formatMonthYear(pubDate, year).label;
+}
+
+const MINOR_WORDS = new Set(['of', 'in', 'and', 'for', 'the', 'on', 'to', 'a', 'an', 'with', 'by', 'at', 'from', '&']);
+const SPECIAL_JOURNAL_CASE: Record<string, string> = {
+  elife: 'eLife',
+  plos: 'PLOS',
+  bmc: 'BMC',
+  bmj: 'BMJ',
+  jama: 'JAMA',
+  pnas: 'PNAS',
+  embo: 'EMBO',
+  npj: 'npj',
+  dna: 'DNA',
+  rna: 'RNA',
+};
+
+function formatJournalName(raw: string | undefined): string {
+  if (!raw) return '';
+  const cleaned = raw.replace(/\.\s+/g, ' ').replace(/\s+/g, ' ').trim();
+  return cleaned
+    .split(' ')
+    .map((word, idx) => {
+      const lower = word.toLowerCase();
+      if (SPECIAL_JOURNAL_CASE[lower]) return SPECIAL_JOURNAL_CASE[lower];
+      if (idx > 0 && MINOR_WORDS.has(lower)) return lower;
+      // Preserve existing all-caps acronyms (e.g., BJC, JCI)
+      if (word.length >= 2 && word === word.toUpperCase() && /[A-Z]/.test(word)) return word;
+      return word.charAt(0).toUpperCase() + word.slice(1);
+    })
+    .join(' ');
+}
 ---
 
 <BaseLayout
   title="Publications"
-  description="Peer-reviewed cancer research publications authored by Sussex Cancer Research Centre members across University of Sussex, BSMS, University of Brighton, and NHS Trusts."
+  description="Peer-reviewed cancer research publications from Sussex Cancer Research Centre researchers across University of Sussex, BSMS, University of Brighton, and NHS Trusts."
 >
   <section class="page-banner page-banner--image">
     <img src="/images/brand/hero-sussex.jpg" alt="" class="hero-bg" />
@@ -15,13 +228,87 @@ const years = Array.from(new Set(publications.map((p) => p.year))).sort((a, b) =
     <div class="container page-banner-inner">
       <h1>Publications</h1>
       <p class="lead">
-        Peer-reviewed cancer research published by members of the Sussex Cancer Research Centre
-        since June 2024.
+        {publications.length} peer-reviewed cancer-relevant publications from SCRC researchers
+        across Sussex since June 2024 — updated automatically from Europe PMC &amp; ORCID.
       </p>
     </div>
   </section>
 
-  <section class="section section--white">
+  <!-- Featured High-Impact Papers of the Year (Sussex 1st or Senior Author) -->
+  {featuredPapers.length > 0 && (
+    <section class="section section--bright" id="featured">
+      <div class="container">
+        <div class="section-header">
+          <div style="max-width:740px;">
+            <span class="eyebrow">High-Impact Research · {latestYear}</span>
+            <h2 style="margin-bottom:0.35rem;">Featured Papers</h2>
+            <p style="margin:0; font-size:0.96rem;">
+              Selected {latestYear} publications in leading international journals with Sussex-affiliated
+              first or senior authors.
+            </p>
+          </div>
+          <a href="#all-publications" class="btn btn--primary btn--sm">Browse All {publications.length} Papers ↓</a>
+        </div>
+
+        <div class="grid grid--2">
+          {featuredPapers.map((pub) => {
+            const leadAuthors = (pub.authorLinks || []).filter((a) => a.isFirst || a.isLast);
+            const displayAuthors = leadAuthors.length > 0 ? leadAuthors : (pub.authorLinks || []).slice(0, 3);
+            return (
+              <article class="card featured-pub-card">
+                <div class="card-body">
+                  <div class="featured-pub-top">
+                    <span class="journal-pill">{formatJournalName(pub.journal)}</span>
+                    <span class="featured-pub-date">{formatShortMonthYear(pub.pubDate, pub.year)}</span>
+                  </div>
+
+                  <h3 class="card-title" style="font-size:1.12rem; margin-bottom:0.65rem;">
+                    {pub.doiUrl ? (
+                      <a href={pub.doiUrl} target="_blank" rel="noopener noreferrer">{pub.title}</a>
+                    ) : (
+                      pub.title
+                    )}
+                  </h3>
+
+                  {displayAuthors.length > 0 && (
+                    <div class="featured-authors">
+                      {displayAuthors.map((a) => (
+                        <a href={`/directory/${a.slug}`} class="scrc-author-link">
+                          {a.name}
+                        </a>
+                      ))}
+                    </div>
+                  )}
+
+                  {pub.abstract && (
+                    <p class="card-excerpt" style="-webkit-line-clamp:3; margin-top:0.65rem;">
+                      {pub.abstract}
+                    </p>
+                  )}
+
+                  <div class="card-footer" style="display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:0.5rem;">
+                    <div style="display:flex; flex-wrap:wrap; gap:0.35rem;">
+                      {(pub.interests || []).slice(0, 2).map((tag) => (
+                        <span class="tag">{tag}</span>
+                      ))}
+                    </div>
+                    {pub.doiUrl && (
+                      <a href={pub.doiUrl} target="_blank" rel="noopener noreferrer" class="read-more">
+                        Read paper ↗
+                      </a>
+                    )}
+                  </div>
+                </div>
+              </article>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- Full Searchable, Filterable & Month-Grouped Publications List -->
+  <section class="section section--white" id="all-publications">
     <div class="container container--narrow">
       <div style="display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:1rem; margin-bottom:1.25rem;">
         <input
@@ -37,47 +324,118 @@ const years = Array.from(new Set(publications.map((p) => p.year))).sort((a, b) =
         </p>
       </div>
 
-      <div class="filter-bar" role="group" aria-label="Filter publications by year">
-        <button type="button" class="filter-chip is-active" data-year="all">
-          All Years ({publications.length})
-        </button>
-        {years.map((y) => (
-          <button type="button" class="filter-chip" data-year={String(y)}>
-            {y} ({publications.filter((p) => p.year === y).length})
+      <!-- Year Filter -->
+      <div class="filter-group">
+        <span class="filter-label">Year:</span>
+        <div class="filter-bar" role="group" aria-label="Filter publications by year" style="margin-bottom:0;">
+          <button type="button" class="filter-chip is-active" data-year="all">
+            All Years ({publications.length})
           </button>
-        ))}
+          {years.map((y) => (
+            <button type="button" class="filter-chip" data-year={String(y)}>
+              {y} ({publications.filter((p) => p.year === y).length})
+            </button>
+          ))}
+        </div>
       </div>
 
-      <div id="pub-list" style="display:grid; gap:0.85rem;">
-        {publications.map((pub) => (
-          <details
-            class="pub-item"
-            data-year={String(pub.year)}
-            data-search={`${pub.citation} ${pub.abstract}`.toLowerCase()}
-          >
-            <summary class="pub-summary">
-              <span class="pub-citation">{pub.citation}</span>
-              <span class="pub-chevron" aria-hidden="true">+</span>
-            </summary>
-            <div class="pub-body">
-              {pub.abstract ? (
-                <p>{pub.abstract}</p>
-              ) : (
-                <p style="color:var(--scrc-muted);">Abstract unavailable.</p>
-              )}
-              {pub.doiUrl && (
-                <p style="margin-top:0.75rem; margin-bottom:0;">
-                  <a href={pub.doiUrl} target="_blank" rel="noopener noreferrer" class="read-more">
-                    View publication via DOI →
-                  </a>
-                </p>
-              )}
+      <!-- Research Interest Filter (Aligned with People page) -->
+      <div class="filter-group" style="margin-bottom:2.25rem;">
+        <span class="filter-label">Research Interest:</span>
+        <div class="filter-bar" role="group" aria-label="Filter publications by research interest" style="margin-bottom:0;">
+          <button type="button" class="filter-chip is-active" data-interest="all">
+            All Topics
+          </button>
+          {interests.map(([tag, count]) => (
+            <button type="button" class="filter-chip" data-interest={tag.toLowerCase()}>
+              {tag} ({count})
+            </button>
+          ))}
+        </div>
+      </div>
+
+      <!-- Month & Year Grouped Publications -->
+      <div id="pub-groups">
+        {monthGroups.map((group) => (
+          <div class="month-group" data-group-year={String(group.year)} data-group-key={group.key}>
+            {group.showYearDivider && (
+              <div class="year-divider" data-year-divider={String(group.year)}>
+                <span>{group.year}</span>
+              </div>
+            )}
+            <h3 class="month-heading">{group.label}</h3>
+            <div class="month-items">
+              {group.items.map(({ pub, citationHtml, extraAuthors, searchText, interestsPipe }) => (
+                <article
+                  class="pub-card pub-item"
+                  data-year={String(pub.year)}
+                  data-interests={interestsPipe}
+                  data-search={searchText}
+                >
+                  <p class="pub-citation" set:html={citationHtml} />
+
+                  <div class="pub-meta-row">
+                    {extraAuthors.length > 0 && (
+                      <div class="extra-authors">
+                        <span class="extra-authors-label">SCRC authors:</span>
+                        {extraAuthors.map((a) => (
+                          <a href={`/directory/${a.slug}`} class="scrc-author-link">
+                            {a.name}
+                          </a>
+                        ))}
+                      </div>
+                    )}
+                    <div class="pub-tags">
+                      {(pub.interests || []).slice(0, 3).map((tag) => (
+                        <button
+                          type="button"
+                          class="tag tag-btn"
+                          data-quick-interest={tag.toLowerCase()}
+                        >
+                          {tag}
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+
+                  <div class="pub-actions-row">
+                    <details class="pub-abstract-details">
+                      <summary class="pub-abstract-toggle">
+                        <span>Abstract</span>
+                        <span class="pub-chevron" aria-hidden="true">+</span>
+                      </summary>
+                      <div class="pub-abstract-body">
+                        {pub.abstract ? (
+                          <p>{pub.abstract}</p>
+                        ) : (
+                          <p style="color:var(--scrc-muted);">Abstract unavailable.</p>
+                        )}
+                      </div>
+                    </details>
+
+                    {pub.doiUrl && (
+                      <a
+                        href={pub.doiUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="pub-doi-link"
+                      >
+                        DOI ↗
+                      </a>
+                    )}
+                  </div>
+                </article>
+              ))}
             </div>
-          </details>
+          </div>
         ))}
       </div>
 
-      <div id="pub-pagination" style="display:flex; justify-content:center; gap:0.75rem; flex-wrap:wrap; margin-top:2rem;">
+      <div id="pub-empty" class="callout callout--mint" style="display:none; text-align:center;">
+        <p style="margin:0;">No publications matched your current search and filter combination.</p>
+      </div>
+
+      <div id="pub-pagination" style="display:flex; justify-content:center; gap:0.75rem; flex-wrap:wrap; margin-top:2.25rem;">
         <button type="button" id="pub-load-more" class="btn btn--primary btn--sm">
           Show 50 more
         </button>
@@ -90,58 +448,239 @@ const years = Array.from(new Set(publications.map((p) => p.year))).sort((a, b) =
 </BaseLayout>
 
 <style>
-  .pub-item {
+  .featured-pub-top {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+    margin-bottom: 0.65rem;
+  }
+
+  .journal-pill {
+    display: inline-block;
+    padding: 0.24rem 0.7rem;
+    border-radius: 999px;
+    background: var(--scrc-black);
+    color: var(--scrc-white);
+    font-size: 0.76rem;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+  }
+
+  .featured-pub-date {
+    font-size: 0.82rem;
+    font-weight: 500;
+    color: var(--scrc-muted);
+  }
+
+  .featured-authors {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    align-items: center;
+  }
+
+  .filter-group {
+    margin-bottom: 1rem;
+  }
+
+  .filter-label {
+    display: block;
+    font-size: 0.78rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    color: var(--scrc-muted);
+    margin-bottom: 0.5rem;
+  }
+
+  .year-divider {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin: 2.25rem 0 1rem;
+  }
+
+  .month-group:first-child .year-divider {
+    margin-top: 0.5rem;
+  }
+
+  .year-divider span {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--scrc-black);
+    letter-spacing: -0.02em;
+  }
+
+  .year-divider::after {
+    content: '';
+    flex: 1;
+    height: 2px;
+    background: var(--scrc-mint);
+    border-radius: 999px;
+  }
+
+  .month-heading {
+    font-size: 1.02rem;
+    font-weight: 600;
+    color: var(--scrc-teal-deep);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin: 1.65rem 0 0.85rem;
+    padding-bottom: 0.4rem;
+    border-bottom: 1px solid var(--scrc-border);
+  }
+
+  .month-items {
+    display: grid;
+    gap: 0.9rem;
+  }
+
+  .pub-card {
+    padding: 1.15rem 1.35rem;
     border: 1px solid var(--scrc-border);
     border-radius: var(--radius-card);
     background: var(--scrc-white);
     transition: border-color var(--transition), box-shadow var(--transition);
   }
 
-  .pub-item:hover {
+  .pub-card:hover {
     border-color: var(--scrc-teal);
-  }
-
-  .pub-item[open] {
     box-shadow: var(--shadow-sm);
-    border-color: var(--scrc-teal);
   }
 
-  .pub-summary {
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    gap: 1rem;
-    padding: 1.15rem 1.35rem;
-    cursor: pointer;
-    list-style: none;
-    font-weight: 400;
-    line-height: 1.55;
+  .pub-citation {
+    font-size: 0.96rem;
+    line-height: 1.68;
+    color: var(--scrc-ink);
+    margin: 0 0 0.7rem;
+  }
+
+  /* Highlighted & clickable SCRC researcher name */
+  :global(.scrc-author-link) {
+    display: inline-block;
+    padding: 0.04rem 0.42rem;
+    border-radius: 6px;
+    background: var(--scrc-mint-soft);
+    border: 1px solid rgba(100, 146, 141, 0.35);
+    color: var(--scrc-teal-deep);
+    font-weight: 500;
+    text-decoration: none;
+    line-height: 1.45;
+    transition: background-color var(--transition), color var(--transition), border-color var(--transition);
+  }
+
+  :global(.scrc-author-link:hover) {
+    background: var(--scrc-mint);
+    border-color: var(--scrc-teal-deep);
     color: var(--scrc-black);
   }
 
-  .pub-summary::-webkit-details-marker {
+  .pub-meta-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.55rem 1rem;
+    margin-bottom: 0.65rem;
+  }
+
+  .extra-authors {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.35rem;
+    font-size: 0.84rem;
+  }
+
+  .extra-authors-label {
+    font-size: 0.78rem;
+    font-weight: 500;
+    color: var(--scrc-muted);
+  }
+
+  .pub-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+  }
+
+  .tag-btn {
+    border: 0;
+    cursor: pointer;
+    font-family: var(--font-sans);
+    transition: background-color var(--transition), color var(--transition);
+  }
+
+  .tag-btn:hover {
+    background: var(--scrc-mint);
+    color: var(--scrc-black);
+  }
+
+  .pub-actions-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 0.75rem;
+    padding-top: 0.55rem;
+    border-top: 1px solid rgba(17, 24, 22, 0.07);
+  }
+
+  .pub-abstract-details {
+    flex: 1;
+    min-width: 200px;
+  }
+
+  .pub-abstract-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    font-size: 0.86rem;
+    font-weight: 500;
+    color: var(--scrc-teal-deep);
+    cursor: pointer;
+    list-style: none;
+    user-select: none;
+  }
+
+  .pub-abstract-toggle::-webkit-details-marker {
     display: none;
   }
 
+  .pub-abstract-toggle:hover {
+    color: var(--scrc-black);
+  }
+
   .pub-chevron {
-    font-size: 1.35rem;
-    font-weight: 400;
+    font-size: 1.1rem;
     line-height: 1;
-    color: var(--scrc-teal-deep);
-    flex-shrink: 0;
     transition: transform var(--transition);
   }
 
-  .pub-item[open] .pub-chevron {
+  .pub-abstract-details[open] .pub-chevron {
     transform: rotate(45deg);
   }
 
-  .pub-body {
-    padding: 1rem 1.35rem 1.3rem;
-    font-size: 0.94rem;
-    color: var(--scrc-ink);
-    border-top: 1px solid var(--scrc-border);
-    line-height: 1.75;
+  .pub-abstract-body {
+    margin-top: 0.7rem;
+    font-size: 0.91rem;
+    line-height: 1.72;
+    color: var(--scrc-muted);
+  }
+
+  .pub-doi-link {
+    font-size: 0.86rem;
+    font-weight: 500;
+    color: var(--scrc-teal-deep);
+    text-decoration: none;
+    white-space: nowrap;
+  }
+
+  .pub-doi-link:hover {
+    color: var(--scrc-black);
+    text-decoration: underline;
   }
 </style>
 
@@ -149,14 +688,19 @@ const years = Array.from(new Set(publications.map((p) => p.year))).sort((a, b) =
   const PAGE_SIZE = 50;
   const searchInput = document.getElementById('pub-search') as HTMLInputElement | null;
   const yearBtns = Array.from(document.querySelectorAll<HTMLButtonElement>('[data-year]'));
+  const interestBtns = Array.from(document.querySelectorAll<HTMLButtonElement>('[data-interest]'));
+  const quickInterestBtns = Array.from(document.querySelectorAll<HTMLButtonElement>('[data-quick-interest]'));
+  const groups = Array.from(document.querySelectorAll<HTMLElement>('.month-group'));
   const items = Array.from(document.querySelectorAll<HTMLElement>('.pub-item'));
   const countEl = document.getElementById('pub-count');
   const shownEl = document.getElementById('pub-shown');
+  const emptyEl = document.getElementById('pub-empty');
   const paginationEl = document.getElementById('pub-pagination');
   const loadMoreBtn = document.getElementById('pub-load-more');
   const showAllBtn = document.getElementById('pub-show-all');
 
   let activeYear = 'all';
+  let activeInterest = 'all';
   let visibleLimit = PAGE_SIZE;
 
   function filterPubs() {
@@ -165,8 +709,10 @@ const years = Array.from(new Set(publications.map((p) => p.year))).sort((a, b) =
 
     items.forEach((item) => {
       const matchYear = activeYear === 'all' || item.dataset.year === activeYear;
+      const itemInterests = (item.dataset.interests || '').split('|').filter(Boolean);
+      const matchInterest = activeInterest === 'all' || itemInterests.includes(activeInterest);
       const matchSearch = !q || (item.dataset.search || '').includes(q);
-      if (matchYear && matchSearch) {
+      if (matchYear && matchInterest && matchSearch) {
         matched.push(item);
       } else {
         item.style.display = 'none';
@@ -178,8 +724,25 @@ const years = Array.from(new Set(publications.map((p) => p.year))).sort((a, b) =
       item.style.display = idx < shown ? '' : 'none';
     });
 
+    // Show/hide month groups and ensure first visible group of each year displays its year divider
+    const seenYears = new Set<string>();
+    groups.forEach((grp) => {
+      const hasVisible = Array.from(grp.querySelectorAll<HTMLElement>('.pub-item')).some(
+        (el) => el.style.display !== 'none'
+      );
+      grp.style.display = hasVisible ? '' : 'none';
+      const yDivider = grp.querySelector<HTMLElement>('[data-year-divider]');
+      if (hasVisible) {
+        const y = grp.dataset.groupYear || '';
+        const isFirstForYear = !seenYears.has(y);
+        seenYears.add(y);
+        if (yDivider) yDivider.style.display = isFirstForYear ? '' : 'none';
+      }
+    });
+
     if (countEl) countEl.textContent = String(matched.length);
     if (shownEl) shownEl.textContent = String(shown);
+    if (emptyEl) emptyEl.style.display = matched.length === 0 ? '' : 'none';
     if (paginationEl) {
       paginationEl.style.display = shown < matched.length ? 'flex' : 'none';
     }
@@ -191,6 +754,24 @@ const years = Array.from(new Set(publications.map((p) => p.year))).sort((a, b) =
       visibleLimit = PAGE_SIZE;
       yearBtns.forEach((b) => b.classList.toggle('is-active', b === btn));
       filterPubs();
+    });
+  });
+
+  function setInterest(val: string) {
+    activeInterest = val;
+    visibleLimit = PAGE_SIZE;
+    interestBtns.forEach((b) => b.classList.toggle('is-active', b.dataset.interest === val));
+    filterPubs();
+  }
+
+  interestBtns.forEach((btn) => {
+    btn.addEventListener('click', () => setInterest(btn.dataset.interest || 'all'));
+  });
+
+  quickInterestBtns.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      setInterest(btn.dataset.quickInterest || 'all');
+      document.getElementById('all-publications')?.scrollIntoView({ behavior: 'smooth' });
     });
   });
 
