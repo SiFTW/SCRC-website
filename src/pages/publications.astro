@@ -7,7 +7,7 @@ const years = Array.from(new Set(publications.map((p) => p.year))).sort((a, b) =
 
 <BaseLayout
   title="Publications"
-  description="Recent peer-reviewed cancer research publications authored by Sussex Cancer Research Centre members."
+  description="Peer-reviewed cancer research publications authored by Sussex Cancer Research Centre members across University of Sussex, BSMS, University of Brighton, and NHS Trusts."
 >
   <section class="page-banner page-banner--image">
     <img src="/images/brand/hero-sussex.jpg" alt="" class="hero-bg" />
@@ -15,7 +15,8 @@ const years = Array.from(new Set(publications.map((p) => p.year))).sort((a, b) =
     <div class="container page-banner-inner">
       <h1>Publications</h1>
       <p class="lead">
-        Peer-reviewed cancer research published by members of the Sussex Cancer Research Centre.
+        Peer-reviewed cancer research published by members of the Sussex Cancer Research Centre
+        since June 2024.
       </p>
     </div>
   </section>
@@ -31,7 +32,8 @@ const years = Array.from(new Set(publications.map((p) => p.year))).sort((a, b) =
           aria-label="Search publications"
         />
         <p style="margin:0; font-size:0.9rem; color:var(--scrc-muted);">
-          Showing <strong id="pub-count">{publications.length}</strong> publications
+          Showing <strong id="pub-shown">{Math.min(50, publications.length)}</strong> of{' '}
+          <strong id="pub-count">{publications.length}</strong> matching publications
         </p>
       </div>
 
@@ -73,6 +75,15 @@ const years = Array.from(new Set(publications.map((p) => p.year))).sort((a, b) =
             </div>
           </details>
         ))}
+      </div>
+
+      <div id="pub-pagination" style="display:flex; justify-content:center; gap:0.75rem; flex-wrap:wrap; margin-top:2rem;">
+        <button type="button" id="pub-load-more" class="btn btn--primary btn--sm">
+          Show 50 more
+        </button>
+        <button type="button" id="pub-show-all" class="btn btn--outline btn--sm">
+          Show all
+        </button>
       </div>
     </div>
   </section>
@@ -126,42 +137,77 @@ const years = Array.from(new Set(publications.map((p) => p.year))).sort((a, b) =
   }
 
   .pub-body {
-    padding: 0 1.35rem 1.3rem;
+    padding: 1rem 1.35rem 1.3rem;
     font-size: 0.94rem;
-    color: var(--scrc-muted);
+    color: var(--scrc-ink);
     border-top: 1px solid var(--scrc-border);
-    padding-top: 1rem;
+    line-height: 1.75;
   }
 </style>
 
 <script>
+  const PAGE_SIZE = 50;
   const searchInput = document.getElementById('pub-search') as HTMLInputElement | null;
   const yearBtns = Array.from(document.querySelectorAll<HTMLButtonElement>('[data-year]'));
   const items = Array.from(document.querySelectorAll<HTMLElement>('.pub-item'));
   const countEl = document.getElementById('pub-count');
+  const shownEl = document.getElementById('pub-shown');
+  const paginationEl = document.getElementById('pub-pagination');
+  const loadMoreBtn = document.getElementById('pub-load-more');
+  const showAllBtn = document.getElementById('pub-show-all');
 
   let activeYear = 'all';
+  let visibleLimit = PAGE_SIZE;
 
   function filterPubs() {
     const q = (searchInput?.value || '').trim().toLowerCase();
-    let visible = 0;
+    const matched: HTMLElement[] = [];
+
     items.forEach((item) => {
       const matchYear = activeYear === 'all' || item.dataset.year === activeYear;
       const matchSearch = !q || (item.dataset.search || '').includes(q);
-      const show = matchYear && matchSearch;
-      item.style.display = show ? '' : 'none';
-      if (show) visible++;
+      if (matchYear && matchSearch) {
+        matched.push(item);
+      } else {
+        item.style.display = 'none';
+      }
     });
-    if (countEl) countEl.textContent = String(visible);
+
+    const shown = Math.min(visibleLimit, matched.length);
+    matched.forEach((item, idx) => {
+      item.style.display = idx < shown ? '' : 'none';
+    });
+
+    if (countEl) countEl.textContent = String(matched.length);
+    if (shownEl) shownEl.textContent = String(shown);
+    if (paginationEl) {
+      paginationEl.style.display = shown < matched.length ? 'flex' : 'none';
+    }
   }
 
   yearBtns.forEach((btn) => {
     btn.addEventListener('click', () => {
       activeYear = btn.dataset.year || 'all';
+      visibleLimit = PAGE_SIZE;
       yearBtns.forEach((b) => b.classList.toggle('is-active', b === btn));
       filterPubs();
     });
   });
 
-  searchInput?.addEventListener('input', filterPubs);
+  searchInput?.addEventListener('input', () => {
+    visibleLimit = PAGE_SIZE;
+    filterPubs();
+  });
+
+  loadMoreBtn?.addEventListener('click', () => {
+    visibleLimit += PAGE_SIZE;
+    filterPubs();
+  });
+
+  showAllBtn?.addEventListener('click', () => {
+    visibleLimit = items.length;
+    filterPubs();
+  });
+
+  filterPubs();
 </script>

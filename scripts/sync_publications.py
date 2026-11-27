@@ -53,7 +53,7 @@ SUSSEX_AFF_RE = re.compile(
 # Stage 1: Direct oncology keywords (high confidence)
 DIRECT_CANCER_TERMS = [
     r"\bcancer\b", r"\bcancers\b", r"\btumou?r\b", r"\btumou?rs\b",
-    r"\boncolog(?:y|ical|ist)\b", r"\bcarcinoma\b", r"\badeno(?:carcinoma)?\b",
+    r"\boncolog(?:y|ical|ist)\b", r"\bcarcinoma\b", r"\badenocarcinoma\b",
     r"\bleuk(?:a)?emia\b", r"\blymphoma\b", r"\bmyeloma\b", r"\bmelanoma\b",
     r"\bglioma\b", r"\bglioblastoma\b", r"\bsarcoma\b", r"\bmesothelioma\b",
     r"\bneuroblastoma\b", r"\bneoplasm(?:s)?\b", r"\bmalignan(?:t|cy|cies)\b",
@@ -267,7 +267,9 @@ def classify_cancer_relevance(rec: dict):
         return False, "Excluded erratum/retraction"
 
     haystack = f"{title}\n{abstract}\n{mesh}"
-    direct_hits = sorted(set(m.group(0).lower() for m in DIRECT_RE.finditer(haystack)))
+    # Avoid false positives from IBD/rheumatology "anti-tumor necrosis factor" (anti-TNF) papers
+    haystack_clean = re.sub(r"\b(?:anti[- ]?)?tumou?r necrosis factor(?:[- ]?(?:alpha|α|inhibitor|inhibitors|therapy|therapies))?\b", "TNF", haystack, flags=re.I)
+    direct_hits = sorted(set(m.group(0).lower() for m in DIRECT_RE.finditer(haystack_clean)))
     if direct_hits:
         return True, f"Direct cancer match ({', '.join(direct_hits[:3])})"
 
@@ -331,18 +333,25 @@ def format_apa_citation(rec: dict) -> str:
     return " ".join(parts)
 
 
+_ORCID_NAME_CACHE = {}
+
+
 def resolve_full_name_from_orcid(orcid: str):
     if not orcid:
         return None
+    if orcid in _ORCID_NAME_CACHE:
+        return _ORCID_NAME_CACHE[orcid]
     try:
-        data = http_get_json(f"https://pub.orcid.org/v3.0/{orcid}/person", timeout=10)
+        data = http_get_json(f"https://pub.orcid.org/v3.0/{orcid}/person", timeout=5)
         name_obj = data.get("name") or {}
         given = ((name_obj.get("given-names") or {}).get("value") or "").strip()
         family = ((name_obj.get("family-name") or {}).get("value") or "").strip()
         if given and family and len(given) > 1:
-            return f"{given} {family}"
+            _ORCID_NAME_CACHE[orcid] = f"{given} {family}"
+            return _ORCID_NAME_CACHE[orcid]
     except Exception:
         pass
+    _ORCID_NAME_CACHE[orcid] = None
     return None
 
 
@@ -467,7 +476,8 @@ def main():
         'OR p53 OR BRCA1 OR BRCA2 OR PARP OR RAD51 OR Hsp90 OR PROTAC) '
         f"AND FIRST_PDATE:[{since} TO {until}]"
     )
-    reg_hits = search_epmc(regional_query, max_results=200)
+    fetch_limit = max(250, args.max_new_papers * 2)
+    reg_hits = search_epmc(regional_query, max_results=fetch_limit)
     print(f"  Regional Sussex query returned {len(reg_hits)} raw records")
     for r in reg_hits:
         key = normalize_doi(r.get("doi", "")) or r.get("pmid") or r.get("id")
@@ -481,7 +491,7 @@ def main():
         chunk = orcid_list[i : i + 20]
         or_clause = " OR ".join(f'AUTHORID:"{oid}"' for oid in chunk)
         mq = f"({or_clause}) AND FIRST_PDATE:[{since} TO {until}]"
-        mhits = search_epmc(mq, max_results=100)
+        mhits = search_epmc(mq, max_results=250)
         member_hits_total += len(mhits)
         for r in mhits:
             key = normalize_doi(r.get("doi", "")) or r.get("pmid") or r.get("id")
@@ -622,6 +632,7 @@ def main():
             for p in new_pubs
         ]
         merged = clean_new_pubs + existing_pubs
+        merged.sort(key=lambda p: int(p.get("year") or 0), reverse=True)
         json.dump(merged, open(PUBS_PATH, "w", encoding="utf-8"), indent=2, ensure_ascii=False)
 
         # 2. Write new member Markdown files to src/content/people/

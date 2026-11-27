@@ -248,6 +248,15 @@ const interests = Array.from(interestCounts.entries()).sort((a, b) => a[0].local
           );
         })}
       </div>
+
+      <div id="people-pagination" style="display:flex; justify-content:center; gap:0.75rem; flex-wrap:wrap; margin-top:2.25rem;">
+        <button type="button" id="people-load-more" class="btn btn--primary btn--sm">
+          Show 48 more
+        </button>
+        <button type="button" id="people-show-all" class="btn btn--outline btn--sm">
+          Show all
+        </button>
+      </div>
     </div>
   </section>
 
@@ -307,36 +316,64 @@ const interests = Array.from(interestCounts.entries()).sort((a, b) => a[0].local
 </style>
 
 <script>
+  const PAGE_SIZE = 48;
   const searchInput = document.getElementById('people-search') as HTMLInputElement | null;
   const chips = Array.from(document.querySelectorAll<HTMLButtonElement>('[data-interest]'));
   const cards = Array.from(document.querySelectorAll<HTMLElement>('.person-card'));
   const countEl = document.getElementById('people-count');
+  const paginationEl = document.getElementById('people-pagination');
+  const loadMoreBtn = document.getElementById('people-load-more');
+  const showAllBtn = document.getElementById('people-show-all');
 
   let activeInterest = 'all';
+  let visibleLimit = PAGE_SIZE;
 
   function updateList() {
     const q = (searchInput?.value || '').trim().toLowerCase();
-    let visible = 0;
+    const matched: HTMLElement[] = [];
     cards.forEach((card) => {
       const interests = (card.dataset.interests || '').split('|').filter(Boolean);
       const matchInterest = activeInterest === 'all' || interests.includes(activeInterest);
       const matchSearch = !q || (card.dataset.search || '').includes(q);
-      const show = matchInterest && matchSearch;
-      card.style.display = show ? '' : 'none';
-      if (show) visible++;
+      if (matchInterest && matchSearch) {
+        matched.push(card);
+      } else {
+        card.style.display = 'none';
+      }
     });
-    if (countEl) countEl.textContent = String(visible);
+    const shown = Math.min(visibleLimit, matched.length);
+    matched.forEach((card, idx) => {
+      card.style.display = idx < shown ? '' : 'none';
+    });
+    if (countEl) countEl.textContent = String(matched.length);
+    if (paginationEl) {
+      paginationEl.style.display = shown < matched.length ? 'flex' : 'none';
+    }
   }
 
   chips.forEach((chip) => {
     chip.addEventListener('click', () => {
       activeInterest = chip.dataset.interest || 'all';
+      visibleLimit = PAGE_SIZE;
       chips.forEach((c) => c.classList.toggle('is-active', c === chip));
       updateList();
     });
   });
 
-  searchInput?.addEventListener('input', updateList);
+  searchInput?.addEventListener('input', () => {
+    visibleLimit = PAGE_SIZE;
+    updateList();
+  });
+
+  loadMoreBtn?.addEventListener('click', () => {
+    visibleLimit += PAGE_SIZE;
+    updateList();
+  });
+
+  showAllBtn?.addEventListener('click', () => {
+    visibleLimit = cards.length;
+    updateList();
+  });
 
   const params = new URLSearchParams(window.location.search);
   const initial = (params.get('interest') || '').toLowerCase();
@@ -346,5 +383,7 @@ const interests = Array.from(interestCounts.entries()).sort((a, b) => a[0].local
       match.click();
       document.getElementById('directory')?.scrollIntoView({ behavior: 'smooth' });
     }
+  } else {
+    updateList();
   }
 </script>
