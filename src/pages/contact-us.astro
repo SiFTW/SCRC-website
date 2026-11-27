@@ -94,8 +94,8 @@ const isExternalForm = site.externalLinks.contactFormUrl.startsWith('http');
       </div>
 
       <span class="eyebrow">Centre Leadership</span>
-      <h2 style="margin-bottom:1.5rem;">SCRC Co-Directors</h2>
-      <div class="grid grid--2">
+      <h2 style="margin-bottom:1.5rem;">SCRC Leadership</h2>
+      <div class="grid grid--2" style="margin-bottom:3.5rem;">
         {directors.map((d) => (
           <div class="callout">
             <span class="tag" style="margin-bottom:0.65rem;">{d.institution}</span>
@@ -104,6 +104,30 @@ const isExternalForm = site.externalLinks.contactFormUrl.startsWith('http');
             <a href={d.profileHref} class="read-more">View profile →</a>
           </div>
         ))}
+      </div>
+
+      <span class="eyebrow">Lived Experience</span>
+      <h2 style="margin-bottom:1.5rem;">For People with Experience of Cancer</h2>
+      <div class="callout callout--mint" style="display:flex; flex-wrap:wrap; align-items:center; gap:1.75rem; max-width:720px;">
+        <img
+          src="/images/people/markus-taylor.jpg"
+          alt="Markus Taylor"
+          width="112"
+          height="112"
+          style="width:112px; height:112px; object-fit:cover; object-position:top center; border-radius:var(--radius-card); box-shadow:var(--shadow-sm); flex-shrink:0;"
+          loading="lazy"
+        />
+        <div style="flex:1; min-width:220px;">
+          <span class="tag" style="background:var(--scrc-white); margin-bottom:0.55rem;">Lived Experience Lead</span>
+          <h3 style="margin-bottom:0.3rem;">Markus Taylor</h3>
+          <p style="font-size:0.93rem; color:var(--scrc-muted); margin-bottom:0.9rem;">
+            Lived Experience Lead, Sussex Cancer Research Centre
+          </p>
+          <div style="display:flex; flex-wrap:wrap; gap:1rem; align-items:center;">
+            <a href="/directory/markus-taylor" class="read-more">View profile →</a>
+            <a href="/lived-experience" class="read-more">Lived Experience Hub →</a>
+          </div>
+        </div>
       </div>
     </div>
   </section>
