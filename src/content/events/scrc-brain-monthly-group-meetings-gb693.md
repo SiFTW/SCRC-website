@@ -11,28 +11,3 @@ tags: ["brain"]
 ---
 
 <p>Sussex Brain Tumour Research meets to discuss the latest brain tumour research. </p><p>These meetings are organised by <a href="https://www.uhsussex.nhs.uk/research-and-innovation/current-research/spotlight-sessions/dr-stephen-robinson/" target="_blank">Dr Stephen Robinson</a>. </p>
-
-  
-
-  
-
-    
-    
-    
-    
-    
-    
-
-    
-      
-  
-    
-      
-
-  
-
-    <button>
-      
-        Sign up to attend
-      
-    </button>

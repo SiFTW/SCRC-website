@@ -28,6 +28,8 @@ const directors = [
     profileHref: '/directory/duncan-gilbert',
   },
 ];
+
+const isExternalForm = site.externalLinks.contactFormUrl.startsWith('http');
 ---
 
 <BaseLayout
@@ -53,10 +55,20 @@ const directors = [
           <span class="eyebrow">General Enquiries</span>
           <h2>Contact the SCRC</h2>
           <p class="lead">
-            Reach our coordination team directly by email and we will connect you with the right
-            researchers, clinicians, or lived-experience leads.
+            Send us a message using our online enquiry form or reach our coordination team directly
+            by email.
           </p>
-          <div style="display:grid; gap:0.85rem; margin-top:1.5rem;">
+          <div style="margin:1.25rem 0 1.5rem;">
+            <a
+              href={site.externalLinks.contactFormUrl}
+              target={isExternalForm ? '_blank' : undefined}
+              rel={isExternalForm ? 'noopener noreferrer' : undefined}
+              class="btn btn--primary"
+            >
+              Open Contact Form{isExternalForm ? ' ↗' : ''}
+            </a>
+          </div>
+          <div style="display:grid; gap:0.85rem;">
             <div class="callout callout--mint">
               <strong>General &amp; Research Enquiries:</strong><br />
               <a href={`mailto:${site.email.general}`} style="font-size:1.1rem; font-weight:500;">

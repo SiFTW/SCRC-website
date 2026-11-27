@@ -1,6 +1,7 @@
 ---
 import { getCollection, render } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import site from '../../data/site.json';
 
 export async function getStaticPaths() {
   const events = await getCollection('events');
@@ -47,6 +48,26 @@ const gcalUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&tex
 )}&location=${encodeURIComponent(event.data.location)}&details=${encodeURIComponent(
   event.data.excerpt || event.data.title
 )}`;
+
+// Pick the right sign-up form link for this event
+const slugLower = event.id.toLowerCase();
+const isLymit = slugLower.includes('lymit');
+const isSymposium = slugLower.includes('symposium');
+const signupHref =
+  event.data.signupUrl ||
+  (isLymit
+    ? site.externalLinks.lymitFormUrl
+    : isSymposium
+    ? site.externalLinks.posterAbstractFormUrl
+    : site.externalLinks.eventsFormUrl);
+const signupLabel =
+  event.data.signupLabel ||
+  (isLymit
+    ? 'Express Interest (LyMIT 2026)'
+    : isSymposium
+    ? 'Submit Poster Abstract'
+    : 'Sign up to attend');
+const isExternalSignup = signupHref.startsWith('http');
 ---
 
 <BaseLayout
@@ -73,8 +94,16 @@ const gcalUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&tex
             <a href={mapsUrl} target="_blank" rel="noopener noreferrer">{event.data.location}</a>
           </div>
         )}
-        <div style="margin-top:0.6rem; display:flex; gap:0.65rem; flex-wrap:wrap;">
-          <a href={gcalUrl} target="_blank" rel="noopener noreferrer" class="btn btn--primary btn--sm">
+        <div style="margin-top:0.75rem; display:flex; gap:0.65rem; flex-wrap:wrap;">
+          <a
+            href={signupHref}
+            target={isExternalSignup ? '_blank' : undefined}
+            rel={isExternalSignup ? 'noopener noreferrer' : undefined}
+            class="btn btn--primary btn--sm"
+          >
+            {signupLabel}{isExternalSignup ? ' ↗' : ''}
+          </a>
+          <a href={gcalUrl} target="_blank" rel="noopener noreferrer" class="btn btn--white btn--sm">
             + Add to Google Calendar
           </a>
           {mapsUrl && (
@@ -97,6 +126,23 @@ const gcalUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&tex
 
       <div class="prose">
         <Content />
+      </div>
+
+      <div class="callout callout--mint" style="margin-top:2.5rem; display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:1rem;">
+        <div>
+          <strong style="display:block; margin-bottom:0.2rem;">Interested in attending?</strong>
+          <span style="font-size:0.92rem; color:var(--scrc-muted);">
+            Register your interest and receive meeting invitations directly.
+          </span>
+        </div>
+        <a
+          href={signupHref}
+          target={isExternalSignup ? '_blank' : undefined}
+          rel={isExternalSignup ? 'noopener noreferrer' : undefined}
+          class="btn btn--primary btn--sm"
+        >
+          {signupLabel}{isExternalSignup ? ' ↗' : ''}
+        </a>
       </div>
     </div>
   </article>

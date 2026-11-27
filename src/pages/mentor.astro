@@ -58,8 +58,13 @@ import site from '../data/site.json';
         Join our bespoke SCRC mentoring programme and we’ll be in touch to match you and get the ball rolling.
       </p>
       <div style="margin-top:1.5rem;">
-        <a href={site.externalLinks.mentorFormUrl} class="btn btn--primary">
-          Join the SCRC Mentor Scheme
+        <a
+          href={site.externalLinks.mentorFormUrl}
+          target={site.externalLinks.mentorFormUrl.startsWith('http') ? '_blank' : undefined}
+          rel={site.externalLinks.mentorFormUrl.startsWith('http') ? 'noopener noreferrer' : undefined}
+          class="btn btn--primary"
+        >
+          Join the SCRC Mentor Scheme{site.externalLinks.mentorFormUrl.startsWith('http') ? ' ↗' : ''}
         </a>
       </div>
     </div>

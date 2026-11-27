@@ -1,6 +1,18 @@
 # Sussex Cancer Research Centre Website (`sussexcancer.org`)
 
-Static Astro rebuild of [sussexcancer.org](https://sussexcancer.org), designed for **£0/month hosting on Cloudflare Pages** with all images, documents, news posts, events, lived experience stories, publications, and member profiles stored cleanly inside this repository.
+Static Astro rebuild of [sussexcancer.org](https://sussexcancer.org) (incorporating the streamlined `homev2draft` homepage and `/research` hub), designed for **£0/month hosting on Cloudflare Pages** with all images, documents, news posts, events, lived experience stories, publications, and member profiles stored cleanly inside this repository.
+
+---
+
+## Recreating All 7 Squarespace Forms as Google Forms (1-Click Setup)
+
+All 7 original Squarespace forms (Get Involved, Events Sign-Up, Experts by Experience, Mentorship Scheme, Contact Us, LyMIT 2026 Interest, and Symposium Poster Abstracts) have been captured with every exact question, checkbox, multiple-choice option, help description, and required flag in **[`scripts/create-google-forms.gs`](./scripts/create-google-forms.gs)**.
+
+To generate all 7 live Google Forms in your Google Drive in ~10 seconds:
+1. Open **[script.new](https://script.new)** while signed into the Google account that should own the forms.
+2. Paste the contents of [`scripts/create-google-forms.gs`](./scripts/create-google-forms.gs) and click **Run** (`createAllSCRCForms`).
+3. Approve permissions — it will create a **`SCRC Website Forms`** folder in your Google Drive with all 7 Google Forms + linked response Google Sheets, and print a ready-to-paste JSON block in the Execution Log.
+4. Paste those 7 URLs into [`src/data/site.json`](./src/data/site.json) under `externalLinks` (or via **Pages CMS → Site Settings & Links**). Every form CTA button across the website updates automatically!
 
 ---
 
@@ -10,7 +22,7 @@ Static Astro rebuild of [sussexcancer.org](https://sussexcancer.org), designed f
 This repo includes a ready-to-use [`.pages.yml`](./.pages.yml) configuration for **[Pages CMS](https://app.pagescms.org)** (100% free, open-source, no backend server needed):
 1. Visit **[app.pagescms.org](https://app.pagescms.org)** and sign in with GitHub.
 2. Select **`SiFTW/SCRC-website`**.
-3. Visually add or edit **News Articles**, **Events**, **Lived Experience Stories**, **People Directory**, **Jobs**, and **Site Settings** (including the top announcement bar and form links), with image uploads.
+3. Visually add or edit **News Articles**, **Events**, **Lived Experience Stories**, **People Directory**, **Jobs**, and **Site Settings** (including the top announcement bar and Google Form URLs), with image uploads.
 4. Click **Save** — it commits directly to GitHub and Cloudflare Pages automatically deploys the update in ~30 seconds.
 
 ### Option 2: GitHub Issue Forms + Automated Pull Requests
@@ -20,7 +32,6 @@ This repo includes a ready-to-use [`.pages.yml`](./.pages.yml) configuration for
 4. The [`.github/workflows/publish-from-issue.yml`](./.github/workflows/publish-from-issue.yml) workflow automatically generates the Markdown file and opens a Pull Request (with a live Cloudflare Pages preview link). Merge to publish!
 
 ### Option 3: Edit Markdown / JSON Directly on GitHub
-All content lives in intuitive files you can edit directly via GitHub's web editor (pencil icon):
 * **News articles:** `src/content/news/*.md`
 * **Events:** `src/content/events/*.md`
 * **Lived Experience Stories:** `src/content/stories/*.md`
@@ -30,15 +41,7 @@ All content lives in intuitive files you can edit directly via GitHub's web edit
 * **Funding Call & Funded Projects:** `src/data/funding.json`
 * **Jobs & Vacancies:** `src/data/jobs.json`
 * **Shared Resources & Equipment:** `src/data/resources.json`
-* **Site Settings, Announcement Bar & External Forms:** `src/data/site.json`
-
----
-
-## Connecting Institutional Forms (GDPR Best Practice)
-
-The **Join the SCRC**, **Experts by Experience**, and **Mentorship** buttons read their URLs from [`src/data/site.json`](./src/data/site.json) (`externalLinks`).
-* Currently they default to pre-filled `mailto:Hello@SussexCancer.org` links so nothing breaks.
-* When ready, create free **University of Sussex / BSMS Microsoft Forms** (or Qualtrics/REDCap forms) and paste their URLs into `src/data/site.json` (or via Pages CMS → **Site Settings & Links**).
+* **Site Settings, Announcement Bar & Form URLs:** `src/data/site.json`
 
 ---
 
@@ -53,9 +56,8 @@ The **Join the SCRC**, **Experts by Experience**, and **Mentorship** buttons rea
 4. Click **Save and Deploy** — you'll get a free `*.pages.dev` preview URL immediately.
 5. **Attach `sussexcancer.org`:**
    * In your Cloudflare Pages project → **Custom domains** → add `sussexcancer.org` and `www.sussexcancer.org`.
-   * Point your domain's DNS (recommended: move DNS to Cloudflare Free, or add the CNAME records at your current registrar).
-   * Keep your existing MX/TXT records untouched so `@sussexcancer.org` email keeps working without interruption.
-   * Once verified and HTTPS is active, cancel your Squarespace website plan (keeping only domain registration, or transferring the domain to Cloudflare Registrar at cost).
+   * Point your domain's DNS while keeping your existing MX/TXT records untouched so `@sussexcancer.org` email keeps working without interruption.
+   * Once verified and HTTPS is active, cancel your Squarespace website plan.
 
 ---
 

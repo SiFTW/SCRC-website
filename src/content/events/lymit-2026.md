@@ -9,26 +9,5 @@ image: "/images/events/lymitlogo-742fc4e4.png"
 ---
 
 <img src="/images/events/slide1-decf0bd8.png" alt="" loading="lazy" />
-        
 
-      
-
-    
-        
-      
-
-      
-    
-      
-
-    
-
-    
-
-  
-
-  
-
-  
-  
 <p>Get notified when registration opens, by completing the form below:</p>

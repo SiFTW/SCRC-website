@@ -8,66 +8,14 @@ image: "/images/news/screenshot-2026-04-14-at-14-54-59-cc1401f7.png"
 
 <p>Last year, the Research Engagement Network (REN) Community Researchers, Voluntary Community and Social Enterprise (VCSE) partners, and the Sussex Cancer Research Centre (SCRC) worked together to co‑produce a Public and Community Involvement and Engagement (PCIE) plan for the Centre. The plan was based on insights shared by 47 members of underserved local communities with lived experience of cancer and cancer care. Most community members did not speak English as a first language, few were aware of cancer research happening locally and encouragingly, 80% said they would like to take part in cancer research.&nbsp;<br></p><p>REN Community Researchers played a key role by connecting with local people through their trusted relationships, shared language, and cultural understanding. This will help ensure the Centre’s PCIE work is relevant, accessible, and inclusive. The project was led by Diversity Resource International and funded through NHS England via the Sussex Research Engagement Network.</p><p>The full report—<em>Co‑developing a Public and Community Involvement and Engagement (PCIE) Plan for the Sussex Cancer Research Centre (SCRC): A Community‑Researcher‑Led Approach</em>—has now been published and is <a href="https://www.bsms.ac.uk/_pdf/research/hrp/cancer-final-report-version-3.pdf">available to read here</a>.</p>
 
-  
+<a
+data-sqsp-image-classic-block-image-link
+href="https://www.bsms.ac.uk/_pdf/research/hrp/cancer-final-report-version-3.pdf"
+target="_blank"
+>
 
-  
-  
-    
-  
+<img src="/images/news/screenshot-2026-04-14-at-14-54-59-7bd71cc3.png" alt="" loading="lazy" />
 
-    
+</a>
 
-    
-
-    
-      
-
-        
-      
-        <a
-          data-sqsp-image-classic-block-image-link
-          href="https://www.bsms.ac.uk/_pdf/research/hrp/cancer-final-report-version-3.pdf"
-          target="_blank"
-        >
-          
-      
-
-        
-
-          
-          
-          
-          
-          
-          
-          <img src="/images/news/screenshot-2026-04-14-at-14-54-59-7bd71cc3.png" alt="" loading="lazy" />
-        
-
-      
-
-    
-        </a>
-      
-
-      
-        
-
-          
-
-        
-
-      
-    
-      
-
-    
-
-    
-
-  
-
-  
-
-  
-  
 <p>The report lays out community-informed recommendations for how the Centre should design and deliver its PCIE work. Dr Simon Mitchell, Co‑Director of the SCRC, explained how the project is already informing the development of the Centre’s PCIE work: <br>The Sussex Cancer Research Centre (SCRC) is incredibly grateful to the thoughtful and insightful research done by community researchers, and to all participants in the process. Thanks to all their hard work, we’ve got a concrete plan for how to ensure cancer research in Sussex benefits all our communities. Some concrete steps we are immediately taking based on the report include:</p><ul><li><p>We have established a lived-experience advisory group, that meets regularly, prior to the centre’s management group meetings, to enable ideas from those with lived experience to feed into all SCRC decisions. If you are interested in representing your community please <a href="https://sussexcancer.org/experts">complete the application form here</a>.&nbsp;Please note we are limited in those with whom we can engage due to the importance of reimbursing everyone for their time but we will keep everyone informed.</p></li><li><p>We are offering talks, discussions, Q&amp;A sessions and more at community events across Sussex.&nbsp;If you’d like to invite us to come to a community event and provide information about the Sussex Cancer Research Centre, present our latest cancer research, or talk more generally about different aspects of cancer then please contact us at <a href="mailto:hello@sussexcancer.org">hello@SussexCancer.org</a> or through the REN at <a href="mailto:SussexREN@bsms.ac.uk">SussexREN@bsms.ac.uk</a>.</p></li><li><p>Through our partnership with the Sussex Cancer Fund we have funded Diversity Resource International to deliver a community-led pilot project for breast and prostate cancer within&nbsp;minoritised ethnic communities in Sussex. This includes culturally adapted cancer early-detection materials.</p></li><li><p>We are working on updating our website to include research projects that are co-created by people impacted by cancer.&nbsp;<br></p></li></ul><p>In addition to the above short-term changes, we are working at implementing the larger&nbsp;recommendations from the community research. These require identifying and securing sustainable funding for translation, community researcher’s time, and production of materials. We are committed to securing the required funding.</p><p>Please subscribe to our newsletter by clicking “Get Involved” at <a href="http://www.SussexCancer.org">www.SussexCancer.org</a> to keep informed with our progress.&nbsp;Thank you again to all the community researchers and the Sussex Research Engagement Network for their valuable commitment to cancer research across Sussex.</p>

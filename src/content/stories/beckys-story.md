@@ -8,8 +8,6 @@ image: "/images/stories/becky-hughes-branding-shoot-amp-11-9a753055.jpg"
 <p>
 <strong><em>Having first noticed a small lump on my ribs in November 2017, I was eventually diagnosed with a Desmoid tumour (also known as fibromatosis – a form of sarcoma) in July 2018.</em></strong>
 
- 
-
 </p><p>
 I was at the gym when I initially noticed an asymmetry, lying face down on a machine – I could feel a slight unevenness with my body pressed against the surface. When I got home, I looked at my body in a mirror, and could see a lump, which was soft to the touch, and malleable enough that it would actually disappear when prodded.
 </p><p>

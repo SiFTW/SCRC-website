@@ -40,9 +40,11 @@ import site from '../data/site.json';
             </p>
             <a
               href={site.externalLinks.expertsFormUrl}
+              target={site.externalLinks.expertsFormUrl.startsWith('http') ? '_blank' : undefined}
+              rel={site.externalLinks.expertsFormUrl.startsWith('http') ? 'noopener noreferrer' : undefined}
               class="btn btn--primary"
             >
-              Apply to be an Expert by Experience
+              Apply to be an Expert by Experience{site.externalLinks.expertsFormUrl.startsWith('http') ? ' ↗' : ''}
             </a>
           </div>
           <p style="font-size:0.88rem;">

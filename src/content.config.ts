@@ -25,6 +25,8 @@ const events = defineCollection({
     excerpt: z.string().default(''),
     featured: z.boolean().default(false),
     image: z.string().optional(),
+    signupUrl: z.string().optional(),
+    signupLabel: z.string().optional(),
     categories: z.array(z.string()).default([]),
     tags: z.array(z.string()).default([]),
   }),

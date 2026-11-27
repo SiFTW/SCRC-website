@@ -2,7 +2,7 @@
   "siteName": "Sussex Cancer Research Centre",
   "shortName": "SCRC",
   "siteUrl": "https://sussexcancer.org",
-  "description": "Sussex Cancer Research Centre brings together experts from Brighton and Sussex Medical School, the University of Sussex, the University of Brighton, and NHS Trusts across Sussex to pioneer interdisciplinary cancer research.",
+  "description": "Uniting university research, NHS trusts, and people with experience of cancer across Sussex to translate bench discoveries into life-saving patient care.",
   "announcement": {
     "enabled": true,
     "text": "Donate today to support life-changing cancer research in Sussex",
@@ -17,8 +17,12 @@
     "donateJustGiving": "https://www.justgiving.com/campaign/scrc",
     "nihrBePartOfResearch": "https://bepartofresearch.nihr.ac.uk/",
     "joinFormUrl": "mailto:Hello@SussexCancer.org?subject=Joining%20the%20Sussex%20Cancer%20Research%20Centre",
+    "eventsFormUrl": "mailto:Hello@SussexCancer.org?subject=SCRC%20Event%20Sign-up",
+    "expertsFormUrl": "mailto:Hello@SussexCancer.org?subject=Experts%20by%20Experience%20Application",
     "mentorFormUrl": "mailto:Hello@SussexCancer.org?subject=SCRC%20Mentorship%20Programme",
-    "expertsFormUrl": "mailto:Hello@SussexCancer.org?subject=Experts%20by%20Experience%20Application"
+    "contactFormUrl": "mailto:Hello@SussexCancer.org?subject=SCRC%20Website%20Enquiry",
+    "lymitFormUrl": "mailto:Hello@SussexCancer.org?subject=LyMIT%202026%20Expression%20of%20Interest",
+    "posterAbstractFormUrl": "mailto:Hello@SussexCancer.org?subject=SCRC%20Symposium%20Poster%20Abstract"
   },
   "social": [
     { "label": "X (Twitter)", "href": "https://twitter.com/Sussex_Cancer", "icon": "twitter" },
@@ -31,6 +35,7 @@
     {
       "label": "Research",
       "children": [
+        { "label": "Researcher Hub", "href": "/research" },
         { "label": "News", "href": "/news" },
         { "label": "Events", "href": "/events" },
         { "label": "Themes", "href": "/themes" },
@@ -45,8 +50,8 @@
     {
       "label": "Lived Experience",
       "children": [
-        { "label": "Experts by Experience", "href": "/experts" },
         { "label": "Hub", "href": "/lived-experience" },
+        { "label": "Experts by Experience", "href": "/experts" },
         { "label": "Engagement", "href": "/engagement" },
         { "label": "Lived Experience Stories", "href": "/lived-experience-stories" }
       ]

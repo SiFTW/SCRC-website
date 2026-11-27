@@ -11,28 +11,3 @@ tags: ["computational"]
 ---
 
 <p>SCRC Computational Cancer Research group meets regularly to discuss artificial intelligence, machine learning, systems biology, and other data-driven challenges in cancer research. This group is led by <a href="https://profiles.sussex.ac.uk/p140897-frances-pearl" target="_blank">Dr Frances Pearl</a>.</p>
-
-  
-
-  
-
-    
-    
-    
-    
-    
-    
-
-    
-      
-  
-    
-      
-
-  
-
-    <button>
-      
-        Sign up to attend
-      
-    </button>

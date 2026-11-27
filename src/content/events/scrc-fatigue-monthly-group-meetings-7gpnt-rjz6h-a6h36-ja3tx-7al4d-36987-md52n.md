@@ -11,28 +11,3 @@ tags: ["fatigue"]
 ---
 
 <p>SCRC Fatigue Research meets regularly to discuss research on cancer-related fatigue. This group is led by <a href="https://shore-c.sussex.ac.uk/staff-page.php?sid=4" target="_blank">Dr Sally Wheelwright</a>.</p>
-
-  
-
-  
-
-    
-    
-    
-    
-    
-    
-
-    
-      
-  
-    
-      
-
-  
-
-    <button>
-      
-        Sign up to attend
-      
-    </button>

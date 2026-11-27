@@ -11,28 +11,3 @@ tags: ["BandG"]
 ---
 
 <p>The SCRC Breast &amp; Gynaecological Cancers Group meets every last Thursday of the month, in-person and on Teams led by Prof <a href="https://research.brighton.ac.uk/en/persons/melanie-flint" target="_blank">Melanie Flint</a>.</p>
-
-  
-
-  
-
-    
-    
-    
-    
-    
-    
-
-    
-      
-  
-    
-      
-
-  
-
-    <button>
-      
-        Sign up to attend
-      
-    </button>

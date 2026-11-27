@@ -72,6 +72,14 @@ content:
       - name: excerpt
         label: Short Summary
         type: text
+      - name: signupUrl
+        label: Custom Sign-up / Registration URL (optional)
+        type: string
+        description: Leave blank to use the default SCRC Events Google Form.
+      - name: signupLabel
+        label: Sign-up Button Label (optional)
+        type: string
+        description: Defaults to "Sign up to attend".
       - name: featured
         label: Featured Event
         type: boolean
@@ -181,13 +189,25 @@ content:
             label: Donate URL
             type: string
           - name: joinFormUrl
-            label: Join SCRC Form URL
+            label: Join SCRC Google Form URL
             type: string
-          - name: mentorFormUrl
-            label: Mentor Scheme Form URL
+          - name: eventsFormUrl
+            label: Events Sign-Up Google Form URL
             type: string
           - name: expertsFormUrl
-            label: Experts by Experience Form URL
+            label: Experts by Experience Google Form URL
+            type: string
+          - name: mentorFormUrl
+            label: Mentor Scheme Google Form URL
+            type: string
+          - name: contactFormUrl
+            label: Contact Us Google Form URL
+            type: string
+          - name: lymitFormUrl
+            label: LyMIT 2026 Interest Google Form URL
+            type: string
+          - name: posterAbstractFormUrl
+            label: Symposium Poster Abstract Google Form URL
             type: string
 
   - name: jobs
