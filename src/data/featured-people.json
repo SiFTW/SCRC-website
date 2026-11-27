@@ -1,0 +1,113 @@
+{
+  "leadership": [
+    {
+      "slug": "simon-mitchell",
+      "name": "Simon Mitchell",
+      "role": "Director"
+    },
+    {
+      "slug": "melanie-flint",
+      "name": "Melanie Flint",
+      "role": "Co-Director"
+    },
+    {
+      "slug": "timothy-humphrey",
+      "name": "Timothy Humphrey",
+      "role": "Co-Director"
+    },
+    {
+      "slug": "duncan-gilbert",
+      "name": "Duncan Gilbert",
+      "role": "Co-Director"
+    }
+  ],
+  "livedExperience": [
+    {
+      "slug": "markus-taylor",
+      "name": "Markus Taylor",
+      "role": "Lived Experience Lead"
+    },
+    {
+      "slug": "becky-hughes",
+      "name": "Becky Hughes",
+      "role": "Expert by Experience"
+    },
+    {
+      "slug": "sue-mills",
+      "name": "Sue Mills",
+      "role": "Expert by Experience"
+    },
+    {
+      "slug": "anna-potts",
+      "name": "Anna Potts",
+      "role": "Expert by Experience"
+    },
+    {
+      "slug": "julie-ohara",
+      "name": "Julie O'Hara",
+      "role": "Expert by Experience"
+    },
+    {
+      "slug": "rosie-brunger",
+      "name": "Rosie Brunger",
+      "role": "Expert by Experience"
+    }
+  ],
+  "management": [
+    {
+      "slug": "frances-pearl",
+      "name": "Frances Pearl",
+      "role": "Computational Cancer Research Lead"
+    },
+    {
+      "slug": "rhys-morgan",
+      "name": "Rhys Morgan",
+      "role": "Sussex Blood Cancer Research Lead"
+    },
+    {
+      "slug": "lesley-fallowfield",
+      "name": "Lesley Fallowfield",
+      "role": "SHORE-C Director"
+    },
+    {
+      "slug": "sally-wheelwright",
+      "name": "Sally Wheelwright",
+      "role": "Cancer Related Fatigue Lead"
+    },
+    {
+      "slug": "erika-mancini",
+      "name": "Erika Mancini",
+      "role": "Sussex Drug Discovery Lead"
+    },
+    {
+      "slug": "rebecca-herbertson",
+      "name": "Rebecca Herbertson",
+      "role": "Director for Research & Innovation, Cancer Division (UHSussex)"
+    },
+    {
+      "slug": "steve-crocker",
+      "name": "Steve Crocker",
+      "role": "Research Lead – Sussex Cancer Fund"
+    },
+    {
+      "slug": "anna-marie-bibby-jones",
+      "name": "Anna-Marie Bibby-Jones",
+      "role": "EDI and PCI Lead, Sussex Health and Care Partnership"
+    },
+    {
+      "slug": "keith-caldecott",
+      "name": "Keith Caldecott",
+      "role": "Director – Genome Damage and Stability Centre"
+    },
+    {
+      "slug": "jane-woodhull",
+      "name": "Jane Woodhull",
+      "role": "Cancer Support Advisor – Diversity Resource International"
+    },
+    {
+      "slug": "steve-walker",
+      "name": "Steve Walker",
+      "role": "Ethics and Commercialisation Lead"
+    }
+  ]
+}

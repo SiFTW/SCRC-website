@@ -12,30 +12,45 @@ export async function getStaticPaths() {
 
 const { person } = Astro.props;
 const { Content } = await render(person);
+
+const cleanImage =
+  person.data.image && !person.data.image.toLowerCase().includes('photoholder')
+    ? person.data.image
+    : '';
+
+const parts = person.data.name.trim().split(/\s+/).filter(Boolean);
+const initials =
+  parts.length > 1
+    ? (parts[0][0] + parts[parts.length - 1][0]).toUpperCase()
+    : person.data.name.slice(0, 2).toUpperCase();
 ---
 
 <BaseLayout
   title={person.data.name}
   description={person.data.summary || `${person.data.name} — Member of the Sussex Cancer Research Centre`}
-  image={person.data.image}
+  image={cleanImage || undefined}
 >
   <article class="section section--white">
     <div class="container container--narrow">
       <p style="margin-bottom:1.5rem;">
-        <a href="/people#directory" class="read-more">← Back to People Directory</a>
+        <a href="/people" class="read-more">← Back to People</a>
       </p>
 
       <div style="display:flex; flex-wrap:wrap; gap:2rem; align-items:center; margin-bottom:2.25rem;">
-        {person.data.image && (
+        {cleanImage ? (
           <img
-            src={person.data.image}
+            src={cleanImage}
             alt={person.data.name}
-            style="width:160px; height:160px; object-fit:cover; object-position:top center; border-radius:var(--radius-card); box-shadow:var(--shadow-sm); flex-shrink:0;"
+            style="width:168px; height:168px; object-fit:cover; object-position:top center; border-radius:var(--radius-card); box-shadow:var(--shadow-sm); flex-shrink:0;"
           />
+        ) : (
+          <div class="profile-avatar-placeholder" aria-hidden="true">
+            <span>{initials}</span>
+          </div>
         )}
         <div style="flex:1; min-width:240px;">
           {person.data.managementGroup && (
-            <span class="eyebrow">SCRC Management Group</span>
+            <span class="eyebrow">SCRC Leadership &amp; Management</span>
           )}
           <h1 style="margin-bottom:0.5rem;">{person.data.name}</h1>
           {person.data.summary && <p class="lead" style="margin-bottom:1rem;">{person.data.summary}</p>}
@@ -57,3 +72,30 @@ const { Content } = await render(person);
     </div>
   </article>
 </BaseLayout>
+
+<style>
+  .profile-avatar-placeholder {
+    width: 168px;
+    height: 168px;
+    border-radius: var(--radius-card);
+    background: linear-gradient(135deg, var(--scrc-mint-soft) 0%, #d4efe4 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .profile-avatar-placeholder span {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 88px;
+    height: 88px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.85);
+    border: 2px solid rgba(100, 146, 141, 0.28);
+    font-size: 1.8rem;
+    font-weight: 500;
+    color: var(--scrc-teal-deep);
+  }
+</style>

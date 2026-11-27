@@ -1,12 +1,44 @@
 ---
 import { getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import featured from '../../data/featured-people.json';
 
 const allPeople = (await getCollection('people')).sort((a, b) =>
   a.data.name.localeCompare(b.data.name)
 );
 
-const managementGroup = allPeople.filter((p) => p.data.managementGroup);
+const bySlug = new Map(allPeople.map((p) => [p.id, p]));
+
+function getInitials(name: string) {
+  const parts = name.trim().split(/\s+/).filter(Boolean);
+  if (parts.length === 0) return 'SC';
+  if (parts.length === 1) return parts[0].slice(0, 2).toUpperCase();
+  return (parts[0][0] + parts[parts.length - 1][0]).toUpperCase();
+}
+
+function getCleanImage(img?: string) {
+  if (!img || img.toLowerCase().includes('photoholder')) return '';
+  return img;
+}
+
+function resolveGroup(list: { slug: string; name: string; role: string }[]) {
+  return list.map((entry) => {
+    const profile = bySlug.get(entry.slug);
+    return {
+      slug: entry.slug,
+      name: entry.name,
+      role: entry.role,
+      image: getCleanImage(profile?.data.image),
+      initials: getInitials(entry.name),
+      hasProfile: Boolean(profile),
+    };
+  });
+}
+
+const leadership = resolveGroup(featured.leadership);
+const livedExperience = resolveGroup(featured.livedExperience);
+const management = resolveGroup(featured.management);
+
 const interestCounts = new Map<string, number>();
 allPeople.forEach((p) => {
   p.data.interests.forEach((interest) => {
@@ -18,7 +50,7 @@ const interests = Array.from(interestCounts.entries()).sort((a, b) => a[0].local
 
 <BaseLayout
   title="People"
-  description="Explore the Sussex Cancer Research Centre management group and full membership directory across BSMS, University of Sussex, University of Brighton, and NHS Trusts."
+  description="Meet the Leadership, Lived Experience, Management, and full membership directory of the Sussex Cancer Research Centre."
 >
   <section class="page-banner page-banner--image">
     <img src="/images/brand/hero-sussex.jpg" alt="" class="hero-bg" />
@@ -26,42 +58,41 @@ const interests = Array.from(interestCounts.entries()).sort((a, b) => a[0].local
     <div class="container page-banner-inner">
       <h1>People</h1>
       <p class="lead">
-        Our {allPeople.length} researchers, clinicians, and lived-experience partners are making a
-        difference across every area of cancer research.
+        Our researchers, clinicians, and lived-experience partners working together across Brighton
+        and Sussex Medical School, University of Sussex, University of Brighton, and NHS Trusts.
       </p>
     </div>
   </section>
 
-  <!-- Management Group -->
-  <section class="section section--bright">
+  <!-- 1. Leadership -->
+  <section class="section section--bright" id="leadership">
     <div class="container">
       <div class="section-header">
         <div>
-          <span class="eyebrow">Leadership</span>
-          <h2 style="margin-bottom:0;">Sussex Cancer Research Centre Management Group</h2>
+          <span class="eyebrow">Centre Directors</span>
+          <h2 style="margin-bottom:0;">Leadership</h2>
         </div>
       </div>
 
       <div class="grid grid--4">
-        {managementGroup.map((person) => (
+        {leadership.map((person) => (
           <article class="card">
-            {person.data.image && (
-              <a href={`/directory/${person.id}`} class="card-media" style="aspect-ratio:1/1;">
-                <img
-                  src={person.data.image}
-                  alt={person.data.name}
-                  style="object-position:top center;"
-                  loading="lazy"
-                />
-              </a>
-            )}
+            <a href={`/directory/${person.slug}`} class="card-media person-media">
+              {person.image ? (
+                <img src={person.image} alt={person.name} loading="eager" />
+              ) : (
+                <div class="avatar-placeholder" aria-hidden="true">
+                  <span>{person.initials}</span>
+                </div>
+              )}
+            </a>
             <div class="card-body">
               <h3 class="card-title">
-                <a href={`/directory/${person.id}`}>{person.data.name}</a>
+                <a href={`/directory/${person.slug}`}>{person.name}</a>
               </h3>
-              {person.data.summary && <p class="card-excerpt">{person.data.summary}</p>}
+              <p class="person-role">{person.role}</p>
               <div class="card-footer">
-                <a href={`/directory/${person.id}`} class="read-more">View profile →</a>
+                <a href={`/directory/${person.slug}`} class="read-more">View profile →</a>
               </div>
             </div>
           </article>
@@ -70,10 +101,85 @@ const interests = Array.from(interestCounts.entries()).sort((a, b) => a[0].local
     </div>
   </section>
 
-  <!-- Full Searchable Membership Directory -->
+  <!-- 2. Lived Experience -->
+  <section class="section section--white" id="lived-experience">
+    <div class="container">
+      <div class="section-header">
+        <div>
+          <span class="eyebrow">Patients, Carers &amp; Community</span>
+          <h2 style="margin-bottom:0;">Lived Experience</h2>
+        </div>
+        <a href="/experts" class="btn btn--outline btn--sm">Become an Expert by Experience →</a>
+      </div>
+
+      <div class="grid grid--3">
+        {livedExperience.map((person) => (
+          <article class="card">
+            <a href={`/directory/${person.slug}`} class="card-media person-media">
+              {person.image ? (
+                <img src={person.image} alt={person.name} loading="lazy" />
+              ) : (
+                <div class="avatar-placeholder" aria-hidden="true">
+                  <span>{person.initials}</span>
+                </div>
+              )}
+            </a>
+            <div class="card-body">
+              <h3 class="card-title">
+                <a href={`/directory/${person.slug}`}>{person.name}</a>
+              </h3>
+              <p class="person-role">{person.role}</p>
+              <div class="card-footer">
+                <a href={`/directory/${person.slug}`} class="read-more">View profile →</a>
+              </div>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. Management -->
+  <section class="section section--soft" id="management">
+    <div class="container">
+      <div class="section-header">
+        <div>
+          <span class="eyebrow">Theme &amp; Strategic Leads</span>
+          <h2 style="margin-bottom:0;">Management</h2>
+        </div>
+      </div>
+
+      <div class="grid grid--4">
+        {management.map((person) => (
+          <article class="card">
+            <a href={`/directory/${person.slug}`} class="card-media person-media">
+              {person.image ? (
+                <img src={person.image} alt={person.name} loading="lazy" />
+              ) : (
+                <div class="avatar-placeholder" aria-hidden="true">
+                  <span>{person.initials}</span>
+                </div>
+              )}
+            </a>
+            <div class="card-body">
+              <h3 class="card-title" style="font-size:1.08rem;">
+                <a href={`/directory/${person.slug}`}>{person.name}</a>
+              </h3>
+              <p class="person-role">{person.role}</p>
+              <div class="card-footer">
+                <a href={`/directory/${person.slug}`} class="read-more">View profile →</a>
+              </div>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. Full Searchable Membership Directory -->
   <section class="section section--white" id="directory">
     <div class="container">
-      <span class="eyebrow">Membership Directory</span>
+      <span class="eyebrow">All SCRC Members</span>
       <h2>Explore our membership directory by research interest</h2>
 
       <div style="display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:1rem; margin:1.25rem 0 1.5rem;">
@@ -101,44 +207,46 @@ const interests = Array.from(interestCounts.entries()).sort((a, b) => a[0].local
       </div>
 
       <div class="grid grid--4" id="people-grid">
-        {allPeople.map((person) => (
-          <article
-            class="card person-card"
-            data-search={`${person.data.name} ${person.data.summary} ${person.data.interests.join(' ')}`.toLowerCase()}
-            data-interests={person.data.interests.map((i) => i.toLowerCase()).join('|')}
-          >
-            {person.data.image && (
-              <a href={`/directory/${person.id}`} class="card-media" style="aspect-ratio:1/1;">
-                <img
-                  src={person.data.image}
-                  alt={person.data.name}
-                  style="object-position:top center;"
-                  loading="lazy"
-                />
+        {allPeople.map((person) => {
+          const cleanImg = getCleanImage(person.data.image);
+          return (
+            <article
+              class="card person-card"
+              data-search={`${person.data.name} ${person.data.summary} ${person.data.interests.join(' ')}`.toLowerCase()}
+              data-interests={person.data.interests.map((i) => i.toLowerCase()).join('|')}
+            >
+              <a href={`/directory/${person.id}`} class="card-media person-media">
+                {cleanImg ? (
+                  <img src={cleanImg} alt={person.data.name} loading="lazy" />
+                ) : (
+                  <div class="avatar-placeholder" aria-hidden="true">
+                    <span>{getInitials(person.data.name)}</span>
+                  </div>
+                )}
               </a>
-            )}
-            <div class="card-body">
-              <h3 class="card-title" style="font-size:1.05rem;">
-                <a href={`/directory/${person.id}`}>{person.data.name}</a>
-              </h3>
-              {person.data.summary && (
-                <p class="card-excerpt" style="-webkit-line-clamp:3; font-size:0.86rem;">
-                  {person.data.summary}
-                </p>
-              )}
-              {person.data.interests.length > 0 && (
-                <div style="display:flex; flex-wrap:wrap; gap:0.35rem; margin-bottom:0.85rem;">
-                  {person.data.interests.slice(0, 3).map((tag) => (
-                    <span class="tag">{tag}</span>
-                  ))}
+              <div class="card-body">
+                <h3 class="card-title" style="font-size:1.05rem;">
+                  <a href={`/directory/${person.id}`}>{person.data.name}</a>
+                </h3>
+                {person.data.summary && (
+                  <p class="card-excerpt" style="-webkit-line-clamp:3; font-size:0.86rem;">
+                    {person.data.summary}
+                  </p>
+                )}
+                {person.data.interests.length > 0 && (
+                  <div style="display:flex; flex-wrap:wrap; gap:0.35rem; margin-bottom:0.85rem;">
+                    {person.data.interests.slice(0, 3).map((tag) => (
+                      <span class="tag">{tag}</span>
+                    ))}
+                  </div>
+                )}
+                <div class="card-footer">
+                  <a href={`/directory/${person.id}`} class="read-more">Read more →</a>
                 </div>
-              )}
-              <div class="card-footer">
-                <a href={`/directory/${person.id}`} class="read-more">Read more →</a>
               </div>
-            </div>
-          </article>
-        ))}
+            </article>
+          );
+        })}
       </div>
     </div>
   </section>
@@ -151,6 +259,52 @@ const interests = Array.from(interestCounts.entries()).sort((a, b) => a[0].local
     </div>
   </section>
 </BaseLayout>
+
+<style>
+  .person-media {
+    aspect-ratio: 1 / 1;
+  }
+
+  .person-media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;
+  }
+
+  .person-role {
+    font-size: 0.9rem;
+    font-weight: 400;
+    color: var(--scrc-teal-deep);
+    line-height: 1.5;
+    margin-bottom: 0.9rem;
+  }
+
+  .avatar-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, var(--scrc-mint-soft) 0%, #d4efe4 100%);
+    color: var(--scrc-teal-deep);
+  }
+
+  .avatar-placeholder span {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 92px;
+    height: 92px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.82);
+    border: 2px solid rgba(100, 146, 141, 0.28);
+    font-size: 1.85rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    color: var(--scrc-teal-deep);
+  }
+</style>
 
 <script>
   const searchInput = document.getElementById('people-search') as HTMLInputElement | null;
@@ -184,7 +338,6 @@ const interests = Array.from(interestCounts.entries()).sort((a, b) => a[0].local
 
   searchInput?.addEventListener('input', updateList);
 
-  // Support deep link ?interest=Blood+Cancers from Themes page
   const params = new URLSearchParams(window.location.search);
   const initial = (params.get('interest') || '').toLowerCase();
   if (initial) {
