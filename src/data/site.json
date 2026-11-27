@@ -16,13 +16,15 @@
     "newsletterArchive": "https://sussexcancer.curated.co/",
     "donateJustGiving": "https://www.justgiving.com/campaign/scrc",
     "nihrBePartOfResearch": "https://bepartofresearch.nihr.ac.uk/",
-    "joinFormUrl": "mailto:Hello@SussexCancer.org?subject=Joining%20the%20Sussex%20Cancer%20Research%20Centre",
-    "eventsFormUrl": "mailto:Hello@SussexCancer.org?subject=SCRC%20Event%20Sign-up",
-    "expertsFormUrl": "mailto:Hello@SussexCancer.org?subject=Experts%20by%20Experience%20Application",
-    "mentorFormUrl": "mailto:Hello@SussexCancer.org?subject=SCRC%20Mentorship%20Programme",
-    "contactFormUrl": "mailto:Hello@SussexCancer.org?subject=SCRC%20Website%20Enquiry",
-    "lymitFormUrl": "mailto:Hello@SussexCancer.org?subject=LyMIT%202026%20Expression%20of%20Interest",
     "posterAbstractFormUrl": "mailto:Hello@SussexCancer.org?subject=SCRC%20Symposium%20Poster%20Abstract"
+    "joinFormUrl": "https://docs.google.com/forms/d/e/1FAIpQLSdOxgmZ4nS-4hBOEROjEqvE9HWBuYe23aza-SqymZCx29vAeA/viewform",
+    "eventsFormUrl": "https://docs.google.com/forms/d/e/1FAIpQLSdqgffpReMpYqmjOtbFa0z0u6txttg3PdUuftfe-XUlBgqzfg/viewform",
+    "expertsFormUrl": "https://docs.google.com/forms/d/e/1FAIpQLSe6fwlPLgzJNgw2pLSC9wXASt9TKwYZFnL4vXv4Vh7w-nElfA/viewform",
+    "mentorFormUrl": "https://docs.google.com/forms/d/e/1FAIpQLSdsKuMJRL5bA8q2Tw81_fvDyvaoTx7XFEqgk03Rz3xrj7DUzg/viewform",
+    "contactFormUrl": "https://docs.google.com/forms/d/e/1FAIpQLSflDTPdgBq-XGV9w5B4WPbhjkHBjNvhsvTp7AK_Vj-JOcFTww/viewform",
+    "lymitFormUrl": "https://docs.google.com/forms/d/e/1FAIpQLSewXFybpA73DHarGvSp63s8Sya7NbTWExVIyuG1OFljrdC8Iw/viewform",
+    "posterAbstractFormUrl": "https://docs.google.com/forms/d/e/1FAIpQLSfcP5S_qGOBoWjjx9KYpeGVMgJYz_1sAfW5XZrL1IN3M3fO0A/viewform"
+}
   },
   "social": [
     { "label": "X (Twitter)", "href": "https://twitter.com/Sussex_Cancer", "icon": "twitter" },
