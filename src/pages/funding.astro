@@ -106,6 +106,11 @@ import funding from '../data/funding.json';
           is led by Frances Pearl, Laurence Pearl, Max Whitley, and Eleni Ladikou, supported by both
           the University of Sussex and Brighton and Sussex Medical School.
         </p>
+        {funding.inauguralStudentshipUrl && (
+          <p style="margin-bottom:0;">
+            <a href={funding.inauguralStudentshipUrl} class="read-more">Read more about this project →</a>
+          </p>
+        )}
       </div>
 
       <h3 style="margin-top:2rem;">SCRC Pump-Priming Awards</h3>
@@ -116,9 +121,17 @@ import funding from '../data/funding.json';
       <div style="display:grid; gap:0.75rem; margin-bottom:2rem;">
         {funding.fundedProjects.pumpPriming.map((proj) => (
           <details class="funding-acc">
-            <summary>{proj.title}</summary>
+            <summary>
+              <span>{proj.title}</span>
+              <span class="acc-icon" aria-hidden="true">+</span>
+            </summary>
             <div class="funding-acc-body">
-              {proj.description.split('\n\n').map((para) => <p>{para}</p>)}
+              {proj.description.split('\n\n').filter(Boolean).map((para) => <p>{para}</p>)}
+              {proj.projectUrl && (
+                <p style="margin-bottom:0; margin-top:0.85rem;">
+                  <a href={proj.projectUrl} class="read-more">Read more about this project →</a>
+                </p>
+              )}
             </div>
           </details>
         ))}
@@ -128,9 +141,17 @@ import funding from '../data/funding.json';
       <div style="display:grid; gap:0.75rem; margin-bottom:2rem;">
         {funding.fundedProjects.creativeEngagement.map((proj) => (
           <details class="funding-acc">
-            <summary>{proj.title}</summary>
+            <summary>
+              <span>{proj.title}</span>
+              <span class="acc-icon" aria-hidden="true">+</span>
+            </summary>
             <div class="funding-acc-body">
-              {proj.description.split('\n\n').map((para) => <p>{para}</p>)}
+              {proj.description.split('\n\n').filter(Boolean).map((para) => <p>{para}</p>)}
+              {proj.projectUrl && (
+                <p style="margin-bottom:0; margin-top:0.85rem;">
+                  <a href={proj.projectUrl} class="read-more">Read more about this project →</a>
+                </p>
+              )}
             </div>
           </details>
         ))}
@@ -140,9 +161,17 @@ import funding from '../data/funding.json';
       <div style="display:grid; gap:0.75rem;">
         {funding.fundedProjects.studentships.map((proj) => (
           <details class="funding-acc">
-            <summary>{proj.title}</summary>
+            <summary>
+              <span>{proj.title}</span>
+              <span class="acc-icon" aria-hidden="true">+</span>
+            </summary>
             <div class="funding-acc-body">
-              {proj.description.split('\n\n').map((para) => <p>{para}</p>)}
+              {proj.description.split('\n\n').filter(Boolean).map((para) => <p>{para}</p>)}
+              {proj.projectUrl && (
+                <p style="margin-bottom:0; margin-top:0.85rem;">
+                  <a href={proj.projectUrl} class="read-more">Read about the project →</a>
+                </p>
+              )}
             </div>
           </details>
         ))}
@@ -176,18 +205,45 @@ import funding from '../data/funding.json';
     background: var(--scrc-white);
     border: 1px solid var(--scrc-border);
     border-radius: var(--radius-btn);
+    transition: border-color var(--transition), box-shadow var(--transition);
+  }
+  .funding-acc:hover,
+  .funding-acc[open] {
+    border-color: var(--scrc-teal);
+  }
+  .funding-acc[open] {
+    box-shadow: var(--shadow-sm);
   }
   .funding-acc summary {
-    padding: 1rem 1.25rem;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1.05rem 1.25rem;
     font-weight: 500;
     cursor: pointer;
+    list-style: none;
     color: var(--scrc-black);
   }
+  .funding-acc summary::-webkit-details-marker {
+    display: none;
+  }
+  .acc-icon {
+    font-size: 1.35rem;
+    font-weight: 400;
+    line-height: 1;
+    color: var(--scrc-teal-deep);
+    flex-shrink: 0;
+    transition: transform var(--transition);
+  }
+  .funding-acc[open] .acc-icon {
+    transform: rotate(45deg);
+  }
   .funding-acc-body {
-    padding: 0 1.25rem 1.2rem;
+    padding: 0.95rem 1.25rem 1.25rem;
     border-top: 1px solid var(--scrc-border);
-    padding-top: 0.9rem;
     font-size: 0.95rem;
-    color: var(--scrc-muted);
+    color: var(--scrc-ink);
+    line-height: 1.75;
   }
 </style>

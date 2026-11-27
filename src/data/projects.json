@@ -1,0 +1,1009 @@
+{
+  "pearl": {
+    "slug": "pearl",
+    "title": "AI solutions to guide treatment strategies for Cancers of Unknown Primaries (CUPs)",
+    "images": [
+      "/images/projects/screenshot-2024-02-06-at-18-10-4-5ff48d7d.png",
+      "/images/projects/smlab5-114af694.jpg",
+      "/images/projects/cropped-transparent-scf-logo-1-e-aa24a4d2.png"
+    ],
+    "blocks": [
+      {
+        "tag": "p",
+        "html": "We’re excited to support the award of the first Sussex Cancer Research Centre studentship to an exciting new collaboration between a collaboration between the Pearl Bioinformatics Laboratory, at the University of Sussex, the “Cancer of Unknown Primary” team at the University Hospitals Sussex NHS Foundation Trust, Brighton and Sussex Medical School, and the East Sussex Healthcare NHS Trust."
+      },
+      {
+        "tag": "p",
+        "html": "The SCRC sat down with Frances to talk about her project."
+      },
+      {
+        "tag": "p",
+        "html": "<strong><em>SCRC: Can you share a brief overview of your project?</em></strong>"
+      },
+      {
+        "tag": "p",
+        "html": "FP: The best treatment for a cancer patient usually depends on where the cancer started. However, in 3-5% of cases, doctors can’t find the original tumour—this is called Cancer of Unknown Primary (CUP). This makes treatment difficult, and most CUP patients (80-85%) face a poor prognosis. In Sussex, 300-500 cancer cases each year are classified as CUP, despite extensive testing."
+      },
+      {
+        "tag": "p",
+        "html": "We believe AI can help by analysing genetic changes in tumour cells to pinpoint where the cancer started. This would allow doctors to use the right treatment for that cancer type. AI could also detect unique weaknesses in the tumour, making precision therapies possible. With whole genome sequencing now available through the NHS, this approach is within reach—if the right AI tools are developed."
+      },
+      {
+        "tag": "p",
+        "html": "This project aims to create AI tools to improve CUP diagnosis and treatment in Sussex. Using large public cancer databases, we will develop AI models to:"
+      },
+      {
+        "tag": "p",
+        "html": "1. Identify where the cancer started using genetic data."
+      },
+      {
+        "tag": "p",
+        "html": "2. Match patients to relevant clinical trials."
+      },
+      {
+        "tag": "p",
+        "html": "3. Predict which chemotherapy will work best."
+      },
+      {
+        "tag": "p",
+        "html": "These AI tools will be built into a secure web application for easy use by doctors. Early research shows this approach is feasible and could transform CUP treatment."
+      },
+      {
+        "tag": "p",
+        "html": "<strong><em>SCRC: What was the inspiration for your project?</em></strong>"
+      },
+      {
+        "tag": "p",
+        "html": "FP: I have been working with multi-omic cancer data predicting therapeutic vulnerability for a long time, normally to identify new drug targets. I really wanted to develop methods that we could use in the clinic to improve patient outcomes directly, by making sure that patients got the right drug at the right time."
+      },
+      {
+        "tag": "p",
+        "html": "<strong><em>SCRC: How do you foresee your project leading to patient benefit? And when?</em></strong>"
+      },
+      {
+        "tag": "p",
+        "html": "FP: We already have preliminary working models. We are hoping to start a proof of principal study quite soon, working with the Sussex CUP team."
+      },
+      {
+        "tag": "p",
+        "html": "<strong><em>SCRC: If the project is successful—what’s next?</em></strong>"
+      },
+      {
+        "tag": "p",
+        "html": "FP: We are currently working on a business plan, and we are seeking investment to spin-out a company so that we could provide these services to cancer patients worldwide. Although it will take a while before these tools could be more widely used in the clinic as they will require clinical trials and full regulatory approval."
+      },
+      {
+        "tag": "p",
+        "html": "<strong><em>SCRC: Can you describe any interdisciplinary aspects of your projects?</em></strong>"
+      },
+      {
+        "tag": "p",
+        "html": "FP: This is a fully interdisciplinary project, between life science researchers at Sussex University, BSMS clinical lectures and the whole CUP clinical team including oncologists, pathologists and research nurses."
+      },
+      {
+        "tag": "p",
+        "html": "<strong><em>SCRC: What do you think are the main challenges we face in cancer research? How does your project help to address this?</em></strong>"
+      },
+      {
+        "tag": "p",
+        "html": "FP: This year the Nobel Prize for Chemistry was awarded to the teams that could accurately predict the 3D structure of a protein from an amino acid sequence using AI and Deep Learning (AlphaFold and David Baker). This was only possible, because all the data required to train the AI, was in the same format, in the same database and had been collected and stored in this way since 1971."
+      },
+      {
+        "tag": "p",
+        "html": "Although there are many multi-omic or imaging studies, linked with patient outcomes or drug responses for large sets of cancer patients, often the data produced in these studies are not very accessible."
+      },
+      {
+        "tag": "p",
+        "html": "I think the big challenge we have is making sure in cancer research is that we make these data available to the computational community, anonymised, with full consents in place for data re-use, and that standardised formats are used for data storage. This includes acknowledging and upholding the fundamental right of patients to exercise autonomy over the use and dissemination of their personal health data and we would only include data from a patient where full consents had been agreed. In addition, I would like for every cancer sample to have its DNA sequenced and transcript levels measured as standard."
+      },
+      {
+        "tag": "p",
+        "html": "<strong><em>SCRC: How have research mentors benefited your research?</em></strong>"
+      },
+      {
+        "tag": "p",
+        "html": "FP: I learned a huge amount from my PhD supervisor – Dame Janet Thornton FRS – who was a pioneer in handling large biological datasets, and patiently developed pipelines that pushed disparate datasets together to reveal new understanding"
+      },
+      {
+        "tag": "p",
+        "html": "<strong><em>SCRC: If people want to follow you and your team or get updates as the project progresses, where can they get more info?</em></strong>"
+      },
+      {
+        "tag": "p",
+        "html": "FP: My Sussex profile <a href=\"https://profiles.sussex.ac.uk/p140897-frances-pearl\" target=\"_blank\" rel=\"noopener noreferrer\">website is here</a>and has links to my group’s website and the webtools we develop. And I can <a href=\"https://www.linkedin.com/in/frances-pearl-b34b5354/\" target=\"_blank\" rel=\"noopener noreferrer\">be found on LinkedIn.</a>"
+      },
+      {
+        "tag": "p",
+        "html": "Support life-changing researchYour support has an enormous impact on our research, transforming what we are able to do. Together we have the potential to transform the lives of cancer patients. With your support we are working to discover cutting-edge treatment approaches, that are both kinder and more effective."
+      },
+      {
+        "tag": "p",
+        "html": "We have parntered with the Sussex Cancer Fund to ensure your donations support life-changing research here in Sussex."
+      },
+      {
+        "tag": "p",
+        "html": "If you want to discuss your donation <a href=\"/contact-us\">contact us</a>."
+      }
+    ]
+  },
+  "dekerle": {
+    "slug": "dekerle",
+    "title": "A proof-of-concept investigation of a new model to explain fatigue experienced post breast cancer treatment.",
+    "images": [
+      "/images/projects/jeanne_dekerlev2_cropped_244x320-10c39bb2.jpg",
+      "/images/projects/smlab5-114af694.jpg",
+      "/images/projects/cropped-transparent-scf-logo-1-e-aa24a4d2.png"
+    ],
+    "blocks": [
+      {
+        "tag": "p",
+        "html": "Thanks to the generous support of The Sussex Cancer Fund, The University of Brighton, Brighton and Sussex Medical School, and the University of Sussex, we have made five awards to kick-start exciting new collaborative research projects across Sussex. These diverse research projects span from bench to bedside and all share the potential to unlock new treatment approaches for multiple cancer types."
+      },
+      {
+        "tag": "p",
+        "html": "The SCRC sat down with Jeanne Dekerle to talk about her project."
+      },
+      {
+        "tag": "p",
+        "html": "<strong><em>SCRC: Can you share a brief overview of your project?</em></strong>"
+      },
+      {
+        "tag": "p",
+        "html": "JD: This is a really exciting project. We are going to study two groups and compare their results: A group of breast cancer patients who have just finished their treatment and feel more fatigued than before cancer diagnosis, and a group of healthy people. We want to know if the two groups differ in their ability to feel their body; for example the feeling of their with questions such as “can you feel your heart in your chest right now?” Some can. Some can’t. we are also interested in their ability to feel changes in the temperature of their skin. That’s what we are primary interested in. We will also test ability to process visual information but don’t expect much differences between the two groups as we think cancer patients may differ mainly in their ability to sense their internal world (i.e. their body). This has been shown in other conditions where fatigue is present."
+      },
+      {
+        "tag": "p",
+        "html": "We also currently have little understanding of the effect physical exercise has on the daily experience of fatigue (this is also called chronic fatigue) while exercise, you might be surprised, seems to help some people with chronic fatigue. So we want to study this interaction as well. We will be the first to carry out these assessments in breast cancer patient."
+      },
+      {
+        "tag": "p",
+        "html": "Secondary to our two main questions, we will also look at other factors that other researchers have been associated with chronic fatigue (immunological markers, body compositions, physical activity, sleep disturbance, anxiety and depression) to help explain our main results."
+      },
+      {
+        "tag": "p",
+        "html": "<strong><em>SCRC: What was the inspiration for your project?</em></strong>"
+      },
+      {
+        "tag": "p",
+        "html": "JD: Over the past 5 years or so, I have developed a keen interest in how we (humans) feel during exercise with a focus on the dissociation between the sensation of effort (how hard does this exercise feels?) and fatigue (related to a diminished capacity to cope with a task). I think it’s important for people to understand the difference to engage more mindfully in physical exercise, and for researchers to study better why exercise may or may not be good for you if you suffer from everyday fatigue. Most of my work so far has focused on their interaction in healthy humans and I felt really excited when I had the opportunity to look into this in people who struggle with chronic fatigue. We are currently completing a study on people with multiple sclerosis for instance. So I was delighted when I heard there was appetite from patients, NHS practitioners, and health care professionals in understanding cancer-related fatigue better and how / why exercise could help alleviate this very debilitating symptom. I was stunned when I realised that cancer-related fatigue (CRF) affects 75 to 90% of cancer patients during and sometimes for many years after illness and/or anticancer treatment. You will not be surprised to read that people living with and beyond cancer are calling for some research to better understand the symptom and inform effective management. Daily fatigue is extremely debilitating and impact greatly quality of life and return to work. We need to understand and find ways of managing it better."
+      },
+      {
+        "tag": "p",
+        "html": "<strong><em>SCRC: How do you foresee your project leading to patient benefit? And when?</em></strong>"
+      },
+      {
+        "tag": "p",
+        "html": "JD: Well first, all participants in our study will gain understanding of their own ability to sense their body and we will undoubtably want to hear their experience of fatigue and how it feels like. We will share our current scientific understanding, and discuss ways to manage it. I have no doubt all participants will learn a lot and we will equally learn a lot through this time spent together."
+      },
+      {
+        "tag": "p",
+        "html": "We are planning to conduct the testing in the Summer through to the Autumn 2024 so we should be able to communicate our results in the Spring 2025, Summer at the latest. We will communicate our findings through social media and the SCRC newsletter. I would be more than happy to attend seminars or evening talks organised by Charities to present our work. So please, reach out!"
+      },
+      {
+        "tag": "p",
+        "html": "<strong><em>SCRC: If the project is successful—what’s next?</em></strong>"
+      },
+      {
+        "tag": "p",
+        "html": "JD: With regards to research, we understand from patients and health care professionals that the effect of exercise on the symptom of daily fatigue is not very clear so exercise may be good for some and not so good for other patients. The recent development of a model of fatigue (i.e. based on the ability to sense our body; hence the focus of our first study!) offers some explanation for the change in the experience of the symptom as a disease progresses, during and after treatment, without or without physical exercise. This new model has already informed new research and advances in other clinical conditions where daily fatigue is an issue. Understanding the mechanisms of fatigue is critical for the development of management strategies designed to alleviate the symptom because we need to target its root. Next will therefore be to move towards the testing of exercise-based interventions. Cancer patients voice will be of critical importance for us to inform our next collaborative work on CRF."
+      },
+      {
+        "tag": "p",
+        "html": "In addition to the research questions we want to address, this project will enable us to welcome research participants to our newly built exercise and health science laboratory on the Falmer campus of the University of Brighton (the sport and exercise science department of the University of Brighton has recently moved from Eastbourne). So the ‘what next’ will include some assessment of our own practices to try to facilitate our work with our new local community. We will welcome feedback from our participants on how to do things better. More specific to this study, we have also developed some new methods for assessing sensory abilities so we will be able to reflect on the applicability and feasibility of these testing procedures with patients with cancer and fatigue and we will again, welcome their thoughts as they go through our testing. This project sits within a long-term vision. This first project will allow us to build rapport with the cancer community of oncologists and patients, to listen and conduct meaningful community-informed research."
+      },
+      {
+        "tag": "p",
+        "html": "<strong><em>SCRC: Can you describe any interdisciplinary aspects of your projects?</em></strong>"
+      },
+      {
+        "tag": "p",
+        "html": "JD: There is a team of four practitioners and academics behind this project. This will be the first work we will carry out together and this is really exciting in its own right (I am going to learn a lot!)! Our team consists of Dr. Ollie Minton, an oncologist and Macmillan clinical lead palliative medicine (University Hospitals Sussex) who has already carried out some research on fatigue in cancer patients. Ollie has also published work on cancer-related fatigue (CRF) and a possible link with inflammation in breast cancer patients. Ollie will help with patient recruitment in particular. Dr. Jessica Eccles is a Clinical Reader at the Brain-Body Medicine Department of Clinical Neuroscience, Brighton and Sussex Medical School (BSMS). Jessica has a wealth of experience in patient-based studies carried out within the NHS settings and has also published research on fatigue. Her present brain-body research on sensory abilities is also going to be extremely valuable for this project. Dr Nadia Terrazzini from the University of Brighton is an immunologist with expertise in cancer and the immune system. Nadia will advise the team and lead the laboratory analysis. My expertise is exercise and fatigue with a keen interest in understanding how we feel - as mentioned earlier."
+      },
+      {
+        "tag": "p",
+        "html": "We are all really excited about this project, and the prospect of further research in this field. We spread across three different institutions and this project gives us the opportunity to find the best way to work together, cohesively and efficiently before aiming for larger-scale, collaborative projects."
+      },
+      {
+        "tag": "p",
+        "html": "<strong><em>SCRC: What do you think are the main challenges we face in cancer research? How does your project help to address this?</em></strong>"
+      },
+      {
+        "tag": "p",
+        "html": "JD: The appetite for more research is very evident to me. Cancer-related fatigue in particular is recognized as a significant and distressing symptom that warrants attention: both causes and management strategies are key research priorities set by the National Cancer Research Institute (<a href=\"http://www.ncri.org.uk/the-uk-top-10-research-priorities-for-living-with-and-beyond-cancer/\" target=\"_blank\" rel=\"noopener noreferrer\">www.ncri.org.uk/the-uk-top-10-research-priorities-for-living-with-and-beyond-cancer/</a>) because CRF remains poorly understood despite its prevalence. So there is a willingness to get some research done."
+      },
+      {
+        "tag": "p",
+        "html": "I think one of our challenges lies in our limited understanding of how fatigue is felt and therefore why / how it can be experienced daily in people with cancer. Once we understand the underlying mechanisms within the body better, we can move onto the study of some management strategies designed to alleviate the symptom (such as physical exercise). Hence the aim of our first study."
+      },
+      {
+        "tag": "p",
+        "html": "There is a lot of research carried out in laboratories and there seems to be a need to bring the ‘bench to the bed’ with what some call ‘translational research’ in cancer research. We see our research as translational as we aim to build cancer-related fatigue knowledge base through the present proof-of-concept project to then progress our preliminary observations with an intervention aiming at alleviating CRF such as through embodied exercise for somatosensory training."
+      },
+      {
+        "tag": "p",
+        "html": "Another challenge is for researchers in universities like myself to work closely with patients and NHS practitioners. This type of project takes time but I feel confident we have the right team and support for this. Addressing some of these challenges requires a collaborative effort among scientists, clinicians, regulatory bodies, and patients. We feel optimistic that our enthusiastic new team, supported by the SCRC, can foster an effective approach to cancer research and treatment."
+      },
+      {
+        "tag": "p",
+        "html": "<strong><em>SCRC: If people want to follow you and your team or get updates as the project progresses, where can they get more info?</em></strong>"
+      },
+      {
+        "tag": "p",
+        "html": "JD: Updates will be shared through the SCRC newsletter. Here is my Brighton <a href=\"https://research.brighton.ac.uk/en/persons/jeanne-dekerle\" target=\"_blank\" rel=\"noopener noreferrer\">profile</a> and X <a href=\"https://x.com/jeannedekerle\" target=\"_blank\" rel=\"noopener noreferrer\">profile</a>."
+      },
+      {
+        "tag": "p",
+        "html": "Support life-changing researchYour support has an enormous impact on our research, transforming what we are able to do. Together we have the potential to transform the lives of cancer patients. With your support we are working to discover cutting-edge treatment approaches, that are both kinder and more effective."
+      },
+      {
+        "tag": "p",
+        "html": "We have parntered with the Sussex Cancer Fund to ensure your donations support life-changing research here in Sussex."
+      },
+      {
+        "tag": "p",
+        "html": "If you want to discuss your donation <a href=\"/contact-us\">contact us</a>."
+      }
+    ]
+  },
+  "simoes": {
+    "slug": "simoes",
+    "title": "Models for evaluating new therapies to overcome tumour microenvironment-mediated drug resistance in lymphoma.",
+    "images": [
+      "/images/projects/avatar-b7459e95.jpg",
+      "/images/projects/smlab5-114af694.jpg",
+      "/images/projects/cropped-transparent-scf-logo-1-e-aa24a4d2.png"
+    ],
+    "blocks": [
+      {
+        "tag": "p",
+        "html": "Thanks to the generous support of The Sussex Cancer Fund, The University of Brighton, Brighton and Sussex Medical School, and the University of Sussex, we have made five awards to kick-start exciting new collaborative research projects across Sussex. These diverse research projects span from bench to bedside and all share the potential to unlock new treatment approaches for multiple cancer types."
+      },
+      {
+        "tag": "p",
+        "html": "The SCRC sat down with Fabio Simoes to talk about his project."
+      },
+      {
+        "tag": "p",
+        "html": "<strong><em>SCRC: Can you share a brief overview of your project?</em></strong>"
+      },
+      {
+        "tag": "p",
+        "html": "FS: Our project focuses on creating better models to test new treatments that could help overcome drug resistance in diffuse large B-cell lymphoma (DLBCL), the most common type of blood cancer. Although some treatments, like Bcl-2 inhibitors (e.g. venetoclax), have worked well in other cancers, they have been less effective in DLBCL because the tumour microenvironment (TME)—the surrounding cells that support the tumour—helps cancer cells resist treatment. PhD student Aimilia Vareli found in lab experiments that blocking a protein called NF-κB-inducing kinase (NIK) can make venetoclax work again, pointing to a promising new treatment strategy."
+      },
+      {
+        "tag": "p",
+        "html": "To test this approach in a way that better reflects real patients, we are developing humanised mouse models that more accurately mimic the human immune system and how it interacts with DLBCL. Our pilot project has three main goals:"
+      },
+      {
+        "tag": "p",
+        "html": "1. Creating a human-like immune system in mice<strong> </strong>– We will introduce human blood stem cells into specialised mice so they can develop human immune cells like B cells, T cells, and macrophages, which play a role in cancer growth and treatment resistance."
+      },
+      {
+        "tag": "p",
+        "html": "2. Growing DLBCL tumours in these humanised mice – By implanting them with DLBCL cells, we mimic how the TME influences drug resistance."
+      },
+      {
+        "tag": "p",
+        "html": "3. Testing the combination of venetoclax and NIK inhibitors – We will treat the mice with this drug combination to check if it is safe."
+      },
+      {
+        "tag": "p",
+        "html": "By using more realistic models, this research will help us better understand how DLBCL resists treatment and fast-track the development of better therapies for patients who do not respond to current treatments."
+      },
+      {
+        "tag": "p",
+        "html": "<strong><em>SCRC: What was the inspiration for your project?</em></strong>"
+      },
+      {
+        "tag": "p",
+        "html": "FS: It is well known that interactions between tumours and their surrounding environment play a major role in drug resistance. However, most pre-clinical models fail to accurately capture these interactions, which contributes to the high failure rate of cancer drugs in clinical trials - over 80% of treatments that show promise in mice do not translate to patient success."
+      },
+      {
+        "tag": "p",
+        "html": "We wanted to tackle this challenge by developing more advanced models that incorporate a human-like immune system, allowing us to better study how the tumour microenvironment (TME) influences drug resistance. By creating a more realistic setting, we can improve the way we test potential treatments and increase the chances of clinical success."
+      },
+      {
+        "tag": "p",
+        "html": "This pilot study lays the groundwork for a larger project, where we will test a promising drug combination (NIK inhibitor + venetoclax) to see if it can overcome TME-driven resistance and lead to better treatment options for patients with diffuse large B-cell lymphoma (DLBCL)."
+      },
+      {
+        "tag": "p",
+        "html": "<strong><em>SCRC: How do you foresee your project leading to patient benefit? And when?</em></strong>"
+      },
+      {
+        "tag": "p",
+        "html": "FS: Our project aims to improve treatment for DLBCL patients who do not respond to standard therapies, tackling TME-driven drug resistance—a major challenge in blood cancers. By developing humanised mouse models that better replicate the human immune system, we can:"
+      },
+      {
+        "tag": "p",
+        "html": "1. Test a promising drug combination (venetoclax + NIK inhibitor) shown to reverse resistance in lab studies."
+      },
+      {
+        "tag": "p",
+        "html": "2. Improve pre-clinical drug testing, reducing the failure rate of treatments in clinical trials."
+      },
+      {
+        "tag": "p",
+        "html": "3. Create a model applicable to other blood cancers, including acute myeloid leukaemia (AML) and chronic lymphocytic leukaemia (CLL), where TME interactions also drive resistance."
+      },
+      {
+        "tag": "p",
+        "html": "While this is an early-stage preclinical study, establishing this model will enable the testing of various treatment strategies currently being developed by our collaborative blood cancer teams. If successful, some therapies - particularly those repurposing drugs already in clinical use - could impact patients within 5 years, while novel compounds may take up to 10 years to reach clinical application."
+      },
+      {
+        "tag": "p",
+        "html": "<strong><em>SCRC: If the project is successful—what’s next?</em></strong>"
+      },
+      {
+        "tag": "p",
+        "html": "FS: This initial study will provide proof-of-principle data, demonstrating our ability to establish and utilise this advanced humanised model for studying tumour-microenvironment interactions. It will also confirm that the novel drug combination (NIK inhibitor + venetoclax) can be administered safely."
+      },
+      {
+        "tag": "p",
+        "html": "Next, we will use this data to secure additional funding for pre-clinical efficacy testing of this combination therapy in DLBCL. Additionally, the validated model will support applications to test candidate therapies for other blood cancers, such as AML and CLL, expanding its impact beyond DLBCL and contributing to the development of more effective, personalised treatments."
+      },
+      {
+        "tag": "p",
+        "html": "<strong><em>SCRC: Can you describe any interdisciplinary aspects of your projects?</em></strong>"
+      },
+      {
+        "tag": "p",
+        "html": "FS: This project directly aligns with the Sussex Cancer Research Centre’s (SCRC) mission of fostering multi-institutional, translational research aimed at improving patient outcomes. Through our collaboration with Dr. John Jones and Dr Eleni Ladikou at East Sussex Healthcare NHS Trust, we gain crucial access to patient samples, strengthening ties between BSMS and clinical institutions."
+      },
+      {
+        "tag": "p",
+        "html": "<strong><em>SCRC: What do you think are the main challenges we face in cancer research? How does your project help to address this?</em></strong>"
+      },
+      {
+        "tag": "p",
+        "html": "FS: Two major challenges in cancer research are drug resistance and low-fidelity pre-clinical models that fail to accurately predict patient responses."
+      },
+      {
+        "tag": "p",
+        "html": "Drug Resistance: Many cancers, including DLBCL, AML, and CLL, develop resistance to treatment due to interactions with the tumour microenvironment (TME). In DLBCL, resistance to Bcl-2 inhibitors like venetoclax is driven by NF-κB activation in the TME, reducing drug effectiveness. Our project addresses this by establishing a humanised model to test a combination therapy (venetoclax + NIK inhibitor), which has shown promise in reversing resistance in lab studies."
+      },
+      {
+        "tag": "p",
+        "html": "Poor Pre-Clinical Models: Traditional mouse models lack a functional immune system, making it difficult to study how the TME influences tumour progression and drug resistance. Many treatments that succeed in mice fail in human trials because these models do not fully capture human tumour-immune interactions. Our project tackles this by developing humanised mouse models, in which we first generate a human-like immune system before engrafting DLBCL cell lines or patient-derived samples. This approach provides a more accurate platform for testing therapies, improving the likelihood of clinical success."
+      },
+      {
+        "tag": "p",
+        "html": "By addressing these challenges, our project aims to enhance drug testing, accelerate treatment development, and improve outcomes for patients with blood cancers."
+      },
+      {
+        "tag": "p",
+        "html": "<strong><em>SCRC: How have research mentors benefited your research?</em></strong>"
+      },
+      {
+        "tag": "p",
+        "html": "FS: As someone new to blood cancer research, mentorship has been essential in guiding my transition into the field. While I bring over a decade of experience developing animal models for diseases like motor neuron disease and osteoarthritis, applying these skills to leukaemia and the tumour microenvironment requires expertise from established researchers."
+      },
+      {
+        "tag": "p",
+        "html": "<strong><em>SCRC: If people want to follow you and your team or get updates as the project progresses, where can they get more info?</em></strong>"
+      },
+      {
+        "tag": "p",
+        "html": "FS: Lab website: <a href=\"http://www.simoes.science\" target=\"_blank\" rel=\"noopener noreferrer\">www.simoes.science</a>"
+      },
+      {
+        "tag": "p",
+        "html": "Twitter: @DrFabioSimoes"
+      },
+      {
+        "tag": "p",
+        "html": "Bluesky: @simoes.science"
+      },
+      {
+        "tag": "p",
+        "html": "Support life-changing researchYour support has an enormous impact on our research, transforming what we are able to do. Together we have the potential to transform the lives of cancer patients. With your support we are working to discover cutting-edge treatment approaches, that are both kinder and more effective."
+      },
+      {
+        "tag": "p",
+        "html": "We have parntered with the Sussex Cancer Fund to ensure your donations support life-changing research here in Sussex."
+      },
+      {
+        "tag": "p",
+        "html": "If you want to discuss your donation <a href=\"/contact-us\">contact us</a>."
+      }
+    ]
+  },
+  "hodgson": {
+    "slug": "hodgson",
+    "title": "Increasing physical activity levels in the least active colorectal cancer patients preparing for surgery.",
+    "images": [
+      "/images/projects/dr-luke-hodgson-photo-608x608-f5-da5c1c9d.jpg",
+      "/images/projects/smlab5-114af694.jpg",
+      "/images/projects/cropped-transparent-scf-logo-1-e-aa24a4d2.png"
+    ],
+    "blocks": [
+      {
+        "tag": "p",
+        "html": "Thanks to the generous support of The Sussex Cancer Fund, The University of Brighton, Brighton and Sussex Medical School, and the University of Sussex, we have made five awards to kick-start exciting new collaborative research projects across Sussex. These diverse research projects span from bench to bedside and all share the potential to unlock new treatment approaches for multiple cancer types."
+      },
+      {
+        "tag": "p",
+        "html": "The SCRC sat down with Luke Hodgson to talk about his project."
+      },
+      {
+        "tag": "p",
+        "html": "<strong><em>SCRC: Can you share a brief overview of your project?</em></strong>"
+      },
+      {
+        "tag": "p",
+        "html": "LH: Colorectal cancer is the fourth most common cancer in the UK. People who undergo colorectal cancer surgery do better if they are physically active. This project is the first step developing an inclusive intervention, to help less active people, get active. We will do 3 things:"
+      },
+      {
+        "tag": "p",
+        "html": "1. Review previous research exploring what has been done to increase activity in less active cancer patients."
+      },
+      {
+        "tag": "p",
+        "html": "2. Interview a diverse group of patients who’ve had surgery. We want their thoughts on what to include in a future intervention and how it should be delivered. We’ll ask whether they think technology (eg smartphones) could help. Finally, we will ask what they think are important goals to achieve and what a good recovery looks like to them"
+      },
+      {
+        "tag": "p",
+        "html": "3. Set up a co-production panel of patient, public and health care professionals. This will ready us for the next project. Building on existing relationships with community groups will encourage people who do not usually take part in research to join the panel."
+      },
+      {
+        "tag": "p",
+        "html": "<strong><em>SCRC: What was the inspiration for your project?</em></strong>"
+      },
+      {
+        "tag": "p",
+        "html": "LH: As frontline clinicians and academics with an interest in this area, we understand that those most likely to struggle whilst going through cancer treatment, including surgery, are often those with a number of medical problems and also more likely to be less active. From our viewpoint, current clinical care could significantly improve personalised treatment and support. However, there is limited research on less active individuals. Previous work has often not recruited less active people into their studies. Our team, a collaboration of clinicians at UH Sussex, patients and public and researchers at SHORE-C thought the best way to approach this is through co-production."
+      },
+      {
+        "tag": "p",
+        "html": "<strong><em>SCRC: How do you foresee your project leading to patient benefit? And when?</em></strong>"
+      },
+      {
+        "tag": "p",
+        "html": "LH: For physical activity, the biggest benefit is moving people from being inactive to doing even light activities. Therefore, we will focus on this group. Creating an exercise intervention with patients and public members means it is more likely to be used and hopefully be successful."
+      },
+      {
+        "tag": "p",
+        "html": "<strong><em>SCRC: If the project is successful—what’s next?</em></strong>"
+      },
+      {
+        "tag": "p",
+        "html": "LH: The next step will be to investigate an intervention in a clinical trial for which we will apply for funding. We hope in the future this will support high-risk patients to be best prepared for their cancer surgery. As a result, they would be more likely to recover well. This will benefit both individuals and the wider health service."
+      },
+      {
+        "tag": "p",
+        "html": "<strong><em>SCRC: Can you describe any interdisciplinary aspects of your projects?</em></strong>"
+      },
+      {
+        "tag": "p",
+        "html": "LH: Our research group is a collaboration of clinical academics with backgrounds in cancer surgery, oncology, physiotherapy and nursing. The SHORE-C team have extensive experience evaluating health outcomes of cancer patients, with a broad research portfolio of expertise including neuropsychology social and health psychology."
+      },
+      {
+        "tag": "p",
+        "html": "<strong><em>SCRC: What do you think are the main challenges we face in cancer research? How does your project help to address this?</em></strong>"
+      },
+      {
+        "tag": "p",
+        "html": "LH: Huge progress has been made in providing better treatments for cancer patients. Our particular interests reflect the challenges of a growing ageing population alongside multimorbidity, physical inactivity, lifestyle factors and socioeconomic deprivation which in combination can adversely affect outcomes, but could also be modifiable and/or mitigated. There is gathering evidence that <a href=\"https://bjsm.bmj.com/content/early/2025/01/03/bjsports-2024-108671\" target=\"_blank\" rel=\"noopener noreferrer\">physical activity is associated with outcomes across cancer</a>. But the research challenge is to investigate the best ways to get people more active, that have subsequent outcome benefits to the individual and wider society."
+      },
+      {
+        "tag": "p",
+        "html": "<strong><em>SCRC: How have research mentors benefited your research?</em></strong>"
+      },
+      {
+        "tag": "p",
+        "html": "LH: My research mentors instilled in me a passion for trying to use research to improve clinical care at the bedside. From their guidance I continue to seek to work out ways, using research, to improve care for our local population."
+      },
+      {
+        "tag": "p",
+        "html": "<strong><em>SCRC: If people want to follow you and your team or get updates as the project progresses, where can they get more info?</em></strong>"
+      },
+      {
+        "tag": "p",
+        "html": "LH: We will provide updates as the project progresses both through our Hospital Trust’s comms, the SCRC newsletter and <a href=\"https://shore-c.sussex.ac.uk/\" target=\"_blank\" rel=\"noopener noreferrer\">SHORE-C</a> (Dr Sally Wheelwright & Dr Helena Harder)."
+      },
+      {
+        "tag": "p",
+        "html": "Here’s my <a href=\"https://www.researchgate.net/profile/Luke-Hodgson\" target=\"_blank\" rel=\"noopener noreferrer\">researchgate</a> profile."
+      },
+      {
+        "tag": "p",
+        "html": "Support life-changing researchYour support has an enormous impact on our research, transforming what we are able to do. Together we have the potential to transform the lives of cancer patients. With your support we are working to discover cutting-edge treatment approaches, that are both kinder and more effective."
+      },
+      {
+        "tag": "p",
+        "html": "We have parntered with the Sussex Cancer Fund to ensure your donations support life-changing research here in Sussex."
+      },
+      {
+        "tag": "p",
+        "html": "If you want to discuss your donation <a href=\"/contact-us\">contact us</a>."
+      }
+    ]
+  },
+  "yates": {
+    "slug": "yates",
+    "title": "A new therapeutic target for ovarian cancer.",
+    "images": [
+      "/images/projects/luke-yates-2-d998a41d.png",
+      "/images/projects/smlab5-114af694.jpg",
+      "/images/projects/cropped-transparent-scf-logo-1-e-aa24a4d2.png"
+    ],
+    "blocks": [
+      {
+        "tag": "p",
+        "html": "Thanks to the generous support of The Sussex Cancer Fund, The University of Brighton, Brighton and Sussex Medical School, and the University of Sussex, we have made five awards to kick-start exciting new collaborative research projects across Sussex. These diverse research projects span from bench to bedside and all share the potential to unlock new treatment approaches for multiple cancer types."
+      },
+      {
+        "tag": "p",
+        "html": "The SCRC sat down with Luke Yates to talk about his project."
+      },
+      {
+        "tag": "p",
+        "html": "<strong><em>SCRC: Can you share a brief overview of your project?</em></strong>"
+      },
+      {
+        "tag": "p",
+        "html": "LY: Each of us carry a genetic blueprint in the form of DNA in every cell in our bodies. These instructions are often broken or damaged many times a day due to external exposure to radiation (e.g. UV), chemicals (e.g. smoking), or through cellular metabolism. Fortunately, we have evolved a sophisticated DNA repair system called the ‘DNA Damage Response’ to fix our genome when it is injured. The DNA damage response is crucial to prevent cancer initiation. In cancer, these repair systems do not work correctly or are hijacked to help a tumor develop and grow. In ovarian cancer, which is a lethal cancer for women, we believe the DNA repair system is overridden and repair avoided, and this helps the cancer resist chemotherapy. When the DNA repair ability is restored in ovarian cancer, they become more vulnerable to the chemotherapy usually given in the clinic. We want to initiate a project that aims to, (1) understand how this protein enzyme works in counteracting DNA repair and how ovarian cancers hijack this system; (2) find new drug-like molecules that block the protein to initiate the development of new treatments; and (3) explore whether this protein can be used as a biomarker in the clinic for precision medicine."
+      },
+      {
+        "tag": "p",
+        "html": "<strong><em>SCRC: What was the inspiration for your project?</em></strong>"
+      },
+      {
+        "tag": "p",
+        "html": "LY: Understanding DNA repair defects in cancer has been an intense area of research over the last couple of decades and has led to a deeper understanding of cancer biology, driven genetic screening programs, and produced breakthrough treatments. These new therapies block DNA repair systems in specific cancers, killing the cancer but sparing healthy tissue. Whilst many are looking at targeting and blocking the repair machinery directly in cancer, we know little about how cancers actively turn off the repair machinery to avoid repair and evade treatment. Ovarian cancers are thought to have an actively suppressed DNA repair system, which helps drive the disease. However, researchers in the US found that a small subset (15%) of a common ovarian cancer subtype had a more active DNA repair system and this helped patients responded better to treatment and double their disease-free survival. This strongly suggests to us that restoring DNA repair system in ovarian cancer could be a strategy to tackle this disease."
+      },
+      {
+        "tag": "p",
+        "html": "<strong><em>SCRC: How do you foresee your project leading to patient benefit? And when?</em></strong>"
+      },
+      {
+        "tag": "p",
+        "html": "LY: This is very early preclinical work. We do not fully understand how this target works at a molecular level and the development of new drugs takes many years. That said, unraveling how this protein operates in the cell’s DNA repair system will open new avenues of cancer research and may highlight other potential new targets for drug development. Investigating ovarian cancer and its ability to repair DNA may serve as a useful biomarker for how successful treatment will be in patients."
+      },
+      {
+        "tag": "p",
+        "html": "<strong><em>SCRC: If the project is successful—what’s next?</em></strong>"
+      },
+      {
+        "tag": "p",
+        "html": "LY: If we confirm our hypothesis and develop an in-house screening program to look for new drug-like compounds, we will look for larger funding opportunities possibly in conjunction with leading pharmaceutical companies to try and advance our findings. The use of DNA repair as a biomarker may also open new avenues for more funding from large cancer charities."
+      },
+      {
+        "tag": "p",
+        "html": "<strong><em>SCRC: Can you describe any interdisciplinary aspects of your projects?</em></strong>"
+      },
+      {
+        "tag": "p",
+        "html": "LY: We are aiming to combine techniques that allow us to move from thinking about and looking at atoms of molecules up to cancer cells and even the patient. At the molecular level we will use cryogenic electron microscopy, and/or X-ray crystallography to see individual molecules in atomic detail, use biochemistry for drug screening, and work with ovarian cancer cells to explore the effectiveness of this approach. To tackle this, the team consists of structural biology expertise (Dr Jasmeen Oberoi), drug discovery expertise (Prof. Erika Mancini) and medical oncology and clinical expertise (Dr Rebecca Herbertson). Together we will be able to think at different scales - from atoms to molecules and proteins, to cancer cells and patients, which I think is a powerful way to approach scientific discovery work."
+      },
+      {
+        "tag": "p",
+        "html": "<strong><em>SCRC: What do you think are the main challenges we face in cancer research? How does your project help to address this?</em></strong>"
+      },
+      {
+        "tag": "p",
+        "html": "LY: In the context of ovarian cancers, in the UK less than half of women, and only 30% globally, survive more than 5 years after diagnosis. Acquired resistance to chemotherapy is a major problem. So, there is a clear need for new studies to open new avenues for rationally designed therapies to improve patient outcomes. This project, generously funded through SCRC, will allow us to begin hunting for new ways to treat ovarian cancer."
+      },
+      {
+        "tag": "p",
+        "html": "<strong><em>SCRC: How have research mentors benefited your research?</em></strong>"
+      },
+      {
+        "tag": "p",
+        "html": "LY:"
+      },
+      {
+        "tag": "p",
+        "html": "<strong><em>SCRC: If people want to follow you and your team or get updates as the project progresses, where can they get more info?</em></strong>"
+      },
+      {
+        "tag": "p",
+        "html": "LY: Follow <a href=\"https://bsky.app/profile/layates.bsky.social\" target=\"_blank\" rel=\"noopener noreferrer\">BlueSky social</a> and my <a href=\"https://profiles.sussex.ac.uk/p648952-luke-yates\" target=\"_blank\" rel=\"noopener noreferrer\">Sussex profile</a>"
+      },
+      {
+        "tag": "p",
+        "html": "Support life-changing researchYour support has an enormous impact on our research, transforming what we are able to do. Together we have the potential to transform the lives of cancer patients. With your support we are working to discover cutting-edge treatment approaches, that are both kinder and more effective."
+      },
+      {
+        "tag": "p",
+        "html": "We have parntered with the Sussex Cancer Fund to ensure your donations support life-changing research here in Sussex."
+      },
+      {
+        "tag": "p",
+        "html": "If you want to discuss your donation <a href=\"/contact-us\">contact us</a>."
+      }
+    ]
+  },
+  "wagstaff": {
+    "slug": "wagstaff",
+    "title": "Targeting signalling in acute myeloid leukaemia.",
+    "images": [
+      "/images/projects/gd3zbvcxaaa1bc0-85721703.jpg",
+      "/images/projects/smlab5-114af694.jpg",
+      "/images/projects/cropped-transparent-scf-logo-1-e-aa24a4d2.png"
+    ],
+    "blocks": [
+      {
+        "tag": "p",
+        "html": "Thanks to the generous support of The Sussex Cancer Fund, The University of Brighton, Brighton and Sussex Medical School, and the University of Sussex, we have made five awards to kick-start exciting new collaborative research projects across Sussex. These diverse research projects span from bench to bedside and all share the potential to unlock new treatment approaches for multiple cancer types."
+      },
+      {
+        "tag": "p",
+        "html": "The SCRC sat down with Megan Wagstaff to talk about her project."
+      },
+      {
+        "tag": "p",
+        "html": "<strong><em>SCRC: Can you share a brief overview of your project?</em></strong>"
+      },
+      {
+        "tag": "p",
+        "html": "MW: Our SCRC funded project will focus on the urgent unmet clinical need for targeted and well tolerated therapies in a devastating blood cancer called acute myeloid leuekmia (AML). AML is an aggressive blood cancer with poor patient survival outcomes and is treated with highly toxic chemotherapies which fail to eradicate the disease long term. Therefore, more targeted therapies are required that target specific molecular abnormalities in patients. β-Catenin is a cancer-promoting molecule frequently found at high levels and is overactive in inappropriate areas of blood cells. It’s known to drive aggressive leukaemia’s, worsen patient survival and promote drug-resistance but there are no effective therapies that target the molecule. This project will examine the feasibility of targeting b-catenin stability through a family of enzymes known as ubiquitin-specific proteases (USPs). USPs serve as molecular ‘bin men’ in the cells deciding which proteins are degraded and which are preserved, and we’ve identified several that interact with b-catenin. Our pilot study will improve the understanding of which USPs control b-catenin level and activity, and this could be exploited for novel treatment design in leukaemia."
+      },
+      {
+        "tag": "p",
+        "html": "<strong><em>SCRC: What was the inspiration for your project?</em></strong>"
+      },
+      {
+        "tag": "p",
+        "html": "MW: The therapeutic targeting of b-catenin is a long-standing challenge in human cancer research. Its abnormal activity in dozens of human cancers, including AML, has been known for decades yet we still lack a viable targeting drug in the clinic. We were motivated to take on this challenge and a few years ago we mapped b-catenin’s molecular partners in leukaemia cells for the first time. This revealed several critical partners never previously observed for b-catenin before, including specific USPs, which we believe could form the basis for novel therapy design for disrupting b-catenin’s oncogenic activity. The lab is now focused on how these b-catenin partner interactions influence leukaemia development and progression."
+      },
+      {
+        "tag": "p",
+        "html": "<strong><em>SCRC: How do you foresee your project leading to patient benefit? And when?</em></strong>"
+      },
+      {
+        "tag": "p",
+        "html": "MW: This pilot study is what you would term a ‘Proof of Concept’ project, meaning quite simply it may work, or it may not. The incredible benefit of a scheme like the SCRC pilot funding is it allows you the opportunity to test a scientific hypothesis which could be used to build a wider scope research study. If the data follows our hypothesis, the results have the potential to benefit the ~80% of AML patients whose leukaemia cells demonstrate some degree of abnormal b-catenin activity. However, direct patient benefit would still be some distance away (perhaps 5-10 years post study) as upon completion of this pilot study a larger follow-on bid would be required to extend the biological and clinical relevance of its findings, translate them into drug design and execute clinical trials. Fortunately, some compounds for targeting USPs already exist which could simplify the drug design phase and pass straight to pre-clinical testing."
+      },
+      {
+        "tag": "p",
+        "html": "<strong><em>SCRC: If the project is successful—what’s next?</em></strong>"
+      },
+      {
+        "tag": "p",
+        "html": "MW: This initial discovery phase study will examine the feasibility/safety of targeting specific USPs in leukaemia cells and their impact on b-catenin activity. If successful, the findings will be used to prime a much larger translational drug discovery study incorporating structural, pharmacological and pre-clinical approaches to USP targeting in AML. For this we would seek funding from relevant national funding agencies such as Blood Cancer UK, Medical Research Council or Cancer Research UK. Successful delivery of this project will also greatly support me as a junior researcher by providing me with my first opportunity to manage and lead a pilot cancer research study."
+      },
+      {
+        "tag": "p",
+        "html": "<strong><em>SCRC: Can you describe any interdisciplinary aspects of your projects?</em></strong>"
+      },
+      {
+        "tag": "p",
+        "html": "MW: This project benefits from the defining purpose of the SCRC which is utilising multiple institutions across Sussex. Firstly, Universities Hospitals Sussex NHS trust where medical and nursing colleagues collect the essential patient samples necessary to progress our research. We are deeply grateful to local patients who consent for their samples to be used in our studies which increases the impact and relevance of our research. Brighton & Sussex Medical School and the School of Life Sciences at the University of Sussex provide the necessary expertise and resources from Dr Rhys Morgan (Wnt signalling and AML, Professor Timothy Chevassut (AML samples and biology) and Dr Ethan Morgan (USP and cancer biology)."
+      },
+      {
+        "tag": "p",
+        "html": "<strong><em>SCRC: What do you think are the main challenges we face in cancer research? How does your project help to address this?</em></strong>"
+      },
+      {
+        "tag": "p",
+        "html": "MW: One of the greatest challenges in cancer research is developing therapies that specifically eradicate the tumour cells, in particular cancer stem cells, whilst sparing normal healthy tissues thus reducing toxicity. This project will adopt a new way of targeting a key protein known to generate and maintain cancer stem cells (b-catenin), whilst also assessing the likely impact of targeting USPs on normal healthy blood cells."
+      },
+      {
+        "tag": "p",
+        "html": "<strong><em>SCRC: How have research mentors benefited your research?</em></strong>"
+      },
+      {
+        "tag": "p",
+        "html": "MW: My research would not be possible without my laboratory supervisor Dr Rhys Morgan, his guidance has been invaluable as a mentor and in providing expertise, knowledge and critical feedback. Secondly Dr Ethan Morgan’s expertise and advice has been critical in driving this project forward with ideas for future experiments."
+      },
+      {
+        "tag": "p",
+        "html": "<strong><em>SCRC: If people want to follow you and your team or get updates as the project progresses, where can they get more info?</em></strong>"
+      },
+      {
+        "tag": "p",
+        "html": "MW: Info can be found here:<a href=\"https://www.sussex.ac.uk/lifesci/morganlab/ \" target=\"_blank\" rel=\"noopener noreferrer\">Lab website</a>"
+      },
+      {
+        "tag": "p",
+        "html": "<a href=\"https://bsky.app/profile/rhysmorganlab.bsky.social \" target=\"_blank\" rel=\"noopener noreferrer\">BlueSky social</a>"
+      },
+      {
+        "tag": "p",
+        "html": "<a href=\"https://x.com/RhysMorganLab\" target=\"_blank\" rel=\"noopener noreferrer\">X MorganLab</a>"
+      },
+      {
+        "tag": "p",
+        "html": "X @meganwagstaff"
+      },
+      {
+        "tag": "p",
+        "html": "Support life-changing researchYour support has an enormous impact on our research, transforming what we are able to do. Together we have the potential to transform the lives of cancer patients. With your support we are working to discover cutting-edge treatment approaches, that are both kinder and more effective."
+      },
+      {
+        "tag": "p",
+        "html": "We have parntered with the Sussex Cancer Fund to ensure your donations support life-changing research here in Sussex."
+      },
+      {
+        "tag": "p",
+        "html": "If you want to discuss your donation <a href=\"/contact-us\">contact us</a>."
+      }
+    ]
+  },
+  "taylor": {
+    "slug": "taylor",
+    "title": "'Pharmakon' and 'Calle Incurabili (The Narrow Path of Cure)'",
+    "images": [
+      "/images/projects/20241007_100913a-e02c3d60.jpg",
+      "/images/projects/smlab5-114af694.jpg",
+      "/images/projects/cropped-transparent-scf-logo-1-e-aa24a4d2.png"
+    ],
+    "blocks": [
+      {
+        "tag": "p",
+        "html": "We are proud to support the winners of our inaugural funding for creative projects designed to build new connections between people with lived experience of cancer in our communities and the cancer research happening within the SCRC."
+      },
+      {
+        "tag": "p",
+        "html": "The SCRC sat down with Markus Taylor to talk about his project."
+      },
+      {
+        "tag": "p",
+        "html": "<strong><em>SCRC: Can you share a brief overview of your project?</em></strong>"
+      },
+      {
+        "tag": "p",
+        "html": "MT: This SCRC Creative Engagement Project has two parts."
+      },
+      {
+        "tag": "p",
+        "html": "1. 'Pharmakon'<strong> </strong>to be located at Falmer campus comprises sculptural assemblages. The pieces explore the complex and contradictory meanings of the ancient word 'pharmakon' in the context of cancer lived experience and treatment regimes."
+      },
+      {
+        "tag": "p",
+        "html": "2. 'Calle Incurabili. (The Narrow Path of Cure)'<strong> </strong>are works to be found across the SCRC campus, developed during a residency in Venice soon after I completed first-line treatment. They reference the 'Calle Incurabili', a narrow passageway that runs between the Academia di Belle Arte, once the Ospedale degli Incurabili and the Basilica Santa Maria della Salute, a path trodden by the chronically ill over hundreds of years in search of miraculous cure."
+      },
+      {
+        "tag": "p",
+        "html": "<strong><em>SCRC: What was the inspiration for your project?</em></strong>"
+      },
+      {
+        "tag": "p",
+        "html": "MT: Inspiration for the project arose from my physical and psychological experiences during and after treatment for an incurable blood cancer. I now find myself, like many others living a betwixt and between existence. The works reflect the harsh physicality of treatment and liminal embodiment of disease in the use of specific elements and objects for their materiality and symbolism."
+      },
+      {
+        "tag": "p",
+        "html": "<strong><em>SCRC: </em>What do you think are the main challenges we face in engaging the community with cancer research? How does your project help to address this?</strong>"
+      },
+      {
+        "tag": "p",
+        "html": "MT: Historically, scientific and medical research was carried out behind closed doors, a mythical aura of mystery and danger perpetuated by novels, films and visual arts. A contemporary truth is of healthcare as a collaborative endeavour from lab bench to bedside and beyond, gone are the days of the subservient 'patient' and the mad professor. We all have a role to play in the development of care and cure. Open collaborative action and discussion on cancer benefits us all. The project will be part of this through workshops, guided visits and presentations bringing together those with lived experience, community groups, scientists and health professionals."
+      },
+      {
+        "tag": "p",
+        "html": "<strong><em>SCRC: </em>Do you have any mentors that have benefited your practice?</strong>"
+      },
+      {
+        "tag": "p",
+        "html": "MT: During my master's degree at University of Brighton, I struggled under the tremendous weight of a cancer diagnosis and rapidly failing health. The roof of my life had collapsed upon me. Standing in the debris I instinctively created artworks as a way of coping and to decipher understanding."
+      },
+      {
+        "tag": "p",
+        "html": "It was during this period that I met Chris Pepper. Through our ongoing discussions on art, science and chronic lymphocytic leukaemia my practice and I have developed in confidence, gaining profound understandings of the science and what it is to be a person with disease. Profs Chris and Andrea Pepper warmly accepted me into their team as a collaborator, enabling us to isolate and include my own cancer cells into my graduate exhibition."
+      },
+      {
+        "tag": "p",
+        "html": "I also have the great privilege of working alongside Dr Simon Mitchell in preparing this project, who has encouraged and enabled me to expand my art practice into community action and engagement. I am honoured to work with everyone at SCRC."
+      },
+      {
+        "tag": "p",
+        "html": "<strong><em>SCRC:</em></strong><em> </em><strong>The SCRC aims to support cancer research for patient benefit across Sussex, how do you think creative practice can support this mission?</strong>"
+      },
+      {
+        "tag": "p",
+        "html": "MT: Opening the doors to the work at SCRC helps interested individuals and groups become more empowered. The use of creative practice to engage and involve beyond the university is a proven way to support people with cancer in their understanding of disease, their role in being an active participant and educating scientists as to how and what it is to live with cancer."
+      },
+      {
+        "tag": "p",
+        "html": "<strong><em>SCRC: </em>If people want to follow you and your team or get updates as the project progresses, where can they get more info? </strong>"
+      },
+      {
+        "tag": "p",
+        "html": "MT: Updates and information about the project can be found at <a href=\"https://urldefense.com/v3/__https:/www.instagram.com/markus__taylor__studio/__;!!IWcW7C1FDU-5!f70yG3nLHHMlW_nvP_hnN_H9igAwEFu2NdDfU5r3rB-iJR-raVIUJzHx3ZmtFHfJtn8WdAGWHpdJ0hUpDOMk2Fi5MmfR$\" target=\"_blank\" rel=\"noopener noreferrer\">https://www.instagram.com/markus__taylor__studio/</a>"
+      },
+      {
+        "tag": "p",
+        "html": "The studio can be contacted directly at: <a href=\"mailto:markus.taylor.studio@gmail.com\">markus.taylor.studio@gmail.com</a>"
+      },
+      {
+        "tag": "p",
+        "html": "Support life-changing researchYour support has an enormous impact on our research, transforming what we are able to do. Together we have the potential to transform the lives of cancer patients. With your support we are working to discover cutting-edge treatment approaches, that are both kinder and more effective."
+      },
+      {
+        "tag": "p",
+        "html": "We have parntered with the Sussex Cancer Fund to ensure your donations support life-changing research here in Sussex."
+      },
+      {
+        "tag": "p",
+        "html": "If you want to discuss your donation <a href=\"/contact-us\">contact us</a>."
+      }
+    ]
+  },
+  "humphrey": {
+    "slug": "humphrey",
+    "title": "Words from the Waiting Room",
+    "images": [
+      "/images/projects/katrina-d66ca482.jpg",
+      "/images/projects/img-20250203-wa0000-3-60d9059a.jpg",
+      "/images/projects/smlab5-114af694.jpg",
+      "/images/projects/cropped-transparent-scf-logo-1-e-aa24a4d2.png"
+    ],
+    "blocks": [
+      {
+        "tag": "p",
+        "html": "We are proud to support the winners of our inaugural funding for creative projects designed to build new connections between people with lived experience of cancer in our communities and the cancer research happening within the SCRC."
+      },
+      {
+        "tag": "p",
+        "html": "The SCRC sat down with Deborah Humphrey and Karina Patfield to talk about their project."
+      },
+      {
+        "tag": "p",
+        "html": "<strong><em>SCRC: Can you share a brief overview of your project?</em></strong>"
+      },
+      {
+        "tag": "p",
+        "html": "DH, KP: This project aims to capture the experiences of people, other than professionals, who spend time in oncology waiting rooms. This can be a stressful time for patients/families and accompanying friends. This experience is rarely captured in creative ways. Hence the idea to use creative writing and collaged words."
+      },
+      {
+        "tag": "p",
+        "html": "<strong><em>SCRC: What was the inspiration for your project?</em></strong>"
+      },
+      {
+        "tag": "p",
+        "html": "DH, KP: The creative inspiration comes from our experience on the MA in creative writing at the University of Brighton and from Deborah’s background in mental health nursing."
+      },
+      {
+        "tag": "p",
+        "html": "<strong><em>SCRC: </em>What do you think are the main challenges we face in engaging the community with cancer research? How does your project help to address this?</strong>"
+      },
+      {
+        "tag": "p",
+        "html": "DH, KP: Having cancer is a challenging time for people with the disease and their support network, it is emotionally and physically exhausting, it can be difficult to gauge the right time to engage."
+      },
+      {
+        "tag": "p",
+        "html": "People who go through treatment can be nervous about what they say to professionals often under the belief that it may affect their care."
+      },
+      {
+        "tag": "p",
+        "html": "In any health related work it is often a challenge to engage a diverse community."
+      },
+      {
+        "tag": "p",
+        "html": "This project is removed from a health setting. It allows for a variety of people to speak in their own words, and they will own their words, so they control who sees their work. Further creative expression doesn't need to be explained, it can be written in a way that is meaningful to the person creating the words. Both Karina and I have contacts with a range of diverse communities who may not usually get access to this type of project."
+      },
+      {
+        "tag": "p",
+        "html": "<strong><em>SCRC: </em>Do you have any mentors that have benefited your practice?</strong>"
+      },
+      {
+        "tag": "p",
+        "html": "DH, KP: Dr Jess Moriarty, Programme lead for the MA in Creative Writing at the University of Brighton, helped us to think about how we take our creative skills into the community as writers in residence. This has enabled us to maintain our own writing practices as well as developing community workshops where writing and creativity are the central focus."
+      },
+      {
+        "tag": "p",
+        "html": "<strong><em>SCRC: </em>The SCRC aims to support cancer research for patient benefit across Sussex, how do you think creative practice can support this mission?</strong>"
+      },
+      {
+        "tag": "p",
+        "html": "DH, KP: We will be running workshops in Brighton/Hove and further east in either Eastbourne or Hastings in order to capture a more diverse geographical spread."
+      },
+      {
+        "tag": "p",
+        "html": "<strong><em>SCRC: If people want to follow you and your team or get updates as the project progresses, where can they get more info?</em></strong>"
+      },
+      {
+        "tag": "p",
+        "html": "DH, KP: You can find our Linkedin profiles here: <a href=\"https://www.linkedin.com/in/deborah-humphrey-b94b8b141/\" target=\"_blank\" rel=\"noopener noreferrer\">Deborah</a>, <a href=\"https://www.linkedin.com/in/karinapatfield/?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app\" target=\"_blank\" rel=\"noopener noreferrer\">Karina</a>"
+      },
+      {
+        "tag": "p",
+        "html": "Support life-changing researchYour support has an enormous impact on our research, transforming what we are able to do. Together we have the potential to transform the lives of cancer patients. With your support we are working to discover cutting-edge treatment approaches, that are both kinder and more effective."
+      },
+      {
+        "tag": "p",
+        "html": "We have parntered with the Sussex Cancer Fund to ensure your donations support life-changing research here in Sussex."
+      },
+      {
+        "tag": "p",
+        "html": "If you want to discuss your donation <a href=\"/contact-us\">contact us</a>."
+      }
+    ]
+  },
+  "sally": {
+    "slug": "sally",
+    "title": "Cancer-Related Fatigue",
+    "images": [
+      "/images/projects/aerialmay22-15-26d0bdad.jpg",
+      "/images/projects/sally-in-rotterdam-997b633f.jpg"
+    ],
+    "blocks": [
+      {
+        "tag": "p",
+        "html": "Thanks to the support of Dr William Priddy, The Sussex Cancer Fund, and Brighton and Sussex Medical School, we have awarded two 3 year Research Studentships. Their goal is to establish and sustain new collaborative research networks for patient benefit."
+      },
+      {
+        "tag": "p",
+        "html": "The SCRC sat down with Dr Sally Wheelwright to talk about her project."
+      },
+      {
+        "tag": "p",
+        "html": "<strong><em>SCRC: Can you share a brief overview of your project?</em></strong>"
+      },
+      {
+        "tag": "p",
+        "html": "SW: Cancer-Related Fatigue (CRF) is a distressing subjective sense of physical, emotional and/or cognitive tiredness or exhaustion, related to cancer or cancer treatment. It affects about two thirds of cancer patients and it can persist for years after treatment. It’s different from the fatigue we usually experience in that it’s not proportional to how much physical activity you have been doing and having a good rest or sleep won’t alleviate it. We don’t really have any pharmacological interventions to treat CRF but there are some management strategies which have been shown to help. This includes treating underlying problems, such as anaemia and pain, which can lead to CRF, providing psychological support, encouraging gentle exercise, and advising on the use of pacing strategies to get essential tasks done during the day."
+      },
+      {
+        "tag": "p",
+        "html": "This studentship will test if we can predict at the point of cancer diagnosis who will go on to develop significant CRF. This would allow us to target interventions to those most in need earlier, potentially reducing the negative impact of CRF."
+      },
+      {
+        "tag": "p",
+        "html": "Currently we don’t have any medical tests to identify CRF, so we have to ask the patient. This can be done systematically using patient reported outcome measures (PROMs) which are validated, reliable questionnaires. One of our goals is to identify CRF biological markers (biomarkers), which is the first step in developing new treatments for CRF. We will be using proteomic analysis to check for proteins associated with our CRF-specific PROM."
+      },
+      {
+        "tag": "p",
+        "html": "The studentship has two parts. First, the student will analyse an existing data set to identify key determinants of CRF. The data set contains PROMs and clinical data for nearly 3.5 thousand cancer patients, collected over three years. The second part is a longitudinal cohort study. Lung and breast cancer patients will be recruited in the neoadjuvant setting and asked to provide blood samples and complete PROMs before they start their treatment, just before surgery and when they have completed treatment. The aim of this study is to identify CRF biomarkers and to develop a model to predict CRF during and after treatment. By collecting both PROMs and biological samples longitudinally, our understanding of CRF will be improved and it may be possible to identify novel treatment targets."
+      },
+      {
+        "tag": "p",
+        "html": "<strong><em>SCRC: What was the inspiration for your project?</em></strong>"
+      },
+      {
+        "tag": "p",
+        "html": "SW: Cancer-Related Fatigue (CRF) is a distressing, pervasive condition for many cancer patients and has been identified as a key research priority. Health care professionals have very limited options for supporting patients who are experiencing CRF and the patients themselves report it as an unmet need. CRF is challenging to research because of its complexity but we think it is important to try, with the goal of improving outcomes for cancer patients now and in the future."
+      },
+      {
+        "tag": "p",
+        "html": "<strong><em>SCRC: How do you foresee your project leading to patient benefit? And when?</em></strong>"
+      },
+      {
+        "tag": "p",
+        "html": "SW: In the shorter term, we hope that this project will provide a way of identifying the patients who are most likely to develop CRF so that the measures we know can help are targeted earlier to the people who are most at risk. This proactive approach should lead to patient benefit. In the longer term, this project could contribute to identifying potential targets for drug interventions."
+      },
+      {
+        "tag": "p",
+        "html": "<strong><em>SCRC: If the project is successful—what’s next?</em></strong>"
+      },
+      {
+        "tag": "p",
+        "html": "SW: If we can successfully develop a model to predict CRF, the next stage will be to carry out an implementation project. In other words, we will need to take our findings, put them into clinical practice and test how effective it is in the real-world setting. If we are able to find some biological markers of CRF there are many potential follow on projects. For example, we could test whether the same markers appear in patients with different cancer and we could also start investigating potential drug interventions."
+      },
+      {
+        "tag": "p",
+        "html": "<strong><em>SCRC: Can you describe any interdisciplinary aspects of your projects?</em></strong>"
+      },
+      {
+        "tag": "p",
+        "html": "SW: This project which will combine lab, clinical and patient-reported measures to improve understanding of CRF and identify novel treatment targets. The project is about integrating the early stages of bench-to-bedside with a patient-focussed approach, potentially improving clinical management of patients in the short term (by identifying models to target those in need of early intervention) whilst working towards a possible pharmacological intervention in the long term."
+      },
+      {
+        "tag": "p",
+        "html": "<strong><em>SCRC: What do you think are the main challenges we face in cancer research? How does your project help to address this?</em></strong>"
+      },
+      {
+        "tag": "p",
+        "html": "SW: As our population ages and cancer survival increases, the number of people living with and beyond cancer continues to grow. Even when treatment has been successful, people who have had cancer are often left with long term consequences. We need to find ways to help people live well after cancer. Fatigue is one of the most common ongoing problems reported so we hope this project will lead to better outcomes for many of those people diagnosed with cancer."
+      },
+      {
+        "tag": "p",
+        "html": "<strong><em>SCRC: How have research mentors benefited your research?</em></strong>"
+      },
+      {
+        "tag": "p",
+        "html": "SW: SCRC’s Cancer-Related Fatigue Group has been an excellent group to share plans for this project and we look forward to their ongoing expertise and ‘critical friend’ input as the project progresses."
+      },
+      {
+        "tag": "p",
+        "html": "<strong><em>SCRC: If people want to follow you and your team or get updates as the project progresses, where can they get more info?</em></strong>"
+      },
+      {
+        "tag": "p",
+        "html": "SW: You will be able to read more about the project as it progresses at <a href=\"https://shore-c.sussex.ac.uk/\" target=\"_blank\" rel=\"noopener noreferrer\">SHORE-C</a>"
+      }
+    ]
+  }
+}

@@ -1,0 +1,77 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import projects from '../data/projects.json';
+
+export function getStaticPaths() {
+  return Object.values(projects).map((proj) => ({
+    params: { project: proj.slug },
+    props: { proj },
+  }));
+}
+
+const { proj } = Astro.props;
+---
+
+<BaseLayout
+  title={proj.title}
+  description={`${proj.title} — Funded research project supported by the Sussex Cancer Research Centre.`}
+  image={proj.images[0] || '/images/brand/hero-sussex.jpg'}
+>
+  <section class="page-banner page-banner--image">
+    <img src="/images/brand/hero-sussex.jpg" alt="" class="hero-bg" />
+    <div class="hero-overlay" aria-hidden="true"></div>
+    <div class="container page-banner-inner">
+      <span class="eyebrow">Funded Project</span>
+      <h1>{proj.title}</h1>
+    </div>
+  </section>
+
+  <article class="section section--white">
+    <div class="container container--narrow">
+      <p style="margin-bottom:1.5rem;">
+        <a href="/funding" class="read-more">← Back to Funding &amp; Funded Projects</a>
+      </p>
+
+      {proj.images.length > 0 && (
+        <div class="project-gallery" style="margin-bottom:2rem;">
+          {proj.images.map((img) => (
+            <img
+              src={img}
+              alt={proj.title}
+              style="width:100%; max-height:460px; object-fit:cover; border-radius:var(--radius-card); box-shadow:var(--shadow-sm);"
+              loading="lazy"
+            />
+          ))}
+        </div>
+      )}
+
+      <div class="prose">
+        {proj.blocks.map((b) =>
+          b.tag === 'h2' ? (
+            <h2 set:html={b.html} />
+          ) : b.tag === 'h3' ? (
+            <h3 set:html={b.html} />
+          ) : b.tag === 'li' ? (
+            <p>• <span set:html={b.html} /></p>
+          ) : (
+            <p set:html={b.html} />
+          )
+        )}
+      </div>
+
+      <hr style="border:0; border-top:1px solid var(--scrc-border); margin:3rem 0 2rem;" />
+      <div style="display:flex; justify-content:space-between; flex-wrap:wrap; gap:1rem;">
+        <a href="/funding" class="btn btn--outline btn--sm">← All Funded Projects</a>
+        <a href="/donate" class="btn btn--mint btn--sm">Support SCRC Research</a>
+      </div>
+    </div>
+  </article>
+</BaseLayout>
+
+<style>
+  .project-gallery {
+    display: grid;
+    gap: 1.25rem;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  }
+</style>
