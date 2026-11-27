@@ -1,0 +1,167 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import publications from '../data/publications.json';
+
+const years = Array.from(new Set(publications.map((p) => p.year))).sort((a, b) => b - a);
+---
+
+<BaseLayout
+  title="Publications"
+  description="Recent peer-reviewed cancer research publications authored by Sussex Cancer Research Centre members."
+>
+  <section class="page-banner page-banner--image">
+    <img src="/images/brand/hero-sussex.jpg" alt="" class="hero-bg" />
+    <div class="hero-overlay" aria-hidden="true"></div>
+    <div class="container page-banner-inner">
+      <h1>Publications</h1>
+      <p class="lead">
+        Peer-reviewed cancer research published by members of the Sussex Cancer Research Centre.
+      </p>
+    </div>
+  </section>
+
+  <section class="section section--white">
+    <div class="container container--narrow">
+      <div style="display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:1rem; margin-bottom:1.25rem;">
+        <input
+          type="search"
+          id="pub-search"
+          class="search-input"
+          placeholder="Search by author, title, journal, or keyword..."
+          aria-label="Search publications"
+        />
+        <p style="margin:0; font-size:0.9rem; color:var(--scrc-muted);">
+          Showing <strong id="pub-count">{publications.length}</strong> publications
+        </p>
+      </div>
+
+      <div class="filter-bar" role="group" aria-label="Filter publications by year">
+        <button type="button" class="filter-chip is-active" data-year="all">
+          All Years ({publications.length})
+        </button>
+        {years.map((y) => (
+          <button type="button" class="filter-chip" data-year={String(y)}>
+            {y} ({publications.filter((p) => p.year === y).length})
+          </button>
+        ))}
+      </div>
+
+      <div id="pub-list" style="display:grid; gap:0.85rem;">
+        {publications.map((pub) => (
+          <details
+            class="pub-item"
+            data-year={String(pub.year)}
+            data-search={`${pub.citation} ${pub.abstract}`.toLowerCase()}
+          >
+            <summary class="pub-summary">
+              <span class="pub-citation">{pub.citation}</span>
+              <span class="pub-chevron" aria-hidden="true">+</span>
+            </summary>
+            <div class="pub-body">
+              {pub.abstract ? (
+                <p>{pub.abstract}</p>
+              ) : (
+                <p style="color:var(--scrc-muted);">Abstract unavailable.</p>
+              )}
+              {pub.doiUrl && (
+                <p style="margin-top:0.75rem; margin-bottom:0;">
+                  <a href={pub.doiUrl} target="_blank" rel="noopener noreferrer" class="read-more">
+                    View publication via DOI →
+                  </a>
+                </p>
+              )}
+            </div>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .pub-item {
+    border: 1px solid var(--scrc-border);
+    border-radius: var(--radius-card);
+    background: var(--scrc-white);
+    transition: border-color var(--transition), box-shadow var(--transition);
+  }
+
+  .pub-item:hover {
+    border-color: var(--scrc-teal);
+  }
+
+  .pub-item[open] {
+    box-shadow: var(--shadow-sm);
+    border-color: var(--scrc-teal);
+  }
+
+  .pub-summary {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1.15rem 1.35rem;
+    cursor: pointer;
+    list-style: none;
+    font-weight: 400;
+    line-height: 1.55;
+    color: var(--scrc-black);
+  }
+
+  .pub-summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .pub-chevron {
+    font-size: 1.35rem;
+    font-weight: 400;
+    line-height: 1;
+    color: var(--scrc-teal-deep);
+    flex-shrink: 0;
+    transition: transform var(--transition);
+  }
+
+  .pub-item[open] .pub-chevron {
+    transform: rotate(45deg);
+  }
+
+  .pub-body {
+    padding: 0 1.35rem 1.3rem;
+    font-size: 0.94rem;
+    color: var(--scrc-muted);
+    border-top: 1px solid var(--scrc-border);
+    padding-top: 1rem;
+  }
+</style>
+
+<script>
+  const searchInput = document.getElementById('pub-search') as HTMLInputElement | null;
+  const yearBtns = Array.from(document.querySelectorAll<HTMLButtonElement>('[data-year]'));
+  const items = Array.from(document.querySelectorAll<HTMLElement>('.pub-item'));
+  const countEl = document.getElementById('pub-count');
+
+  let activeYear = 'all';
+
+  function filterPubs() {
+    const q = (searchInput?.value || '').trim().toLowerCase();
+    let visible = 0;
+    items.forEach((item) => {
+      const matchYear = activeYear === 'all' || item.dataset.year === activeYear;
+      const matchSearch = !q || (item.dataset.search || '').includes(q);
+      const show = matchYear && matchSearch;
+      item.style.display = show ? '' : 'none';
+      if (show) visible++;
+    });
+    if (countEl) countEl.textContent = String(visible);
+  }
+
+  yearBtns.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      activeYear = btn.dataset.year || 'all';
+      yearBtns.forEach((b) => b.classList.toggle('is-active', b === btn));
+      filterPubs();
+    });
+  });
+
+  searchInput?.addEventListener('input', filterPubs);
+</script>

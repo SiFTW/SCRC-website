@@ -1,0 +1,126 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import site from '../data/site.json';
+---
+
+<BaseLayout
+  title="Donate"
+  description="Support life-changing cancer research in Sussex through the Sussex Cancer Research Centre and our charity and university partners."
+>
+  <section class="page-banner page-banner--image">
+    <img src="/images/brand/hero-sussex.jpg" alt="" class="hero-bg" />
+    <div class="hero-overlay" aria-hidden="true"></div>
+    <div class="container page-banner-inner">
+      <h1>Your support changes lives</h1>
+      <p class="lead">
+        Your donation to the Sussex Cancer Research Centre has a lasting impact on people with
+        cancer across Sussex and beyond.
+      </p>
+      <div style="margin-top:1.5rem; display:flex; gap:0.85rem; flex-wrap:wrap;">
+        <a
+          href={site.externalLinks.donateJustGiving}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="btn btn--mint"
+        >
+          Donate Now — via the Sussex Cancer Fund ↗
+        </a>
+        <a href={`mailto:${site.email.donate}`} class="btn btn--white">
+          Email {site.email.donate}
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--bright">
+    <div class="container">
+      <div class="section-header--center">
+        <h2>Why donate to the Sussex Cancer Research Centre?</h2>
+      </div>
+      <div class="grid grid--2">
+        <div class="callout">
+          <h3>See the impact of your research</h3>
+          <p>
+            As a supporter of the Sussex Cancer Research Centre you will be invited to visit the
+            universities and hospitals where the research you are supporting is happening. See
+            cutting-edge projects as they progress, receive regular updates, and meet the research teams.
+          </p>
+        </div>
+        <div class="callout">
+          <h3>Support research that changes lives</h3>
+          <p>
+            People with experience of cancer are at the centre of everything we do. From targeting
+            the Achilles heel of each individual cancer to overcoming cancer-related fatigue, all
+            research is shaped by lived experience.
+          </p>
+        </div>
+        <div class="callout">
+          <h3>Support future cancer research leaders</h3>
+          <p>
+            Your support is vital to help promising young talent embark on a career in cancer
+            research right here in Sussex — from pump-priming exciting collaborations to funding a
+            PhD studentship award in your name.
+          </p>
+        </div>
+        <div class="callout">
+          <h3>Local research, global impact</h3>
+          <p>
+            We support local research on your doorstep whose impact is felt around the world,
+            pioneering new technologies and drug development that shape the treatments of tomorrow.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--white">
+    <div class="container">
+      <div class="split">
+        <div>
+          <span class="eyebrow">Ways to Give</span>
+          <h2>Partner with us to make a lasting difference</h2>
+          <p>
+            Whether it’s a one-off donation, recurring support, sponsoring a PhD project, or a
+            legacy gift, your support will enable life-changing cancer research in Sussex.
+          </p>
+          <p>
+            Donations can be made through the University of Sussex or the University of Brighton
+            (both exempt charities, with the same Gift Aid and tax claim rights as registered
+            charities), or through our partner charity the <strong>Sussex Cancer Fund</strong>.
+            All of our universities and charity partners are registered with the Fundraising Regulator.
+          </p>
+          <p>
+            Get in touch and we will work with you to maximise the impact of your donation and
+            recognise your legacy through named scholarships, named funding opportunities, or
+            plaques at the heart of our research labs.
+          </p>
+          <div style="display:flex; flex-wrap:wrap; gap:0.75rem; margin-top:1.5rem;">
+            <a
+              href={site.externalLinks.donateJustGiving}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="btn btn--primary"
+            >
+              Donate via Sussex Cancer Fund ↗
+            </a>
+            <a href={`mailto:${site.email.donate}`} class="btn btn--outline">
+              {site.email.donate}
+            </a>
+            <a href="/contact-us" class="btn btn--outline">Contact Us</a>
+          </div>
+        </div>
+        <div class="split-media">
+          <img src="/images/brand/lab-research.jpg" alt="SCRC Laboratory Research" loading="lazy" />
+          <div style="margin-top:1.25rem; text-align:center;">
+            <img
+              src="/images/brand/scf-logo.png"
+              alt="Sussex Cancer Fund"
+              style="max-height:70px; margin-inline:auto; box-shadow:none;"
+              loading="lazy"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

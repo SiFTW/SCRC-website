@@ -1,0 +1,59 @@
+---
+import { getCollection, render } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+export async function getStaticPaths() {
+  const people = await getCollection('people');
+  return people.map((person) => ({
+    params: { slug: person.id },
+    props: { person },
+  }));
+}
+
+const { person } = Astro.props;
+const { Content } = await render(person);
+---
+
+<BaseLayout
+  title={person.data.name}
+  description={person.data.summary || `${person.data.name} — Member of the Sussex Cancer Research Centre`}
+  image={person.data.image}
+>
+  <article class="section section--white">
+    <div class="container container--narrow">
+      <p style="margin-bottom:1.5rem;">
+        <a href="/people#directory" class="read-more">← Back to People Directory</a>
+      </p>
+
+      <div style="display:flex; flex-wrap:wrap; gap:2rem; align-items:center; margin-bottom:2.25rem;">
+        {person.data.image && (
+          <img
+            src={person.data.image}
+            alt={person.data.name}
+            style="width:160px; height:160px; object-fit:cover; object-position:top center; border-radius:var(--radius-card); box-shadow:var(--shadow-sm); flex-shrink:0;"
+          />
+        )}
+        <div style="flex:1; min-width:240px;">
+          {person.data.managementGroup && (
+            <span class="eyebrow">SCRC Management Group</span>
+          )}
+          <h1 style="margin-bottom:0.5rem;">{person.data.name}</h1>
+          {person.data.summary && <p class="lead" style="margin-bottom:1rem;">{person.data.summary}</p>}
+          {person.data.interests.length > 0 && (
+            <div style="display:flex; flex-wrap:wrap; gap:0.4rem;">
+              {person.data.interests.map((interest) => (
+                <a href={`/people?interest=${encodeURIComponent(interest)}#directory`} class="tag">
+                  {interest}
+                </a>
+              ))}
+            </div>
+          )}
+        </div>
+      </div>
+
+      <div class="prose">
+        <Content />
+      </div>
+    </div>
+  </article>
+</BaseLayout>

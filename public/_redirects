@@ -1,0 +1,11 @@
+# Preserve legacy Squarespace paths
+/home / 301
+/thank-you /thankyou 301
+/contact /contact-us 301
+/mentorship /mentor 301
+/blood-events /events?theme=blood 301
+/brain-events /events?theme=brain 301
+/fatigue-events /events?theme=fatigue 301
+/computational-events /events?theme=computational 301
+/breast-gynae-events /events?theme=breast 301
+/directory/category/* /people#directory 301

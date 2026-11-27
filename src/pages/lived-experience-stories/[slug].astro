@@ -1,0 +1,58 @@
+---
+import { getCollection, render } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+export async function getStaticPaths() {
+  const stories = await getCollection('stories');
+  return stories.map((story) => ({
+    params: { slug: story.id },
+    props: { story },
+  }));
+}
+
+const { story } = Astro.props;
+const { Content } = await render(story);
+
+const dateFormatted = story.data.date.toLocaleDateString('en-GB', {
+  day: 'numeric',
+  month: 'long',
+  year: 'numeric',
+});
+---
+
+<BaseLayout
+  title={story.data.title}
+  description={story.data.excerpt || story.data.title}
+  image={story.data.image}
+>
+  <article class="section section--white">
+    <div class="container container--narrow">
+      <p style="margin-bottom:1.25rem;">
+        <a href="/lived-experience-stories" class="read-more">← Back to Lived Experience Stories</a>
+      </p>
+
+      <div class="card-meta" style="margin-bottom:0.75rem;">
+        <time datetime={story.data.date.toISOString()}>{dateFormatted}</time>
+      </div>
+
+      <h1 style="margin-bottom:1.5rem;">{story.data.title}</h1>
+
+      {story.data.image && (
+        <div style="margin-bottom:2rem;">
+          <img
+            src={story.data.image}
+            alt={story.data.title}
+            style="width:100%; max-height:520px; object-fit:cover; border-radius:var(--radius-card);"
+          />
+        </div>
+      )}
+
+      <div class="prose">
+        <Content />
+      </div>
+
+      <hr style="border:0; border-top:1px solid var(--scrc-border); margin:3rem 0 2rem;" />
+      <a href="/lived-experience-stories" class="btn btn--outline btn--sm">← All Lived Experience Stories</a>
+    </div>
+  </article>
+</BaseLayout>

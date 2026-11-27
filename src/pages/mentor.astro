@@ -1,0 +1,67 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import site from '../data/site.json';
+---
+
+<BaseLayout
+  title="Mentorship"
+  description="Join the Sussex Cancer Research Centre cross-institutional mentoring programme for early career researchers and mentors."
+>
+  <section class="page-banner page-banner--image">
+    <img src="/images/brand/hero-sussex.jpg" alt="" class="hero-bg" />
+    <div class="hero-overlay" aria-hidden="true"></div>
+    <div class="container page-banner-inner">
+      <h1>Mentorship</h1>
+      <p class="lead">We want to help you become the future leaders of cancer research.</p>
+    </div>
+  </section>
+
+  <section class="section section--white">
+    <div class="container">
+      <div class="split">
+        <div>
+          <h2>Cross-Institutional SCRC Mentoring Programme</h2>
+          <p>
+            Mentoring programmes are confidential partnerships between an experienced SCRC researcher
+            and someone new to the SCRC or a more junior / early career researcher (ECR). As a
+            mentee you can develop your technical and personal skills and build confidence.
+          </p>
+          <p>
+            Joining a cross-institutional SCRC mentoring programme allows for a broader, unbiased
+            perspective, and has the potential to facilitate new research interactions. The SCRC
+            mentoring programme can also help increase engagement between researchers and support
+            grant writing and career success.
+          </p>
+          <p style="font-size:0.93rem; color:var(--scrc-muted);">
+            <em>
+              Note: While mentors can offer general career advice, the mentorship scheme is not
+              designed for students to secure jobs within the cancer centre.
+            </em>
+          </p>
+        </div>
+
+        <div class="split-media">
+          <img
+            src="/images/brand/support-mentor.png"
+            alt="SCRC Mentorship Programme"
+            loading="lazy"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--bright">
+    <div class="container container--narrow" style="text-align:center;">
+      <h2>Are you interested in becoming a mentor or a mentee?</h2>
+      <p class="lead">
+        Join our bespoke SCRC mentoring programme and we’ll be in touch to match you and get the ball rolling.
+      </p>
+      <div style="margin-top:1.5rem;">
+        <a href={site.externalLinks.mentorFormUrl} class="btn btn--primary">
+          Join the SCRC Mentor Scheme
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

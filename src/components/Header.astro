@@ -1,0 +1,135 @@
+---
+import site from '../data/site.json';
+
+const currentPath = Astro.url.pathname.replace(/\/$/, '') || '/';
+---
+
+{site.announcement.enabled && (
+  <div class="announcement-bar" role="region" aria-label="Announcement">
+    <a href={site.announcement.href}>{site.announcement.text}</a>
+  </div>
+)}
+
+<header class="site-header" id="top">
+  <div class="container header-inner">
+    <a href="/" class="header-logo" aria-label={site.siteName}>
+      <img src="/images/brand/scrc-logo.png" alt={site.siteName} width="180" height="50" />
+    </a>
+
+    <nav class="header-nav" aria-label="Primary navigation">
+      {site.navigation.map((item) => (
+        <div class="nav-item">
+          {item.children ? (
+            <>
+              <button type="button" class="nav-trigger" aria-expanded="false">
+                <span>{item.label}</span>
+                <svg class="nav-chevron" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <path d="M5 7.5L10 12.5L15 7.5" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+              </button>
+              <div class="nav-dropdown">
+                {item.children.map((child) => (
+                  <a
+                    href={child.href}
+                    aria-current={currentPath === child.href ? 'page' : undefined}
+                  >
+                    {child.label}
+                  </a>
+                ))}
+              </div>
+            </>
+          ) : (
+            <a
+              href={item.href}
+              class="nav-link"
+              aria-current={currentPath === item.href ? 'page' : undefined}
+            >
+              {item.label}
+            </a>
+          )}
+        </div>
+      ))}
+    </nav>
+
+    <div class="header-actions">
+      <a href="/#involved" class="btn btn--primary btn--sm btn-desktop-only">Get Involved</a>
+      <button
+        type="button"
+        class="mobile-menu-btn"
+        id="mobile-menu-open"
+        aria-label="Open menu"
+        aria-controls="mobile-drawer"
+        aria-expanded="false"
+      >
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <path d="M3 6h18M3 12h18M3 18h18" stroke-linecap="round" />
+        </svg>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="mobile-drawer" id="mobile-drawer" aria-hidden="true">
+  <div class="mobile-drawer-header">
+    <a href="/" class="header-logo">
+      <img src="/images/brand/scrc-logo.png" alt={site.siteName} width="150" height="42" />
+    </a>
+    <button type="button" class="mobile-menu-btn" id="mobile-menu-close" aria-label="Close menu" style="display:inline-flex;">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+        <path d="M6 6l12 12M18 6L6 18" stroke-linecap="round" />
+      </svg>
+    </button>
+  </div>
+
+  <div class="mobile-nav-group">
+    <ul class="mobile-nav-links">
+      <li><a href="/">Home</a></li>
+    </ul>
+  </div>
+
+  {site.navigation.filter((n) => n.children).map((group) => (
+    <div class="mobile-nav-group">
+      <p class="mobile-nav-heading">{group.label}</p>
+      <ul class="mobile-nav-links">
+        {group.children!.map((child) => (
+          <li><a href={child.href}>{child.label}</a></li>
+        ))}
+      </ul>
+    </div>
+  ))}
+
+  <div style="margin-top: 1.5rem; display: flex; gap: 0.75rem; flex-wrap: wrap;">
+    <a href="/#involved" class="btn btn--primary" id="mobile-cta-link">Get Involved</a>
+    <a href="/donate" class="btn btn--mint">Donate</a>
+  </div>
+</div>
+
+<script>
+  const openBtn = document.getElementById('mobile-menu-open');
+  const closeBtn = document.getElementById('mobile-menu-close');
+  const drawer = document.getElementById('mobile-drawer');
+
+  function toggleDrawer(open: boolean) {
+    if (!drawer || !openBtn) return;
+    drawer.classList.toggle('is-open', open);
+    drawer.setAttribute('aria-hidden', String(!open));
+    openBtn.setAttribute('aria-expanded', String(open));
+    document.body.style.overflow = open ? 'hidden' : '';
+  }
+
+  openBtn?.addEventListener('click', () => toggleDrawer(true));
+  closeBtn?.addEventListener('click', () => toggleDrawer(false));
+  drawer?.querySelectorAll('a').forEach((a) => a.addEventListener('click', () => toggleDrawer(false)));
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') toggleDrawer(false);
+  });
+
+  // Accessible click toggle for desktop dropdowns on touch devices
+  document.querySelectorAll('.nav-trigger').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const parent = btn.closest('.nav-item');
+      const isOpen = parent?.classList.toggle('is-open');
+      btn.setAttribute('aria-expanded', String(Boolean(isOpen)));
+    });
+  });
+</script>

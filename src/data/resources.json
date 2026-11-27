@@ -1,0 +1,155 @@
+[
+  {
+    "title": "Proteomics",
+    "summary": "Find markers we can measure to help with diagnosis, prognosis and treatment.",
+    "image": "/images/pages/screenshot-2024-08-27-at-17-56-24-701fcfe0.jpg",
+    "facilities": [
+      {
+        "institution": "University of Brighton",
+        "equipment": ["Q Exactive hybrid high-resolution mass spectrometer"],
+        "contacts": [{ "name": "Nicolas Stewart", "email": "n.stewart@brighton.ac.uk", "role": "" }]
+      },
+      {
+        "institution": "University of Sussex",
+        "equipment": ["Orbitrap Exploris 480 with FAIMS Pro-Duo high-resolution mass spectrometer"],
+        "contacts": [{ "name": "Ramon Gonzalez-Mendez", "email": "R.Gonzalez-Mendez@sussex.ac.uk", "role": "Scientific Officer – Mass Spectrometry" }]
+      }
+    ]
+  },
+  {
+    "title": "Microscopy",
+    "summary": "Visualise tiny tumour cells, immune cells, and how they interact.",
+    "image": "/images/pages/unsplash-image-kgpl4mmyv-8-08c42969.jpg",
+    "facilities": [
+      {
+        "institution": "University of Brighton",
+        "equipment": ["Laser Microdissection System", "Leica LMD7"],
+        "contacts": [{ "name": "Mark Yeoman", "email": "m.yeoman@brighton.ac.uk", "role": "Director for the Centre of Lifelong Health" }]
+      },
+      {
+        "institution": "University of Sussex",
+        "equipment": [
+          "Two confocal microscopes",
+          "Five wide-field fluorescence microscopes",
+          "One high throughput microscope",
+          "Five low-light microscopes"
+        ],
+        "contacts": [{ "name": "Dr Yan Gu", "email": "yg90@sussex.ac.uk", "role": "Manager of The Wolfson Biological Imaging Centre" }]
+      }
+    ]
+  },
+  {
+    "title": "Flow Cytometry",
+    "summary": "Provides crucial data on cancer cell types and response to treatment.",
+    "image": "/images/pages/11967276006_1938740298_o-2594dd43.jpg",
+    "facilities": [
+      {
+        "institution": "University of Sussex",
+        "equipment": [
+          "Beckman Coulter Cytoflex (3 laser, 7 channel)",
+          "BD Accuri C6 (2 lasers, 4 channels)",
+          "BD FACSMelody Cell Sorter (3 lasers, 8 channels)"
+        ],
+        "contacts": [{ "name": "Jon Wing", "email": "J.F.Wing@sussex.ac.uk", "role": "Technical Specialist – FACS and Cell Sorting" }]
+      },
+      {
+        "institution": "Brighton and Sussex Medical School",
+        "equipment": [
+          "Beckman Coulter Cytoflex LX (5 lasers, 21 channels)",
+          "Cytek Northern Lights (3 laser, full spectrum)"
+        ],
+        "contacts": [{ "name": "Chris Pepper", "email": "C.Pepper@bsms.ac.uk", "role": "Professor of Cancer Research" }]
+      }
+    ]
+  },
+  {
+    "title": "Sequencing",
+    "summary": "Investigate the role of genes in cancer diagnosis, prognosis and treatment.",
+    "image": "/images/pages/5k-panels-hero-6fec35d7.jpg",
+    "facilities": [
+      {
+        "institution": "University of Sussex",
+        "equipment": ["NextSeq1000", "DRAGEN informatics"],
+        "contacts": [{ "name": "Matt Neale", "email": "M.Neale@sussex.ac.uk", "role": "" }]
+      },
+      {
+        "institution": "Brighton and Sussex Medical School",
+        "equipment": ["Nanopore PromethION 2 Solo", "10x Genomics Controller (scRNAseq)"],
+        "contacts": [
+          { "name": "Sarah Newbury", "email": "S.Newbury@bsms.ac.uk", "role": "" },
+          { "name": "Simon Mitchell", "email": "S.A.Mitchell@bsms.ac.uk", "role": "" },
+          { "name": "Ben Towler", "email": "B.Towler2@bsms.ac.uk", "role": "" }
+        ]
+      },
+      {
+        "institution": "University of Brighton",
+        "equipment": ["NextSeq500"],
+        "contacts": [{ "name": "Rameen Shakur", "email": "knowledgeexchange@brighton.ac.uk", "role": "" }]
+      }
+    ]
+  },
+  {
+    "title": "Drug Discovery and Development",
+    "summary": "Turns drug targets into molecules that can be used in clinical trials.",
+    "image": "/images/pages/abstract-chemical-formulas_0-ecbd930d.jpg",
+    "facilities": [
+      {
+        "institution": "Sussex Drug Discovery Centre",
+        "equipment": [
+          "Capability, expertise and experience to prosecute drug targets across a variety of therapeutic areas",
+          "Core focus: medicinal chemistry, protein structural biology, cancer biology, ion channel physiology and pharmacology, and endothelial biology"
+        ],
+        "contacts": [
+          { "name": "Professor Erika Mancini", "email": "Erika.Mancini@sussex.ac.uk", "role": "SDDC Director" },
+          { "name": "Professor John Spencer", "email": "J.Spencer@sussex.ac.uk", "role": "Head of Medicinal Chemistry" }
+        ]
+      }
+    ]
+  },
+  {
+    "title": "Clinical Trials",
+    "summary": "Clinical trials are the final stepping stone before helping patients with new therapies.",
+    "image": "/images/pages/unsplash-image-j5utvrgse7q-2dcb248b.jpg",
+    "facilities": [
+      {
+        "institution": "The Brighton and Sussex Clinical Trials Unit",
+        "equipment": [
+          "Development of funding applications",
+          "Trial design",
+          "Study management",
+          "Quality assurance",
+          "Data analysis",
+          "Dissemination",
+          "Trial close-down"
+        ],
+        "contacts": [{ "name": "Dr Wendy Wood", "email": "W.Wood@bsms.ac.uk", "role": "CTU Director" }]
+      }
+    ]
+  },
+  {
+    "title": "Patient Material",
+    "summary": "Invaluable resource for scientists to discover new drug targets and develop new treatment approaches.",
+    "image": "/images/pages/pexels-photo-6285356-3234fd41.jpeg",
+    "facilities": [
+      {
+        "institution": "Princess Royal Hospital, University Hospitals Sussex",
+        "equipment": ["Urological Cancers: Prostate, kidney, bladder and testicular cancer"],
+        "contacts": [{ "name": "Andy Symes", "email": "andrew.symes@nhs.net", "role": "Consultant Urologist" }]
+      },
+      {
+        "institution": "University Hospitals Sussex NHS Foundation Trust",
+        "equipment": ["Contact Hello@SussexCancer.org describing what you are looking for"],
+        "contacts": [
+          { "name": "Duncan Gilbert", "email": "duncan.gilbert2@nhs.net", "role": "" },
+          { "name": "Isobelle Coombes", "email": "isobellecoombes@nhs.net", "role": "" },
+          { "name": "Rebecca Herbertson", "email": "rebecca.herbertson@nhs.net", "role": "" }
+        ]
+      },
+      {
+        "institution": "East Sussex Healthcare NHS Trust",
+        "equipment": ["Clinical patient material access"],
+        "contacts": [{ "name": "John Jones", "email": "J.Jones2@bsms.ac.uk", "role": "" }]
+      }
+    ]
+  }
+]

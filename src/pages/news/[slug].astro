@@ -1,0 +1,62 @@
+---
+import { getCollection, render } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('news');
+  return posts.map((post) => ({
+    params: { slug: post.id },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+
+const dateFormatted = post.data.date.toLocaleDateString('en-GB', {
+  day: 'numeric',
+  month: 'long',
+  year: 'numeric',
+});
+---
+
+<BaseLayout
+  title={post.data.title}
+  description={post.data.excerpt || post.data.title}
+  image={post.data.image}
+>
+  <article class="section section--white">
+    <div class="container container--narrow">
+      <p style="margin-bottom:1.25rem;">
+        <a href="/news" class="read-more">← Back to all News</a>
+      </p>
+
+      <div class="card-meta" style="margin-bottom:0.75rem;">
+        <time datetime={post.data.date.toISOString()}>{dateFormatted}</time>
+        {post.data.author && <span>· {post.data.author}</span>}
+      </div>
+
+      <h1 style="margin-bottom:1.5rem;">{post.data.title}</h1>
+
+      {post.data.image && (
+        <div style="margin-bottom:2rem;">
+          <img
+            src={post.data.image}
+            alt={post.data.title}
+            style="width:100%; max-height:520px; object-fit:cover; border-radius:var(--radius-card); box-shadow:var(--shadow-sm);"
+          />
+        </div>
+      )}
+
+      <div class="prose">
+        <Content />
+      </div>
+
+      <hr style="border:0; border-top:1px solid var(--scrc-border); margin:3rem 0 2rem;" />
+      <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem;">
+        <a href="/news" class="btn btn--outline btn--sm">← All Research News</a>
+        <a href="/#involved" class="btn btn--mint btn--sm">Join the SCRC Newsletter</a>
+      </div>
+    </div>
+  </article>
+</BaseLayout>

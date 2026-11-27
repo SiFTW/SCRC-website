@@ -1,0 +1,69 @@
+{
+  "currentCall": {
+    "enabled": true,
+    "title": "Apply for a Sussex Cancer Fund, Sussex Cancer Research Centre grant to support your research",
+    "brackets": [
+      "Apply for up to £20k.",
+      "Apply for up to £60k for projects with less than 5 years to patient benefit, or significant leadership by clinicians, nurses, and allied health professionals (AHPs)."
+    ],
+    "deadline": "22nd January 2027",
+    "applicationFormUrl": "/s/SCRC_funding_application_form_Nov26-rp5r.docx",
+    "processDocUrl": "/s/Scientific-Grant-Funding-Process-Document_V4.docx"
+  },
+  "fundedProjects": {
+    "pumpPriming": [
+      {
+        "title": "A proof-of-concept investigation of a new model to explain fatigue experienced post breast cancer treatment.",
+        "description": ""
+      },
+      {
+        "title": "Models for evaluating new therapies to overcome tumour microenvironment-mediated drug resistance in lymphoma.",
+        "description": ""
+      },
+      {
+        "title": "Increasing physical activity levels in the least active colorectal cancer patients preparing for surgery.",
+        "description": ""
+      },
+      {
+        "title": "A new therapeutic target for ovarian cancer.",
+        "description": ""
+      },
+      {
+        "title": "Targeting signalling in acute myeloid leukaemia.",
+        "description": ""
+      }
+    ],
+    "creativeEngagement": [
+      {
+        "title": "'Pharmakon' and 'Calle Incurabili (The Narrow Path of Cure)' - Markus Taylor",
+        "description": ""
+      },
+      {
+        "title": "'Words from the Waiting Room' - Deborah Humphrey and Karina Patfield",
+        "description": ""
+      }
+    ],
+    "studentships": [
+      {
+        "title": "The William Priddy Myeloma Research Studentship - Prof Chris Pepper",
+        "description": ""
+      },
+      {
+        "title": "The William Priddy Cancer Research Studentship supported by the Sussex Cancer Fund - Dr Sally Wheelwright",
+        "description": ""
+      }
+    ]
+  },
+  "successRates": [
+    {
+      "round": "August 2026",
+      "rate": "27%",
+      "summary": "We received 11 applications, totalling £429k. 4 applications requested ≤ £20k, and 7 applications requested >£20k. We funded 3 projects with a total value of £72k. 1 funded project had value >£20k."
+    },
+    {
+      "round": "February 2026",
+      "rate": "57%",
+      "summary": "We received 7 applications, totalling £118k. 5 applications requested ≤ £20k, and 2 applications requested >£20k. We funded 4 projects with a total value of £65k. 1 funded project had value >£20k."
+    }
+  ]
+}

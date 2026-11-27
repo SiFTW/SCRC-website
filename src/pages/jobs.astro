@@ -1,0 +1,89 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import jobs from '../data/jobs.json';
+---
+
+<BaseLayout
+  title="Jobs & Vacancies"
+  description="Cancer research vacancies across Brighton and Sussex Medical School, University of Sussex, University of Brighton, and University Hospitals Sussex."
+>
+  <section class="page-banner page-banner--image">
+    <img src="/images/brand/hero-sussex.jpg" alt="" class="hero-bg" />
+    <div class="hero-overlay" aria-hidden="true"></div>
+    <div class="container page-banner-inner">
+      <h1>We are hiring the future leaders of cancer research.</h1>
+      <p class="lead">
+        Live and work in beautiful Sussex, collaborate with leading cancer researchers, benefit from
+        close clinical partnerships, and transform the lives of cancer patients.
+      </p>
+    </div>
+  </section>
+
+  <section class="section section--bright">
+    <div class="container container--narrow">
+      <h2>Why do cancer research in Sussex?</h2>
+      <p>
+        We believe Sussex is the best place in the world to do cancer research. All cancer
+        researchers across Sussex benefit from the support of the Sussex Cancer Research Centre including:
+      </p>
+      <ul>
+        <li>World-leading, multi-disciplinary collaborators on your doorstep.</li>
+        <li>The full bench-to-bedside pipeline for finding drug targets, developing new treatments, and trialling new approaches in patients.</li>
+        <li>Access to pump-priming funds and PhD studentships offered by the SCRC and our partner institutions.</li>
+        <li>Local charity support from the Sussex Cancer Fund, prioritising future cancer research leaders in Sussex.</li>
+        <li>An active community including patients, carers, and families eager to engage with your research.</li>
+        <li>A bespoke mentor to help you navigate the research landscape and achieve your career ambitions.</li>
+        <li>Well-established routes to patient benefit including substantial support for commercialising your research.</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section section--white">
+    <div class="container">
+      <div class="section-header">
+        <div>
+          <span class="eyebrow">Current Opportunities</span>
+          <h2 style="margin-bottom:0;">Vacancies</h2>
+        </div>
+        <a href="/contact-us" class="btn btn--outline btn--sm">Advertise a vacancy →</a>
+      </div>
+
+      <div style="display:grid; gap:2rem;">
+        {jobs.map((job) => (
+          <article class="card">
+            <div class="split" style="gap:0;">
+              <div style="height:100%; min-height:240px;">
+                <img
+                  src={job.image}
+                  alt={job.title}
+                  style="width:100%; height:100%; object-fit:cover;"
+                  loading="lazy"
+                />
+              </div>
+              <div style="padding:2rem;">
+                <span class="tag" style="margin-bottom:0.65rem;">{job.institution}</span>
+                <h3>{job.title}</h3>
+                <p style="color:var(--scrc-muted);">{job.description}</p>
+                <div style="display:flex; flex-wrap:wrap; gap:0.75rem; margin-top:1.25rem;">
+                  <a
+                    href={job.applyUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="btn btn--primary btn--sm"
+                  >
+                    {job.applyLabel} ↗
+                  </a>
+                  {job.extraLinkUrl && (
+                    <a href={job.extraLinkUrl} class="btn btn--outline btn--sm" download>
+                      {job.extraLinkLabel}
+                    </a>
+                  )}
+                </div>
+              </div>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>

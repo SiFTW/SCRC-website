@@ -1,0 +1,325 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import site from '../data/site.json';
+
+const allNews = (await getCollection('news')).sort(
+  (a, b) => b.data.date.getTime() - a.data.date.getTime()
+);
+const latestNews = allNews.slice(0, 6);
+
+const now = new Date();
+const allEvents = (await getCollection('events')).sort(
+  (a, b) => a.data.startDate.getTime() - b.data.startDate.getTime()
+);
+const upcomingEvents = allEvents
+  .filter((e) => e.data.startDate.getTime() >= now.getTime() - 86400000)
+  .slice(0, 4);
+const featuredEvents = upcomingEvents.length > 0 ? upcomingEvents : allEvents.slice(-4).reverse();
+
+function formatDate(d: Date) {
+  return d.toLocaleDateString('en-GB', {
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric',
+  });
+}
+
+function formatMonth(d: Date) {
+  return d.toLocaleDateString('en-GB', { month: 'short' });
+}
+
+function formatDay(d: Date) {
+  return d.toLocaleDateString('en-GB', { day: 'numeric' });
+}
+---
+
+<BaseLayout>
+  <!-- Section 1: Hero -->
+  <section class="hero">
+    <img
+      src="/images/brand/hero-sussex.jpg"
+      alt="Sussex coast and countryside"
+      class="hero-bg"
+      width="1500"
+      height="1000"
+    />
+    <div class="hero-overlay" aria-hidden="true"></div>
+    <div class="container hero-content">
+      <h1>Sussex Cancer Research Centre</h1>
+      <p>
+        Sussex Cancer Research Centre brings together experts from Brighton and Sussex Medical School,
+        the University of Sussex, the University of Brighton, and NHS Trusts across Sussex, to pioneer
+        interdisciplinary research that will improve cancer treatments and outcomes for people with cancer.
+      </p>
+      <div class="hero-actions">
+        <a href="/#involved" class="btn btn--mint">Get Involved</a>
+        <a href="/themes" class="btn btn--white">Explore Research Themes</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 2: Mission / Bench to Bedside (Bright Mint) -->
+  <section class="section section--bright">
+    <div class="container">
+      <div class="section-header--center">
+        <h2>People with lived experience are at the centre of our cancer research</h2>
+      </div>
+      <div class="grid grid--2" style="margin-bottom: 2.25rem;">
+        <div class="callout">
+          <h3>From the lab bench</h3>
+          <p>
+            Where we are using innovative approaches to identify the best targeted therapies, combining
+            molecular biology, drug discovery, structural biology, and computational sciences.
+          </p>
+        </div>
+        <div class="callout">
+          <h3>To the bedside</h3>
+          <p>
+            Where we are translating our lab bench work to the clinic through evaluating health outcomes
+            and implementing researcher-led trials across Sussex hospitals.
+          </p>
+        </div>
+      </div>
+      <p class="lead" style="text-align:center; max-width:780px; margin-inline:auto; font-weight:400;">
+        Sussex Cancer Research Centre aims to ensure all people with cancer now and in the future benefit
+        from cutting-edge research taking place in Sussex.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section 3: Latest Research News -->
+  <section class="section section--white">
+    <div class="container">
+      <div class="section-header">
+        <div>
+          <span class="eyebrow">News</span>
+          <h2 style="margin-bottom:0;">Our Latest Research News</h2>
+        </div>
+        <a href="/news" class="btn btn--outline btn--sm">View All News →</a>
+      </div>
+
+      <div class="grid grid--3">
+        {latestNews.map((post) => (
+          <article class="card">
+            {post.data.image && (
+              <a href={`/news/${post.id}`} class="card-media">
+                <img src={post.data.image} alt={post.data.title} loading="lazy" />
+              </a>
+            )}
+            <div class="card-body">
+              <div class="card-meta">
+                <time datetime={post.data.date.toISOString()}>{formatDate(post.data.date)}</time>
+              </div>
+              <h3 class="card-title">
+                <a href={`/news/${post.id}`}>{post.data.title}</a>
+              </h3>
+              {post.data.excerpt && <p class="card-excerpt">{post.data.excerpt}</p>}
+              <div class="card-footer">
+                <a href={`/news/${post.id}`} class="read-more">Read more →</a>
+              </div>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 4: Newsletter -->
+  <section class="section section--soft section--tight">
+    <div class="container container--narrow" style="text-align:center;">
+      <span class="eyebrow">Stay Updated</span>
+      <h2>Newsletter</h2>
+      <p class="lead">
+        To stay on top of all the news from the Sussex Cancer Research Centre, and receive our updates
+        directly to your inbox, please <a href="#involved">join the centre</a>.
+      </p>
+      <p>
+        You can view the latest issue, and all past issues, of the{' '}
+        <a href={site.externalLinks.newsletterArchive} target="_blank" rel="noopener noreferrer">
+          SCRC newsletter in the archive
+        </a>.
+      </p>
+    </div>
+  </section>
+
+  <!-- Section 5: Upcoming Events (Bright Mint) -->
+  <section class="section section--bright">
+    <div class="container">
+      <div class="section-header">
+        <div style="max-width:720px;">
+          <span class="eyebrow">Meetings &amp; Symposia</span>
+          <h2>Upcoming Events</h2>
+          <p style="margin-bottom:0;">
+            We host weekly themed research meetings that bring together researchers across the centre,
+            sparking fresh ideas and forging new collaborations, with the aim of turning new concepts
+            into funded projects and impact for people with cancer.
+          </p>
+        </div>
+        <a href="/events" class="btn btn--primary btn--sm">See All Events and Sign up</a>
+      </div>
+
+      <div class="grid grid--2">
+        {featuredEvents.map((ev) => (
+          <article class="card">
+            {ev.data.image && (
+              <a href={`/events-details/${ev.id}`} class="card-media">
+                <img src={ev.data.image} alt={ev.data.title} loading="lazy" />
+                <div class="event-date-pill" aria-hidden="true">
+                  <span class="event-date-pill__month">{formatMonth(ev.data.startDate)}</span>
+                  <span class="event-date-pill__day">{formatDay(ev.data.startDate)}</span>
+                </div>
+              </a>
+            )}
+            <div class="card-body">
+              <div class="card-meta">
+                <time datetime={ev.data.startDate.toISOString()}>{formatDate(ev.data.startDate)}</time>
+                {ev.data.location && <span>· {ev.data.location}</span>}
+              </div>
+              <h3 class="card-title">
+                <a href={`/events-details/${ev.id}`}>{ev.data.title}</a>
+              </h3>
+              {ev.data.excerpt && <p class="card-excerpt">{ev.data.excerpt}</p>}
+              <div class="card-footer">
+                <a href={`/events-details/${ev.id}`} class="read-more">Event details →</a>
+              </div>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 6: How We Support Research -->
+  <section class="section section--white">
+    <div class="container">
+      <div class="section-header--center">
+        <span class="eyebrow">Research Support</span>
+        <h2>How we support research</h2>
+      </div>
+
+      <div class="grid grid--3">
+        <article class="card">
+          <div class="card-media">
+            <img src="/images/brand/support-mentor.png" alt="SCRC Mentorship and Peer Support" loading="lazy" />
+          </div>
+          <div class="card-body">
+            <h3 class="card-title">Peer support</h3>
+            <p class="card-excerpt" style="-webkit-line-clamp:unset;">
+              The Sussex Cancer Research Centre’s mentorship programme pairs early career researchers
+              with cancer research leaders across our member institutions. We can also help with grant
+              and paper peer review to ensure critical support of your applications and publications.
+            </p>
+            <div class="card-footer">
+              <a href="/mentor" class="btn btn--outline btn--sm">Learn More</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-media">
+            <img src="/images/brand/support-funding.png" alt="SCRC Research Funding" loading="lazy" />
+          </div>
+          <div class="card-body">
+            <h3 class="card-title">Research Funding</h3>
+            <p class="card-excerpt" style="-webkit-line-clamp:unset;">
+              The SCRC aims to expand translational research, and to facilitate interactions across
+              multiple institutions within Sussex. Thanks to support from the Sussex Cancer Fund,
+              University of Sussex, University of Brighton, and BSMS we are able to support your research.
+            </p>
+            <div class="card-footer">
+              <a href="/funding" class="btn btn--outline btn--sm">Learn More</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-media">
+            <img src="/images/brand/support-resources.png" alt="SCRC Resources and Expertise Sharing" loading="lazy" />
+          </div>
+          <div class="card-body">
+            <h3 class="card-title">Resource and expertise sharing</h3>
+            <p class="card-excerpt" style="-webkit-line-clamp:unset;">
+              From sequencing to surveys, we have leading experts ready to collaborate with access to
+              cutting-edge facilities. Those seeking access to clinical material can benefit from our
+              support in seeking ethical approval and tissue banking.
+            </p>
+            <div class="card-footer">
+              <a href="/resources" class="btn btn--outline btn--sm">Learn More</a>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 7: Get Involved (Bright Mint) -->
+  <section class="section section--bright" id="involved">
+    <div class="container container--narrow" style="text-align:center;">
+      <h2>Get involved</h2>
+      <p class="lead">
+        Are you someone with experience of cancer, a carer, or a member of the public interested in
+        joining us? Are you a researcher who wants to join the Sussex Cancer Research Centre?
+        Would you like to receive e-mail updates from us?
+      </p>
+      <div style="display:flex; justify-content:center; gap:0.85rem; flex-wrap:wrap; margin-top:1.75rem;">
+        <a href={site.externalLinks.joinFormUrl} class="btn btn--primary">Join the SCRC</a>
+        <a href="/experts" class="btn btn--white">Become an Expert by Experience</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Section 8: Hiring Banner (Dark Full-Bleed Photo) -->
+  <section class="hero" style="min-height: 430px;">
+    <img
+      src="/images/brand/campus-sussex.jpeg"
+      alt="University of Sussex campus in the South Downs"
+      class="hero-bg"
+      loading="lazy"
+    />
+    <div class="hero-overlay" style="background:rgba(12, 26, 23, 0.7);" aria-hidden="true"></div>
+    <div class="container hero-content">
+      <h2>We are hiring the <span style="color:var(--scrc-mint);">future leaders</span> of cancer research.</h2>
+      <p>
+        From PhD students to group leaders, we are looking for people like you. Live and work in
+        beautiful Sussex, collaborate with leading cancer researchers, benefit from close clinical
+        partnerships, and transform the lives of people with cancer.
+      </p>
+      <a href="/jobs" class="btn btn--mint">View Vacancies</a>
+    </div>
+  </section>
+
+  <!-- Section 9: Support Life-Changing Research / Donate -->
+  <section class="section section--white">
+    <div class="container">
+      <div class="split">
+        <div>
+          <span class="eyebrow">Support Our Mission</span>
+          <h2>Support life-changing research</h2>
+          <p>
+            Your support has an enormous impact on our research, transforming what we are able to do.
+            Together we have the potential to transform the lives of people with cancer. With your
+            support we are working to discover cutting-edge treatment approaches that are both kinder
+            and more effective.
+          </p>
+          <div style="margin:1.5rem 0;">
+            <img
+              src="/images/brand/scf-logo.png"
+              alt="Sussex Cancer Fund"
+              style="max-height:76px; width:auto;"
+              loading="lazy"
+            />
+          </div>
+          <a href="/donate" class="btn btn--primary">Learn more, and donate</a>
+        </div>
+        <div class="split-media">
+          <img
+            src="/images/brand/lab-research.jpg"
+            alt="Cancer research laboratory at SCRC"
+            loading="lazy"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

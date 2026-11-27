@@ -1,0 +1,224 @@
+# Pages CMS configuration (https://pagescms.org)
+# Sign in at https://app.pagescms.org with GitHub and select SiFTW/SCRC-website
+# to visually edit News, Events, Stories, People, and site data with zero code.
+
+media:
+  input: public/images/uploads
+  output: /images/uploads
+
+content:
+  - name: news
+    label: News Articles
+    type: collection
+    path: src/content/news
+    view:
+      fields: [title, date, author]
+      primary: title
+      sort: [date]
+      default:
+        sort: date
+        order: desc
+    fields:
+      - name: title
+        label: Headline
+        type: string
+        required: true
+      - name: date
+        label: Publish Date
+        type: date
+        required: true
+      - name: author
+        label: Author
+        type: string
+        default: Sussex Cancer Research Centre
+      - name: excerpt
+        label: Short Summary
+        type: text
+      - name: image
+        label: Featured Image
+        type: image
+      - name: body
+        label: Article Body
+        type: rich-text
+
+  - name: events
+    label: Events
+    type: collection
+    path: src/content/events
+    view:
+      fields: [title, startDate, location]
+      primary: title
+      sort: [startDate]
+      default:
+        sort: startDate
+        order: desc
+    fields:
+      - name: title
+        label: Event Title
+        type: string
+        required: true
+      - name: startDate
+        label: Start Date & Time (UTC ISO)
+        type: string
+        required: true
+        description: Example: 2026-12-03T10:00:00Z
+      - name: endDate
+        label: End Date & Time (UTC ISO)
+        type: string
+        description: Example: 2026-12-03T11:00:00Z
+      - name: location
+        label: Location
+        type: string
+      - name: excerpt
+        label: Short Summary
+        type: text
+      - name: featured
+        label: Featured Event
+        type: boolean
+        default: false
+      - name: image
+        label: Event Image
+        type: image
+      - name: tags
+        label: Theme Tags
+        type: string
+        list: true
+        description: Use tags such as blood, brain, fatigue, computational, breast
+      - name: body
+        label: Full Event Description
+        type: rich-text
+
+  - name: stories
+    label: Lived Experience Stories
+    type: collection
+    path: src/content/stories
+    view:
+      fields: [title, date]
+      primary: title
+      sort: [date]
+    fields:
+      - name: title
+        label: Story Title
+        type: string
+        required: true
+      - name: date
+        label: Publish Date
+        type: date
+        required: true
+      - name: excerpt
+        label: Short Summary
+        type: text
+      - name: image
+        label: Featured Image
+        type: image
+      - name: body
+        label: Story Content
+        type: rich-text
+
+  - name: people
+    label: People Directory
+    type: collection
+    path: src/content/people
+    view:
+      fields: [name, managementGroup, summary]
+      primary: name
+      sort: [name]
+    fields:
+      - name: name
+        label: Full Name
+        type: string
+        required: true
+      - name: summary
+        label: Role & Institution
+        type: text
+      - name: managementGroup
+        label: SCRC Management Group Member
+        type: boolean
+        default: false
+      - name: interests
+        label: Research Interests
+        type: string
+        list: true
+      - name: image
+        label: Profile Photo
+        type: image
+      - name: body
+        label: Biography & Links
+        type: rich-text
+
+  - name: site_settings
+    label: Site Settings & Links
+    type: file
+    path: src/data/site.json
+    fields:
+      - name: siteName
+        label: Site Name
+        type: string
+      - name: description
+        label: Default SEO Description
+        type: text
+      - name: announcement
+        label: Top Announcement Bar
+        type: object
+        fields:
+          - name: enabled
+            label: Show Announcement Bar
+            type: boolean
+          - name: text
+            label: Banner Text
+            type: string
+          - name: href
+            label: Banner Link
+            type: string
+      - name: externalLinks
+        label: External Forms & Links
+        type: object
+        fields:
+          - name: newsletterArchive
+            label: Newsletter Archive URL
+            type: string
+          - name: donateJustGiving
+            label: Donate URL
+            type: string
+          - name: joinFormUrl
+            label: Join SCRC Form URL
+            type: string
+          - name: mentorFormUrl
+            label: Mentor Scheme Form URL
+            type: string
+          - name: expertsFormUrl
+            label: Experts by Experience Form URL
+            type: string
+
+  - name: jobs
+    label: Jobs & Vacancies
+    type: file
+    path: src/data/jobs.json
+    list: true
+    fields:
+      - name: title
+        label: Job Title
+        type: string
+        required: true
+      - name: institution
+        label: Institution
+        type: string
+      - name: description
+        label: Description
+        type: text
+      - name: image
+        label: Image
+        type: image
+      - name: applyUrl
+        label: Application URL
+        type: string
+      - name: applyLabel
+        label: Button Text
+        type: string
+        default: Learn more and apply
+      - name: extraLinkUrl
+        label: Extra Document URL (optional)
+        type: string
+      - name: extraLinkLabel
+        label: Extra Link Text (optional)
+        type: string

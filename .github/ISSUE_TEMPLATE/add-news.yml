@@ -1,0 +1,38 @@
+name: Add News Article
+description: Submit a new research news article — a GitHub Action will turn it into a Pull Request automatically.
+title: "[News] "
+labels: ["content:news"]
+body:
+  - type: input
+    id: title
+    attributes:
+      label: Article Headline
+      placeholder: "e.g., New Research Funding Awarded to SCRC Team"
+    validations:
+      required: true
+  - type: input
+    id: date
+    attributes:
+      label: Publish Date (YYYY-MM-DD)
+      placeholder: "2026-11-27"
+    validations:
+      required: true
+  - type: input
+    id: author
+    attributes:
+      label: Author
+      value: "Sussex Cancer Research Centre"
+  - type: textarea
+    id: excerpt
+    attributes:
+      label: Short Summary (1–2 sentences)
+      placeholder: "Brief summary shown on the homepage and news cards."
+    validations:
+      required: true
+  - type: textarea
+    id: body
+    attributes:
+      label: Article Body (Markdown supported)
+      placeholder: "Write the full article here. You can also drag-and-drop images into this box."
+    validations:
+      required: true

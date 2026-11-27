@@ -1,0 +1,77 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import resources from '../data/resources.json';
+---
+
+<BaseLayout
+  title="Resources"
+  description="Cutting-edge shared research equipment, facilities, clinical trials unit, drug discovery, and patient material access across Sussex."
+>
+  <section class="page-banner page-banner--image">
+    <img src="/images/brand/hero-sussex.jpg" alt="" class="hero-bg" />
+    <div class="hero-overlay" aria-hidden="true"></div>
+    <div class="container page-banner-inner">
+      <h1>Resources</h1>
+      <p class="lead">
+        Cutting-edge equipment and shared expertise enabling everyone in the centre to make
+        ground-breaking discoveries and translate them into patient benefit.
+      </p>
+    </div>
+  </section>
+
+  <section class="section section--white">
+    <div class="container">
+      <div style="display:grid; gap:2.25rem;">
+        {resources.map((res) => (
+          <article class="card" style="overflow:hidden;">
+            <div class="split" style="gap:0;">
+              <div style="height:100%; min-height:260px;">
+                <img
+                  src={res.image}
+                  alt={res.title}
+                  style="width:100%; height:100%; object-fit:cover;"
+                  loading="lazy"
+                />
+              </div>
+              <div style="padding:2rem;">
+                <h2 style="margin-bottom:0.4rem;">{res.title}</h2>
+                <p style="color:var(--scrc-teal-deep); font-weight:500; margin-bottom:1.25rem;">
+                  {res.summary}
+                </p>
+
+                <div style="display:grid; gap:1.25rem;">
+                  {res.facilities.map((fac) => (
+                    <div style="padding-top:0.85rem; border-top:1px solid var(--scrc-border);">
+                      <h3 style="font-size:1.05rem; margin-bottom:0.45rem;">{fac.institution}</h3>
+                      <ul style="margin-bottom:0.65rem; font-size:0.93rem;">
+                        {fac.equipment.map((eq) => <li>{eq}</li>)}
+                      </ul>
+                      <div style="font-size:0.88rem; color:var(--scrc-muted);">
+                        <strong>Contact:</strong>{' '}
+                        {fac.contacts.map((c, idx) => (
+                          <span>
+                            {idx > 0 && ' · '}
+                            {c.name} (<a href={`mailto:${c.email}`}>{c.email}</a>)
+                            {c.role ? ` — ${c.role}` : ''}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--dark section--tight">
+    <div class="container container--narrow" style="text-align:center;">
+      <h2>Can’t find what you’re looking for?</h2>
+      <p class="lead">Get in touch and we’ll put you in touch with the right person.</p>
+      <a href="/contact-us" class="btn btn--mint" style="margin-top:0.5rem;">Contact Us</a>
+    </div>
+  </section>
+</BaseLayout>

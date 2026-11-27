@@ -1,0 +1,193 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import funding from '../data/funding.json';
+---
+
+<BaseLayout
+  title="Funding"
+  description="Apply for Sussex Cancer Fund x SCRC cancer research grants up to £60k, and explore funded projects across Sussex."
+>
+  <section class="page-banner page-banner--image">
+    <img src="/images/brand/hero-sussex.jpg" alt="" class="hero-bg" />
+    <div class="hero-overlay" aria-hidden="true"></div>
+    <div class="container page-banner-inner">
+      <h1>Apply for funding.</h1>
+      <p class="lead">We want to support your research.</p>
+    </div>
+  </section>
+
+  <!-- Overview -->
+  <section class="section section--bright">
+    <div class="container container--narrow" style="text-align:center;">
+      <p class="lead" style="font-weight:400;">
+        We aim to support research across the translational pipeline from bench to bedside, with a
+        focus on improving outcomes for people with cancer.
+      </p>
+      <p class="lead" style="font-weight:500;">
+        Together with charity partners, your philanthropic support, and institutional backing, we
+        have funded over <strong>£600k</strong> of innovative, translational research projects.
+      </p>
+    </div>
+  </section>
+
+  <!-- Current Funding Call -->
+  {funding.currentCall.enabled && (
+    <section class="section section--white">
+      <div class="container">
+        <div class="split" style="align-items:start;">
+          <div>
+            <span class="eyebrow">Open Funding Call</span>
+            <h2>{funding.currentCall.title}</h2>
+            <div class="callout callout--mint" style="margin:1.5rem 0;">
+              <ul style="margin-bottom:0.85rem;">
+                {funding.currentCall.brackets.map((b) => (
+                  <li><strong>{b}</strong></li>
+                ))}
+              </ul>
+              <p style="margin-bottom:1.1rem;">
+                <strong>Deadline:</strong> {funding.currentCall.deadline}
+              </p>
+              <div style="display:flex; flex-wrap:wrap; gap:0.75rem;">
+                <a href={funding.currentCall.applicationFormUrl} class="btn btn--primary btn--sm" download>
+                  Download Application Form (.docx)
+                </a>
+                <a href={funding.currentCall.processDocUrl} class="btn btn--outline btn--sm" download>
+                  Funding Process Guide (.docx)
+                </a>
+              </div>
+            </div>
+
+            <p>
+              The aim of the Sussex Cancer Fund SCRC awards is to provide funds to support innovative
+              and impactful cancer research for the benefit of people with cancer. Joint funding of
+              projects is encouraged.
+            </p>
+          </div>
+
+          <div class="callout">
+            <h3>How Applications Are Assessed</h3>
+            <p>
+              Applications for the SCF:SCRC awards are reviewed by independent experts and a
+              multidisciplinary research committee. Applications are also assessed and scored by
+              people with lived experience of cancer.
+            </p>
+            <p><strong>Projects are ranked on criteria including:</strong></p>
+            <ul>
+              <li>Potential impact on cancer patients</li>
+              <li>Research quality and originality</li>
+              <li>Alignment with priority areas</li>
+              <li>Research team strength (track record, new collaborations, supporting promising talent, university–clinician partnerships)</li>
+            </ul>
+            <p style="font-size:0.9rem; color:var(--scrc-muted); margin-bottom:0;">
+              The SCF:SCRC awards have been made possible through support from the Sussex Cancer Fund and all their donors.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- Funded Projects -->
+  <section class="section section--soft">
+    <div class="container container--narrow">
+      <span class="eyebrow">Track Record</span>
+      <h2>Our Funded Projects</h2>
+
+      <div class="callout" style="margin-bottom:2rem;">
+        <span class="tag" style="margin-bottom:0.65rem;">PhD Studentship</span>
+        <h3>Inaugural SCRC PhD Studentship</h3>
+        <p>
+          Awarded to a collaboration between the Pearl Bioinformatics Laboratory at the University of
+          Sussex, the “Cancer of Unknown Primary” team at University Hospitals Sussex NHS Foundation
+          Trust, Brighton and Sussex Medical School, and East Sussex Healthcare NHS Trust.
+        </p>
+        <p>
+          The project <em>“AI solutions to guide treatment strategies for Cancers of Unknown Primaries (CUPs)”</em>
+          is led by Frances Pearl, Laurence Pearl, Max Whitley, and Eleni Ladikou, supported by both
+          the University of Sussex and Brighton and Sussex Medical School.
+        </p>
+      </div>
+
+      <h3 style="margin-top:2rem;">SCRC Pump-Priming Awards</h3>
+      <p>
+        Thanks to support from the Sussex Cancer Fund, University of Brighton, BSMS, and University
+        of Sussex, we have made awards to kick-start collaborative bench-to-bedside projects across Sussex.
+      </p>
+      <div style="display:grid; gap:0.75rem; margin-bottom:2rem;">
+        {funding.fundedProjects.pumpPriming.map((proj) => (
+          <details class="funding-acc">
+            <summary>{proj.title}</summary>
+            <div class="funding-acc-body">
+              {proj.description.split('\n\n').map((para) => <p>{para}</p>)}
+            </div>
+          </details>
+        ))}
+      </div>
+
+      <h3>Creative Community Engagement Awards</h3>
+      <div style="display:grid; gap:0.75rem; margin-bottom:2rem;">
+        {funding.fundedProjects.creativeEngagement.map((proj) => (
+          <details class="funding-acc">
+            <summary>{proj.title}</summary>
+            <div class="funding-acc-body">
+              {proj.description.split('\n\n').map((para) => <p>{para}</p>)}
+            </div>
+          </details>
+        ))}
+      </div>
+
+      <h3>William Priddy Research Studentships</h3>
+      <div style="display:grid; gap:0.75rem;">
+        {funding.fundedProjects.studentships.map((proj) => (
+          <details class="funding-acc">
+            <summary>{proj.title}</summary>
+            <div class="funding-acc-body">
+              {proj.description.split('\n\n').map((para) => <p>{para}</p>)}
+            </div>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Success Rates -->
+  <section class="section section--white">
+    <div class="container container--narrow">
+      <h2>Success Rates &amp; Process</h2>
+      <p>
+        Read full details of our review and governance process in the{' '}
+        <a href={funding.currentCall.processDocUrl} download>Scientific Grant Funding Process Document (.docx)</a>.
+      </p>
+      <div class="grid grid--2" style="margin-top:1.5rem;">
+        {funding.successRates.map((sr) => (
+          <div class="callout callout--mint">
+            <span class="eyebrow">{sr.round}</span>
+            <h3 style="font-size:2rem; margin-bottom:0.5rem;">{sr.rate} <span style="font-size:1rem; font-weight:400;">success rate</span></h3>
+            <p style="font-size:0.93rem; margin:0;">{sr.summary}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .funding-acc {
+    background: var(--scrc-white);
+    border: 1px solid var(--scrc-border);
+    border-radius: var(--radius-btn);
+  }
+  .funding-acc summary {
+    padding: 1rem 1.25rem;
+    font-weight: 500;
+    cursor: pointer;
+    color: var(--scrc-black);
+  }
+  .funding-acc-body {
+    padding: 0 1.25rem 1.2rem;
+    border-top: 1px solid var(--scrc-border);
+    padding-top: 0.9rem;
+    font-size: 0.95rem;
+    color: var(--scrc-muted);
+  }
+</style>

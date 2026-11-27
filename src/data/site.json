@@ -1,0 +1,64 @@
+{
+  "siteName": "Sussex Cancer Research Centre",
+  "shortName": "SCRC",
+  "siteUrl": "https://sussexcancer.org",
+  "description": "Sussex Cancer Research Centre brings together experts from Brighton and Sussex Medical School, the University of Sussex, the University of Brighton, and NHS Trusts across Sussex to pioneer interdisciplinary cancer research.",
+  "announcement": {
+    "enabled": true,
+    "text": "Donate today to support life-changing cancer research in Sussex",
+    "href": "/donate"
+  },
+  "email": {
+    "general": "Hello@SussexCancer.org",
+    "donate": "Donate@SussexCancer.org"
+  },
+  "externalLinks": {
+    "newsletterArchive": "https://sussexcancer.curated.co/",
+    "donateJustGiving": "https://www.justgiving.com/campaign/scrc",
+    "nihrBePartOfResearch": "https://bepartofresearch.nihr.ac.uk/",
+    "joinFormUrl": "mailto:Hello@SussexCancer.org?subject=Joining%20the%20Sussex%20Cancer%20Research%20Centre",
+    "mentorFormUrl": "mailto:Hello@SussexCancer.org?subject=SCRC%20Mentorship%20Programme",
+    "expertsFormUrl": "mailto:Hello@SussexCancer.org?subject=Experts%20by%20Experience%20Application"
+  },
+  "social": [
+    { "label": "X (Twitter)", "href": "https://twitter.com/Sussex_Cancer", "icon": "twitter" },
+    { "label": "LinkedIn", "href": "https://www.linkedin.com/company/sussexcancer", "icon": "linkedin" },
+    { "label": "Facebook", "href": "https://www.facebook.com/sussexCancer", "icon": "facebook" },
+    { "label": "Instagram", "href": "https://www.instagram.com/Sussex_Cancer", "icon": "instagram" }
+  ],
+  "navigation": [
+    { "label": "Home", "href": "/" },
+    {
+      "label": "Research",
+      "children": [
+        { "label": "News", "href": "/news" },
+        { "label": "Events", "href": "/events" },
+        { "label": "Themes", "href": "/themes" },
+        { "label": "People", "href": "/people" },
+        { "label": "Publications", "href": "/publications" },
+        { "label": "Funding", "href": "/funding" },
+        { "label": "Resources", "href": "/resources" },
+        { "label": "Mentorship", "href": "/mentor" },
+        { "label": "Jobs", "href": "/jobs" }
+      ]
+    },
+    {
+      "label": "Lived Experience",
+      "children": [
+        { "label": "Experts by Experience", "href": "/experts" },
+        { "label": "Hub", "href": "/lived-experience" },
+        { "label": "Engagement", "href": "/engagement" },
+        { "label": "Lived Experience Stories", "href": "/lived-experience-stories" }
+      ]
+    },
+    {
+      "label": "About",
+      "children": [
+        { "label": "Contact Us", "href": "/contact-us" },
+        { "label": "Press", "href": "/press" },
+        { "label": "Thank You", "href": "/thankyou" },
+        { "label": "Donate", "href": "/donate" }
+      ]
+    }
+  ]
+}

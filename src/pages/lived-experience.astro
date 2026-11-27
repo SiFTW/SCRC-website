@@ -1,0 +1,86 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import site from '../data/site.json';
+---
+
+<BaseLayout
+  title="Lived Experience Hub"
+  description="People with lived experience are at the centre of cancer research at the Sussex Cancer Research Centre."
+>
+  <section class="page-banner page-banner--image">
+    <img src="/images/brand/hero-sussex.jpg" alt="" class="hero-bg" />
+    <div class="hero-overlay" aria-hidden="true"></div>
+    <div class="container page-banner-inner">
+      <h1>Lived Experience Hub</h1>
+      <p class="lead">People with lived experience are at the centre of our cancer research.</p>
+    </div>
+  </section>
+
+  <section class="section section--bright">
+    <div class="container">
+      <div class="split">
+        <div>
+          <h2>People with Lived Experience are at the centre of our cancer research</h2>
+          <p class="lead">
+            If you’re someone with lived experience of cancer, we want to hear your story.
+          </p>
+          <div style="display:flex; flex-wrap:wrap; gap:0.75rem; margin-top:1.25rem;">
+            <a href="/lived-experience-stories" class="btn btn--primary">Lived Experience Stories</a>
+            <a href="/experts" class="btn btn--white">Experts by Experience</a>
+          </div>
+        </div>
+        <div class="split-media">
+          <img
+            src="/images/pages/image-asset-a8a2f679.jpeg"
+            alt="Lived experience community"
+            loading="lazy"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--white">
+    <div class="container">
+      <div class="split">
+        <div class="split-media">
+          <img
+            src="/images/pages/image-asset-7330dce8.jpeg"
+            alt="Be a Part of Research"
+            loading="lazy"
+          />
+        </div>
+        <div>
+          <span class="eyebrow">Clinical Trials &amp; Studies</span>
+          <h2>Be a part of research</h2>
+          <p>
+            Find a clinical trial or other way to get involved in research. Sign up to be notified
+            when new research is available for you to take part in.
+          </p>
+          <a
+            href={site.externalLinks.nihrBePartOfResearch}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn btn--primary"
+            style="margin-top:0.5rem;"
+          >
+            NIHR: Be a Part of Research ↗
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--soft">
+    <div class="container container--narrow" style="text-align:center;">
+      <h2>The best cancer research happens in partnership with those impacted by cancer.</h2>
+      <p class="lead">
+        The Sussex Cancer Research Centre is committed to authentic and inclusive engagement with
+        our local community.
+      </p>
+      <a href="/engagement" class="btn btn--outline" style="margin-top:0.5rem;">
+        Find out more about our community engagement strategy →
+      </a>
+    </div>
+  </section>
+</BaseLayout>

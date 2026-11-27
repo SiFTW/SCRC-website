@@ -1,0 +1,188 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const allEvents = await getCollection('events');
+const now = Date.now() - 86400000;
+
+const upcoming = allEvents
+  .filter((e) => e.data.startDate.getTime() >= now)
+  .sort((a, b) => a.data.startDate.getTime() - b.data.startDate.getTime());
+
+const past = allEvents
+  .filter((e) => e.data.startDate.getTime() < now)
+  .sort((a, b) => b.data.startDate.getTime() - a.data.startDate.getTime());
+
+const themeFilters = [
+  { label: 'All Events', key: 'all' },
+  { label: 'Blood Cancer Research', key: 'blood' },
+  { label: 'Brain Tumour Research', key: 'brain' },
+  { label: 'Fatigue Research', key: 'fatigue' },
+  { label: 'Computational Cancer Research', key: 'computational' },
+  { label: 'Breast and Gynae Research', key: 'breast' },
+];
+
+function inferThemeKeys(ev: (typeof allEvents)[number]) {
+  const hay = `${ev.data.title} ${ev.data.tags.join(' ')} ${ev.data.categories.join(' ')}`.toLowerCase();
+  const keys: string[] = [];
+  if (hay.includes('blood') || hay.includes('bcr') || hay.includes('lymit') || hay.includes('lymph')) keys.push('blood');
+  if (hay.includes('brain')) keys.push('brain');
+  if (hay.includes('fatigue')) keys.push('fatigue');
+  if (hay.includes('computational')) keys.push('computational');
+  if (hay.includes('breast') || hay.includes('gynae')) keys.push('breast');
+  return keys.join(' ');
+}
+
+function formatDate(d: Date) {
+  return d.toLocaleDateString('en-GB', {
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric',
+  });
+}
+
+function formatTimeRange(start: Date, end?: Date) {
+  const opts: Intl.DateTimeFormatOptions = { hour: '2-digit', minute: '2-digit', timeZone: 'Europe/London' };
+  const s = start.toLocaleTimeString('en-GB', opts);
+  if (!end || end.getTime() === start.getTime()) return s;
+  const e = end.toLocaleTimeString('en-GB', opts);
+  return `${s} – ${e}`;
+}
+---
+
+<BaseLayout title="Events" description="Upcoming research meetings, symposia, and themed group meetings hosted by the Sussex Cancer Research Centre.">
+  <section class="page-banner page-banner--image">
+    <img src="/images/brand/hero-sussex.jpg" alt="" class="hero-bg" />
+    <div class="hero-overlay" aria-hidden="true"></div>
+    <div class="container page-banner-inner">
+      <h1>Events</h1>
+      <p class="lead">
+        Weekly themed research meetings, symposia, and community events bringing together researchers,
+        clinicians, and people with lived experience across Sussex.
+      </p>
+    </div>
+  </section>
+
+  <section class="section section--white">
+    <div class="container">
+      <p style="font-weight:500; margin-bottom:0.75rem;">Filter events by research theme:</p>
+      <div class="filter-bar" role="group" aria-label="Filter events by theme">
+        {themeFilters.map((f, idx) => (
+          <button
+            type="button"
+            class={`filter-chip ${idx === 0 ? 'is-active' : ''}`}
+            data-theme-filter={f.key}
+            data-theme-label={f.label}
+          >
+            {f.label}
+          </button>
+        ))}
+      </div>
+
+      <h2 style="margin-bottom:1.5rem;">Upcoming Events</h2>
+      {upcoming.length === 0 ? (
+        <div class="callout callout--mint" style="margin-bottom:3rem;">
+          <p style="margin:0;">New upcoming events will be announced shortly. Check back soon or <a href="/#involved">join our newsletter</a>.</p>
+        </div>
+      ) : (
+        <div class="grid grid--2" style="margin-bottom:3.5rem;">
+          {upcoming.map((ev) => (
+            <article class="card event-card" data-themes={inferThemeKeys(ev)}>
+              {ev.data.image && (
+                <a href={`/events-details/${ev.id}`} class="card-media">
+                  <img src={ev.data.image} alt={ev.data.title} loading="lazy" />
+                  <div class="event-date-pill" aria-hidden="true">
+                    <span class="event-date-pill__month">
+                      {ev.data.startDate.toLocaleDateString('en-GB', { month: 'short' })}
+                    </span>
+                    <span class="event-date-pill__day">
+                      {ev.data.startDate.toLocaleDateString('en-GB', { day: 'numeric' })}
+                    </span>
+                  </div>
+                </a>
+              )}
+              <div class="card-body">
+                <div class="card-meta">
+                  <time datetime={ev.data.startDate.toISOString()}>
+                    {formatDate(ev.data.startDate)} · {formatTimeRange(ev.data.startDate, ev.data.endDate)}
+                  </time>
+                </div>
+                {ev.data.location && (
+                  <p style="font-size:0.86rem; color:var(--scrc-teal-deep); font-weight:500; margin-bottom:0.5rem;">
+                    📍 {ev.data.location}
+                  </p>
+                )}
+                <h3 class="card-title">
+                  <a href={`/events-details/${ev.id}`}>{ev.data.title}</a>
+                </h3>
+                {ev.data.excerpt && <p class="card-excerpt">{ev.data.excerpt}</p>}
+                <div class="card-footer">
+                  <a href={`/events-details/${ev.id}`} class="read-more">Read more →</a>
+                </div>
+              </div>
+            </article>
+          ))}
+        </div>
+      )}
+
+      {past.length > 0 && (
+        <>
+          <h2 style="margin-bottom:1.5rem;">Past Events</h2>
+          <div class="grid grid--3">
+            {past.map((ev) => (
+              <article class="card event-card" data-themes={inferThemeKeys(ev)}>
+                {ev.data.image && (
+                  <a href={`/events-details/${ev.id}`} class="card-media">
+                    <img src={ev.data.image} alt={ev.data.title} loading="lazy" />
+                  </a>
+                )}
+                <div class="card-body">
+                  <div class="card-meta">
+                    <time datetime={ev.data.startDate.toISOString()}>{formatDate(ev.data.startDate)}</time>
+                  </div>
+                  <h3 class="card-title">
+                    <a href={`/events-details/${ev.id}`}>{ev.data.title}</a>
+                  </h3>
+                  {ev.data.excerpt && <p class="card-excerpt">{ev.data.excerpt}</p>}
+                  <div class="card-footer">
+                    <a href={`/events-details/${ev.id}`} class="read-more">View details →</a>
+                  </div>
+                </div>
+              </article>
+            ))}
+          </div>
+        </>
+      )}
+    </div>
+  </section>
+</BaseLayout>
+
+<script>
+  const buttons = Array.from(document.querySelectorAll<HTMLButtonElement>('[data-theme-filter]'));
+  const cards = Array.from(document.querySelectorAll<HTMLElement>('.event-card'));
+
+  function applyFilter(key: string) {
+    buttons.forEach((b) => b.classList.toggle('is-active', b.dataset.themeFilter === key));
+    cards.forEach((card) => {
+      const themes = (card.dataset.themes || '').split(' ').filter(Boolean);
+      const match = key === 'all' || themes.includes(key);
+      card.style.display = match ? '' : 'none';
+    });
+  }
+
+  buttons.forEach((btn) => {
+    btn.addEventListener('click', () => applyFilter(btn.dataset.themeFilter || 'all'));
+  });
+
+  // Support deep links like /events?theme=Blood+Cancer+Research
+  const params = new URLSearchParams(window.location.search);
+  const initialTheme = (params.get('theme') || '').toLowerCase();
+  if (initialTheme) {
+    const matched = buttons.find(
+      (b) =>
+        b.dataset.themeFilter === initialTheme ||
+        (b.dataset.themeLabel || '').toLowerCase().includes(initialTheme)
+    );
+    if (matched) applyFilter(matched.dataset.themeFilter || 'all');
+  }
+</script>

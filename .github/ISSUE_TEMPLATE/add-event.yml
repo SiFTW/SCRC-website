@@ -1,0 +1,52 @@
+name: Add Event
+description: Submit a new SCRC meeting or event — a GitHub Action will turn it into a Pull Request automatically.
+title: "[Event] "
+labels: ["content:event"]
+body:
+  - type: input
+    id: title
+    attributes:
+      label: Event Title
+      placeholder: "e.g., Sussex Blood Cancer Research Monthly Meeting"
+    validations:
+      required: true
+  - type: input
+    id: startDate
+    attributes:
+      label: Start Date & Time (YYYY-MM-DDTHH:MM:00Z)
+      placeholder: "2027-01-14T10:00:00Z"
+    validations:
+      required: true
+  - type: input
+    id: endDate
+    attributes:
+      label: End Date & Time (YYYY-MM-DDTHH:MM:00Z)
+      placeholder: "2027-01-14T11:00:00Z"
+  - type: input
+    id: location
+    attributes:
+      label: Location
+      placeholder: "Meeting Room, BSMS Medical Research Building"
+  - type: dropdown
+    id: theme
+    attributes:
+      label: Research Theme
+      options:
+        - general
+        - blood
+        - brain
+        - fatigue
+        - computational
+        - breast
+  - type: textarea
+    id: excerpt
+    attributes:
+      label: Short Summary
+    validations:
+      required: true
+  - type: textarea
+    id: body
+    attributes:
+      label: Full Event Details (Markdown supported)
+    validations:
+      required: true

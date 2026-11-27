@@ -1,0 +1,64 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import site from '../data/site.json';
+---
+
+<BaseLayout
+  title="Experts by Experience"
+  description="Shape the future of cancer research in Sussex as an Expert by Experience — patients, carers, and family members welcome."
+>
+  <section class="page-banner page-banner--image">
+    <img src="/images/pages/unsplash-image-jzonfmrewok-4bc90c1e.jpg" alt="" class="hero-bg" />
+    <div class="hero-overlay" aria-hidden="true"></div>
+    <div class="container page-banner-inner">
+      <span class="eyebrow">Lived Experience</span>
+      <h1>Experts by Experience</h1>
+      <p class="lead">Shape the Future of Cancer Research in Sussex.</p>
+    </div>
+  </section>
+
+  <section class="section section--bright">
+    <div class="container">
+      <div class="split">
+        <div>
+          <h2>Join our Lived Experience Panel</h2>
+          <p>
+            We are building a diverse panel of lived experiences and backgrounds so that our
+            research reflects and serves every community across Sussex.
+          </p>
+          <p>
+            <strong>No scientific knowledge is required</strong> to be an Expert by Experience.
+            Whether you are a patient, carer, or family member affected by cancer, your perspective
+            helps shape grant funding decisions, research priorities, and study design.
+          </p>
+          <div class="callout" style="margin:1.5rem 0;">
+            <h3 style="font-size:1.1rem;">How to Apply</h3>
+            <p style="font-size:0.94rem;">
+              Tell us a little about yourself — where in Sussex you live, your connection to cancer
+              (patient, carer, family), why you’d like to get involved, and your approximate
+              availability for in-person or online meetings.
+            </p>
+            <a
+              href={site.externalLinks.expertsFormUrl}
+              class="btn btn--primary"
+            >
+              Apply to be an Expert by Experience
+            </a>
+          </div>
+          <p style="font-size:0.88rem;">
+            Questions? Email us at{' '}
+            <a href={`mailto:${site.email.general}`}>{site.email.general}</a>.
+          </p>
+        </div>
+
+        <div class="split-media">
+          <img
+            src="/images/pages/tosca-modern-volunteer-recruitment-f-e193cbbe.png"
+            alt="SCRC Experts by Experience recruitment poster"
+            loading="lazy"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

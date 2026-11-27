@@ -1,0 +1,75 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const stories = (await getCollection('stories')).sort(
+  (a, b) => b.data.date.getTime() - a.data.date.getTime()
+);
+
+function formatDate(d: Date) {
+  return d.toLocaleDateString('en-GB', {
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric',
+  });
+}
+---
+
+<BaseLayout
+  title="Lived Experience Stories"
+  description="Stories and voices from local patients, carers, and families shaping cancer research across Sussex."
+>
+  <section class="page-banner page-banner--image">
+    <img src="/images/brand/hero-sussex.jpg" alt="" class="hero-bg" />
+    <div class="hero-overlay" aria-hidden="true"></div>
+    <div class="container page-banner-inner">
+      <h1>Lived Experience Stories</h1>
+      <p class="lead">
+        Amplifying the voices of local patients, carers, and families — putting lived experience at
+        the heart of cancer research in Sussex.
+      </p>
+    </div>
+  </section>
+
+  <section class="section section--white">
+    <div class="container">
+      <div class="grid grid--3">
+        {stories.map((story) => (
+          <article class="card">
+            {story.data.image && (
+              <a href={`/lived-experience-stories/${story.id}`} class="card-media">
+                <img src={story.data.image} alt={story.data.title} loading="lazy" />
+              </a>
+            )}
+            <div class="card-body">
+              <div class="card-meta">
+                <time datetime={story.data.date.toISOString()}>{formatDate(story.data.date)}</time>
+              </div>
+              <h2 class="card-title">
+                <a href={`/lived-experience-stories/${story.id}`}>{story.data.title}</a>
+              </h2>
+              {story.data.excerpt && <p class="card-excerpt">{story.data.excerpt}</p>}
+              <div class="card-footer">
+                <a href={`/lived-experience-stories/${story.id}`} class="read-more">Read story →</a>
+              </div>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--bright section--tight">
+    <div class="container container--narrow" style="text-align:center;">
+      <h2>Would you like to share your story?</h2>
+      <p>
+        If you have lived experience of cancer — as a patient, carer, or family member — we would
+        love to hear from you and amplify your voice.
+      </p>
+      <div style="display:flex; justify-content:center; gap:0.85rem; flex-wrap:wrap; margin-top:1.25rem;">
+        <a href="/experts" class="btn btn--primary">Become an Expert by Experience</a>
+        <a href="/contact-us" class="btn btn--white">Contact Us</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

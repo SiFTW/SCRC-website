@@ -1,0 +1,184 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import site from '../data/site.json';
+
+const quotes = [
+  {
+    text: 'The centre is not just about cells, molecules, proteins, it’s not just about us being objects, clients, subjects, patients, it’s about real people living with real disease.',
+    author: 'Markus Taylor',
+    role: 'Lived-experience lead and artist',
+  },
+  {
+    text: 'A True Collaboration from day one. As a team, with a united vision to improve care for patients, we are greater than the sum of our parts.',
+    author: 'Prof Simon Mitchell',
+    role: 'Co-Director',
+  },
+  {
+    text: 'The Sussex Cancer Research Centre will help attract, mentor, and support ambitious cancer researchers for the benefit of cancer patients.',
+    author: 'Professor Melanie Flint',
+    role: 'Co-Director',
+  },
+  {
+    text: 'Our central goal is improved patient outcomes through supporting world-leading collaborative research.',
+    author: 'Professor Timothy Humphrey',
+    role: 'Co-Director',
+  },
+];
+---
+
+<BaseLayout
+  title="Press"
+  description="Press releases, media coverage, leadership quotes, and supporter information for the Sussex Cancer Research Centre."
+>
+  <section class="page-banner page-banner--image">
+    <img src="/images/brand/hero-sussex.jpg" alt="" class="hero-bg" />
+    <div class="hero-overlay" aria-hidden="true"></div>
+    <div class="container page-banner-inner">
+      <h1>Press</h1>
+      <p class="lead">Media resources, launch coverage, and press stories featuring SCRC research.</p>
+    </div>
+  </section>
+
+  <section class="section section--bright">
+    <div class="container container--narrow">
+      <p class="lead" style="font-weight:400;">
+        The Sussex Cancer Research Centre combines the world-class cancer research being carried out
+        by experts at Brighton and Sussex Medical School, University of Brighton, University of
+        Sussex, and in the NHS for the first time.
+      </p>
+      <p class="lead">
+        The groundbreaking centre provides an environment where researchers, clinicians, and patients
+        can share resources, insight, experience, and expertise to improve cancer treatments and
+        outcomes for people with cancer.
+      </p>
+    </div>
+  </section>
+
+  <!-- Quotes -->
+  <section class="section section--dark">
+    <div class="container">
+      <span class="eyebrow">Voices from the Centre</span>
+      <h2 style="margin-bottom:2rem;">Quotes</h2>
+      <div class="grid grid--2">
+        {quotes.map((q) => (
+          <blockquote
+            style="margin:0; padding:1.75rem; border-radius:var(--radius-card); background:rgba(255,255,255,0.07); border:1px solid rgba(255,255,255,0.14);"
+          >
+            <p style="font-size:1.05rem; line-height:1.7; margin-bottom:1rem;">“{q.text}”</p>
+            <footer style="font-size:0.9rem; color:var(--scrc-mint); font-weight:500;">
+              — {q.author} ({q.role})
+            </footer>
+          </blockquote>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Launch & Research Press -->
+  <section class="section section--white">
+    <div class="container container--narrow">
+      <h2>Launch Press</h2>
+      <p>
+        The Sussex Cancer Research Centre launched in June 2024 on the University of Sussex campus,
+        with coverage across BBC South East, BBC Radio Sussex, and The Argus.
+      </p>
+      <div style="display:flex; flex-wrap:wrap; gap:0.75rem; margin-bottom:3rem;">
+        <a href="/s/SCRC_press.pdf" class="btn btn--primary btn--sm" download>
+          Read the Press Release (PDF)
+        </a>
+        <a
+          href="https://www.theargus.co.uk/news/24445605.new-sussex-cancer-research-centre-opens-county/"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="btn btn--outline btn--sm"
+        >
+          Coverage in The Argus ↗
+        </a>
+      </div>
+
+      <h2>Research Press</h2>
+      <p>Research we have supported has attracted major national and regional press coverage:</p>
+      <div style="display:flex; flex-wrap:wrap; gap:0.75rem; margin-bottom:3rem;">
+        <a
+          href="https://www.bbc.co.uk/news/articles/ck3r5z2d8zrwo"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="btn btn--mint btn--sm"
+        >
+          Renske McFarlane’s Menopause Clinic (BBC) ↗
+        </a>
+      </div>
+
+      <h2>Creative Community Engagement Press</h2>
+      <p>Our creative community engagement awarded projects have attracted substantial press attention:</p>
+      <div style="display:flex; flex-wrap:wrap; gap:0.75rem;">
+        <a
+          href="https://www.bbc.co.uk/news/articles/cewk9e80yd7o"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="btn btn--outline btn--sm"
+        >
+          BBC News Story ↗
+        </a>
+        <a
+          href="https://uk.news.yahoo.com/woman-pioneers-way-power-back-131554431.html"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="btn btn--outline btn--sm"
+        >
+          Yahoo News Story ↗
+        </a>
+        <a
+          href="https://www.sussexchamberofcommerce.co.uk/resource/sussex-cancer-fund-supports-words-from-the-waiting-room-a-creative-writing-initiative-for-those-affected-by-cancer.html"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="btn btn--outline btn--sm"
+        >
+          Sussex Chamber of Commerce ↗
+        </a>
+        <a
+          href="https://www.theargus.co.uk/news/25228813.brighton-artist-creates-exhibition-cancer-diagnosis/"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="btn btn--outline btn--sm"
+        >
+          The Argus Story ↗
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Get Involved & Donate CTA -->
+  <section class="section section--soft">
+    <div class="container">
+      <div class="grid grid--2">
+        <div class="callout">
+          <h3>Get Involved</h3>
+          <p>
+            Whether you’re a patient, a researcher, a carer, a clinician, or a member of the public,
+            please join us.
+          </p>
+          <a href="/#involved" class="btn btn--primary btn--sm">Join the SCRC</a>
+        </div>
+        <div class="callout">
+          <h3>Support Our Research</h3>
+          <p>
+            We have partnered with the Sussex Cancer Fund to ensure your donations support
+            life-changing research here in Sussex.
+          </p>
+          <div style="display:flex; gap:0.65rem; flex-wrap:wrap;">
+            <a
+              href={site.externalLinks.donateJustGiving}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="btn btn--mint btn--sm"
+            >
+              Donate ↗
+            </a>
+            <a href="/contact-us" class="btn btn--outline btn--sm">Direct Donation Enquiry</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

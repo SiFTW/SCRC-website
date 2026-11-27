@@ -1,0 +1,197 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const allPeople = (await getCollection('people')).sort((a, b) =>
+  a.data.name.localeCompare(b.data.name)
+);
+
+const managementGroup = allPeople.filter((p) => p.data.managementGroup);
+const interestCounts = new Map<string, number>();
+allPeople.forEach((p) => {
+  p.data.interests.forEach((interest) => {
+    interestCounts.set(interest, (interestCounts.get(interest) || 0) + 1);
+  });
+});
+const interests = Array.from(interestCounts.entries()).sort((a, b) => a[0].localeCompare(b[0]));
+---
+
+<BaseLayout
+  title="People"
+  description="Explore the Sussex Cancer Research Centre management group and full membership directory across BSMS, University of Sussex, University of Brighton, and NHS Trusts."
+>
+  <section class="page-banner page-banner--image">
+    <img src="/images/brand/hero-sussex.jpg" alt="" class="hero-bg" />
+    <div class="hero-overlay" aria-hidden="true"></div>
+    <div class="container page-banner-inner">
+      <h1>People</h1>
+      <p class="lead">
+        Our {allPeople.length} researchers, clinicians, and lived-experience partners are making a
+        difference across every area of cancer research.
+      </p>
+    </div>
+  </section>
+
+  <!-- Management Group -->
+  <section class="section section--bright">
+    <div class="container">
+      <div class="section-header">
+        <div>
+          <span class="eyebrow">Leadership</span>
+          <h2 style="margin-bottom:0;">Sussex Cancer Research Centre Management Group</h2>
+        </div>
+      </div>
+
+      <div class="grid grid--4">
+        {managementGroup.map((person) => (
+          <article class="card">
+            {person.data.image && (
+              <a href={`/directory/${person.id}`} class="card-media" style="aspect-ratio:1/1;">
+                <img
+                  src={person.data.image}
+                  alt={person.data.name}
+                  style="object-position:top center;"
+                  loading="lazy"
+                />
+              </a>
+            )}
+            <div class="card-body">
+              <h3 class="card-title">
+                <a href={`/directory/${person.id}`}>{person.data.name}</a>
+              </h3>
+              {person.data.summary && <p class="card-excerpt">{person.data.summary}</p>}
+              <div class="card-footer">
+                <a href={`/directory/${person.id}`} class="read-more">View profile →</a>
+              </div>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Full Searchable Membership Directory -->
+  <section class="section section--white" id="directory">
+    <div class="container">
+      <span class="eyebrow">Membership Directory</span>
+      <h2>Explore our membership directory by research interest</h2>
+
+      <div style="display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:1rem; margin:1.25rem 0 1.5rem;">
+        <input
+          type="search"
+          id="people-search"
+          class="search-input"
+          placeholder="Search by name, role, institution, or topic..."
+          aria-label="Search SCRC members"
+        />
+        <p style="margin:0; font-size:0.9rem; color:var(--scrc-muted);">
+          Showing <strong id="people-count">{allPeople.length}</strong> of {allPeople.length} members
+        </p>
+      </div>
+
+      <div class="filter-bar" role="group" aria-label="Filter members by research interest" id="interest-filters">
+        <button type="button" class="filter-chip is-active" data-interest="all">
+          All ({allPeople.length})
+        </button>
+        {interests.map(([interest, count]) => (
+          <button type="button" class="filter-chip" data-interest={interest.toLowerCase()}>
+            {interest} ({count})
+          </button>
+        ))}
+      </div>
+
+      <div class="grid grid--4" id="people-grid">
+        {allPeople.map((person) => (
+          <article
+            class="card person-card"
+            data-search={`${person.data.name} ${person.data.summary} ${person.data.interests.join(' ')}`.toLowerCase()}
+            data-interests={person.data.interests.map((i) => i.toLowerCase()).join('|')}
+          >
+            {person.data.image && (
+              <a href={`/directory/${person.id}`} class="card-media" style="aspect-ratio:1/1;">
+                <img
+                  src={person.data.image}
+                  alt={person.data.name}
+                  style="object-position:top center;"
+                  loading="lazy"
+                />
+              </a>
+            )}
+            <div class="card-body">
+              <h3 class="card-title" style="font-size:1.05rem;">
+                <a href={`/directory/${person.id}`}>{person.data.name}</a>
+              </h3>
+              {person.data.summary && (
+                <p class="card-excerpt" style="-webkit-line-clamp:3; font-size:0.86rem;">
+                  {person.data.summary}
+                </p>
+              )}
+              {person.data.interests.length > 0 && (
+                <div style="display:flex; flex-wrap:wrap; gap:0.35rem; margin-bottom:0.85rem;">
+                  {person.data.interests.slice(0, 3).map((tag) => (
+                    <span class="tag">{tag}</span>
+                  ))}
+                </div>
+              )}
+              <div class="card-footer">
+                <a href={`/directory/${person.id}`} class="read-more">Read more →</a>
+              </div>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--dark section--tight">
+    <div class="container container--narrow" style="text-align:center;">
+      <h2>Can’t find who you’re looking for?</h2>
+      <p class="lead">Get in touch and we’ll put you in touch with the right person.</p>
+      <a href="/contact-us" class="btn btn--mint" style="margin-top:0.5rem;">Contact Us</a>
+    </div>
+  </section>
+</BaseLayout>
+
+<script>
+  const searchInput = document.getElementById('people-search') as HTMLInputElement | null;
+  const chips = Array.from(document.querySelectorAll<HTMLButtonElement>('[data-interest]'));
+  const cards = Array.from(document.querySelectorAll<HTMLElement>('.person-card'));
+  const countEl = document.getElementById('people-count');
+
+  let activeInterest = 'all';
+
+  function updateList() {
+    const q = (searchInput?.value || '').trim().toLowerCase();
+    let visible = 0;
+    cards.forEach((card) => {
+      const interests = (card.dataset.interests || '').split('|').filter(Boolean);
+      const matchInterest = activeInterest === 'all' || interests.includes(activeInterest);
+      const matchSearch = !q || (card.dataset.search || '').includes(q);
+      const show = matchInterest && matchSearch;
+      card.style.display = show ? '' : 'none';
+      if (show) visible++;
+    });
+    if (countEl) countEl.textContent = String(visible);
+  }
+
+  chips.forEach((chip) => {
+    chip.addEventListener('click', () => {
+      activeInterest = chip.dataset.interest || 'all';
+      chips.forEach((c) => c.classList.toggle('is-active', c === chip));
+      updateList();
+    });
+  });
+
+  searchInput?.addEventListener('input', updateList);
+
+  // Support deep link ?interest=Blood+Cancers from Themes page
+  const params = new URLSearchParams(window.location.search);
+  const initial = (params.get('interest') || '').toLowerCase();
+  if (initial) {
+    const match = chips.find((c) => (c.dataset.interest || '') === initial);
+    if (match) {
+      match.click();
+      document.getElementById('directory')?.scrollIntoView({ behavior: 'smooth' });
+    }
+  }
+</script>

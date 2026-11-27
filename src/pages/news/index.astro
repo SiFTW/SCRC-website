@@ -1,0 +1,94 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import site from '../../data/site.json';
+
+const posts = (await getCollection('news')).sort(
+  (a, b) => b.data.date.getTime() - a.data.date.getTime()
+);
+
+function formatDate(d: Date) {
+  return d.toLocaleDateString('en-GB', {
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric',
+  });
+}
+---
+
+<BaseLayout title="News" description="Latest research news, funding announcements, and updates from the Sussex Cancer Research Centre.">
+  <section class="page-banner page-banner--image">
+    <img src="/images/brand/hero-sussex.jpg" alt="" class="hero-bg" />
+    <div class="hero-overlay" aria-hidden="true"></div>
+    <div class="container page-banner-inner">
+      <h1>News</h1>
+      <p class="lead">
+        Research breakthroughs, funding calls, awards, and community updates from across Sussex.
+      </p>
+    </div>
+  </section>
+
+  <section class="section section--white">
+    <div class="container">
+      <div style="display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:1rem; margin-bottom:2rem;">
+        <input
+          type="search"
+          id="news-search"
+          class="search-input"
+          placeholder="Search news articles..."
+          aria-label="Search news articles"
+        />
+        <p style="margin:0; font-size:0.9rem; color:var(--scrc-muted);">
+          Showing <strong id="news-count">{posts.length}</strong> articles ·{' '}
+          <a href={site.externalLinks.newsletterArchive} target="_blank" rel="noopener noreferrer">
+            Newsletter Archive →
+          </a>
+        </p>
+      </div>
+
+      <div class="grid grid--3" id="news-grid">
+        {posts.map((post) => (
+          <article
+            class="card news-card"
+            data-search={`${post.data.title} ${post.data.excerpt} ${post.data.author}`.toLowerCase()}
+          >
+            {post.data.image && (
+              <a href={`/news/${post.id}`} class="card-media">
+                <img src={post.data.image} alt={post.data.title} loading="lazy" />
+              </a>
+            )}
+            <div class="card-body">
+              <div class="card-meta">
+                <time datetime={post.data.date.toISOString()}>{formatDate(post.data.date)}</time>
+              </div>
+              <h2 class="card-title">
+                <a href={`/news/${post.id}`}>{post.data.title}</a>
+              </h2>
+              {post.data.excerpt && <p class="card-excerpt">{post.data.excerpt}</p>}
+              <div class="card-footer">
+                <a href={`/news/${post.id}`} class="read-more">Read more →</a>
+              </div>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<script>
+  const input = document.getElementById('news-search') as HTMLInputElement | null;
+  const cards = Array.from(document.querySelectorAll<HTMLElement>('.news-card'));
+  const countEl = document.getElementById('news-count');
+
+  input?.addEventListener('input', () => {
+    const q = input.value.trim().toLowerCase();
+    let visible = 0;
+    cards.forEach((card) => {
+      const match = !q || (card.dataset.search || '').includes(q);
+      card.style.display = match ? '' : 'none';
+      if (match) visible++;
+    });
+    if (countEl) countEl.textContent = String(visible);
+  });
+</script>

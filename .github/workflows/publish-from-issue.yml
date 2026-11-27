@@ -1,0 +1,116 @@
+name: Create Content PR from Issue
+
+on:
+  issues:
+    types: [labeled]
+
+permissions:
+  contents: write
+  pull-requests: write
+  issues: write
+
+jobs:
+  publish-content:
+    if: github.event.label.name == 'publish'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Parse issue form and create Markdown file
+        id: generate
+        env:
+          ISSUE_BODY: ${{ github.event.issue.body }}
+          ISSUE_NUMBER: ${{ github.event.issue.number }}
+          ISSUE_LABELS: ${{ join(github.event.issue.labels.*.name, ',') }}
+        run: |
+          python3 - << 'PY'
+          import os, re, json
+
+          body = os.environ["ISSUE_BODY"] or ""
+          labels = os.environ["ISSUE_LABELS"].split(",")
+          num = os.environ["ISSUE_NUMBER"]
+
+          # Parse GitHub Issue Form sections (### Label\n\nValue)
+          sections = {}
+          parts = re.split(r"^###\s+(.+)$", body, flags=re.M)
+          for i in range(1, len(parts), 2):
+              key = parts[i].strip().lower()
+              val = parts[i + 1].strip() if i + 1 < len(parts) else ""
+              if val == "_No response_":
+                  val = ""
+              sections[key] = val
+
+          def get(prefix, default=""):
+              for k, v in sections.items():
+                  if k.startswith(prefix):
+                      return v
+              return default
+
+          def slugify(s):
+              return re.sub(r"[^a-z0-9]+", "-", s.lower()).strip("-")[:60] or f"item-{num}"
+
+          if "content:news" in labels:
+              title = get("article headline", f"News {num}")
+              date = get("publish date", "2026-12-01")
+              author = get("author", "Sussex Cancer Research Centre")
+              excerpt = get("short summary", "")
+              content = get("article body", "")
+              slug = slugify(title)
+              out_path = f"src/content/news/{slug}.md"
+              md = (
+                  f"---\n"
+                  f"title: {json.dumps(title)}\n"
+                  f"date: {date}\n"
+                  f"author: {json.dumps(author)}\n"
+                  f"excerpt: {json.dumps(excerpt)}\n"
+                  f"---\n\n{content}\n"
+              )
+          elif "content:event" in labels:
+              title = get("event title", f"Event {num}")
+              start = get("start date", "2027-01-01T10:00:00Z")
+              end = get("end date", start) or start
+              location = get("location", "")
+              theme = get("research theme", "general")
+              excerpt = get("short summary", "")
+              content = get("full event details", "")
+              slug = slugify(title)
+              tags = [theme] if theme and theme != "general" else []
+              out_path = f"src/content/events/{slug}.md"
+              md = (
+                  f"---\n"
+                  f"title: {json.dumps(title)}\n"
+                  f"startDate: {start}\n"
+                  f"endDate: {end}\n"
+                  f"location: {json.dumps(location)}\n"
+                  f"excerpt: {json.dumps(excerpt)}\n"
+                  f"tags: {json.dumps(tags)}\n"
+                  f"---\n\n{content}\n"
+              )
+          else:
+              raise SystemExit("Issue does not have content:news or content:event label.")
+
+          os.makedirs(os.path.dirname(out_path), exist_ok=True)
+          with open(out_path, "w") as f:
+              f.write(md)
+
+          with open(os.environ["GITHUB_OUTPUT"], "a") as out:
+              out.write(f"file_path={out_path}\n")
+              out.write(f"branch=content/issue-{num}\n")
+              out.write(f"pr_title=Add content: {title}\n")
+          PY
+
+      - name: Open Pull Request
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git config user.name "scrc-content-bot"
+          git config user.email "actions@github.com"
+          git checkout -b "${{ steps.generate.outputs.branch }}"
+          git add "${{ steps.generate.outputs.file_path }}"
+          git commit -m "${{ steps.generate.outputs.pr_title }}"
+          git push -u origin "${{ steps.generate.outputs.branch }}"
+          gh pr create \
+            --title "${{ steps.generate.outputs.pr_title }}" \
+            --body "Automatically generated from #${{ github.event.issue.number }}. Preview via Cloudflare Pages and merge to publish." \
+            --base main

@@ -1,0 +1,100 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout
+  title="Thank You"
+  description="The Sussex Cancer Research Centre is made possible by the generous support of our philanthropists, partner institutions, charities, and sponsors."
+>
+  <section class="page-banner page-banner--image">
+    <img src="/images/brand/hero-sussex.jpg" alt="" class="hero-bg" />
+    <div class="hero-overlay" aria-hidden="true"></div>
+    <div class="container page-banner-inner">
+      <h1>Thank you</h1>
+      <p class="lead">
+        The Sussex Cancer Research Centre is made possible by generous philanthropic, charitable,
+        and institutional support.
+      </p>
+    </div>
+  </section>
+
+  <section class="section section--white">
+    <div class="container">
+      <div class="section-header--center">
+        <span class="eyebrow">Philanthropic Supporters</span>
+        <h2>Our Generous Donors</h2>
+      </div>
+      <div class="grid grid--2" style="max-width:780px; margin-inline:auto; margin-bottom:4rem;">
+        <div class="card" style="text-align:center;">
+          <div class="card-media" style="aspect-ratio:4/3;">
+            <img src="/images/pages/michael-chowen-81c2a466.jpg" alt="Michael Chowen" loading="lazy" />
+          </div>
+          <div class="card-body">
+            <h3 class="card-title" style="margin-bottom:0;">Michael Chowen</h3>
+          </div>
+        </div>
+        <div class="card" style="text-align:center;">
+          <div class="card-media" style="aspect-ratio:4/3;">
+            <img src="/images/pages/screenshot-2025-03-04-at-15-31-25-f6685e32.png" alt="Dr William Priddy" loading="lazy" />
+          </div>
+          <div class="card-body">
+            <h3 class="card-title" style="margin-bottom:0;">Dr William Priddy</h3>
+          </div>
+        </div>
+      </div>
+
+      <div class="section-header--center">
+        <span class="eyebrow">Founding &amp; Charity Partners</span>
+        <h2>The Sussex Cancer Research Centre is supported by</h2>
+      </div>
+      <div class="logo-wall" style="margin-bottom:4rem;">
+        <img src="/images/pages/scf-newsletter-combined-version-c02aec1b.jpg" alt="Sussex Cancer Fund" loading="lazy" />
+        <img src="/images/pages/screenshot-2024-07-07-at-14-43-21-79aa2ce3.png" alt="Partner institution logo" loading="lazy" />
+        <img src="/images/pages/screenshot-2024-07-07-at-14-43-38-3c340f92.png" alt="Partner institution logo" loading="lazy" />
+        <img src="/images/pages/screenshot-2024-07-07-at-14-43-52-0446ca58.png" alt="Partner institution logo" loading="lazy" />
+      </div>
+
+      <div class="grid grid--2">
+        <div class="callout" style="text-align:center;">
+          <h3>Launch Event Sponsored by</h3>
+          <div class="logo-wall" style="margin-top:1.25rem;">
+            <img src="/images/pages/elekta_rgb_positive_logo_clearspace--73371e94.jpg" alt="Elekta" loading="lazy" />
+            <img src="/images/pages/logo_miltenyibiotec_rgb-4a14ae94.png" alt="Miltenyi Biotec" loading="lazy" />
+          </div>
+        </div>
+
+        <div class="callout" style="text-align:center;">
+          <h3>2026 Symposium Sponsored by</h3>
+          <div class="logo-wall" style="margin-top:1.25rem;">
+            <img src="/images/pages/screenshot-2026-11-17-at-12-12-01-808047e7.png" alt="2026 Symposium Sponsor" loading="lazy" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--bright section--tight">
+    <div class="container container--narrow" style="text-align:center;">
+      <h2>Interested in supporting cancer research in Sussex?</h2>
+      <p>Every donation helps accelerate collaborative, patient-centred research.</p>
+      <a href="/donate" class="btn btn--primary" style="margin-top:0.5rem;">Learn more and Donate</a>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .logo-wall {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem 3rem;
+  }
+
+  .logo-wall img {
+    max-height: 82px;
+    max-width: 240px;
+    width: auto;
+    object-fit: contain;
+  }
+</style>

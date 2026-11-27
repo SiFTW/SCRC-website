@@ -1,0 +1,72 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import themes from '../data/themes.json';
+---
+
+<BaseLayout
+  title="Research Themes"
+  description="Explore the seven interdisciplinary cancer research themes at the Sussex Cancer Research Centre, spanning from lab bench to bedside."
+>
+  <section class="page-banner page-banner--image">
+    <img src="/images/brand/hero-sussex.jpg" alt="" class="hero-bg" />
+    <div class="hero-overlay" aria-hidden="true"></div>
+    <div class="container page-banner-inner">
+      <span class="eyebrow">Research</span>
+      <h1>Our research strengths span from bench to bedside.</h1>
+      <p class="lead">
+        Seven collaborative research themes uniting laboratory scientists, computational researchers,
+        clinicians, and people with lived experience across Sussex.
+      </p>
+    </div>
+  </section>
+
+  {themes.map((theme, idx) => (
+    <section class={`section ${idx % 2 === 0 ? 'section--white' : 'section--soft'}`}>
+      <div class="container">
+        <div class="split">
+          <div style={idx % 2 === 1 ? 'order:2;' : ''}>
+            <span class="eyebrow">{theme.subtitle}</span>
+            <h2>{theme.title}</h2>
+            <p class="lead" style="margin-bottom:1.25rem;">{theme.description}</p>
+            <p style="font-size:0.95rem; margin-bottom:1.5rem;">
+              <strong>Theme Lead:</strong>{' '}
+              <a href={theme.leadUrl} target="_blank" rel="noopener noreferrer">{theme.leadName}</a>
+            </p>
+            <div style="display:flex; flex-wrap:wrap; gap:0.65rem;">
+              {theme.websiteUrl && (
+                <a
+                  href={theme.websiteUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="btn btn--primary btn--sm"
+                >
+                  {theme.websiteLabel} ↗
+                </a>
+              )}
+              <a
+                href={`/people?interest=${encodeURIComponent(theme.membersInterest)}#directory`}
+                class="btn btn--outline btn--sm"
+              >
+                SCRC Members: {theme.membersInterest}
+              </a>
+              {theme.eventsTheme && (
+                <a href={`/events?theme=${theme.eventsTheme}`} class="btn btn--mint btn--sm">
+                  Themed Meetings
+                </a>
+              )}
+            </div>
+          </div>
+
+          <div class="split-media" style={idx % 2 === 1 ? 'order:1;' : ''}>
+            <img
+              src={theme.image}
+              alt={theme.title}
+              style="aspect-ratio:16/10; object-fit:cover;"
+              loading="lazy"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+  ))}
+</BaseLayout>

@@ -1,0 +1,86 @@
+[
+  {
+    "title": "Sussex Blood Cancer Research",
+    "subtitle": "Sussex Blood Cancer Research",
+    "description": "The goal of Sussex BCR is to increase understanding of the molecular changes that occur in blood cancers, with the ultimate aim of designing novel and effective therapies.",
+    "image": "/images/pages/f8f03fvwmae8t8j-d92fa8ff.jpg",
+    "websiteLabel": "Sussex Blood Cancer Research Website",
+    "websiteUrl": "https://www.bsms.ac.uk/research/clinical-and-experimental-medicine/cancer/sbcr/sussex-blood-cancer-research.aspx",
+    "membersInterest": "Blood Cancers",
+    "eventsTheme": "blood",
+    "leadName": "Dr Rhys Morgan",
+    "leadUrl": "https://profiles.sussex.ac.uk/p455013-rhys-morgan"
+  },
+  {
+    "title": "Patient-reported outcome measures",
+    "subtitle": "Sussex Health Outcomes Research & Education in Cancer (SHORE-C)",
+    "description": "The central aims of SHORE-C are to evaluate the health outcomes of patients, especially those treated for cancer.",
+    "image": "/images/pages/teamwithnwandreh-32ba36bb.jpg",
+    "websiteLabel": "SHORE-C Website",
+    "websiteUrl": "https://shore-c.sussex.ac.uk/",
+    "membersInterest": "Patient Reported Outcomes",
+    "eventsTheme": "",
+    "leadName": "Prof Dame Lesley Fallowfield",
+    "leadUrl": "https://shore-c.sussex.ac.uk/staff-page.php?sid=1"
+  },
+  {
+    "title": "Genome Damage and Stability Centre",
+    "subtitle": "Genome Damage Research",
+    "description": "Internationally recognised centre providing a dynamic and collaborative environment for state-of-the-art research into links between DNA and cancer.",
+    "image": "/images/pages/gohudmjxuaezl8k-34ddc514.jpg",
+    "websiteLabel": "GDSC Website",
+    "websiteUrl": "https://www.sussex.ac.uk/gdsc",
+    "membersInterest": "Genome Damage",
+    "eventsTheme": "",
+    "leadName": "Prof Tony Carr",
+    "leadUrl": "https://profiles.sussex.ac.uk/p19644-tony-carr"
+  },
+  {
+    "title": "Sussex Brain Tumour Research",
+    "subtitle": "Sussex Brain Tumour Research Group",
+    "description": "Multidisciplinary group united to advance innovative brain tumour research across Sussex.",
+    "image": "/images/pages/btrg-9-a1cc2c38.jpg",
+    "websiteLabel": "",
+    "websiteUrl": "",
+    "membersInterest": "Brain Cancer",
+    "eventsTheme": "brain",
+    "leadName": "Dr Stephen Robinson",
+    "leadUrl": "https://www.uhsussex.nhs.uk/research-and-innovation/current-research/spotlight-sessions/dr-stephen-robinson/"
+  },
+  {
+    "title": "Fatigue Research",
+    "subtitle": "The Fatigue Research Group",
+    "description": "Patient-centric research into cancer and treatment-related fatigue.",
+    "image": "/images/pages/whatsapp-image-2025-05-19-at-17-30-1-02372553.jpeg",
+    "websiteLabel": "",
+    "websiteUrl": "",
+    "membersInterest": "Fatigue",
+    "eventsTheme": "fatigue",
+    "leadName": "Dr Sally Wheelwright",
+    "leadUrl": "https://shore-c.sussex.ac.uk/staff-page.php?sid=4"
+  },
+  {
+    "title": "Breast and Gynaecological Cancer Research",
+    "subtitle": "Breast and Gynaecological Cancer Research Group",
+    "description": "World-leading research into breast, cervical, and ovarian cancers.",
+    "image": "/images/events/kls_000001_11854_1_t247_155028-d1f1f031.png",
+    "websiteLabel": "",
+    "websiteUrl": "",
+    "membersInterest": "Breast and Gynae",
+    "eventsTheme": "breast",
+    "leadName": "Prof Melanie Flint",
+    "leadUrl": "https://research.brighton.ac.uk/en/persons/melanie-flint"
+  },
+  {
+    "title": "Computational Cancer Research",
+    "subtitle": "The Computational Cancer Research Group",
+    "description": "Using AI, computational, and mathematical sciences to understand cancer and make treatments more personalised.",
+    "image": "/images/pages/genericbackground-copy-f4edbeb6.jpg",
+    "websiteLabel": "",
+    "websiteUrl": "",
+    "membersInterest": "Computational",
+    "eventsTheme": "computational",
+    "leadName": "Dr Frances Pearl",
+    "leadUrl": "https://profiles.sussex.ac.uk/p140897-frances-pearl"
+  }
+]
