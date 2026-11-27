@@ -13,6 +13,7 @@ To generate all 7 live Google Forms in your Google Drive in ~10 seconds:
 2. Paste the contents of [`scripts/create-google-forms.gs`](./scripts/create-google-forms.gs) and click **Run** (`createAllSCRCForms`).
 3. Approve permissions — it will create a **`SCRC Website Forms`** folder in your Google Drive with all 7 Google Forms + linked response Google Sheets, and print a ready-to-paste JSON block in the Execution Log.
 4. Paste those 7 URLs into [`src/data/site.json`](./src/data/site.json) under `externalLinks` (or via **Pages CMS → Site Settings & Links**). Every form CTA button across the website updates automatically!
+5. **Enable Email Notifications (Optional):** Paste [`scripts/setup-form-email-notifications.gs`](./scripts/setup-form-email-notifications.gs) into [script.new](https://script.new) and run `installFormEmailTriggers` once. Every submission across all 7 forms will automatically email the configured SCRC recipients with all submitted answers, a direct Reply-To to the sender, and a button linking straight to the responses Google Sheet.
 
 ---
 
