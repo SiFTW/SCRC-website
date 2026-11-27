@@ -50,6 +50,7 @@ const people = defineCollection({
     managementGroup: z.boolean().default(false),
     interests: z.array(z.string()).default([]),
     image: z.string().optional(),
+    orcid: z.string().optional(),
   }),
 });
 

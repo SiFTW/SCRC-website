@@ -1,6 +1,7 @@
 ---
 import { getCollection, render } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import publications from '../../data/publications.json';
 
 export async function getStaticPaths() {
   const people = await getCollection('people');
@@ -23,6 +24,26 @@ const initials =
   parts.length > 1
     ? (parts[0][0] + parts[parts.length - 1][0]).toUpperCase()
     : person.data.name.slice(0, 2).toUpperCase();
+
+// Match publications either via explicit scrcAuthors slug OR "Surname, F." in citation
+const cleanNameParts = person.data.name
+  .replace(/^(?:prof(?:essor)?\.?|dr\.?|dame|sir)\s+/i, '')
+  .trim()
+  .split(/\s+/);
+const surname = (cleanNameParts[cleanNameParts.length - 1] || '').toLowerCase();
+const firstInitial = (cleanNameParts[0] || '')[0]?.toLowerCase() || '';
+
+const memberPubs = publications.filter((pub: any) => {
+  if (Array.isArray(pub.scrcAuthors) && pub.scrcAuthors.includes(person.id)) {
+    return true;
+  }
+  if (surname.length >= 3 && firstInitial) {
+    const cite = (pub.citation || '').toLowerCase();
+    const pattern = new RegExp(`\\b${surname.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')},\\s*${firstInitial}\\.`);
+    return pattern.test(cite);
+  }
+  return false;
+});
 ---
 
 <BaseLayout
@@ -53,7 +74,20 @@ const initials =
             <span class="eyebrow">SCRC Leadership &amp; Management</span>
           )}
           <h1 style="margin-bottom:0.5rem;">{person.data.name}</h1>
-          {person.data.summary && <p class="lead" style="margin-bottom:1rem;">{person.data.summary}</p>}
+          {person.data.summary && <p class="lead" style="margin-bottom:0.9rem;">{person.data.summary}</p>}
+          {person.data.orcid && (
+            <p style="margin-bottom:0.9rem;">
+              <a
+                href={`https://orcid.org/${person.data.orcid}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="orcid-badge"
+              >
+                <span class="orcid-dot" aria-hidden="true">iD</span>
+                <span>orcid.org/{person.data.orcid} ↗</span>
+              </a>
+            </p>
+          )}
           {person.data.interests.length > 0 && (
             <div style="display:flex; flex-wrap:wrap; gap:0.4rem;">
               {person.data.interests.map((interest) => (
@@ -69,6 +103,37 @@ const initials =
       <div class="prose">
         <Content />
       </div>
+
+      {memberPubs.length > 0 && (
+        <section style="margin-top:3rem; padding-top:2rem; border-top:1px solid var(--scrc-border);">
+          <span class="eyebrow">Research Outputs</span>
+          <h2 style="margin-bottom:1.25rem;">Recent SCRC Publications ({memberPubs.length})</h2>
+          <div style="display:grid; gap:0.85rem;">
+            {memberPubs.map((pub: any) => (
+              <details class="member-pub">
+                <summary>
+                  <span>{pub.citation}</span>
+                  <span class="pub-plus" aria-hidden="true">+</span>
+                </summary>
+                <div class="member-pub-body">
+                  {pub.abstract ? (
+                    <p>{pub.abstract}</p>
+                  ) : (
+                    <p style="color:var(--scrc-muted);">Abstract unavailable.</p>
+                  )}
+                  {pub.doiUrl && (
+                    <p style="margin-bottom:0; margin-top:0.65rem;">
+                      <a href={pub.doiUrl} target="_blank" rel="noopener noreferrer" class="read-more">
+                        View publication via DOI →
+                      </a>
+                    </p>
+                  )}
+                </div>
+              </details>
+            ))}
+          </div>
+        </section>
+      )}
     </div>
   </article>
 </BaseLayout>
@@ -97,5 +162,78 @@ const initials =
     font-size: 1.8rem;
     font-weight: 500;
     color: var(--scrc-teal-deep);
+  }
+
+  .orcid-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    padding: 0.25rem 0.7rem;
+    border-radius: 999px;
+    background: #f2f8ec;
+    border: 1px solid #c9e0b1;
+    color: #2f4f18;
+    font-size: 0.84rem;
+    font-weight: 500;
+    text-decoration: none;
+  }
+
+  .orcid-badge:hover {
+    background: #e6f2da;
+    color: #1f360f;
+  }
+
+  .orcid-dot {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #a6ce39;
+    color: #ffffff;
+    font-size: 0.7rem;
+    font-weight: 700;
+  }
+
+  .member-pub {
+    border: 1px solid var(--scrc-border);
+    border-radius: var(--radius-btn);
+    background: var(--scrc-white);
+  }
+
+  .member-pub summary {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1rem 1.2rem;
+    cursor: pointer;
+    list-style: none;
+    font-size: 0.94rem;
+    color: var(--scrc-black);
+  }
+
+  .member-pub summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .pub-plus {
+    font-size: 1.25rem;
+    line-height: 1;
+    color: var(--scrc-teal-deep);
+    flex-shrink: 0;
+    transition: transform var(--transition);
+  }
+
+  .member-pub[open] .pub-plus {
+    transform: rotate(45deg);
+  }
+
+  .member-pub-body {
+    padding: 0.9rem 1.2rem 1.15rem;
+    border-top: 1px solid var(--scrc-border);
+    font-size: 0.9rem;
+    color: var(--scrc-muted);
   }
 </style>

@@ -1,0 +1,95 @@
+name: Sync SCRC Publications & Discover Researchers
+
+on:
+  schedule:
+    # Runs automatically every Monday at 07:00 UTC
+    - cron: '0 7 * * 1'
+  workflow_dispatch:
+    inputs:
+      days:
+        description: 'Look back how many days for new publications?'
+        required: false
+        default: '45'
+      add_members:
+        description: 'Also propose new member profiles for Sussex/BSMS/Brighton/NHS authors?'
+        type: boolean
+        required: false
+        default: true
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  sync-publications:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'npm'
+
+      - name: Run Europe PMC & ORCID publication sync
+        env:
+          # Optional: add GEMINI_API_KEY in Repo Settings -> Secrets for AI triage of indirect papers
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: |
+          DAYS="${{ inputs.days || '45' }}"
+          EXTRA_ARGS=""
+          if [ "${{ inputs.add_members }}" = "false" ]; then
+            EXTRA_ARGS="--no-add-members"
+          fi
+          python3 scripts/sync_publications.py \
+            --days "$DAYS" \
+            $EXTRA_ARGS \
+            --summary-out /tmp/sync-summary.md
+
+      - name: Check for changes
+        id: diff
+        run: |
+          if [ -n "$(git status --porcelain)" ]; then
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+            echo "No new cancer-relevant publications or members found."
+          fi
+
+      - name: Verify Astro site builds cleanly
+        if: steps.diff.outputs.changed == 'true'
+        run: |
+          npm ci
+          npm run build
+
+      - name: Open or update Pull Request for review
+        if: steps.diff.outputs.changed == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          BRANCH="auto/sync-publications"
+          git config user.name "scrc-publications-bot"
+          git config user.email "actions@github.com"
+          git checkout -B "$BRANCH"
+          git add src/data/publications.json src/content/people/
+          git commit -m "chore: sync recent SCRC publications and discovered researchers"
+          git push --force origin "$BRANCH"
+
+          EXISTING_PR=$(gh pr list --head "$BRANCH" --state open --json number --jq '.[0].number // empty')
+          if [ -n "$EXISTING_PR" ]; then
+            gh pr edit "$EXISTING_PR" --body-file /tmp/sync-summary.md
+            echo "Updated existing PR #$EXISTING_PR"
+          else
+            gh pr create \
+              --title "Sync new SCRC cancer publications & discovered researchers" \
+              --body-file /tmp/sync-summary.md \
+              --base main \
+              --head "$BRANCH"
+          fi

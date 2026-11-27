@@ -4,6 +4,7 @@ summary: "Lecturer & Course Leader (Applied Sciences Foundation/Preparatory Year
 managementGroup: false
 interests: ["Stress", "Neurosciences", "Cell Biology", "Genome Damage", "Breast and Gynae"]
 image: "/images/people/laurahunt-cf419b3b.jpg"
+orcid: "0000-0001-8755-1849"
 ---
 
 <p>l.j.hunt@brighton.ac.uk</p>

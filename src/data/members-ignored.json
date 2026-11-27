@@ -1,0 +1,5 @@
+{
+  "description": "ORCIDs or lowercase full names listed here will never be auto-added as new SCRC member proposals.",
+  "ignoredOrcids": [],
+  "ignoredNames": []
+}

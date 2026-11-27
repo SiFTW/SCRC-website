@@ -4,6 +4,7 @@ summary: "Subject Lead for Pharmacy and Head of Biomaterials and Drug Delivery R
 managementGroup: false
 interests: ["Bioengineering", "Drug Discovery"]
 image: "/images/people/ananth-f3770bcc.jpg"
+orcid: "0000-0003-4681-4854"
 ---
 
 <p>a.s.v.pannala@brighton.ac.uk</p>

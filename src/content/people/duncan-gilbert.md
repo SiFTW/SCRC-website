@@ -4,6 +4,7 @@ summary: "Co-director of Sussex Cancer Research Centre. Consultant Clinical Onco
 managementGroup: true
 interests: ["Carcinogenesis", "Clinical Trials"]
 image: "/images/people/duncan-gilbert.png"
+orcid: "0000-0003-1859-7012"
 ---
 
 <p>duncan.gilbert2@nhs.net</p>

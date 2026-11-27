@@ -4,6 +4,7 @@ summary: "Head of School of Life Sciences Professor of Tumour Virology (School o
 managementGroup: true
 interests: ["Immunology", "Cell Biology", "Blood Cancers", "Drug Discovery"]
 image: "/images/people/michelle-west-cropped-250x250-486766d3.jpg"
+orcid: "0000-0002-9497-9365"
 ---
 
 <p>M.J.West@sussex.ac.uk</p>

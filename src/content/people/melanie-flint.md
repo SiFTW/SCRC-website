@@ -4,6 +4,7 @@ summary: "Co-director of Sussex Cancer Research Centre Professor of Stress and C
 managementGroup: true
 interests: ["Immunology", "Stress", "Prostate Cancer", "Breast and Gynae"]
 image: "/images/people/melpic-f762163f.jpg"
+orcid: "0000-0001-5311-3023"
 ---
 
 <p>m.flint@brighton.ac.uk</p>

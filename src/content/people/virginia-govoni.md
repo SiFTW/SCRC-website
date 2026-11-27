@@ -4,6 +4,7 @@ summary: "Head of Health Research Partnership (Brighton and Sussex Medical Schoo
 managementGroup: false
 interests: ["Public Health", "Cancer Care", "Clinical Trials"]
 image: "/images/people/virg-bd789b6e.jpg"
+orcid: "0009-0009-0222-7106"
 ---
 
 <p>v.govoni@bsms.ac.uk</p>

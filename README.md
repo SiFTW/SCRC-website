@@ -46,6 +46,21 @@ This repo includes a ready-to-use [`.pages.yml`](./.pages.yml) configuration for
 
 ---
 
+## Automated Publications & Sussex Researcher Discovery
+
+A weekly GitHub Action ([`.github/workflows/sync-publications.yml`](./.github/workflows/sync-publications.yml)) runs every **Monday at 07:00 UTC** (and can be triggered manually anytime from the **Actions** tab):
+
+1. Queries the free **Europe PMC** and **ORCID** APIs for recent papers authored by:
+   * Any SCRC member with an `orcid` in `src/content/people/*.md`
+   * Any researcher affiliated with **University of Sussex**, **BSMS**, **University of Brighton**, or **Sussex NHS Trusts**
+2. Filters for cancer relevance — including indirect foundational & clinical links (DNA damage/repair, genome stability, replication stress, drug discovery/PROTACs/Hsp90, cancer-related fatigue, palliative care, EORTC).
+   * **Optional AI Triage:** Add a free `GEMINI_API_KEY` secret in **Repo Settings → Secrets and variables → Actions** to enable Gemini 2.5 Flash triage on indirect/borderline papers.
+3. Opens a **Pull Request** (`auto/sync-publications`) listing every proposed new publication and any newly discovered Sussex/BSMS/Brighton/NHS cancer researchers.
+4. Review the PR and click **Merge** — Cloudflare Pages updates `/publications` and `/people` automatically in ~30 seconds.
+5. To permanently exclude a paper or author from future runs, add their DOI to [`src/data/publications-ignored.json`](./src/data/publications-ignored.json) or their name/ORCID to [`src/data/members-ignored.json`](./src/data/members-ignored.json).
+
+---
+
 ## Deploying to Cloudflare Pages (£0/month)
 
 1. Sign in to the **[Cloudflare Dashboard](https://dash.cloudflare.com)** → **Workers & Pages** → **Create** → **Pages** → **Connect to Git**.

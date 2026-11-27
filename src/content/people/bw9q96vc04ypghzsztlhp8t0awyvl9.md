@@ -4,6 +4,7 @@ summary: "Professor of Tissue Regeneration (University of Brighton) and Director
 managementGroup: false
 interests: ["Bioengineering", "Neurosciences"]
 image: "/images/people/santin-7abbbb82.jpg"
+orcid: "0000-0002-5260-7088"
 ---
 
 <p>M.Santin@brighton.ac.uk</p>

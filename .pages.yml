@@ -147,6 +147,9 @@ content:
         label: Research Interests
         type: string
         list: true
+      - name: orcid
+        label: ORCID iD (e.g. 0000-0003-1091-6349)
+        type: string
       - name: image
         label: Profile Photo
         type: image
