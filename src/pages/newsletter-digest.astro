@@ -1,0 +1,651 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import digest from '../data/newsletter-digest.json';
+---
+
+<BaseLayout
+  title="Newsletter Digest (Curated.co)"
+  description="Auto-generated Curated.co-ready Markdown digest of follow-on funding, recent external grants, and recent SCRC publications for SCRC administrators."
+  noindex={true}
+>
+  <section class="page-banner page-banner--image">
+    <img src="/images/brand/hero-sussex.jpg" alt="" class="hero-bg" />
+    <div class="hero-overlay" aria-hidden="true"></div>
+    <div class="container page-banner-inner">
+      <span class="eyebrow" style="color:var(--scrc-mint);">Administrator Tool · Curated.co Ready</span>
+      <h1>Newsletter Digest.</h1>
+      <p class="lead">
+        Copy-ready Curated.co Markdown for follow-on funding, recent grants, and SCRC publications.
+        Updated automatically on every sync ({digest.generatedDisplay}).
+      </p>
+      <div class="hero-actions">
+        <button type="button" id="copy-full-btn" class="btn btn--mint">
+          Copy Full Digest (Markdown)
+        </button>
+        <button type="button" id="download-md-btn" class="btn btn--hero-outline">
+          Download .md
+        </button>
+        <a
+          href={digest.githubLatestUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="btn btn--hero-outline"
+        >
+          View on GitHub ↗
+        </a>
+        <a
+          href={digest.curatedUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="btn btn--hero-outline"
+        >
+          Open Curated.co ↗
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--soft">
+    <div class="container container--narrow">
+      <!-- Controls & Summary Bar -->
+      <div class="digest-toolbar">
+        <div class="window-controls">
+          <span class="toolbar-label">Time window:</span>
+          <div class="window-pills" role="group" aria-label="Digest time window">
+            {digest.availableWindows.map((days: number) => (
+              <button
+                type="button"
+                class:list={['window-pill', { 'is-active': days === digest.defaultWindow }]}
+                data-window={String(days)}
+              >
+                Last {days} days
+              </button>
+            ))}
+          </div>
+        </div>
+        <p class="curated-note">
+          Formatted strictly for <strong>Curated.co Markdown</strong> — clickable <code>[text](url)</code> links, bold/italics, and lists only (no tables or raw HTML).
+        </p>
+      </div>
+
+      <!-- Summary Stat Strip -->
+      <div class="digest-stats" id="digest-stats">
+        <div class="digest-stat">
+          <span class="digest-stat-num" id="stat-follow-on">0</span>
+          <span class="digest-stat-label">Follow-on Awards</span>
+        </div>
+        <div class="digest-stat">
+          <span class="digest-stat-num" id="stat-grants">0</span>
+          <span class="digest-stat-label">External Grants</span>
+        </div>
+        <div class="digest-stat">
+          <span class="digest-stat-num" id="stat-selected-pubs">0</span>
+          <span class="digest-stat-label">Selected Papers</span>
+        </div>
+        <div class="digest-stat">
+          <span class="digest-stat-num" id="stat-all-pubs">0</span>
+          <span class="digest-stat-label">All Recent Papers</span>
+        </div>
+      </div>
+
+      <!-- Optional Admin Alert for Unverified Elements Grants on SCRC-Funded PIs -->
+      {digest.unverifiedAlerts && digest.unverifiedAlerts.length > 0 && (
+        <div class="callout admin-alert">
+          <span class="eyebrow">Admin Check Required</span>
+          <h3>Possible New Follow-on Funding to Verify</h3>
+          <p>
+            These newer grants appeared on Sussex Elements for PIs of SCRC-funded projects without a
+            funder name listed. Please verify and add confirmed external awards to{' '}
+            <code>src/data/funding.json</code>:
+          </p>
+          <ul>
+            {digest.unverifiedAlerts.map((al: any) => (
+              <li>
+                <strong>{al.piName}</strong> ({al.projectRound} {al.projectCategory}) —{' '}
+                <em>{al.grantTitle}</em>{' '}
+                <a href={al.sourceUrl} target="_blank" rel="noopener noreferrer">
+                  Check on {al.sourceLabel} ↗
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+
+      <!-- Digest Section Cards -->
+      <div class="digest-sections" id="digest-sections">
+        {[
+          { key: 'followOn', accent: true },
+          { key: 'grants', accent: false },
+          { key: 'selectedPubs', accent: false },
+          { key: 'allPubs', accent: false },
+        ].map(({ key, accent }) => (
+          <article class:list={['digest-card', { 'digest-card--accent': accent }]} data-section={key}>
+            <header class="digest-card-head">
+              <div>
+                <span class="cat-badge" data-role="category"></span>
+                <h2 class="digest-card-title" data-role="title"></h2>
+              </div>
+              <div class="digest-card-actions">
+                <div class="view-toggle" role="group" aria-label="View mode">
+                  <button type="button" class="toggle-btn is-active" data-view="preview">
+                    Preview
+                  </button>
+                  <button type="button" class="toggle-btn" data-view="markdown">
+                    Markdown
+                  </button>
+                </div>
+                <button type="button" class="btn btn--primary btn--sm copy-section-btn" data-copy-section={key}>
+                  Copy Markdown
+                </button>
+              </div>
+            </header>
+            <div class="digest-card-body">
+              <div class="md-preview" data-role="preview"></div>
+              <pre class="md-raw" data-role="raw" hidden><code></code></pre>
+            </div>
+          </article>
+        ))}
+      </div>
+
+      <!-- Archive / GitHub Info Footer -->
+      <div class="callout digest-footer-box">
+        <h3>Automatic Weekly Updates &amp; Monthly Archive</h3>
+        <p style="margin-bottom:0.75rem;">
+          This digest regenerates automatically every Monday (and on manual workflow runs) alongside
+          publication and grant syncing. Monthly snapshots are also saved in GitHub for reference.
+        </p>
+        <div style="display:flex; flex-wrap:wrap; gap:0.75rem;">
+          <a href={digest.githubLatestUrl} target="_blank" rel="noopener noreferrer" class="btn btn--outline btn--sm">
+            newsletter/latest.md on GitHub ↗
+          </a>
+          <a href={digest.githubRawUrl} target="_blank" rel="noopener noreferrer" class="btn btn--outline btn--sm">
+            Raw Markdown File ↗
+          </a>
+          <a href={digest.githubArchiveUrl} target="_blank" rel="noopener noreferrer" class="btn btn--outline btn--sm">
+            Monthly Archive Folder ↗
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<script id="newsletter-digest-data" type="application/json" set:html={JSON.stringify(digest)} />
+
+<script is:inline>
+  (function () {
+    const dataEl = document.getElementById('newsletter-digest-data');
+    if (!dataEl) return;
+    const DIGEST = JSON.parse(dataEl.textContent || '{}');
+    let currentWindow = String(DIGEST.defaultWindow || 60);
+
+    function escapeHtml(str) {
+      return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;');
+    }
+
+    function renderInline(md) {
+      let html = escapeHtml(md);
+      // Links [text](https://...)
+      html = html.replace(/\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g, function (_, text, url) {
+        return '<a href="' + url + '" target="_blank" rel="noopener noreferrer">' + text + '</a>';
+      });
+      // Bold **text**
+      html = html.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+      // Italic *text*
+      html = html.replace(/(^|[^*])\*([^*\n]+)\*/g, '$1<em>$2</em>');
+      return html;
+    }
+
+    function renderMarkdownPreview(md) {
+      const lines = String(md || '').trim().split('\n');
+      const out = [];
+      let inUl = false;
+      let inOl = false;
+      let paraBuf = [];
+
+      function flushPara() {
+        if (!paraBuf.length) return;
+        out.push('<p>' + paraBuf.map(renderInline).join('<br />') + '</p>');
+        paraBuf = [];
+      }
+      function closeLists() {
+        if (inUl) { out.push('</ul>'); inUl = false; }
+        if (inOl) { out.push('</ol>'); inOl = false; }
+      }
+
+      for (let i = 0; i < lines.length; i++) {
+        const line = lines[i];
+        const trimmed = line.trim();
+
+        if (!trimmed) {
+          flushPara();
+          closeLists();
+          continue;
+        }
+
+        // Continuation line indented under a list item
+        if ((inUl || inOl) && /^\s{2,}/.test(line) && !/^\s*[-*]\s+/.test(line) && !/^\s*\d+\.\s+/.test(line)) {
+          if (out.length && out[out.length - 1].endsWith('</li>')) {
+            out[out.length - 1] =
+              out[out.length - 1].slice(0, -5) + '<br /><span class="md-subline">' + renderInline(trimmed) + '</span></li>';
+            continue;
+          }
+        }
+
+        const ulMatch = trimmed.match(/^-\s+(.*)$/);
+        if (ulMatch) {
+          flushPara();
+          if (inOl) { out.push('</ol>'); inOl = false; }
+          if (!inUl) { out.push('<ul>'); inUl = true; }
+          out.push('<li>' + renderInline(ulMatch[1]) + '</li>');
+          continue;
+        }
+
+        const olMatch = trimmed.match(/^\d+\.\s+(.*)$/);
+        if (olMatch) {
+          flushPara();
+          if (inUl) { out.push('</ul>'); inUl = false; }
+          if (!inOl) { out.push('<ol>'); inOl = true; }
+          out.push('<li>' + renderInline(olMatch[1]) + '</li>');
+          continue;
+        }
+
+        closeLists();
+        paraBuf.push(trimmed);
+      }
+      flushPara();
+      closeLists();
+      return out.join('\n');
+    }
+
+    async function copyText(text, btn, defaultLabel) {
+      try {
+        await navigator.clipboard.writeText(text);
+        btn.textContent = '✓ Copied!';
+        btn.classList.add('is-copied');
+        setTimeout(function () {
+          btn.textContent = defaultLabel;
+          btn.classList.remove('is-copied');
+        }, 1800);
+      } catch (e) {
+        // Fallback for older browsers
+        const ta = document.createElement('textarea');
+        ta.value = text;
+        ta.style.position = 'fixed';
+        ta.style.opacity = '0';
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand('copy');
+        document.body.removeChild(ta);
+        btn.textContent = '✓ Copied!';
+        setTimeout(function () { btn.textContent = defaultLabel; }, 1800);
+      }
+    }
+
+    function renderWindow(winKey) {
+      const w = DIGEST.windows && DIGEST.windows[winKey];
+      if (!w) return;
+      currentWindow = winKey;
+
+      // Update active pill
+      document.querySelectorAll('.window-pill').forEach(function (btn) {
+        btn.classList.toggle('is-active', btn.getAttribute('data-window') === winKey);
+      });
+
+      // Update stats
+      const c = w.counts || {};
+      document.getElementById('stat-follow-on').textContent = String(c.followOnAwards || 0);
+      document.getElementById('stat-grants').textContent = String(c.recentGrants || 0);
+      document.getElementById('stat-selected-pubs').textContent = String(c.selectedPubs || 0);
+      document.getElementById('stat-all-pubs').textContent = String(c.recentPubs || 0);
+
+      // Update each section card
+      document.querySelectorAll('.digest-card').forEach(function (card) {
+        const key = card.getAttribute('data-section');
+        const sec = w.sections && w.sections[key];
+        if (!sec) return;
+        card.querySelector('[data-role="category"]').textContent =
+          'Curated.co Category: ' + sec.suggestedCategory + ' · ' + sec.count + ' items';
+        card.querySelector('[data-role="title"]').textContent = sec.title;
+        card.querySelector('[data-role="preview"]').innerHTML = renderMarkdownPreview(sec.markdown);
+        card.querySelector('[data-role="raw"] code').textContent = sec.markdown.trim();
+      });
+    }
+
+    // Window switcher listeners
+    document.querySelectorAll('.window-pill').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        renderWindow(btn.getAttribute('data-window'));
+      });
+    });
+
+    // Preview / Raw Markdown toggle per card
+    document.querySelectorAll('.digest-card').forEach(function (card) {
+      const previewEl = card.querySelector('[data-role="preview"]');
+      const rawEl = card.querySelector('[data-role="raw"]');
+      card.querySelectorAll('.toggle-btn').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          const mode = btn.getAttribute('data-view');
+          card.querySelectorAll('.toggle-btn').forEach(function (b) {
+            b.classList.toggle('is-active', b === btn);
+          });
+          previewEl.hidden = mode !== 'preview';
+          rawEl.hidden = mode !== 'markdown';
+        });
+      });
+    });
+
+    // Copy individual section Markdown
+    document.querySelectorAll('.copy-section-btn').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        const secKey = btn.getAttribute('data-copy-section');
+        const w = DIGEST.windows && DIGEST.windows[currentWindow];
+        const md = w && w.sections && w.sections[secKey] ? w.sections[secKey].markdown.trim() : '';
+        copyText(md, btn, 'Copy Markdown');
+      });
+    });
+
+    // Copy full digest
+    const copyFullBtn = document.getElementById('copy-full-btn');
+    if (copyFullBtn) {
+      copyFullBtn.addEventListener('click', function () {
+        const w = DIGEST.windows && DIGEST.windows[currentWindow];
+        const md = w ? w.fullMarkdown : '';
+        copyText(md, copyFullBtn, 'Copy Full Digest (Markdown)');
+      });
+    }
+
+    // Download .md file
+    const dlBtn = document.getElementById('download-md-btn');
+    if (dlBtn) {
+      dlBtn.addEventListener('click', function () {
+        const w = DIGEST.windows && DIGEST.windows[currentWindow];
+        if (!w) return;
+        const blob = new Blob([w.fullMarkdown], { type: 'text/markdown;charset=utf-8' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'scrc-newsletter-digest-' + (DIGEST.generatedDate || 'latest') + '-' + currentWindow + 'd.md';
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+        URL.revokeObjectURL(url);
+      });
+    }
+
+    renderWindow(currentWindow);
+  })();
+</script>
+
+<style>
+  .hero-actions {
+    margin-top: 1.4rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+
+  .btn--hero-outline {
+    background-color: rgba(255, 255, 255, 0.12);
+    color: var(--scrc-white);
+    border-color: rgba(255, 255, 255, 0.78);
+    backdrop-filter: blur(4px);
+    cursor: pointer;
+  }
+
+  .btn--hero-outline:hover {
+    background-color: var(--scrc-white);
+    border-color: var(--scrc-white);
+    color: var(--scrc-black);
+  }
+
+  .digest-toolbar {
+    background: var(--scrc-white);
+    border: 1px solid var(--scrc-border);
+    border-radius: var(--radius-btn);
+    padding: 1.15rem 1.35rem;
+    margin-bottom: 1.25rem;
+  }
+
+  .window-controls {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.6rem 0.85rem;
+    margin-bottom: 0.75rem;
+  }
+
+  .toolbar-label {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--scrc-teal-deep);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  .window-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.45rem;
+  }
+
+  .window-pill {
+    padding: 0.38rem 0.9rem;
+    border-radius: 999px;
+    border: 1px solid var(--scrc-border);
+    background: var(--scrc-soft);
+    color: var(--scrc-ink);
+    font-family: inherit;
+    font-size: 0.86rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all var(--transition);
+  }
+
+  .window-pill:hover {
+    border-color: var(--scrc-teal);
+    background: var(--scrc-mint-soft);
+  }
+
+  .window-pill.is-active {
+    background: var(--scrc-teal-deep);
+    border-color: var(--scrc-teal-deep);
+    color: var(--scrc-white);
+  }
+
+  .curated-note {
+    margin: 0;
+    font-size: 0.86rem;
+    color: var(--scrc-muted);
+  }
+
+  .curated-note code {
+    background: var(--scrc-soft);
+    padding: 0.08rem 0.35rem;
+    border-radius: 4px;
+    font-size: 0.82rem;
+  }
+
+  .digest-stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.85rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .digest-stat {
+    background: var(--scrc-white);
+    border: 1px solid var(--scrc-border);
+    border-radius: var(--radius-btn);
+    padding: 0.95rem 1rem;
+    text-align: center;
+  }
+
+  .digest-stat-num {
+    display: block;
+    font-size: 1.7rem;
+    font-weight: 600;
+    color: var(--scrc-teal-deep);
+    line-height: 1.15;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .digest-stat-label {
+    display: block;
+    margin-top: 0.2rem;
+    font-size: 0.78rem;
+    color: var(--scrc-muted);
+    font-weight: 500;
+  }
+
+  .admin-alert {
+    border-left: 4px solid #c97a16;
+    background: #fffaf0;
+    margin-bottom: 1.5rem;
+  }
+
+  .digest-sections {
+    display: grid;
+    gap: 1.35rem;
+    margin-bottom: 2rem;
+  }
+
+  .digest-card {
+    background: var(--scrc-white);
+    border: 1px solid var(--scrc-border);
+    border-radius: var(--radius-btn);
+    overflow: hidden;
+  }
+
+  .digest-card--accent {
+    border-color: var(--scrc-teal);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .digest-card-head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 0.85rem 1rem;
+    padding: 1.15rem 1.35rem;
+    background: var(--scrc-mint-soft);
+    border-bottom: 1px solid rgba(100, 146, 141, 0.25);
+  }
+
+  .cat-badge {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--scrc-teal-deep);
+    margin-bottom: 0.25rem;
+  }
+
+  .digest-card-title {
+    margin: 0;
+    font-size: 1.22rem;
+    line-height: 1.3;
+  }
+
+  .digest-card-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.55rem;
+  }
+
+  .view-toggle {
+    display: inline-flex;
+    background: var(--scrc-white);
+    border: 1px solid var(--scrc-border);
+    border-radius: 6px;
+    overflow: hidden;
+  }
+
+  .toggle-btn {
+    padding: 0.34rem 0.72rem;
+    border: none;
+    background: transparent;
+    color: var(--scrc-muted);
+    font-family: inherit;
+    font-size: 0.8rem;
+    font-weight: 500;
+    cursor: pointer;
+  }
+
+  .toggle-btn.is-active {
+    background: var(--scrc-teal-deep);
+    color: var(--scrc-white);
+  }
+
+  .digest-card-body {
+    padding: 1.25rem 1.35rem;
+  }
+
+  .md-preview :global(p) {
+    margin-top: 0;
+    margin-bottom: 0.85rem;
+    font-size: 0.94rem;
+    line-height: 1.65;
+  }
+
+  .md-preview :global(p:last-child) {
+    margin-bottom: 0;
+  }
+
+  .md-preview :global(ul),
+  .md-preview :global(ol) {
+    margin: 0 0 0.9rem;
+    padding-left: 1.35rem;
+  }
+
+  .md-preview :global(li) {
+    margin-bottom: 0.65rem;
+    font-size: 0.93rem;
+    line-height: 1.6;
+  }
+
+  .md-preview :global(.md-subline) {
+    display: inline-block;
+    margin-top: 0.12rem;
+    font-size: 0.88rem;
+    color: var(--scrc-muted);
+  }
+
+  .md-preview :global(a) {
+    color: var(--scrc-teal-deep);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+
+  .md-raw {
+    margin: 0;
+    padding: 1rem 1.1rem;
+    background: #162121;
+    color: #e9f2f1;
+    border-radius: 6px;
+    font-size: 0.82rem;
+    line-height: 1.6;
+    white-space: pre-wrap;
+    word-break: break-word;
+    overflow-x: auto;
+    max-height: 460px;
+  }
+
+  .digest-footer-box {
+    margin-top: 0.5rem;
+  }
+
+  @media (max-width: 720px) {
+    .digest-stats {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+</style>

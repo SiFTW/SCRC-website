@@ -1171,6 +1171,35 @@ def main():
     all_raw = elements_grants + nihr_grants + gtr_grants + oa_grants + orcid_grants
     final_grants = merge_grants(all_raw)
 
+    # Preserve discoveredDate for existing grants and stamp TODAY_ISO on newly discovered grants
+    if os.path.exists(GRANTS_PATH):
+        try:
+            prev_grants = json.load(open(GRANTS_PATH, encoding="utf-8"))
+        except Exception:
+            prev_grants = []
+        prev_by_ref = {}
+        prev_by_title = {}
+        for pg in prev_grants:
+            nref = normalize_ref(pg.get("funderRef") or "")
+            if nref and len(nref) >= 5:
+                prev_by_ref[nref] = pg
+            nt = normalize_title(pg.get("title") or "")
+            if nt:
+                prev_by_title[nt] = pg
+        newly_stamped = 0
+        for g in final_grants:
+            nref = normalize_ref(g.get("funderRef") or "")
+            nt = normalize_title(g.get("title") or "")
+            prev = (prev_by_ref.get(nref) if nref and len(nref) >= 5 else None) or prev_by_title.get(nt)
+            if prev is not None:
+                if prev.get("discoveredDate"):
+                    g["discoveredDate"] = prev["discoveredDate"]
+            else:
+                g["discoveredDate"] = TODAY_ISO
+                newly_stamped += 1
+        if newly_stamped:
+            print(f"      Stamped discoveredDate={TODAY_ISO} on {newly_stamped} newly discovered grants.")
+
     with open(GRANTS_PATH, "w", encoding="utf-8") as f:
         json.dump(final_grants, f, indent=2, ensure_ascii=False)
 
