@@ -1,6 +1,153 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import funding from '../data/funding.json';
+import rawGrants from '../data/grants.json';
+
+interface FollowOnAward {
+  funder: string;
+  amount?: number | null;
+  currency?: string;
+  title?: string;
+  url: string;
+}
+
+interface FundedProject {
+  title: string;
+  piName?: string;
+  piSlug?: string;
+  institution?: string;
+  round?: string;
+  awardDate?: string;
+  description: string;
+  projectUrl?: string;
+  followOnFunding?: FollowOnAward[];
+}
+
+interface SyncedGrant {
+  title: string;
+  funder?: string;
+  amount?: number | null;
+  currency?: string;
+  startDate?: string;
+  scrcMembers?: string[];
+  sources?: { label: string; url: string }[];
+}
+
+const EXCLUDED_FUNDER_RE = /\b(sussex cancer fund|sussex cancer research centre|scrc|scf)\b/i;
+
+const FUNDER_ACRONYMS = new Set([
+  'UK', 'UKRI', 'MRC', 'BBSRC', 'EPSRC', 'ESRC', 'AHRC', 'NERC', 'STFC',
+  'NIHR', 'NHS', 'CRUK', 'ERC', 'EU', 'BHF', 'MNDA', 'BSH', 'US', 'USA', 'NIH',
+]);
+const FUNDER_MINOR = new Set(['of', 'for', 'and', 'the', 'in', 'on', 'to', 'by', 'at', 'with', '&']);
+
+function formatFunder(raw: string | undefined): string {
+  if (!raw) return '';
+  const trimmed = raw.trim();
+  const letters = trimmed.replace(/[^A-Za-z]/g, '');
+  if (!letters || letters !== letters.toUpperCase()) return trimmed;
+  return trimmed
+    .split(/(\s+|-)/)
+    .map((tok, idx) => {
+      if (!tok || /^\s+$/.test(tok) || tok === '-') return tok;
+      const upper = tok.toUpperCase();
+      if (FUNDER_ACRONYMS.has(upper)) return upper;
+      const lower = tok.toLowerCase();
+      if (idx > 0 && FUNDER_MINOR.has(lower)) return lower;
+      return lower.charAt(0).toUpperCase() + lower.slice(1);
+    })
+    .join('');
+}
+
+function formatAmount(amount: number | null | undefined, currency = 'GBP'): string {
+  if (!amount || amount <= 0) return '';
+  try {
+    return new Intl.NumberFormat('en-GB', {
+      style: 'currency',
+      currency: currency || 'GBP',
+      maximumFractionDigits: 0,
+    }).format(amount);
+  } catch {
+    return `£${Math.round(amount).toLocaleString('en-GB')}`;
+  }
+}
+
+function normTitle(t: string): string {
+  return (t || '').toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim();
+}
+
+/**
+ * Combine verified follow-on awards on the project with any newer external grants
+ * automatically discovered for that PI in src/data/grants.json (excluding SCF / SCRC).
+ */
+function getFollowOnAwards(proj: FundedProject): FollowOnAward[] {
+  const awards: FollowOnAward[] = [...(proj.followOnFunding || [])];
+  const seenKeys = new Set<string>(
+    awards.map((a) => `${normTitle(a.funder)}|${normTitle(a.title || '')}`)
+  );
+  const seenTitleNorms = new Set<string>(awards.map((a) => normTitle(a.title || '')).filter(Boolean));
+  const projNorm = normTitle(proj.title);
+
+  if (proj.piSlug && proj.awardDate) {
+    for (const grant of rawGrants as SyncedGrant[]) {
+      if (!(grant.scrcMembers || []).includes(proj.piSlug)) continue;
+      const startYm = (grant.startDate || '').slice(0, 7);
+      if (!startYm || startYm <= proj.awardDate) continue;
+
+      const funderRaw = (grant.funder || '').trim();
+      if (!funderRaw || EXCLUDED_FUNDER_RE.test(funderRaw)) continue;
+
+      const gNorm = normTitle(grant.title);
+      if (!gNorm || gNorm === projNorm || gNorm.includes(projNorm.slice(0, 32)) || projNorm.includes(gNorm.slice(0, 32))) {
+        continue;
+      }
+
+      // Skip if already represented by a verified followOnFunding entry
+      let alreadyCovered = false;
+      for (const existingTitle of seenTitleNorms) {
+        if (existingTitle && (gNorm.includes(existingTitle.slice(0, 28)) || existingTitle.includes(gNorm.slice(0, 28)))) {
+          alreadyCovered = true;
+          break;
+        }
+      }
+      if (alreadyCovered) continue;
+
+      const primaryUrl = (grant.sources || [])[0]?.url;
+      if (!primaryUrl) continue;
+
+      const cleanFunder = formatFunder(funderRaw);
+      const key = `${normTitle(cleanFunder)}|${gNorm}`;
+      if (seenKeys.has(key)) continue;
+      seenKeys.add(key);
+      seenTitleNorms.add(gNorm);
+
+      awards.push({
+        funder: cleanFunder,
+        amount: grant.amount,
+        currency: grant.currency || 'GBP',
+        title: grant.title,
+        url: primaryUrl,
+      });
+    }
+  }
+
+  return awards;
+}
+
+const pumpPrimingProjects = (funding.fundedProjects.pumpPriming as FundedProject[]).map((proj) => ({
+  ...proj,
+  resolvedFollowOn: getFollowOnAwards(proj),
+}));
+
+const creativeProjects = (funding.fundedProjects.creativeEngagement as FundedProject[]).map((proj) => ({
+  ...proj,
+  resolvedFollowOn: getFollowOnAwards(proj),
+}));
+
+const studentshipProjects = (funding.fundedProjects.studentships as FundedProject[]).map((proj) => ({
+  ...proj,
+  resolvedFollowOn: getFollowOnAwards(proj),
+}));
 ---
 
 <BaseLayout
@@ -13,6 +160,10 @@ import funding from '../data/funding.json';
     <div class="container page-banner-inner">
       <h1>Apply for funding.</h1>
       <p class="lead">We want to support your research.</p>
+      <div class="hero-actions">
+        <a href="#apply" class="btn btn--mint">Apply for funding</a>
+        <a href="#funded-projects" class="btn btn--hero-outline">Projects we have funded</a>
+      </div>
     </div>
   </section>
 
@@ -32,7 +183,7 @@ import funding from '../data/funding.json';
 
   <!-- Current Funding Call -->
   {funding.currentCall.enabled && (
-    <section class="section section--white">
+    <section class="section section--white anchor-section" id="apply">
       <div class="container">
         <div class="split" style="align-items:start;">
           <div>
@@ -88,92 +239,207 @@ import funding from '../data/funding.json';
   )}
 
   <!-- Funded Projects -->
-  <section class="section section--soft">
+  <section class="section section--soft anchor-section" id="funded-projects">
     <div class="container container--narrow">
       <span class="eyebrow">Track Record</span>
       <h2>Our Funded Projects</h2>
 
-      <div class="callout" style="margin-bottom:2rem;">
-        <span class="tag" style="margin-bottom:0.65rem;">PhD Studentship</span>
-        <h3>Inaugural SCRC PhD Studentship</h3>
-        <p>
-          Awarded to a collaboration between the Pearl Bioinformatics Laboratory at the University of
-          Sussex, the “Cancer of Unknown Primary” team at University Hospitals Sussex NHS Foundation
-          Trust, Brighton and Sussex Medical School, and East Sussex Healthcare NHS Trust.
-        </p>
-        <p>
-          The project <em>“AI solutions to guide treatment strategies for Cancers of Unknown Primaries (CUPs)”</em>
-          is led by Frances Pearl, Laurence Pearl, Max Whitley, and Eleni Ladikou, supported by both
-          the University of Sussex and Brighton and Sussex Medical School.
-        </p>
-        {funding.inauguralStudentshipUrl && (
-          <p style="margin-bottom:0;">
-            <a href={funding.inauguralStudentshipUrl} class="read-more">Read more about this project →</a>
-          </p>
-        )}
-      </div>
-
-      <h3 style="margin-top:2rem;">SCRC Pump-Priming Awards</h3>
+      <h3 style="margin-top:2rem;">Pump-Priming Awards</h3>
       <p>
         Thanks to support from the Sussex Cancer Fund, University of Brighton, BSMS, and University
-        of Sussex, we have made awards to kick-start collaborative bench-to-bedside projects across Sussex.
+        of Sussex, we have funded collaborative bench-to-bedside pump-priming projects across Sussex.
       </p>
-      <div style="display:grid; gap:0.75rem; margin-bottom:2rem;">
-        {funding.fundedProjects.pumpPriming.map((proj) => (
-          <details class="funding-acc">
-            <summary>
-              <span>{proj.title}</span>
-              <span class="acc-icon" aria-hidden="true">+</span>
-            </summary>
-            <div class="funding-acc-body">
-              {proj.description.split('\n\n').filter(Boolean).map((para) => <p>{para}</p>)}
-              {proj.projectUrl && (
-                <p style="margin-bottom:0; margin-top:0.85rem;">
-                  <a href={proj.projectUrl} class="read-more">Read more about this project →</a>
-                </p>
-              )}
-            </div>
-          </details>
+      <div class="funded-list">
+        {pumpPrimingProjects.map((proj) => (
+          <div class="funding-card">
+            <details class="funding-acc">
+              <summary>
+                <div class="funding-summary-main">
+                  <span class="funding-title">{proj.title}</span>
+                  {(proj.piName || proj.round) && (
+                    <span class="funding-submeta">
+                      {proj.piName && <span>{proj.piName}</span>}
+                      {proj.piName && proj.round && <span aria-hidden="true"> · </span>}
+                      {proj.round && <span>{proj.round}</span>}
+                    </span>
+                  )}
+                </div>
+                <span class="acc-icon" aria-hidden="true">+</span>
+              </summary>
+              <div class="funding-acc-body">
+                {proj.description.split('\n\n').filter(Boolean).map((para) => <p>{para}</p>)}
+                {proj.piName && (
+                  <p class="funding-pi-line">
+                    <strong>Project Lead:</strong>{' '}
+                    {proj.piSlug ? (
+                      <a href={`/directory/${proj.piSlug}`} class="scrc-author-link">{proj.piName}</a>
+                    ) : (
+                      proj.piName
+                    )}
+                    {proj.institution && <span>, {proj.institution}</span>}
+                  </p>
+                )}
+                {proj.projectUrl && (
+                  <p style="margin-bottom:0; margin-top:0.75rem;">
+                    <a href={proj.projectUrl} class="read-more">Read more about this project →</a>
+                  </p>
+                )}
+              </div>
+            </details>
+
+            {proj.resolvedFollowOn.length > 0 && (
+              <div class="follow-on-bar">
+                <span class="follow-on-label">Subsequent external funding:</span>
+                {proj.resolvedFollowOn.map((award) => {
+                  const amt = formatAmount(award.amount, award.currency);
+                  return (
+                    <a
+                      href={award.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="follow-on-pill"
+                      title={award.title ? `${award.title} (${award.funder})` : award.funder}
+                    >
+                      <span>{award.funder}</span>
+                      {amt && <span class="follow-on-amt">{amt}</span>}
+                      <span aria-hidden="true">↗</span>
+                    </a>
+                  );
+                })}
+              </div>
+            )}
+          </div>
         ))}
       </div>
 
       <h3>Creative Community Engagement Awards</h3>
-      <div style="display:grid; gap:0.75rem; margin-bottom:2rem;">
-        {funding.fundedProjects.creativeEngagement.map((proj) => (
-          <details class="funding-acc">
-            <summary>
-              <span>{proj.title}</span>
-              <span class="acc-icon" aria-hidden="true">+</span>
-            </summary>
-            <div class="funding-acc-body">
-              {proj.description.split('\n\n').filter(Boolean).map((para) => <p>{para}</p>)}
-              {proj.projectUrl && (
-                <p style="margin-bottom:0; margin-top:0.85rem;">
-                  <a href={proj.projectUrl} class="read-more">Read more about this project →</a>
-                </p>
-              )}
-            </div>
-          </details>
+      <div class="funded-list">
+        {creativeProjects.map((proj) => (
+          <div class="funding-card">
+            <details class="funding-acc">
+              <summary>
+                <div class="funding-summary-main">
+                  <span class="funding-title">{proj.title}</span>
+                  {(proj.piName || proj.round) && (
+                    <span class="funding-submeta">
+                      {proj.piName && <span>{proj.piName}</span>}
+                      {proj.piName && proj.round && <span aria-hidden="true"> · </span>}
+                      {proj.round && <span>{proj.round}</span>}
+                    </span>
+                  )}
+                </div>
+                <span class="acc-icon" aria-hidden="true">+</span>
+              </summary>
+              <div class="funding-acc-body">
+                {proj.description.split('\n\n').filter(Boolean).map((para) => <p>{para}</p>)}
+                {proj.piName && (
+                  <p class="funding-pi-line">
+                    <strong>Project Lead:</strong>{' '}
+                    {proj.piSlug ? (
+                      <a href={`/directory/${proj.piSlug}`} class="scrc-author-link">{proj.piName}</a>
+                    ) : (
+                      proj.piName
+                    )}
+                  </p>
+                )}
+                {proj.projectUrl && (
+                  <p style="margin-bottom:0; margin-top:0.75rem;">
+                    <a href={proj.projectUrl} class="read-more">Read more about this project →</a>
+                  </p>
+                )}
+              </div>
+            </details>
+
+            {proj.resolvedFollowOn.length > 0 && (
+              <div class="follow-on-bar">
+                <span class="follow-on-label">Subsequent external funding:</span>
+                {proj.resolvedFollowOn.map((award) => {
+                  const amt = formatAmount(award.amount, award.currency);
+                  return (
+                    <a
+                      href={award.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="follow-on-pill"
+                      title={award.title ? `${award.title} (${award.funder})` : award.funder}
+                    >
+                      <span>{award.funder}</span>
+                      {amt && <span class="follow-on-amt">{amt}</span>}
+                      <span aria-hidden="true">↗</span>
+                    </a>
+                  );
+                })}
+              </div>
+            )}
+          </div>
         ))}
       </div>
 
-      <h3>William Priddy Research Studentships</h3>
-      <div style="display:grid; gap:0.75rem;">
-        {funding.fundedProjects.studentships.map((proj) => (
-          <details class="funding-acc">
-            <summary>
-              <span>{proj.title}</span>
-              <span class="acc-icon" aria-hidden="true">+</span>
-            </summary>
-            <div class="funding-acc-body">
-              {proj.description.split('\n\n').filter(Boolean).map((para) => <p>{para}</p>)}
-              {proj.projectUrl && (
-                <p style="margin-bottom:0; margin-top:0.85rem;">
-                  <a href={proj.projectUrl} class="read-more">Read about the project →</a>
-                </p>
-              )}
-            </div>
-          </details>
+      <h3>Studentships</h3>
+      <p>
+        Collaborative PhD studentships supported by Dr William Priddy, the Sussex Cancer Fund,
+        Brighton and Sussex Medical School, and the University of Sussex.
+      </p>
+      <div class="funded-list" style="margin-bottom:0;">
+        {studentshipProjects.map((proj) => (
+          <div class="funding-card">
+            <details class="funding-acc">
+              <summary>
+                <div class="funding-summary-main">
+                  <span class="funding-title">{proj.title}</span>
+                  {(proj.piName || proj.round) && (
+                    <span class="funding-submeta">
+                      {proj.piName && <span>{proj.piName}</span>}
+                      {proj.piName && proj.round && <span aria-hidden="true"> · </span>}
+                      {proj.round && <span>{proj.round}</span>}
+                    </span>
+                  )}
+                </div>
+                <span class="acc-icon" aria-hidden="true">+</span>
+              </summary>
+              <div class="funding-acc-body">
+                {proj.description.split('\n\n').filter(Boolean).map((para) => <p>{para}</p>)}
+                {proj.piName && (
+                  <p class="funding-pi-line">
+                    <strong>Lead Supervisor:</strong>{' '}
+                    {proj.piSlug ? (
+                      <a href={`/directory/${proj.piSlug}`} class="scrc-author-link">{proj.piName}</a>
+                    ) : (
+                      proj.piName
+                    )}
+                    {proj.institution && <span>, {proj.institution}</span>}
+                  </p>
+                )}
+                {proj.projectUrl && (
+                  <p style="margin-bottom:0; margin-top:0.75rem;">
+                    <a href={proj.projectUrl} class="read-more">Read more about this project →</a>
+                  </p>
+                )}
+              </div>
+            </details>
+
+            {proj.resolvedFollowOn.length > 0 && (
+              <div class="follow-on-bar">
+                <span class="follow-on-label">Subsequent external funding:</span>
+                {proj.resolvedFollowOn.map((award) => {
+                  const amt = formatAmount(award.amount, award.currency);
+                  return (
+                    <a
+                      href={award.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="follow-on-pill"
+                      title={award.title ? `${award.title} (${award.funder})` : award.funder}
+                    >
+                      <span>{award.funder}</span>
+                      {amt && <span class="follow-on-amt">{amt}</span>}
+                      <span aria-hidden="true">↗</span>
+                    </a>
+                  );
+                })}
+              </div>
+            )}
+          </div>
         ))}
       </div>
     </div>
@@ -201,19 +467,53 @@ import funding from '../data/funding.json';
 </BaseLayout>
 
 <style>
-  .funding-acc {
+  .hero-actions {
+    margin-top: 1.4rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.85rem;
+  }
+
+  .btn--hero-outline {
+    background-color: rgba(255, 255, 255, 0.12);
+    color: var(--scrc-white);
+    border-color: rgba(255, 255, 255, 0.78);
+    backdrop-filter: blur(4px);
+  }
+
+  .btn--hero-outline:hover {
+    background-color: var(--scrc-white);
+    border-color: var(--scrc-white);
+    color: var(--scrc-black);
+  }
+
+  .anchor-section {
+    scroll-margin-top: 5.5rem;
+  }
+
+  .funded-list {
+    display: grid;
+    gap: 0.8rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .funding-card {
     background: var(--scrc-white);
     border: 1px solid var(--scrc-border);
     border-radius: var(--radius-btn);
     transition: border-color var(--transition), box-shadow var(--transition);
+    overflow: hidden;
   }
-  .funding-acc:hover,
-  .funding-acc[open] {
+
+  .funding-card:hover,
+  .funding-card:has(.funding-acc[open]) {
     border-color: var(--scrc-teal);
   }
-  .funding-acc[open] {
+
+  .funding-card:has(.funding-acc[open]) {
     box-shadow: var(--shadow-sm);
   }
+
   .funding-acc summary {
     display: flex;
     align-items: flex-start;
@@ -225,9 +525,27 @@ import funding from '../data/funding.json';
     list-style: none;
     color: var(--scrc-black);
   }
+
   .funding-acc summary::-webkit-details-marker {
     display: none;
   }
+
+  .funding-summary-main {
+    display: flex;
+    flex-direction: column;
+    gap: 0.28rem;
+  }
+
+  .funding-title {
+    line-height: 1.42;
+  }
+
+  .funding-submeta {
+    font-size: 0.84rem;
+    font-weight: 400;
+    color: var(--scrc-muted);
+  }
+
   .acc-icon {
     font-size: 1.35rem;
     font-weight: 400;
@@ -236,14 +554,68 @@ import funding from '../data/funding.json';
     flex-shrink: 0;
     transition: transform var(--transition);
   }
+
   .funding-acc[open] .acc-icon {
     transform: rotate(45deg);
   }
+
   .funding-acc-body {
-    padding: 0.95rem 1.25rem 1.25rem;
+    padding: 1rem 1.25rem 1.25rem;
     border-top: 1px solid var(--scrc-border);
-    font-size: 0.95rem;
+    font-size: 0.94rem;
     color: var(--scrc-ink);
-    line-height: 1.75;
+    line-height: 1.72;
+  }
+
+  .funding-pi-line {
+    margin-top: 0.9rem;
+    margin-bottom: 0;
+    font-size: 0.9rem;
+    color: var(--scrc-muted);
+  }
+
+  .follow-on-bar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.45rem 0.6rem;
+    padding: 0.6rem 1.25rem 0.72rem;
+    background: var(--scrc-mint-soft);
+    border-top: 1px solid rgba(100, 146, 141, 0.25);
+  }
+
+  .follow-on-label {
+    font-size: 0.76rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--scrc-teal-deep);
+  }
+
+  .follow-on-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.2rem 0.68rem;
+    border-radius: 999px;
+    background: var(--scrc-white);
+    border: 1px solid var(--scrc-teal);
+    color: var(--scrc-black);
+    font-size: 0.81rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: background-color var(--transition), border-color var(--transition), transform var(--transition);
+  }
+
+  .follow-on-pill:hover {
+    background: var(--scrc-mint);
+    border-color: var(--scrc-teal-deep);
+    color: var(--scrc-black);
+  }
+
+  .follow-on-amt {
+    font-weight: 600;
+    color: var(--scrc-teal-deep);
+    font-variant-numeric: tabular-nums;
   }
 </style>
