@@ -850,6 +850,29 @@ strong, b {
   color: var(--scrc-black);
 }
 
+/* Highlighted & clickable SCRC member links (Publications & News) */
+.scrc-author-link,
+.prose a.scrc-author-link {
+  display: inline-block;
+  padding: 0.04rem 0.42rem;
+  border-radius: 6px;
+  background: var(--scrc-mint-soft);
+  border: 1px solid rgba(100, 146, 141, 0.35);
+  color: var(--scrc-teal-deep);
+  font-weight: 500;
+  text-decoration: none;
+  line-height: 1.45;
+  transition: background-color var(--transition), color var(--transition), border-color var(--transition);
+}
+
+.scrc-author-link:hover,
+.prose a.scrc-author-link:hover {
+  background: var(--scrc-mint);
+  border-color: var(--scrc-teal-deep);
+  color: var(--scrc-black);
+  text-decoration: none;
+}
+
 /* Event Date Badge */
 .event-date-pill {
   position: absolute;

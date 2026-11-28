@@ -1,16 +1,42 @@
 ---
 import { getCollection, render } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import {
+  buildPeopleNameIndex,
+  findMentionedPeopleInNews,
+  findPersonByName,
+  linkScrcPeopleInHtml,
+  type PersonRecord,
+} from '../../utils/scrcPeopleLinks';
 
 export async function getStaticPaths() {
-  const posts = await getCollection('news');
-  return posts.map((post) => ({
-    params: { slug: post.id },
-    props: { post },
-  }));
+  const [posts, people] = await Promise.all([
+    getCollection('news'),
+    getCollection('people'),
+  ]);
+  const peopleIndex = buildPeopleNameIndex(people);
+
+  return posts.map((post) => {
+    const rawHtml = post.rendered?.html || '';
+    const { html: linkedHtml } = linkScrcPeopleInHtml(rawHtml, peopleIndex);
+    const mentionedPeople = findMentionedPeopleInNews(post, peopleIndex);
+    const authorPerson = findPersonByName(post.data.author, peopleIndex);
+
+    return {
+      params: { slug: post.id },
+      props: { post, linkedHtml, mentionedPeople, authorPerson },
+    };
+  });
 }
 
-const { post } = Astro.props;
+interface Props {
+  post: Awaited<ReturnType<typeof getCollection<'news'>>>[number];
+  linkedHtml: string;
+  mentionedPeople: PersonRecord[];
+  authorPerson: PersonRecord | null;
+}
+
+const { post, linkedHtml, mentionedPeople, authorPerson } = Astro.props;
 const { Content } = await render(post);
 
 const dateFormatted = post.data.date.toLocaleDateString('en-GB', {
@@ -33,7 +59,22 @@ const dateFormatted = post.data.date.toLocaleDateString('en-GB', {
 
       <div class="card-meta" style="margin-bottom:0.75rem;">
         <time datetime={post.data.date.toISOString()}>{dateFormatted}</time>
-        {post.data.author && <span>· {post.data.author}</span>}
+        {post.data.author && (
+          <span>
+            ·{' '}
+            {authorPerson ? (
+              <a
+                href={`/directory/${authorPerson.slug}`}
+                class="scrc-author-link"
+                title={`View ${authorPerson.name}'s SCRC profile`}
+              >
+                {post.data.author}
+              </a>
+            ) : (
+              post.data.author
+            )}
+          </span>
+        )}
       </div>
 
       <h1 style="margin-bottom:1.5rem;">{post.data.title}</h1>
@@ -48,9 +89,30 @@ const dateFormatted = post.data.date.toLocaleDateString('en-GB', {
         </div>
       )}
 
-      <div class="prose">
-        <Content />
-      </div>
+      {linkedHtml ? (
+        <div class="prose" set:html={linkedHtml} />
+      ) : (
+        <div class="prose">
+          <Content />
+        </div>
+      )}
+
+      {mentionedPeople.length > 0 && (
+        <aside class="mentioned-people" aria-label="SCRC members mentioned in this article">
+          <span class="mentioned-people-label">SCRC Members in this Article:</span>
+          <div class="mentioned-people-list">
+            {mentionedPeople.map((person) => (
+              <a
+                href={`/directory/${person.slug}`}
+                class="scrc-author-link"
+                title={`View ${person.name}'s SCRC profile`}
+              >
+                {person.name}
+              </a>
+            ))}
+          </div>
+        </aside>
+      )}
 
       <hr style="border:0; border-top:1px solid var(--scrc-border); margin:3rem 0 2rem;" />
       <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem;">
@@ -60,3 +122,29 @@ const dateFormatted = post.data.date.toLocaleDateString('en-GB', {
     </div>
   </article>
 </BaseLayout>
+
+<style>
+  .mentioned-people {
+    margin-top: 2.25rem;
+    padding: 1.1rem 1.3rem;
+    border-radius: var(--radius-card);
+    background: var(--scrc-cream);
+    border: 1px solid var(--scrc-border);
+  }
+
+  .mentioned-people-label {
+    display: block;
+    font-size: 0.78rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--scrc-muted);
+    margin-bottom: 0.65rem;
+  }
+
+  .mentioned-people-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.45rem;
+  }
+</style>

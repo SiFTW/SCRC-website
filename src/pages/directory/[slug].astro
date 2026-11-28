@@ -1,17 +1,50 @@
 ---
-import { getCollection, render } from 'astro:content';
+import { getCollection, render, type CollectionEntry } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import publications from '../../data/publications.json';
+import {
+  buildPeopleNameIndex,
+  findMentionedPeopleInNews,
+} from '../../utils/scrcPeopleLinks';
 
 export async function getStaticPaths() {
-  const people = await getCollection('people');
+  const [people, newsPosts] = await Promise.all([
+    getCollection('people'),
+    getCollection('news'),
+  ]);
+
+  const peopleIndex = buildPeopleNameIndex(people);
+  const newsBySlug = new Map<string, CollectionEntry<'news'>[]>();
+
+  // Map every news post to all SCRC members mentioned in its title or body
+  const sortedNews = newsPosts
+    .slice()
+    .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+
+  for (const post of sortedNews) {
+    const mentioned = findMentionedPeopleInNews(post, peopleIndex);
+    for (const member of mentioned) {
+      const list = newsBySlug.get(member.slug) || [];
+      list.push(post);
+      newsBySlug.set(member.slug, list);
+    }
+  }
+
   return people.map((person) => ({
     params: { slug: person.id },
-    props: { person },
+    props: {
+      person,
+      memberNews: newsBySlug.get(person.id) || [],
+    },
   }));
 }
 
-const { person } = Astro.props;
+interface Props {
+  person: CollectionEntry<'people'>;
+  memberNews: CollectionEntry<'news'>[];
+}
+
+const { person, memberNews } = Astro.props;
 const { Content } = await render(person);
 
 const cleanImage =
@@ -104,6 +137,45 @@ const memberPubs = publications.filter((pub: any) => {
         <Content />
       </div>
 
+      {memberNews.length > 0 && (
+        <section style="margin-top:3rem; padding-top:2rem; border-top:1px solid var(--scrc-border);">
+          <span class="eyebrow">SCRC News</span>
+          <h2 style="margin-bottom:1.25rem;">Featured in News ({memberNews.length})</h2>
+          <div class="member-news-list">
+            {memberNews.map((article) => {
+              const dateStr = article.data.date.toLocaleDateString('en-GB', {
+                day: 'numeric',
+                month: 'long',
+                year: 'numeric',
+              });
+              return (
+                <article class="member-news-card">
+                  {article.data.image && (
+                    <a href={`/news/${article.id}`} class="member-news-thumb" tabindex="-1" aria-hidden="true">
+                      <img src={article.data.image} alt="" loading="lazy" />
+                    </a>
+                  )}
+                  <div class="member-news-content">
+                    <div class="card-meta" style="margin-bottom:0.35rem;">
+                      <time datetime={article.data.date.toISOString()}>{dateStr}</time>
+                    </div>
+                    <h3 class="member-news-title">
+                      <a href={`/news/${article.id}`}>{article.data.title}</a>
+                    </h3>
+                    {article.data.excerpt && (
+                      <p class="member-news-excerpt">{article.data.excerpt}</p>
+                    )}
+                    <a href={`/news/${article.id}`} class="read-more" style="font-size:0.86rem;">
+                      Read news article →
+                    </a>
+                  </div>
+                </article>
+              );
+            })}
+          </div>
+        </section>
+      )}
+
       {memberPubs.length > 0 && (
         <section style="margin-top:3rem; padding-top:2rem; border-top:1px solid var(--scrc-border);">
           <span class="eyebrow">Research Outputs</span>
@@ -139,6 +211,85 @@ const memberPubs = publications.filter((pub: any) => {
 </BaseLayout>
 
 <style>
+  .member-news-list {
+    display: grid;
+    gap: 1rem;
+  }
+
+  .member-news-card {
+    display: flex;
+    gap: 1.15rem;
+    align-items: flex-start;
+    padding: 1.05rem 1.2rem;
+    border: 1px solid var(--scrc-border);
+    border-radius: var(--radius-card);
+    background: var(--scrc-white);
+    transition: border-color var(--transition), box-shadow var(--transition);
+  }
+
+  .member-news-card:hover {
+    border-color: var(--scrc-teal);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .member-news-thumb {
+    flex-shrink: 0;
+    width: 112px;
+    height: 84px;
+    border-radius: var(--radius-btn);
+    overflow: hidden;
+    background: var(--scrc-cream);
+  }
+
+  .member-news-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .member-news-content {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .member-news-title {
+    font-size: 1.04rem;
+    font-weight: 500;
+    line-height: 1.35;
+    margin: 0 0 0.4rem;
+  }
+
+  .member-news-title a {
+    color: var(--scrc-black);
+    text-decoration: none;
+  }
+
+  .member-news-title a:hover {
+    color: var(--scrc-teal-deep);
+  }
+
+  .member-news-excerpt {
+    font-size: 0.89rem;
+    line-height: 1.58;
+    color: var(--scrc-muted);
+    margin: 0 0 0.5rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  @media (max-width: 600px) {
+    .member-news-card {
+      flex-direction: column;
+    }
+
+    .member-news-thumb {
+      width: 100%;
+      height: 150px;
+    }
+  }
   .profile-avatar-placeholder {
     width: 168px;
     height: 168px;
