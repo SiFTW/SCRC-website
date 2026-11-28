@@ -1,11 +1,13 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import digest from '../data/newsletter-digest.json';
+
+const lastNl = digest.lastNewsletter;
 ---
 
 <BaseLayout
   title="Newsletter Digest (Curated.co)"
-  description="Auto-generated Curated.co-ready Markdown digest of follow-on funding, recent external grants, and recent SCRC publications for SCRC administrators."
+  description="Auto-generated Curated.co-ready Markdown digest of follow-on funding, website news, external grants, and SCRC publications since the last newsletter."
   noindex={true}
 >
   <section class="page-banner page-banner--image">
@@ -15,8 +17,24 @@ import digest from '../data/newsletter-digest.json';
       <span class="eyebrow" style="color:var(--scrc-mint);">Administrator Tool · Curated.co Ready</span>
       <h1>Newsletter Digest.</h1>
       <p class="lead">
-        Copy-ready Curated.co Markdown for follow-on funding, recent grants, and SCRC publications.
-        Updated automatically on every sync ({digest.generatedDisplay}).
+        Copy-ready Curated.co Markdown covering all SCRC updates since the last published newsletter
+        {lastNl && lastNl.dateDisplay ? (
+          <>
+            {' '}(
+            <a
+              href={lastNl.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              style="color:var(--scrc-mint); text-decoration:underline;"
+            >
+              {lastNl.issueNumber ? `Issue ${lastNl.issueNumber} · ` : ''}{lastNl.dateDisplay}
+            </a>
+            ).
+          </>
+        ) : (
+          '.'
+        )}
+        {' '}Updated automatically on every sync ({digest.generatedDisplay}).
       </p>
       <div class="hero-actions">
         <button type="button" id="copy-full-btn" class="btn btn--mint">
@@ -52,19 +70,19 @@ import digest from '../data/newsletter-digest.json';
         <div class="window-controls">
           <span class="toolbar-label">Time window:</span>
           <div class="window-pills" role="group" aria-label="Digest time window">
-            {digest.availableWindows.map((days: number) => (
+            {digest.windowOptions.map((opt: { key: string; label: string }) => (
               <button
                 type="button"
-                class:list={['window-pill', { 'is-active': days === digest.defaultWindow }]}
-                data-window={String(days)}
+                class:list={['window-pill', { 'is-active': opt.key === digest.defaultWindow }]}
+                data-window={opt.key}
               >
-                Last {days} days
+                {opt.label}
               </button>
             ))}
           </div>
         </div>
         <p class="curated-note">
-          Formatted strictly for <strong>Curated.co Markdown</strong> — clickable <code>[text](url)</code> links, bold/italics, and lists only (no tables or raw HTML).
+          Formatted strictly for <strong>Curated.co Markdown</strong> — clickable <code>[text](url)</code> links, bold/italics, headings, and lists only (no tables or raw HTML).
         </p>
       </div>
 
@@ -73,6 +91,10 @@ import digest from '../data/newsletter-digest.json';
         <div class="digest-stat">
           <span class="digest-stat-num" id="stat-follow-on">0</span>
           <span class="digest-stat-label">Follow-on Awards</span>
+        </div>
+        <div class="digest-stat">
+          <span class="digest-stat-num" id="stat-news">0</span>
+          <span class="digest-stat-label">Website News</span>
         </div>
         <div class="digest-stat">
           <span class="digest-stat-num" id="stat-grants">0</span>
@@ -84,7 +106,7 @@ import digest from '../data/newsletter-digest.json';
         </div>
         <div class="digest-stat">
           <span class="digest-stat-num" id="stat-all-pubs">0</span>
-          <span class="digest-stat-label">All Recent Papers</span>
+          <span class="digest-stat-label">All Papers</span>
         </div>
       </div>
 
@@ -116,6 +138,7 @@ import digest from '../data/newsletter-digest.json';
       <div class="digest-sections" id="digest-sections">
         {[
           { key: 'followOn', accent: true },
+          { key: 'news', accent: true },
           { key: 'grants', accent: false },
           { key: 'selectedPubs', accent: false },
           { key: 'allPubs', accent: false },
@@ -143,6 +166,12 @@ import digest from '../data/newsletter-digest.json';
             <div class="digest-card-body">
               <div class="md-preview" data-role="preview"></div>
               <pre class="md-raw" data-role="raw" hidden><code></code></pre>
+              {key === 'news' && (
+                <div class="news-item-quickcopy" id="news-item-quickcopy" hidden></div>
+              )}
+              {key === 'followOn' && (
+                <div class="already-featured-note" id="already-featured-note" hidden></div>
+              )}
             </div>
           </article>
         ))}
@@ -150,10 +179,11 @@ import digest from '../data/newsletter-digest.json';
 
       <!-- Archive / GitHub Info Footer -->
       <div class="callout digest-footer-box">
-        <h3>Automatic Weekly Updates &amp; Monthly Archive</h3>
+        <h3>Automatic Updates &amp; Monthly Archive</h3>
         <p style="margin-bottom:0.75rem;">
-          This digest regenerates automatically every Monday (and on manual workflow runs) alongside
-          publication and grant syncing. Monthly snapshots are also saved in GitHub for reference.
+          The cutoff date for <strong>Since Last Newsletter</strong> is detected automatically from the{' '}
+          <a href={digest.curatedUrl} target="_blank" rel="noopener noreferrer">SCRC Curated.co RSS feed</a>{' '}
+          every Monday (and on manual workflow runs). Monthly snapshots are also stored in GitHub.
         </p>
         <div style="display:flex; flex-wrap:wrap; gap:0.75rem;">
           <a href={digest.githubLatestUrl} target="_blank" rel="noopener noreferrer" class="btn btn--outline btn--sm">
@@ -178,7 +208,7 @@ import digest from '../data/newsletter-digest.json';
     const dataEl = document.getElementById('newsletter-digest-data');
     if (!dataEl) return;
     const DIGEST = JSON.parse(dataEl.textContent || '{}');
-    let currentWindow = String(DIGEST.defaultWindow || 60);
+    let currentWindow = String(DIGEST.defaultWindow || 'since_last');
 
     function escapeHtml(str) {
       return String(str)
@@ -190,13 +220,10 @@ import digest from '../data/newsletter-digest.json';
 
     function renderInline(md) {
       let html = escapeHtml(md);
-      // Links [text](https://...)
       html = html.replace(/\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g, function (_, text, url) {
         return '<a href="' + url + '" target="_blank" rel="noopener noreferrer">' + text + '</a>';
       });
-      // Bold **text**
       html = html.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
-      // Italic *text*
       html = html.replace(/(^|[^*])\*([^*\n]+)\*/g, '$1<em>$2</em>');
       return html;
     }
@@ -228,7 +255,29 @@ import digest from '../data/newsletter-digest.json';
           continue;
         }
 
-        // Continuation line indented under a list item
+        if (/^---+$/.test(trimmed)) {
+          flushPara();
+          closeLists();
+          out.push('<hr class="md-hr" />');
+          continue;
+        }
+
+        const hMatch = trimmed.match(/^(#{2,4})\s+(.*)$/);
+        if (hMatch) {
+          flushPara();
+          closeLists();
+          const lvl = Math.min(hMatch[1].length + 1, 5);
+          out.push('<h' + lvl + ' class="md-h">' + renderInline(hMatch[2]) + '</h' + lvl + '>');
+          continue;
+        }
+
+        if (trimmed.startsWith('> ')) {
+          flushPara();
+          closeLists();
+          out.push('<blockquote class="md-quote">' + renderInline(trimmed.slice(2)) + '</blockquote>');
+          continue;
+        }
+
         if ((inUl || inOl) && /^\s{2,}/.test(line) && !/^\s*[-*]\s+/.test(line) && !/^\s*\d+\.\s+/.test(line)) {
           if (out.length && out[out.length - 1].endsWith('</li>')) {
             out[out.length - 1] =
@@ -266,14 +315,7 @@ import digest from '../data/newsletter-digest.json';
     async function copyText(text, btn, defaultLabel) {
       try {
         await navigator.clipboard.writeText(text);
-        btn.textContent = '✓ Copied!';
-        btn.classList.add('is-copied');
-        setTimeout(function () {
-          btn.textContent = defaultLabel;
-          btn.classList.remove('is-copied');
-        }, 1800);
       } catch (e) {
-        // Fallback for older browsers
         const ta = document.createElement('textarea');
         ta.value = text;
         ta.style.position = 'fixed';
@@ -282,9 +324,13 @@ import digest from '../data/newsletter-digest.json';
         ta.select();
         document.execCommand('copy');
         document.body.removeChild(ta);
-        btn.textContent = '✓ Copied!';
-        setTimeout(function () { btn.textContent = defaultLabel; }, 1800);
       }
+      btn.textContent = '✓ Copied!';
+      btn.classList.add('is-copied');
+      setTimeout(function () {
+        btn.textContent = defaultLabel;
+        btn.classList.remove('is-copied');
+      }, 1800);
     }
 
     function renderWindow(winKey) {
@@ -292,19 +338,17 @@ import digest from '../data/newsletter-digest.json';
       if (!w) return;
       currentWindow = winKey;
 
-      // Update active pill
       document.querySelectorAll('.window-pill').forEach(function (btn) {
         btn.classList.toggle('is-active', btn.getAttribute('data-window') === winKey);
       });
 
-      // Update stats
       const c = w.counts || {};
       document.getElementById('stat-follow-on').textContent = String(c.followOnAwards || 0);
+      document.getElementById('stat-news').textContent = String(c.newsItems || 0);
       document.getElementById('stat-grants').textContent = String(c.recentGrants || 0);
       document.getElementById('stat-selected-pubs').textContent = String(c.selectedPubs || 0);
       document.getElementById('stat-all-pubs').textContent = String(c.recentPubs || 0);
 
-      // Update each section card
       document.querySelectorAll('.digest-card').forEach(function (card) {
         const key = card.getAttribute('data-section');
         const sec = w.sections && w.sections[key];
@@ -315,16 +359,68 @@ import digest from '../data/newsletter-digest.json';
         card.querySelector('[data-role="preview"]').innerHTML = renderMarkdownPreview(sec.markdown);
         card.querySelector('[data-role="raw"] code').textContent = sec.markdown.trim();
       });
+
+      // Individual quick-copy buttons for each news post (handy when adding separate Curated.co items)
+      const newsQuick = document.getElementById('news-item-quickcopy');
+      const newsItems = (w.sections && w.sections.news && w.sections.news.items) || [];
+      if (newsQuick) {
+        if (newsItems.length > 0) {
+          newsQuick.hidden = false;
+          newsQuick.innerHTML =
+            '<span class="quickcopy-label">Copy individual news item:</span>' +
+            newsItems
+              .map(function (it, idx) {
+                return (
+                  '<button type="button" class="quickcopy-pill" data-news-idx="' +
+                  idx +
+                  '">Copy: ' +
+                  escapeHtml(it.title.length > 48 ? it.title.slice(0, 48) + '…' : it.title) +
+                  '</button>'
+                );
+              })
+              .join('');
+          newsQuick.querySelectorAll('.quickcopy-pill').forEach(function (btn) {
+            const label = btn.textContent;
+            btn.addEventListener('click', function () {
+              const idx = Number(btn.getAttribute('data-news-idx'));
+              const item = newsItems[idx];
+              if (item) copyText(item.markdown, btn, label);
+            });
+          });
+        } else {
+          newsQuick.hidden = true;
+          newsQuick.innerHTML = '';
+        }
+      }
+
+      // Already-featured follow-on note in Since Last Newsletter view
+      const featuredNote = document.getElementById('already-featured-note');
+      const already = w.alreadyFeaturedFollowOn || [];
+      if (featuredNote) {
+        if (already.length > 0) {
+          featuredNote.hidden = false;
+          featuredNote.innerHTML =
+            '<strong>Already featured in an earlier newsletter (omitted above to avoid repeats):</strong> ' +
+            already
+              .map(function (f) {
+                const iss = f.issueNumber && f.issueNumber > 0 ? 'Issue ' + f.issueNumber : 'an earlier issue';
+                return escapeHtml(f.piName + ' — ' + f.funder + ' (' + iss + ')');
+              })
+              .join('; ') +
+            '.';
+        } else {
+          featuredNote.hidden = true;
+          featuredNote.innerHTML = '';
+        }
+      }
     }
 
-    // Window switcher listeners
     document.querySelectorAll('.window-pill').forEach(function (btn) {
       btn.addEventListener('click', function () {
         renderWindow(btn.getAttribute('data-window'));
       });
     });
 
-    // Preview / Raw Markdown toggle per card
     document.querySelectorAll('.digest-card').forEach(function (card) {
       const previewEl = card.querySelector('[data-role="preview"]');
       const rawEl = card.querySelector('[data-role="raw"]');
@@ -340,7 +436,6 @@ import digest from '../data/newsletter-digest.json';
       });
     });
 
-    // Copy individual section Markdown
     document.querySelectorAll('.copy-section-btn').forEach(function (btn) {
       btn.addEventListener('click', function () {
         const secKey = btn.getAttribute('data-copy-section');
@@ -350,7 +445,6 @@ import digest from '../data/newsletter-digest.json';
       });
     });
 
-    // Copy full digest
     const copyFullBtn = document.getElementById('copy-full-btn');
     if (copyFullBtn) {
       copyFullBtn.addEventListener('click', function () {
@@ -360,7 +454,6 @@ import digest from '../data/newsletter-digest.json';
       });
     }
 
-    // Download .md file
     const dlBtn = document.getElementById('download-md-btn');
     if (dlBtn) {
       dlBtn.addEventListener('click', function () {
@@ -370,7 +463,7 @@ import digest from '../data/newsletter-digest.json';
         const url = URL.createObjectURL(blob);
         const a = document.createElement('a');
         a.href = url;
-        a.download = 'scrc-newsletter-digest-' + (DIGEST.generatedDate || 'latest') + '-' + currentWindow + 'd.md';
+        a.download = 'scrc-newsletter-digest-' + (DIGEST.generatedDate || 'latest') + '-' + currentWindow + '.md';
         document.body.appendChild(a);
         a.click();
         document.body.removeChild(a);
@@ -473,8 +566,8 @@ import digest from '../data/newsletter-digest.json';
 
   .digest-stats {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 0.85rem;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 0.75rem;
     margin-bottom: 1.5rem;
   }
 
@@ -482,13 +575,13 @@ import digest from '../data/newsletter-digest.json';
     background: var(--scrc-white);
     border: 1px solid var(--scrc-border);
     border-radius: var(--radius-btn);
-    padding: 0.95rem 1rem;
+    padding: 0.9rem 0.75rem;
     text-align: center;
   }
 
   .digest-stat-num {
     display: block;
-    font-size: 1.7rem;
+    font-size: 1.65rem;
     font-weight: 600;
     color: var(--scrc-teal-deep);
     line-height: 1.15;
@@ -498,7 +591,7 @@ import digest from '../data/newsletter-digest.json';
   .digest-stat-label {
     display: block;
     margin-top: 0.2rem;
-    font-size: 0.78rem;
+    font-size: 0.76rem;
     color: var(--scrc-muted);
     font-weight: 500;
   }
@@ -550,7 +643,7 @@ import digest from '../data/newsletter-digest.json';
 
   .digest-card-title {
     margin: 0;
-    font-size: 1.22rem;
+    font-size: 1.2rem;
     line-height: 1.3;
   }
 
@@ -600,6 +693,25 @@ import digest from '../data/newsletter-digest.json';
     margin-bottom: 0;
   }
 
+  .md-preview :global(.md-h) {
+    margin: 0.25rem 0 0.45rem;
+    font-size: 1.06rem;
+    color: var(--scrc-black);
+  }
+
+  .md-preview :global(.md-hr) {
+    border: none;
+    border-top: 1px solid var(--scrc-border);
+    margin: 1.1rem 0;
+  }
+
+  .md-preview :global(.md-quote) {
+    margin: 0.5rem 0 0.85rem;
+    padding-left: 0.9rem;
+    border-left: 3px solid var(--scrc-teal);
+    color: var(--scrc-muted);
+  }
+
   .md-preview :global(ul),
   .md-preview :global(ol) {
     margin: 0 0 0.9rem;
@@ -639,11 +751,56 @@ import digest from '../data/newsletter-digest.json';
     max-height: 460px;
   }
 
+  .news-item-quickcopy {
+    margin-top: 1rem;
+    padding-top: 0.85rem;
+    border-top: 1px solid var(--scrc-border);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.45rem;
+  }
+
+  .quickcopy-label {
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--scrc-muted);
+    margin-right: 0.25rem;
+  }
+
+  .quickcopy-pill {
+    padding: 0.26rem 0.68rem;
+    border-radius: 999px;
+    border: 1px solid var(--scrc-teal);
+    background: var(--scrc-mint-soft);
+    color: var(--scrc-teal-deep);
+    font-family: inherit;
+    font-size: 0.79rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all var(--transition);
+  }
+
+  .quickcopy-pill:hover {
+    background: var(--scrc-mint);
+    color: var(--scrc-black);
+  }
+
+  .already-featured-note {
+    margin-top: 0.95rem;
+    padding: 0.65rem 0.9rem;
+    border-radius: 6px;
+    background: var(--scrc-soft);
+    border: 1px solid var(--scrc-border);
+    font-size: 0.83rem;
+    color: var(--scrc-muted);
+  }
+
   .digest-footer-box {
     margin-top: 0.5rem;
   }
 
-  @media (max-width: 720px) {
+  @media (max-width: 780px) {
     .digest-stats {
       grid-template-columns: repeat(2, 1fr);
     }

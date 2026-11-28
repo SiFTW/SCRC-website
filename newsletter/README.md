@@ -2,9 +2,11 @@
 
 This folder is updated automatically whenever the SCRC publications & grants sync runs (weekly on Mondays via GitHub Actions).
 
+**Last published Curated.co newsletter detected:** [Issue 21 — 17 November 2026](https://sussexcancer.curated.co/issues/21) (auto-detected from the Curated.co RSS feed).
+
 ## Quick Access for Administrators
 
-1. **Interactive Copy Page (easiest):** Open [sussexcancer.org/newsletter-digest](https://sussexcancer.org/newsletter-digest) to switch between 30 / 60 / 90 / 180-day windows and copy each section with one click.
+1. **Interactive Copy Page (easiest):** Open [sussexcancer.org/newsletter-digest](https://sussexcancer.org/newsletter-digest) to view everything **since the last published newsletter** (or switch to 30 / 60 / 90 / 180-day windows) and copy each section with one click.
 2. **Latest Digest on GitHub:** Open [latest.md](latest.md) and click GitHub's **Copy raw file** button (top right), or open the [raw Markdown](https://raw.githubusercontent.com/SiFTW/SCRC-website/main/newsletter/latest.md).
 
 ## Curated.co Formatting Notes
