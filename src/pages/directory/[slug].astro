@@ -240,10 +240,49 @@ const memberPubs = publications.filter((pub: any) => {
         <Content />
       </div>
 
+      {memberNews.length > 0 && (
+        <section style="margin-top:3rem; padding-top:2rem; border-top:1px solid var(--scrc-border);">
+          <span class="eyebrow">SCRC News</span>
+          <h2 style="margin-bottom:1.25rem;">Featured in News</h2>
+          <div class="member-news-list">
+            {memberNews.map((article) => {
+              const dateStr = article.data.date.toLocaleDateString('en-GB', {
+                day: 'numeric',
+                month: 'long',
+                year: 'numeric',
+              });
+              return (
+                <article class="member-news-card">
+                  {article.data.image && (
+                    <a href={`/news/${article.id}`} class="member-news-thumb" tabindex="-1" aria-hidden="true">
+                      <img src={article.data.image} alt="" loading="lazy" />
+                    </a>
+                  )}
+                  <div class="member-news-content">
+                    <div class="card-meta" style="margin-bottom:0.35rem;">
+                      <time datetime={article.data.date.toISOString()}>{dateStr}</time>
+                    </div>
+                    <h3 class="member-news-title">
+                      <a href={`/news/${article.id}`}>{article.data.title}</a>
+                    </h3>
+                    {article.data.excerpt && (
+                      <p class="member-news-excerpt">{article.data.excerpt}</p>
+                    )}
+                    <a href={`/news/${article.id}`} class="read-more" style="font-size:0.86rem;">
+                      Read news article →
+                    </a>
+                  </div>
+                </article>
+              );
+            })}
+          </div>
+        </section>
+      )}
+
       {memberGrants.length > 0 && (
         <section style="margin-top:3rem; padding-top:2rem; border-top:1px solid var(--scrc-border);">
           <span class="eyebrow">Research Funding</span>
-          <h2 style="margin-bottom:1.25rem;">Recent Grants ({memberGrants.length})</h2>
+          <h2 style="margin-bottom:1.25rem;">Recent Grants</h2>
           <div class="member-grants-list">
             {memberGrants.map((grant) => {
               const amountText = formatGrantAmount(grant.amount, grant.currency);
@@ -319,49 +358,10 @@ const memberPubs = publications.filter((pub: any) => {
         </section>
       )}
 
-      {memberNews.length > 0 && (
-        <section style="margin-top:3rem; padding-top:2rem; border-top:1px solid var(--scrc-border);">
-          <span class="eyebrow">SCRC News</span>
-          <h2 style="margin-bottom:1.25rem;">Featured in News ({memberNews.length})</h2>
-          <div class="member-news-list">
-            {memberNews.map((article) => {
-              const dateStr = article.data.date.toLocaleDateString('en-GB', {
-                day: 'numeric',
-                month: 'long',
-                year: 'numeric',
-              });
-              return (
-                <article class="member-news-card">
-                  {article.data.image && (
-                    <a href={`/news/${article.id}`} class="member-news-thumb" tabindex="-1" aria-hidden="true">
-                      <img src={article.data.image} alt="" loading="lazy" />
-                    </a>
-                  )}
-                  <div class="member-news-content">
-                    <div class="card-meta" style="margin-bottom:0.35rem;">
-                      <time datetime={article.data.date.toISOString()}>{dateStr}</time>
-                    </div>
-                    <h3 class="member-news-title">
-                      <a href={`/news/${article.id}`}>{article.data.title}</a>
-                    </h3>
-                    {article.data.excerpt && (
-                      <p class="member-news-excerpt">{article.data.excerpt}</p>
-                    )}
-                    <a href={`/news/${article.id}`} class="read-more" style="font-size:0.86rem;">
-                      Read news article →
-                    </a>
-                  </div>
-                </article>
-              );
-            })}
-          </div>
-        </section>
-      )}
-
       {memberPubs.length > 0 && (
         <section style="margin-top:3rem; padding-top:2rem; border-top:1px solid var(--scrc-border);">
           <span class="eyebrow">Research Outputs</span>
-          <h2 style="margin-bottom:1.25rem;">Recent SCRC Publications ({memberPubs.length})</h2>
+          <h2 style="margin-bottom:1.25rem;">Recent SCRC Publications</h2>
           <div style="display:grid; gap:0.85rem;">
             {memberPubs.map((pub: any) => (
               <details class="member-pub">
