@@ -1,0 +1,12 @@
+{
+  "sinceYear": 2024,
+  "publicationCount": 539,
+  "scoredPublicationCount": 449,
+  "fwci": 5.41,
+  "fwciDisplay": "5.41",
+  "multiplierDisplay": "5.4",
+  "totalCitations": 4635,
+  "method": "OpenAlex Field-Weighted Citation Impact (FWCI)",
+  "source": "OpenAlex",
+  "updatedAt": "2026-11-28"
+}

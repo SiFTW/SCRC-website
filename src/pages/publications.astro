@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import rawPublications from '../data/publications.json';
+import publicationMetrics from '../data/publication-metrics.json';
 
 interface AuthorLink {
   slug: string;
@@ -91,16 +92,21 @@ function escapeRegExp(s: string): string {
   return s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
 }
 
-function renderCitationHtml(pub: Publication): { html: string; extraAuthors: AuthorLink[] } {
+function renderCitationHtml(pub: Publication): { html: string; authorsHtml: string; extraAuthors: AuthorLink[] } {
   const cite = pub.citation || '';
   const links = pub.authorLinks || [];
-  if (links.length === 0) {
-    return { html: escapeHtml(cite), extraAuthors: [] };
-  }
 
   const yearIdx = cite.search(/\(\d{4}\)/);
   const authorPart = yearIdx > 0 ? cite.slice(0, yearIdx) : cite;
   const restPart = yearIdx > 0 ? cite.slice(yearIdx) : '';
+
+  if (links.length === 0) {
+    return {
+      html: escapeHtml(cite),
+      authorsHtml: escapeHtml(authorPart.trim()),
+      extraAuthors: [],
+    };
+  }
 
   let highlighted = escapeHtml(authorPart);
   const linkedSlugs = new Set<string>();
@@ -133,6 +139,7 @@ function renderCitationHtml(pub: Publication): { html: string; extraAuthors: Aut
   const extraAuthors = links.filter((a) => !linkedSlugs.has(a.slug));
   return {
     html: highlighted + escapeHtml(restPart),
+    authorsHtml: highlighted.trim(),
     extraAuthors,
   };
 }
@@ -227,14 +234,21 @@ function formatJournalName(raw: string | undefined): string {
     <div class="hero-overlay" aria-hidden="true"></div>
     <div class="container page-banner-inner">
       <h1>Publications</h1>
-      <p class="lead">
-        {publications.length} peer-reviewed cancer-relevant publications from SCRC researchers
-        across Sussex since June 2024 — updated automatically from Europe PMC &amp; ORCID.
+      <p class="lead" style="margin-bottom:0.85rem;">
+        Peer-reviewed cancer-relevant publications from SCRC researchers
       </p>
+      {publicationMetrics?.fwciDisplay && (
+        <p
+          class="banner-fwci"
+          title={`Calculated across ${publicationMetrics.scoredPublicationCount} scored SCRC publications since ${publicationMetrics.sinceYear} via ${publicationMetrics.source} (updated ${publicationMetrics.updatedAt})`}
+        >
+          The field-weighted citation index of our work is <strong>{publicationMetrics.fwciDisplay}</strong>, which means our work is cited <strong>{publicationMetrics.multiplierDisplay} times more</strong> than the average paper in the field.
+        </p>
+      )}
     </div>
   </section>
 
-  <!-- Featured High-Impact Papers of the Year (Sussex 1st or Senior Author) -->
+  <!-- Featured High-Impact Papers of the Year -->
   {featuredPapers.length > 0 && (
     <section class="section section--bright" id="featured">
       <div class="container">
@@ -243,8 +257,7 @@ function formatJournalName(raw: string | undefined): string {
             <span class="eyebrow">High-Impact Research · {latestYear}</span>
             <h2 style="margin-bottom:0.35rem;">Featured Papers</h2>
             <p style="margin:0; font-size:0.96rem;">
-              Selected {latestYear} publications in leading international journals with Sussex-affiliated
-              first or senior authors.
+              Selected recent, high-impact publications from SCRC members
             </p>
           </div>
           <a href="#all-publications" class="btn btn--primary btn--sm">Browse All {publications.length} Papers ↓</a>
@@ -252,8 +265,7 @@ function formatJournalName(raw: string | undefined): string {
 
         <div class="grid grid--2">
           {featuredPapers.map((pub) => {
-            const leadAuthors = (pub.authorLinks || []).filter((a) => a.isFirst || a.isLast);
-            const displayAuthors = leadAuthors.length > 0 ? leadAuthors : (pub.authorLinks || []).slice(0, 3);
+            const { authorsHtml, extraAuthors } = renderCitationHtml(pub);
             return (
               <article class="card featured-pub-card">
                 <div class="card-body">
@@ -270,10 +282,19 @@ function formatJournalName(raw: string | undefined): string {
                     )}
                   </h3>
 
-                  {displayAuthors.length > 0 && (
-                    <div class="featured-authors">
-                      {displayAuthors.map((a) => (
-                        <a href={`/directory/${a.slug}`} class="scrc-author-link">
+                  {authorsHtml && (
+                    <p class="featured-authors-list" set:html={authorsHtml} />
+                  )}
+
+                  {extraAuthors.length > 0 && (
+                    <div class="extra-authors" style="margin-top:0.35rem;">
+                      <span class="extra-authors-label">SCRC co-authors:</span>
+                      {extraAuthors.map((a) => (
+                        <a
+                          href={`/directory/${a.slug}`}
+                          class="scrc-author-link"
+                          title={`View ${a.name}'s SCRC profile`}
+                        >
                           {a.name}
                         </a>
                       ))}
@@ -448,6 +469,24 @@ function formatJournalName(raw: string | undefined): string {
 </BaseLayout>
 
 <style>
+  .banner-fwci {
+    display: inline-block;
+    margin: 0;
+    padding: 0.6rem 1rem;
+    border-radius: var(--radius-card);
+    background: rgba(255, 255, 255, 0.14);
+    border: 1px solid rgba(255, 255, 255, 0.28);
+    backdrop-filter: blur(6px);
+    font-size: 0.96rem;
+    line-height: 1.55;
+    color: var(--scrc-white);
+  }
+
+  .banner-fwci strong {
+    color: var(--scrc-mint);
+    font-weight: 600;
+  }
+
   .featured-pub-top {
     display: flex;
     flex-wrap: wrap;
@@ -474,11 +513,11 @@ function formatJournalName(raw: string | undefined): string {
     color: var(--scrc-muted);
   }
 
-  .featured-authors {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.4rem;
-    align-items: center;
+  .featured-authors-list {
+    margin: 0;
+    font-size: 0.89rem;
+    line-height: 1.65;
+    color: var(--scrc-ink);
   }
 
   .filter-group {

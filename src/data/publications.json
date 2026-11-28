@@ -665,8 +665,8 @@
       "Genome Damage"
     ],
     "scrcAuthors": [
-      "ramon-gonzalez-mendez",
       "karen-meaburn",
+      "ramon-gonzalez-mendez",
       "moycqpc26zye4abr8pevuvrs0dzyyp"
     ],
     "authorLinks": [
@@ -676,26 +676,26 @@
         "display": "Meaburn, K.",
         "isFirst": false,
         "isLast": false,
-        "isSussex": true
+        "isSussex": false
       },
       {
         "slug": "ramon-gonzalez-mendez",
         "name": "Ramon Gonzalez-Mendez",
-        "display": "Mendez, R.",
+        "display": "Gonzalez-Mendez, R.",
         "isFirst": false,
         "isLast": false,
-        "isSussex": true
+        "isSussex": false
       },
       {
         "slug": "moycqpc26zye4abr8pevuvrs0dzyyp",
         "name": "Evi Soutoglou",
         "display": "Soutoglou, E.",
         "isFirst": false,
-        "isLast": false,
-        "isSussex": true
+        "isLast": true,
+        "isSussex": false
       }
     ],
-    "sussexLeadAuthor": true,
+    "sussexLeadAuthor": false,
     "journalImpactScore": 30
   },
   {
@@ -719,9 +719,9 @@
       {
         "slug": "md-zahidul-i-pranjol",
         "name": "Md Zahidul I Pranjol",
-        "display": "Pranjol, M.",
+        "display": "Pranjol, M. Z. I.",
         "isFirst": false,
-        "isLast": false,
+        "isLast": true,
         "isSussex": true
       }
     ],
@@ -784,17 +784,17 @@
       {
         "slug": "emily-m-mayar",
         "name": "Emily M Mayar",
-        "display": "Mayar, E.",
-        "isFirst": false,
+        "display": "Mayar, E. M.",
+        "isFirst": true,
         "isLast": false,
         "isSussex": true
       },
       {
         "slug": "sing-y-sim",
         "name": "Sing Y Sim",
-        "display": "Sim, S.",
+        "display": "Sim, S. Y.",
         "isFirst": false,
-        "isLast": false,
+        "isLast": true,
         "isSussex": true
       }
     ],
@@ -1056,8 +1056,8 @@
       {
         "slug": "emily-m-mayar",
         "name": "Emily M Mayar",
-        "display": "Mayar, E.",
-        "isFirst": false,
+        "display": "Mayar, E. M.",
+        "isFirst": true,
         "isLast": false,
         "isSussex": true
       },
@@ -1072,9 +1072,9 @@
       {
         "slug": "sing-y-sim",
         "name": "Sing Y Sim",
-        "display": "Sim, S.",
+        "display": "Sim, S. Y.",
         "isFirst": false,
-        "isLast": false,
+        "isLast": true,
         "isSussex": true
       }
     ],
@@ -1602,10 +1602,10 @@
       {
         "slug": "duncan-gilbert",
         "name": "Duncan Gilbert",
-        "display": "Gilbert, D.",
+        "display": "Gilbert, D. C.",
         "isFirst": false,
         "isLast": false,
-        "isSussex": true
+        "isSussex": false
       }
     ],
     "sussexLeadAuthor": false,
@@ -1661,7 +1661,7 @@
       {
         "slug": "thomas-p-chapman",
         "name": "Thomas P Chapman",
-        "display": "Chapman, T.",
+        "display": "Chapman, T. P.",
         "isFirst": false,
         "isLast": false,
         "isSussex": true
@@ -2019,7 +2019,7 @@
       {
         "slug": "saul-n-rajak",
         "name": "Saul N Rajak",
-        "display": "Rajak, S.",
+        "display": "Rajak, S. N.",
         "isFirst": false,
         "isLast": false,
         "isSussex": true
@@ -2193,23 +2193,23 @@
       "Biochemistry"
     ],
     "scrcAuthors": [
-      "daniela-carter-lopez",
-      "murat-eravci",
-      "viviana-vella",
-      "georgios-giamas",
-      "angeliki-ditsiou",
-      "mark-samuels",
       "andrea-lauer-betr-n",
-      "chrisostomos-prodromou",
       "alessandro-agnarelli",
-      "erika-mancini"
+      "mark-samuels",
+      "viviana-vella",
+      "daniela-carter-lopez",
+      "angeliki-ditsiou",
+      "murat-eravci",
+      "chrisostomos-prodromou",
+      "erika-mancini",
+      "georgios-giamas"
     ],
     "authorLinks": [
       {
         "slug": "andrea-lauer-betr-n",
         "name": "Andrea Lauer Betrán",
-        "display": "Betrán, A.",
-        "isFirst": false,
+        "display": "Lauer Betrán, A.",
+        "isFirst": true,
         "isLast": false,
         "isSussex": true
       },
@@ -2240,7 +2240,7 @@
       {
         "slug": "daniela-carter-lopez",
         "name": "Daniela Carter-Lopez",
-        "display": "Lopez, D.",
+        "display": "Carter-Lopez, D.",
         "isFirst": false,
         "isLast": false,
         "isSussex": true
@@ -2272,7 +2272,7 @@
       {
         "slug": "erika-mancini",
         "name": "Erika Mancini",
-        "display": "Mancini, E.",
+        "display": "Mancini, E. J.",
         "isFirst": false,
         "isLast": false,
         "isSussex": true
@@ -2282,7 +2282,7 @@
         "name": "Georgios Giamas",
         "display": "Giamas, G.",
         "isFirst": false,
-        "isLast": false,
+        "isLast": true,
         "isSussex": true
       }
     ],
@@ -2341,7 +2341,7 @@
         "display": "Brooksbank, K.",
         "isFirst": false,
         "isLast": false,
-        "isSussex": true
+        "isSussex": false
       }
     ],
     "sussexLeadAuthor": false,
@@ -2370,7 +2370,7 @@
         "slug": "ujjvala-kalluri",
         "name": "Ujjvala Kalluri",
         "display": "Kalluri, U.",
-        "isFirst": false,
+        "isFirst": true,
         "isLast": false,
         "isSussex": true
       }
@@ -2617,7 +2617,7 @@
         "display": "Soutoglou, E.",
         "isFirst": false,
         "isLast": false,
-        "isSussex": true
+        "isSussex": false
       }
     ],
     "sussexLeadAuthor": false,
@@ -2839,25 +2839,25 @@
       "Biochemistry"
     ],
     "scrcAuthors": [
-      "antony-oliver",
       "mohan-rajasekaran",
-      "ramon-gonzalez-mendez",
-      "john-spencer",
-      "haitham-hassan",
       "jessica-booth",
       "damien-crepin",
       "mark-roe",
+      "lihong-zhou",
+      "ramon-gonzalez-mendez",
+      "haitham-hassan",
+      "antony-oliver",
       "erika-mancini",
-      "lihong-zhou"
+      "john-spencer"
     ],
     "authorLinks": [
       {
         "slug": "mohan-rajasekaran",
         "name": "Mohan Rajasekaran",
-        "display": "Rajasekaran, M.",
-        "isFirst": false,
+        "display": "Rajasekaran, M. B.",
+        "isFirst": true,
         "isLast": false,
-        "isSussex": true
+        "isSussex": false
       },
       {
         "slug": "jessica-booth",
@@ -2865,23 +2865,23 @@
         "display": "Booth, J.",
         "isFirst": false,
         "isLast": false,
-        "isSussex": true
+        "isSussex": false
       },
       {
         "slug": "damien-crepin",
         "name": "Damien Crepin",
-        "display": "Crepin, D.",
+        "display": "Crepin, D. F.",
         "isFirst": false,
         "isLast": false,
-        "isSussex": true
+        "isSussex": false
       },
       {
         "slug": "mark-roe",
         "name": "Mark Roe",
-        "display": "Roe, M.",
+        "display": "Roe, S. M.",
         "isFirst": false,
         "isLast": false,
-        "isSussex": true
+        "isSussex": false
       },
       {
         "slug": "lihong-zhou",
@@ -2894,10 +2894,10 @@
       {
         "slug": "ramon-gonzalez-mendez",
         "name": "Ramon Gonzalez-Mendez",
-        "display": "Mendez, R.",
+        "display": "Gonzalez-Mendez, R.",
         "isFirst": false,
         "isLast": false,
-        "isSussex": true
+        "isSussex": false
       },
       {
         "slug": "haitham-hassan",
@@ -2905,12 +2905,12 @@
         "display": "Hassan, H.",
         "isFirst": false,
         "isLast": false,
-        "isSussex": true
+        "isSussex": false
       },
       {
         "slug": "antony-oliver",
         "name": "Antony Oliver",
-        "display": "Oliver, A.",
+        "display": "Oliver, A. W.",
         "isFirst": false,
         "isLast": false,
         "isSussex": true
@@ -2918,27 +2918,27 @@
       {
         "slug": "erika-mancini",
         "name": "Erika Mancini",
-        "display": "Mancini, E.",
+        "display": "Mancini, E. J.",
         "isFirst": false,
         "isLast": false,
-        "isSussex": true
+        "isSussex": false
       },
       {
         "slug": "john-spencer",
         "name": "John Spencer",
         "display": "Spencer, J.",
         "isFirst": false,
-        "isLast": false,
-        "isSussex": true
+        "isLast": true,
+        "isSussex": false
       }
     ],
-    "sussexLeadAuthor": true,
+    "sussexLeadAuthor": false,
     "journalImpactScore": 30
   },
   {
     "citation": "Ding, J., Hopkins, M. M., & Martin, P. A. (2026). Discordance in orphan drug approvals between the U.S. Food and Drug Administration and the European Medicines Agency: A retrospective observational analysis. PLoS medicine, 23(7), e1004861.",
-    "title": "Discordance in orphan drug approvals between the U.S",
-    "journal": "Food and Drug Administration and the European Medicines Agency: A retrospective observational analysis. PLoS medicine",
+    "title": "Discordance in orphan drug approvals between the U.S. Food and Drug Administration and the European Medicines Agency: A retrospective observational analysis",
+    "journal": "PLoS medicine",
     "year": 2026,
     "pubDate": "2026-07-06",
     "abstract": "Background The United States (US) and European Union (EU) have long-established orphan drug regulations to incentivise the development of medicines for rare diseases. While the numbers of orphan approvals have risen rapidly, there is increasing discordance in regulatory outcomes between the US and EU. This discordance primarily stems from two sets of cases: US Food and Drug Administration (FDA) orphan approvals not authorised by the European Medicines Agency (EMA), and FDA orphan approvals with EMA authorisation but without orphan designation. We examined factors associated with these two sets of cases to understand the growing gap in orphan approvals between the US and EU. Methods and findings We collected data on FDA orphan drug approvals between 2011 and 2023 from the FDA Orphan Drug Designations and Approvals Database and their corresponding EMA regulatory status from EMA medicines database. We used descriptive statistical analysis to examine trends and identify discordance in outcomes between agencies. Univariable logistic regression assessed pre-specified factors associated with discordance, including therapeutic area (cancer/non-cancer), company size (large/medium/small), company headquarters location (US/EU/others) and approval period (2011-2016/2017-2023). The main methodological limitations are that the study identified associations but does not establish causality, with unmeasured factors potentially contributing to the observed discordance. Of 814 FDA orphan approvals, only 29% received corresponding EMA marketing authorisation with orphan designation. A further 38% were authorised by the EMA but without orphan status, while the remaining 33% were not authorised by the EMA. Compared with the 2011-2016 period, cases in the 2017-2023 period were associated with lower odds (OR 0.66 (95% CI [0.48,0.92]; p = 0.013)) of EMA marketing authorisation. Compared with cancer approvals, non-cancer approvals were associated with lower odds (OR 0.53 (95% CI [0.38, 0.75]; p Conclusions Between 2011 and 2023, regulatory outcomes for orphan drug approvals increasingly diverged between the FDA and the EMA, particularly for cancer indications and approvals sponsored by small US sponsors. Among FDA orphan drugs authorised by the EMA, many were not designated as orphan products because of regulatory differences, particularly regarding requirements around significant benefit and biomarker-defined sub-populations in oncology. FDA-approved orphan drugs that lack EU marketing authorisation may be withheld by companies not because of regulatory barriers but due to insufficient commercial incentives to launch in Europe, resulting in fewer treatment options for European rare disease patients. Our findings suggest that orphan incentives are not the primary driver of commercial EU-launch decisions and therefore incremental changes to regulatory incentives seem unlikely to improve the access to orphan drugs for EU patients.",
@@ -2953,7 +2953,7 @@
       {
         "slug": "michael-m-hopkins",
         "name": "Michael M Hopkins",
-        "display": "Hopkins, M.",
+        "display": "Hopkins, M. M.",
         "isFirst": false,
         "isLast": false,
         "isSussex": true
@@ -3368,7 +3368,7 @@
       {
         "slug": "gordon-a-ferns",
         "name": "Gordon A Ferns",
-        "display": "Ferns, G.",
+        "display": "Ferns, G. A.",
         "isFirst": false,
         "isLast": false,
         "isSussex": true
@@ -3495,10 +3495,10 @@
       {
         "slug": "giuseppe-luigi-banna",
         "name": "Giuseppe Luigi Banna",
-        "display": "Banna, G.",
+        "display": "Banna, G. L.",
         "isFirst": false,
         "isLast": false,
-        "isSussex": true
+        "isSussex": false
       }
     ],
     "sussexLeadAuthor": false,
@@ -3553,13 +3553,13 @@
       {
         "slug": "giuseppe-luigi-banna",
         "name": "Giuseppe Luigi Banna",
-        "display": "Banna, G.",
+        "display": "Banna, G. L.",
         "isFirst": false,
-        "isLast": false,
-        "isSussex": true
+        "isLast": true,
+        "isSussex": false
       }
     ],
-    "sussexLeadAuthor": true,
+    "sussexLeadAuthor": false,
     "journalImpactScore": 30
   },
   {
@@ -3966,16 +3966,16 @@
       "Biochemistry"
     ],
     "scrcAuthors": [
+      "timothy-campbell",
       "wanyun-su",
-      "farzad-borumandi",
-      "timothy-campbell"
+      "farzad-borumandi"
     ],
     "authorLinks": [
       {
         "slug": "timothy-campbell",
         "name": "Timothy Campbell",
         "display": "Campbell, T.",
-        "isFirst": false,
+        "isFirst": true,
         "isLast": false,
         "isSussex": true
       },
@@ -3992,7 +3992,7 @@
         "name": "Farzad Borumandi",
         "display": "Borumandi, F.",
         "isFirst": false,
-        "isLast": false,
+        "isLast": true,
         "isSussex": true
       }
     ],
@@ -4223,12 +4223,12 @@
       "Microenvironment"
     ],
     "scrcAuthors": [
-      "chris-pepper",
-      "eleni-ladikou",
-      "simon-mitchell",
-      "andrea-pepper",
       "aleksandra-kolosova",
       "imogen-anna-mould",
+      "chris-pepper",
+      "simon-mitchell",
+      "andrea-pepper",
+      "eleni-ladikou",
       "fabio-simoes"
     ],
     "authorLinks": [
@@ -4236,14 +4236,14 @@
         "slug": "aleksandra-kolosova",
         "name": "Aleksandra Kolosova",
         "display": "Kolosova, A.",
-        "isFirst": false,
+        "isFirst": true,
         "isLast": false,
         "isSussex": true
       },
       {
         "slug": "imogen-anna-mould",
         "name": "Imogen Anna Mould",
-        "display": "Mould, I.",
+        "display": "Mould, I. A.",
         "isFirst": false,
         "isLast": false,
         "isSussex": true
@@ -4267,7 +4267,7 @@
       {
         "slug": "andrea-pepper",
         "name": "Andrea Pepper",
-        "display": "Pepper, A.",
+        "display": "Pepper, A. G. S.",
         "isFirst": false,
         "isLast": false,
         "isSussex": true
@@ -4275,7 +4275,7 @@
       {
         "slug": "eleni-ladikou",
         "name": "Eleni Ladikou",
-        "display": "Ladikou, E.",
+        "display": "Ladikou, E. E.",
         "isFirst": false,
         "isLast": false,
         "isSussex": true
@@ -4283,9 +4283,9 @@
       {
         "slug": "fabio-simoes",
         "name": "Fabio Simoes",
-        "display": "Simoes, F.",
+        "display": "Simoes, F. A.",
         "isFirst": false,
-        "isLast": false,
+        "isLast": true,
         "isSussex": true
       }
     ],
@@ -4521,7 +4521,7 @@
         "slug": "thalia-petropoulou",
         "name": "Thalia Petropoulou",
         "display": "Petropoulou, T.",
-        "isFirst": false,
+        "isFirst": true,
         "isLast": false,
         "isSussex": true
       }
@@ -4542,9 +4542,9 @@
       "Microenvironment"
     ],
     "scrcAuthors": [
-      "muruj-barri",
       "ielyaa-elshahri",
       "edward-h-b-ervine",
+      "muruj-barri",
       "md-zahidul-i-pranjol"
     ],
     "authorLinks": [
@@ -4552,14 +4552,14 @@
         "slug": "ielyaa-elshahri",
         "name": "Ielyaa Elshahri",
         "display": "Elshahri, I.",
-        "isFirst": false,
+        "isFirst": true,
         "isLast": false,
         "isSussex": true
       },
       {
         "slug": "edward-h-b-ervine",
         "name": "Edward H B Ervine",
-        "display": "Ervine, E.",
+        "display": "Ervine, E. H. B.",
         "isFirst": false,
         "isLast": false,
         "isSussex": true
@@ -4575,9 +4575,9 @@
       {
         "slug": "md-zahidul-i-pranjol",
         "name": "Md Zahidul I Pranjol",
-        "display": "Pranjol, M.",
+        "display": "Pranjol, M. Z. I.",
         "isFirst": false,
-        "isLast": false,
+        "isLast": true,
         "isSussex": true
       }
     ],
@@ -5036,14 +5036,14 @@
       "Public Health"
     ],
     "scrcAuthors": [
-      "omar-a-salem",
-      "amro-al-karadsheh"
+      "amro-al-karadsheh",
+      "omar-a-salem"
     ],
     "authorLinks": [
       {
         "slug": "amro-al-karadsheh",
         "name": "Amro Al-Karadsheh",
-        "display": "Karadsheh, A.",
+        "display": "Al-Karadsheh, A.",
         "isFirst": false,
         "isLast": false,
         "isSussex": true
@@ -5051,7 +5051,7 @@
       {
         "slug": "omar-a-salem",
         "name": "Omar A Salem",
-        "display": "Salem, O.",
+        "display": "Salem, O. A.",
         "isFirst": false,
         "isLast": false,
         "isSussex": true
@@ -5171,10 +5171,10 @@
       {
         "slug": "ethan-morgan",
         "name": "Ethan Morgan",
-        "display": "Morgan, E.",
+        "display": "Morgan, E. L.",
         "isFirst": false,
         "isLast": false,
-        "isSussex": true
+        "isSussex": false
       }
     ],
     "sussexLeadAuthor": false,
@@ -5742,10 +5742,10 @@
       "Biochemistry"
     ],
     "scrcAuthors": [
-      "helfrid-hochegger",
-      "william-r-foster",
+      "r-bert-zach",
       "megan-meredith",
-      "r-bert-zach"
+      "william-r-foster",
+      "helfrid-hochegger"
     ],
     "authorLinks": [
       {
@@ -5754,7 +5754,7 @@
         "display": "Zach, R.",
         "isFirst": false,
         "isLast": false,
-        "isSussex": true
+        "isSussex": false
       },
       {
         "slug": "megan-meredith",
@@ -5762,15 +5762,15 @@
         "display": "Meredith, M.",
         "isFirst": false,
         "isLast": false,
-        "isSussex": true
+        "isSussex": false
       },
       {
         "slug": "william-r-foster",
         "name": "William R Foster",
-        "display": "Foster, W.",
+        "display": "Foster, W. R.",
         "isFirst": false,
         "isLast": false,
-        "isSussex": true
+        "isSussex": false
       },
       {
         "slug": "helfrid-hochegger",
@@ -5778,7 +5778,7 @@
         "display": "Hochegger, H.",
         "isFirst": false,
         "isLast": false,
-        "isSussex": true
+        "isSussex": false
       }
     ],
     "sussexLeadAuthor": false,
@@ -5885,16 +5885,16 @@
       "Imaging"
     ],
     "scrcAuthors": [
+      "shirin-saberianpour",
       "nadia-terrazzini",
-      "bw9q96vc04ypghzsztlhp8t0awyvl9",
-      "shirin-saberianpour"
+      "bw9q96vc04ypghzsztlhp8t0awyvl9"
     ],
     "authorLinks": [
       {
         "slug": "shirin-saberianpour",
         "name": "Shirin Saberianpour",
         "display": "Saberianpour, S.",
-        "isFirst": false,
+        "isFirst": true,
         "isLast": false,
         "isSussex": true
       },
@@ -5911,7 +5911,7 @@
         "name": "Matteo Santin",
         "display": "Santin, M.",
         "isFirst": false,
-        "isLast": false,
+        "isLast": true,
         "isSussex": true
       }
     ],
@@ -5969,10 +5969,10 @@
       "Imaging"
     ],
     "scrcAuthors": [
+      "shayan-datta",
       "oluwabukola-thomas-orogan",
       "susan-ellery",
-      "anna-olsson-brown",
-      "shayan-datta"
+      "anna-olsson-brown"
     ],
     "authorLinks": [
       {
@@ -5986,7 +5986,7 @@
       {
         "slug": "oluwabukola-thomas-orogan",
         "name": "Oluwabukola Thomas-Orogan",
-        "display": "Orogan, O.",
+        "display": "Thomas-Orogan, O.",
         "isFirst": false,
         "isLast": false,
         "isSussex": true
@@ -6002,13 +6002,13 @@
       {
         "slug": "anna-olsson-brown",
         "name": "Anna Olsson-Brown",
-        "display": "Brown, A.",
+        "display": "Olsson-Brown, A.",
         "isFirst": false,
-        "isLast": false,
+        "isLast": true,
         "isSussex": true
       }
     ],
-    "sussexLeadAuthor": false,
+    "sussexLeadAuthor": true,
     "journalImpactScore": 30
   },
   {
@@ -6200,9 +6200,9 @@
       {
         "slug": "jon-a-harper",
         "name": "Jon A Harper",
-        "display": "Harper, J.",
+        "display": "Harper, J. A.",
         "isFirst": false,
-        "isLast": false,
+        "isLast": true,
         "isSussex": true
       }
     ],
@@ -6318,10 +6318,10 @@
       {
         "slug": "giuseppe-luigi-banna",
         "name": "Giuseppe Luigi Banna",
-        "display": "Banna, G.",
+        "display": "Banna, G. L.",
         "isFirst": false,
         "isLast": false,
-        "isSussex": true
+        "isSussex": false
       }
     ],
     "sussexLeadAuthor": false,
@@ -6535,9 +6535,9 @@
       "Public Health"
     ],
     "scrcAuthors": [
-      "lesley-fallowfield",
+      "helena-harder",
       "valerie-jenkins",
-      "helena-harder"
+      "lesley-fallowfield"
     ],
     "authorLinks": [
       {
@@ -6795,15 +6795,12 @@
       "Biochemistry"
     ],
     "scrcAuthors": [
-      "leandro-castellano",
-      "okan-sevim",
-      "rhys-morgan",
-      "sarah-newbury",
-      "megan-wagstaff",
       "david-palmer",
       "hyun-park",
-      "aaron-goff",
-      "benjamin-towler"
+      "leandro-castellano",
+      "sarah-newbury",
+      "benjamin-towler",
+      "rhys-morgan"
     ],
     "authorLinks": [
       {
@@ -6812,7 +6809,7 @@
         "display": "Palmer, D.",
         "isFirst": false,
         "isLast": false,
-        "isSussex": true
+        "isSussex": false
       },
       {
         "slug": "hyun-park",
@@ -6820,7 +6817,7 @@
         "display": "Park, H.",
         "isFirst": false,
         "isLast": false,
-        "isSussex": true
+        "isSussex": false
       },
       {
         "slug": "leandro-castellano",
@@ -6828,7 +6825,7 @@
         "display": "Castellano, L.",
         "isFirst": false,
         "isLast": false,
-        "isSussex": true
+        "isSussex": false
       },
       {
         "slug": "sarah-newbury",
@@ -6836,7 +6833,7 @@
         "display": "Newbury, S.",
         "isFirst": false,
         "isLast": false,
-        "isSussex": true
+        "isSussex": false
       },
       {
         "slug": "benjamin-towler",
@@ -6844,42 +6841,18 @@
         "display": "Towler, B.",
         "isFirst": false,
         "isLast": false,
-        "isSussex": true
+        "isSussex": false
       },
       {
         "slug": "rhys-morgan",
         "name": "Rhys Morgan",
         "display": "Morgan, R.",
         "isFirst": false,
-        "isLast": false,
-        "isSussex": true
-      },
-      {
-        "slug": "okan-sevim",
-        "name": "Okan Sevim",
-        "display": "Sevim, O.",
-        "isFirst": true,
-        "isLast": false,
-        "isSussex": true
-      },
-      {
-        "slug": "megan-wagstaff",
-        "name": "Megan Wagstaff",
-        "display": "Wagstaff, M.",
-        "isFirst": false,
-        "isLast": false,
-        "isSussex": true
-      },
-      {
-        "slug": "aaron-goff",
-        "name": "Aaron Goff",
-        "display": "Goff, A.",
-        "isFirst": false,
-        "isLast": false,
-        "isSussex": true
+        "isLast": true,
+        "isSussex": false
       }
     ],
-    "sussexLeadAuthor": true,
+    "sussexLeadAuthor": false,
     "journalImpactScore": 30
   },
   {
@@ -7187,17 +7160,17 @@
     ],
     "authorLinks": [
       {
-        "slug": "jo-armes",
-        "name": "Jo Armes",
-        "display": "Armes, J.",
+        "slug": "elizabeth-ford",
+        "name": "Elizabeth Ford",
+        "display": "Ford, E.",
         "isFirst": false,
         "isLast": false,
         "isSussex": true
       },
       {
-        "slug": "elizabeth-ford",
-        "name": "Elizabeth Ford",
-        "display": "Ford, E.",
+        "slug": "jo-armes",
+        "name": "Jo Armes",
+        "display": "Armes, J.",
         "isFirst": false,
         "isLast": false,
         "isSussex": true
@@ -7218,8 +7191,8 @@
       "Cancer Care"
     ],
     "scrcAuthors": [
-      "stephen-robinson",
-      "kamarul-ahmad-zaki"
+      "kamarul-ahmad-zaki",
+      "stephen-robinson"
     ],
     "authorLinks": [
       {
@@ -7728,8 +7701,8 @@
       "Biochemistry"
     ],
     "scrcAuthors": [
-      "juned-kadiwala",
       "andrew-hesketh",
+      "juned-kadiwala",
       "rameen-shakur"
     ],
     "authorLinks": [
@@ -7737,7 +7710,7 @@
         "slug": "andrew-hesketh",
         "name": "Andrew Hesketh",
         "display": "Hesketh, A.",
-        "isFirst": false,
+        "isFirst": true,
         "isLast": false,
         "isSussex": true
       },
@@ -7754,7 +7727,7 @@
         "name": "Rameen Shakur",
         "display": "Shakur, R.",
         "isFirst": false,
-        "isLast": false,
+        "isLast": true,
         "isSussex": true
       }
     ],
@@ -7774,26 +7747,22 @@
       "Biochemistry"
     ],
     "scrcAuthors": [
-      "ethan-morgan",
-      "timothy-chevassut",
-      "okan-sevim",
-      "rhys-morgan",
-      "sarah-newbury",
-      "bomee-kim",
-      "megan-wagstaff",
-      "david-palmer",
       "hyun-park",
-      "aaron-goff",
-      "benjamin-towler"
+      "david-palmer",
+      "sarah-newbury",
+      "ethan-morgan",
+      "benjamin-towler",
+      "timothy-chevassut",
+      "rhys-morgan"
     ],
     "authorLinks": [
       {
         "slug": "hyun-park",
         "name": "Hyun Park",
         "display": "Park, H.",
-        "isFirst": false,
+        "isFirst": true,
         "isLast": false,
-        "isSussex": true
+        "isSussex": false
       },
       {
         "slug": "david-palmer",
@@ -7801,7 +7770,7 @@
         "display": "Palmer, D.",
         "isFirst": false,
         "isLast": false,
-        "isSussex": true
+        "isSussex": false
       },
       {
         "slug": "sarah-newbury",
@@ -7809,7 +7778,7 @@
         "display": "Newbury, S.",
         "isFirst": false,
         "isLast": false,
-        "isSussex": true
+        "isSussex": false
       },
       {
         "slug": "ethan-morgan",
@@ -7817,7 +7786,7 @@
         "display": "Morgan, E.",
         "isFirst": false,
         "isLast": false,
-        "isSussex": true
+        "isSussex": false
       },
       {
         "slug": "benjamin-towler",
@@ -7825,7 +7794,7 @@
         "display": "Towler, B.",
         "isFirst": false,
         "isLast": false,
-        "isSussex": true
+        "isSussex": false
       },
       {
         "slug": "timothy-chevassut",
@@ -7833,50 +7802,18 @@
         "display": "Chevassut, T.",
         "isFirst": false,
         "isLast": false,
-        "isSussex": true
+        "isSussex": false
       },
       {
         "slug": "rhys-morgan",
         "name": "Rhys Morgan",
         "display": "Morgan, R.",
         "isFirst": false,
-        "isLast": false,
-        "isSussex": true
-      },
-      {
-        "slug": "okan-sevim",
-        "name": "Okan Sevim",
-        "display": "Sevim, O.",
-        "isFirst": false,
-        "isLast": false,
-        "isSussex": true
-      },
-      {
-        "slug": "megan-wagstaff",
-        "name": "Megan Wagstaff",
-        "display": "Wagstaff, M.",
-        "isFirst": false,
-        "isLast": false,
-        "isSussex": true
-      },
-      {
-        "slug": "aaron-goff",
-        "name": "Aaron Goff",
-        "display": "Goff, A.",
-        "isFirst": false,
-        "isLast": false,
-        "isSussex": true
-      },
-      {
-        "slug": "bomee-kim",
-        "name": "Bomee Kim",
-        "display": "Kim, B.",
-        "isFirst": false,
-        "isLast": false,
-        "isSussex": true
+        "isLast": true,
+        "isSussex": false
       }
     ],
-    "sussexLeadAuthor": true,
+    "sussexLeadAuthor": false,
     "journalImpactScore": 30
   },
   {
@@ -7891,16 +7828,16 @@
       "Brain Cancer"
     ],
     "scrcAuthors": [
+      "somia-hassanes",
       "eboh-cecil",
-      "betsy-francis",
-      "somia-hassanes"
+      "betsy-francis"
     ],
     "authorLinks": [
       {
         "slug": "somia-hassanes",
         "name": "Somia Hassanes",
         "display": "Hassanes, S.",
-        "isFirst": false,
+        "isFirst": true,
         "isLast": false,
         "isSussex": true
       },
@@ -7917,7 +7854,7 @@
         "name": "Betsy Francis",
         "display": "Francis, B.",
         "isFirst": false,
-        "isLast": false,
+        "isLast": true,
         "isSussex": true
       }
     ],
@@ -8131,7 +8068,7 @@
         "slug": "nafees-khan",
         "name": "Nafees Khan",
         "display": "Khan, N.",
-        "isFirst": false,
+        "isFirst": true,
         "isLast": false,
         "isSussex": true
       }
@@ -8186,7 +8123,7 @@
       {
         "slug": "gordon-a-ferns",
         "name": "Gordon A Ferns",
-        "display": "Ferns, G.",
+        "display": "Ferns, G. A.",
         "isFirst": false,
         "isLast": false,
         "isSussex": true
@@ -8213,9 +8150,9 @@
       {
         "slug": "md-zahidul-i-pranjol",
         "name": "Md Zahidul I Pranjol",
-        "display": "Pranjol, M.",
+        "display": "Pranjol, M. Z. I.",
         "isFirst": false,
-        "isLast": false,
+        "isLast": true,
         "isSussex": true
       }
     ],
@@ -8261,23 +8198,23 @@
       "Blood Cancers"
     ],
     "scrcAuthors": [
+      "zin-aung-soe",
       "eleni-ladikou",
-      "joel-a-newman",
-      "zin-aung-soe"
+      "joel-a-newman"
     ],
     "authorLinks": [
       {
         "slug": "zin-aung-soe",
         "name": "Zin Aung Soe",
-        "display": "Soe, Z.",
-        "isFirst": false,
+        "display": "Soe, Z. A.",
+        "isFirst": true,
         "isLast": false,
         "isSussex": true
       },
       {
         "slug": "eleni-ladikou",
         "name": "Eleni Ladikou",
-        "display": "Ladikou, E.",
+        "display": "Ladikou, E. E.",
         "isFirst": false,
         "isLast": false,
         "isSussex": true
@@ -8285,9 +8222,9 @@
       {
         "slug": "joel-a-newman",
         "name": "Joel A Newman",
-        "display": "Newman, J.",
+        "display": "Newman, J. A.",
         "isFirst": false,
-        "isLast": false,
+        "isLast": true,
         "isSussex": true
       }
     ],
@@ -8966,18 +8903,18 @@
       "Genome Damage"
     ],
     "scrcAuthors": [
-      "ramon-gonzalez-mendez",
+      "moycqpc26zye4abr8pevuvrs0dzyyp",
       "karen-meaburn",
-      "moycqpc26zye4abr8pevuvrs0dzyyp"
+      "ramon-gonzalez-mendez"
     ],
     "authorLinks": [
       {
         "slug": "moycqpc26zye4abr8pevuvrs0dzyyp",
         "name": "Evi Soutoglou",
         "display": "Soutoglou, E.",
-        "isFirst": false,
+        "isFirst": true,
         "isLast": false,
-        "isSussex": true
+        "isSussex": false
       },
       {
         "slug": "karen-meaburn",
@@ -8985,18 +8922,18 @@
         "display": "Meaburn, K.",
         "isFirst": false,
         "isLast": false,
-        "isSussex": true
+        "isSussex": false
       },
       {
         "slug": "ramon-gonzalez-mendez",
         "name": "Ramon Gonzalez-Mendez",
-        "display": "Mendez, R.",
+        "display": "Gonzalez-Mendez, R.",
         "isFirst": false,
         "isLast": false,
-        "isSussex": true
+        "isSussex": false
       }
     ],
-    "sussexLeadAuthor": true,
+    "sussexLeadAuthor": false,
     "journalImpactScore": 30
   },
   {
@@ -9297,7 +9234,7 @@
         "slug": "efe-opone",
         "name": "Efe Opone",
         "display": "Opone, E.",
-        "isFirst": false,
+        "isFirst": true,
         "isLast": false,
         "isSussex": true
       },
@@ -9306,7 +9243,7 @@
         "name": "Reza Aghamohammadzadeh",
         "display": "Aghamohammadzadeh, R.",
         "isFirst": false,
-        "isLast": false,
+        "isLast": true,
         "isSussex": true
       }
     ],
@@ -9483,7 +9420,8 @@
     "abstract": "Purpose To determine the factors associated with compliance with recommended intravitreal injections (IVIs) for retinal diseases among out-of-pocket, insured, and fully subsidized (non-paying) patients. Methods This retrospective observational hospital-based study included patients recommended for IVI in at least one eye between November 2011 and May 2022. Three cohorts of patients were assessed: out-of-pocket payers, insured, and those fully subsidized (non-paying) by the hospital. The main outcome measure was the compliance rate, defined as the proportion of patients receiving an injection after one was recommended. The impact on the visual outcome in each cohort was a secondary outcome. Results Overall, 50,408 IVI were recommended for at least one eye and were included in the analyses. Male patients were more common (66.72%), and the mean age was 55.36 ± 16.39 years. The overall compliance rate with the first recommended injection was 51.37%, which increased and eventually stabilized with subsequent recommendations to approximately 80% (range: 77.48%-82.93%). Insured patients had a higher compliance rate with the first recommendation compared to the non-insured (100% vs. 49.84%; P Conclusion Insured patients have a much higher compliance rate with recommended IVIs compared to out-of-pocket or non-paying patients. The high non-compliance rate among non-paying patients suggests that factors other than the direct cost of the injections may impact compliance with recommended treatment.",
     "doiUrl": "https://doi.org/10.4103/ijo.ijo_671_25",
     "interests": [
-      "Clinical Trials"
+      "Clinical Trials",
+      "Microenvironment"
     ],
     "scrcAuthors": [
       "chirantan-chatterjee"
@@ -9819,25 +9757,25 @@
       "Clinical Trials"
     ],
     "scrcAuthors": [
-      "wajeeh-ullah-mahmood",
-      "goldie-khera",
       "omar-lubbad",
-      "muhammad-shafique-sajid",
-      "krishna-k-singh"
+      "wajeeh-ullah-mahmood",
+      "krishna-k-singh",
+      "goldie-khera",
+      "muhammad-shafique-sajid"
     ],
     "authorLinks": [
       {
         "slug": "omar-lubbad",
         "name": "Omar Lubbad",
         "display": "Lubbad, O.",
-        "isFirst": false,
+        "isFirst": true,
         "isLast": false,
         "isSussex": true
       },
       {
         "slug": "wajeeh-ullah-mahmood",
         "name": "Wajeeh Ullah Mahmood",
-        "display": "Mahmood, W.",
+        "display": "Mahmood, W. U.",
         "isFirst": false,
         "isLast": false,
         "isSussex": true
@@ -9845,7 +9783,7 @@
       {
         "slug": "krishna-k-singh",
         "name": "Krishna K Singh",
-        "display": "Singh, K.",
+        "display": "Singh, K. K.",
         "isFirst": false,
         "isLast": false,
         "isSussex": true
@@ -9861,9 +9799,9 @@
       {
         "slug": "muhammad-shafique-sajid",
         "name": "Muhammad Shafique Sajid",
-        "display": "Sajid, M.",
+        "display": "Sajid, M. S.",
         "isFirst": false,
-        "isLast": false,
+        "isLast": true,
         "isSussex": true
       }
     ],
@@ -9882,25 +9820,25 @@
       "Clinical Trials"
     ],
     "scrcAuthors": [
-      "wajeeh-ullah-mahmood",
-      "goldie-khera",
       "omar-lubbad",
-      "muhammad-shafique-sajid",
-      "krishna-k-singh"
+      "wajeeh-ullah-mahmood",
+      "krishna-k-singh",
+      "goldie-khera",
+      "muhammad-shafique-sajid"
     ],
     "authorLinks": [
       {
         "slug": "omar-lubbad",
         "name": "Omar Lubbad",
         "display": "Lubbad, O.",
-        "isFirst": false,
+        "isFirst": true,
         "isLast": false,
         "isSussex": true
       },
       {
         "slug": "wajeeh-ullah-mahmood",
         "name": "Wajeeh Ullah Mahmood",
-        "display": "Mahmood, W.",
+        "display": "Mahmood, W. U.",
         "isFirst": false,
         "isLast": false,
         "isSussex": true
@@ -9908,7 +9846,7 @@
       {
         "slug": "krishna-k-singh",
         "name": "Krishna K Singh",
-        "display": "Singh, K.",
+        "display": "Singh, K. K.",
         "isFirst": false,
         "isLast": false,
         "isSussex": true
@@ -9924,9 +9862,9 @@
       {
         "slug": "muhammad-shafique-sajid",
         "name": "Muhammad Shafique Sajid",
-        "display": "Sajid, M.",
+        "display": "Sajid, M. S.",
         "isFirst": false,
-        "isLast": false,
+        "isLast": true,
         "isSussex": true
       }
     ],
@@ -10449,10 +10387,10 @@
       {
         "slug": "giuseppe-luigi-banna",
         "name": "Giuseppe Luigi Banna",
-        "display": "Banna, G.",
+        "display": "Banna, G. L.",
         "isFirst": false,
         "isLast": false,
-        "isSussex": true
+        "isSussex": false
       }
     ],
     "sussexLeadAuthor": false,
@@ -10479,10 +10417,10 @@
       {
         "slug": "giuseppe-luigi-banna",
         "name": "Giuseppe Luigi Banna",
-        "display": "Banna, G.",
+        "display": "Banna, G. L.",
         "isFirst": false,
         "isLast": false,
-        "isSussex": true
+        "isSussex": false
       }
     ],
     "sussexLeadAuthor": false,
@@ -10692,12 +10630,12 @@
         "slug": "leandro-castellano",
         "name": "Leandro Castellano",
         "display": "Castellano, L.",
-        "isFirst": false,
+        "isFirst": true,
         "isLast": false,
-        "isSussex": true
+        "isSussex": false
       }
     ],
-    "sussexLeadAuthor": true,
+    "sussexLeadAuthor": false,
     "journalImpactScore": 30
   },
   {
@@ -10747,10 +10685,10 @@
       {
         "slug": "giuseppe-luigi-banna",
         "name": "Giuseppe Luigi Banna",
-        "display": "Banna, G.",
+        "display": "Banna, G. L.",
         "isFirst": false,
         "isLast": false,
-        "isSussex": true
+        "isSussex": false
       }
     ],
     "sussexLeadAuthor": false,
@@ -10991,7 +10929,7 @@
   {
     "citation": "Stone, P., Minton, O., Richardson, A., Buckle, P., Enayat, Z. E., Marston, L., & Freemantle, N. (2025). Methylphenidate versus placebo for fatigue in patients with advanced cancer: the MePFAC randomised controlled trial. Health technology assessment (Winchester, England), 29(36), 1-47.",
     "title": "Methylphenidate versus placebo for fatigue in patients with advanced cancer: the MePFAC randomised controlled trial",
-    "journal": "Health technology assessment (Winchester",
+    "journal": "Health technology assessment (Winchester, England)",
     "year": 2025,
     "pubDate": "2025-07-01",
     "abstract": "Background Previous meta-analyses suggested methylphenidate may be effective for cancer-related fatigue. Trial design Phase III, parallel-group, randomised, double-blind, placebo-controlled trial. Methods Participants were adults with advanced cancer with cancer-related fatigue receiving palliative care at 17 palliative care services in England between June 2018 and April 2023. Principal exclusions Pregnancy; glaucoma; pheochromocytoma; planned general anaesthesia; hyperthyroidism; severe psychiatric disorders; hypertension; severe cardiovascular disorders; cerebrovascular disorders; anaemia; thrombocytopenia; leucopenia; infection; renal or liver impairment; concomitant clonidine, warfarin, monoamine oxidase inhibitors or modafinil; alcohol or drug dependency; epilepsy. Interventions Methylphenidate 5 mg tablets or matching placebo. Starting at 1 tablet twice daily, titrated over 6 weeks to a maximum of 12 tablets/day. Objective To estimate clinical effectiveness of methylphenidate versus placebo for cancer-related fatigue in patients receiving palliative care. Primary outcome Fatigue at 6 (± 2) weeks measured using the Functional Assessment of Chronic Illness Therapy - Fatigue Scale score. Secondary outcomes were fatigue at other time points; quality of life, adverse events, activities of daily living; appetite; anxiety; depression; patient satisfaction; survival and need for other medication. Randomisation Computer-generated 1 : 1 randomisation, stratified by centre, concomitant treatment, depression and initial fatigue score. Blinding Participants and outcome assessors were blinded to group assignment. Results Eighty-four were allocated to methylphenidate and 78 to placebo. Recruitment : Study completed. Numbers analysed Seventy-five in methylphenidate group and 72 in placebo group were included in analysis of primary outcome. Outcome There was no statistically or clinically significant difference in primary outcome between groups. Functional Assessment of Chronic Illness Therapy - Fatigue Scale scores were 1.97 points (95% confidence interval -0.95 to 4.90; p = 0.186) higher (better) on methylphenidate than placebo. Functional Assessment of Chronic Illness Therapy - Fatigue Scale score was nominally statistically significantly higher (better) in methylphenidate group across duration of study [Diff 2.20 (95% confidence interval 0.39 to 4.01)] but did not reach the minimal clinically important difference (5 points). At 6 weeks, there were no statistically significant differences in quality-of-life or symptom domains except for depression scores [nominally statistically significantly reduced in methylphenidate group: Diff -1.35 (95% confidence interval -2.41 to -0.30)]. Harms There were 25 serious adverse events in 20 participants receiving methylphenidate and 25 serious adverse events among 16 participants receiving placebo. There were no suspected unexpected serious adverse reactions. There were no statistically significant differences in deaths occurring within 75 days of randomisation (2 participants in placebo group and 6 participants in the methylphenidate group; Fisher's exact p -value 0.278). Adverse events were similar in the two groups, with no pattern to suggest increased harm with methylphenidate. Limitations Participants were highly selected due to multiple exclusion criteria. The choice of 5-point difference in Functional Assessment of Chronic Illness Therapy - Fatigue Scale score as clinically significant primary outcome may be debated. Conclusions Methylphenidate did not reduce fatigue severity in patients with advanced cancer at 6 (± 2) weeks but was safe and well tolerated. Future work Further trials of methylphenidate for fatigue in patients with advanced cancer receiving palliative care are not recommended. There may be scope for further studies in different populations or for different indications. Funding This synopsis presents independent research funded by the National Institute for Health and Care Research (NIHR) Health Technology Assessment programme as award number 15/46/02.",
@@ -11214,7 +11152,7 @@
         "slug": "aazaz-rehman",
         "name": "Aazaz Rehman",
         "display": "Rehman, A.",
-        "isFirst": false,
+        "isFirst": true,
         "isLast": false,
         "isSussex": true
       },
@@ -11239,7 +11177,7 @@
         "name": "Nigel Marchbank",
         "display": "Marchbank, N.",
         "isFirst": false,
-        "isLast": false,
+        "isLast": true,
         "isSussex": true
       }
     ],
@@ -11249,7 +11187,7 @@
   {
     "citation": "Athanasopoulos, M., Samara, P., Mastronikolis, S., Mastronikoli, S., Danielides, G., & Lygeros, S. (2025). Beyond the Middle Ear: A Thorough Review of Cholesteatoma in the Nasal Cavity and Paranasal Sinuses. Diagnostics (Basel, Switzerland), 15(12), 1461.",
     "title": "Beyond the Middle Ear: A Thorough Review of Cholesteatoma in the Nasal Cavity and Paranasal Sinuses",
-    "journal": "Diagnostics (Basel",
+    "journal": "Diagnostics (Basel, Switzerland)",
     "year": 2025,
     "pubDate": "2025-06-08",
     "abstract": "Background: Cholesteatoma, characterized by the abnormal growth of keratinizing squamous epithelium in ectopic locations, most commonly arises in the middle ear. Its occurrence in the sinonasal tract is rare and presents significant diagnostic and management challenges. These lesions can lead to severe complications like bone erosion, intracranial involvement, and orbital spread. This narrative review aims to summarize the current knowledge on cholesteatomas in these regions, focusing on epidemiology, pathophysiology, diagnosis, and treatment. Methods: A comprehensive review of the English literature was conducted, focusing on reported cases of cholesteatomas in the nasal cavity and paranasal sinuses. This review examines key aspects, including epidemiological data, imaging findings, surgical strategies, and postoperative outcomes. The role of diagnostic tools, particularly computed tomography and diffusion-weighted magnetic resonance imaging, in distinguishing cholesteatomas from other sinonasal lesions is also discussed. Results: As of March 2025, 51 cases of paranasal sinus cholesteatoma were reported. The frontal sinus is the most commonly affected site, followed by the maxillary, ethmoid, and sphenoid sinuses. Diagnosis is often delayed due to nonspecific symptoms, such as nasal congestion and recurrent infections. Surgical excision is the primary treatment, with endoscopic techniques being favored for their minimally invasive nature. Recurrence remains a major concern, and although very rare, cases of squamous cell carcinoma have also been observed in association with cholesteatoma. Conclusions: Nasal and paranasal sinus cholesteatomas require early recognition and intervention to prevent complications. Advances in imaging and surgery have improved outcomes; however, further research is needed to refine therapies and understand disease mechanisms.",
@@ -11294,7 +11232,7 @@
         "name": "Silvia Dragoni",
         "display": "Dragoni, S.",
         "isFirst": false,
-        "isLast": false,
+        "isLast": true,
         "isSussex": true
       }
     ],
@@ -11351,23 +11289,23 @@
     ],
     "scrcAuthors": [
       "alice-griffiths",
-      "md-zahidul-i-pranjol",
+      "andrei-stefan-georgescu",
       "muruj-barri",
-      "andrei-stefan-georgescu"
+      "md-zahidul-i-pranjol"
     ],
     "authorLinks": [
       {
         "slug": "alice-griffiths",
         "name": "Alice Griffiths",
         "display": "Griffiths, A.",
-        "isFirst": false,
+        "isFirst": true,
         "isLast": false,
         "isSussex": true
       },
       {
         "slug": "andrei-stefan-georgescu",
         "name": "Andrei-Stefan Georgescu",
-        "display": "Georgescu, A.",
+        "display": "Georgescu, A. S.",
         "isFirst": false,
         "isLast": false,
         "isSussex": true
@@ -11383,9 +11321,9 @@
       {
         "slug": "md-zahidul-i-pranjol",
         "name": "Md Zahidul I Pranjol",
-        "display": "Pranjol, M.",
+        "display": "Pranjol, M. Z. I.",
         "isFirst": false,
-        "isLast": false,
+        "isLast": true,
         "isSussex": true
       }
     ],
@@ -12090,8 +12028,8 @@
       "Public Health"
     ],
     "scrcAuthors": [
-      "elizabeth-ford",
-      "jo-armes"
+      "jo-armes",
+      "elizabeth-ford"
     ],
     "authorLinks": [
       {
@@ -12100,14 +12038,14 @@
         "display": "Armes, J.",
         "isFirst": false,
         "isLast": false,
-        "isSussex": true
+        "isSussex": false
       },
       {
         "slug": "elizabeth-ford",
         "name": "Elizabeth Ford",
         "display": "Ford, E.",
         "isFirst": false,
-        "isLast": false,
+        "isLast": true,
         "isSussex": true
       }
     ],
@@ -12154,7 +12092,7 @@
   {
     "citation": "Tsantoulas, A., Roukas, D., Mastronikoli, S., Tsiambas, E., Tsouvelas, G., Kafkas, N., ..., & Kavantzas, N. (2025). Connexin-43 Protein Expression Pattern Analysis in Myocardial Infarction Tissues. In vivo (Athens, Greece), 39(3), 1370-1377.",
     "title": "Connexin-43 Protein Expression Pattern Analysis in Myocardial Infarction Tissues",
-    "journal": "In vivo (Athens",
+    "journal": "In vivo (Athens, Greece)",
     "year": 2025,
     "pubDate": "2025-05-01",
     "abstract": "Background/aim Ischemic heart disease is a leading cause of death worldwide in comparison to malignant neoplasia. Myocardial infarction (MI) is the result of severe ischemia due to a low consumption of oxygen in the myocardium. The main pathophysiological reason is a progressive obstructive atherosclerotic endothelial lesion that causes reduction in coronary blood flow and increases the corresponding arterial stenosis. Our research aim was to investigate the role of altered expression connexin-43 (gene locus: 6q22.31) protein in MI tissue substrates with different clinico-pathological characteristics. Materials and methods A set of fifty (n=50) MI archival tissue sections derived from a forensic pathology file were selected and micro-sectioned. Immunohistochemistry and digital image analysis assays were implemented for detecting and measuring the levels of connexin-43, respectively. Results Low expression of Connexin-43 protein was detected in 16/50 (32%) cases, biphasic expression pattern (low/medium) was identified in 10/50 (20%), whereas moderate and high levels of protein expression were observed in the rest of them (24/50-48%). Connexin-43 overall expression was significantly correlated with the timing of the MI onset (recent or past) ( p =0.001). Conclusion Connexin-43 is a critical gap junction intermediate protein in MI pathology diagnosis and research. Different Connexin-43 expression levels, including single phase or biphasic patterns, should be a reliable biomarker for determining the timing of the MI lesions inside the corresponding tissue sections. Furthermore, implementation of sophisticated, accurate computerized techniques, such as digital image analysis provide very detailed, objective results regarding protein expression as modern precise (evidence-based) medicine requires.",
@@ -12323,9 +12261,9 @@
       {
         "slug": "md-zahidul-i-pranjol",
         "name": "Md Zahidul I Pranjol",
-        "display": "Pranjol, M.",
+        "display": "Pranjol, M. Z. I.",
         "isFirst": false,
-        "isLast": false,
+        "isLast": true,
         "isSussex": true
       }
     ],
@@ -12599,7 +12537,7 @@
       {
         "slug": "alan-lehmann",
         "name": "Alan Lehmann",
-        "display": "Lehmann, A.",
+        "display": "Lehmann, A. R.",
         "isFirst": false,
         "isLast": false,
         "isSussex": true
@@ -12916,25 +12854,25 @@
       "Biochemistry"
     ],
     "scrcAuthors": [
+      "rhys-morgan",
+      "megan-wagstaff",
+      "okan-sevim",
+      "aaron-goff",
+      "hyun-park",
+      "erika-mancini",
       "timothy-chevassut",
       "leandro-castellano",
-      "okan-sevim",
-      "benjamin-towler",
-      "rhys-morgan",
       "sarah-newbury",
-      "megan-wagstaff",
-      "erika-mancini",
-      "aaron-goff",
-      "hyun-park"
+      "benjamin-towler"
     ],
     "authorLinks": [
       {
         "slug": "rhys-morgan",
         "name": "Rhys Morgan",
         "display": "Morgan, R.",
-        "isFirst": false,
+        "isFirst": true,
         "isLast": false,
-        "isSussex": true
+        "isSussex": false
       },
       {
         "slug": "megan-wagstaff",
@@ -12942,7 +12880,7 @@
         "display": "Wagstaff, M.",
         "isFirst": false,
         "isLast": false,
-        "isSussex": true
+        "isSussex": false
       },
       {
         "slug": "okan-sevim",
@@ -12950,7 +12888,7 @@
         "display": "Sevim, O.",
         "isFirst": false,
         "isLast": false,
-        "isSussex": true
+        "isSussex": false
       },
       {
         "slug": "aaron-goff",
@@ -12958,7 +12896,7 @@
         "display": "Goff, A.",
         "isFirst": false,
         "isLast": false,
-        "isSussex": true
+        "isSussex": false
       },
       {
         "slug": "hyun-park",
@@ -12966,7 +12904,7 @@
         "display": "Park, H.",
         "isFirst": false,
         "isLast": false,
-        "isSussex": true
+        "isSussex": false
       },
       {
         "slug": "erika-mancini",
@@ -12974,7 +12912,7 @@
         "display": "Mancini, E.",
         "isFirst": false,
         "isLast": false,
-        "isSussex": true
+        "isSussex": false
       },
       {
         "slug": "timothy-chevassut",
@@ -12982,15 +12920,15 @@
         "display": "Chevassut, T.",
         "isFirst": false,
         "isLast": false,
-        "isSussex": true
+        "isSussex": false
       },
       {
         "slug": "leandro-castellano",
         "name": "Leandro Castellano",
-        "display": "Castellano, L.",
+        "display": "castellano, l.",
         "isFirst": false,
         "isLast": false,
-        "isSussex": true
+        "isSussex": false
       },
       {
         "slug": "sarah-newbury",
@@ -12998,24 +12936,24 @@
         "display": "Newbury, S.",
         "isFirst": false,
         "isLast": false,
-        "isSussex": true
+        "isSussex": false
       },
       {
         "slug": "benjamin-towler",
         "name": "Benjamin Towler",
         "display": "Towler, B.",
         "isFirst": false,
-        "isLast": false,
-        "isSussex": true
+        "isLast": true,
+        "isSussex": false
       }
     ],
-    "sussexLeadAuthor": true,
+    "sussexLeadAuthor": false,
     "journalImpactScore": 30
   },
   {
     "citation": "Edrich, E. S. M., Young, L., Spencer, J., McGown, A., Moore, A. L., & Gourlay, C. W. (2024). Novel mitochondrial-targeted alkyl chains act as fungal specific inhibitors of C. neoformans . Frontiers in microbiology, 15, 1505308.",
-    "title": "Novel mitochondrial-targeted alkyl chains act as fungal specific inhibitors of C",
-    "journal": "neoformans . Frontiers in microbiology",
+    "title": "Novel mitochondrial-targeted alkyl chains act as fungal specific inhibitors of C. neoformans ",
+    "journal": "Frontiers in microbiology",
     "year": 2025,
     "pubDate": "2025-02-04",
     "abstract": "Cryptococcus neoformans is the causal agent of cryptococcal meningitis in immunocompromised patients and increasing instances of anti-fungal resistance have led to investigations into new alternative antifungal targets. For example, C. neoformans possesses an Alternative Oxidase enzyme (Aox) that has been implicated in stress resistance and virulence that may represent a viable antifungal target. Here we test the efficacy of mitochondrially-targeted Colletochlorin B, which has been shown to inhibit the Aox of Candida albicans in vitro . Two derivatives of Colletochlorin B, which we modified to improve delivery to mitochondria, were identified as putative fungal-specific inhibitors. ALTOX094 and ALTOX102 were able to inhibit Aox and cytochrome bc 1 in vitro and demonstrated strong inhibitory effects against C. neoformans growth and viability. Further analysis suggested that the antifungal properties of ALTOX094 and ALTOX102 were attributable to different modes of action and forms of cell death, governed largely by the alkyl chain length used to tether Colletochlorin B to the mitochondria targeting triphenylphosphine (TPP) moiety. Our findings add to the growing evidence that functionalized mitochondria targeted alkyl chains may developed further as an effective class of antifungal and are effective against C. neoformans .",
@@ -13024,10 +12962,10 @@
       "Biochemistry"
     ],
     "scrcAuthors": [
-      "andrew-mcgown",
       "luke-young",
-      "anthony-l-moore",
-      "john-spencer"
+      "john-spencer",
+      "andrew-mcgown",
+      "anthony-l-moore"
     ],
     "authorLinks": [
       {
@@ -13049,7 +12987,7 @@
       {
         "slug": "andrew-mcgown",
         "name": "Andrew McGown",
-        "display": "Mcgown, A.",
+        "display": "McGown, A.",
         "isFirst": false,
         "isLast": false,
         "isSussex": true
@@ -13057,7 +12995,7 @@
       {
         "slug": "anthony-l-moore",
         "name": "Anthony L Moore",
-        "display": "Moore, A.",
+        "display": "Moore, A. L.",
         "isFirst": false,
         "isLast": false,
         "isSussex": true
@@ -13620,17 +13558,17 @@
     ],
     "authorLinks": [
       {
-        "slug": "todd-leckie",
-        "name": "Todd Leckie",
-        "display": "Leckie, T.",
+        "slug": "luke-hodgson",
+        "name": "Luke Hodgson",
+        "display": "Hodgson, L.",
         "isFirst": false,
         "isLast": false,
         "isSussex": true
       },
       {
-        "slug": "luke-hodgson",
-        "name": "Luke Hodgson",
-        "display": "Hodgson, L.",
+        "slug": "todd-leckie",
+        "name": "Todd Leckie",
+        "display": "Leckie, T.",
         "isFirst": false,
         "isLast": false,
         "isSussex": true
@@ -13707,23 +13645,23 @@
       "Structural Biology"
     ],
     "scrcAuthors": [
-      "john-spencer",
       "barny-greenland",
+      "john-spencer",
       "andrew-mcgown"
     ],
     "authorLinks": [
       {
-        "slug": "andrew-mcgown",
-        "name": "Andrew McGown",
-        "display": "Mcgown, A.",
+        "slug": "john-spencer",
+        "name": "John Spencer",
+        "display": "Spencer, J.",
         "isFirst": false,
         "isLast": false,
         "isSussex": true
       },
       {
-        "slug": "john-spencer",
-        "name": "John Spencer",
-        "display": "Spencer, J.",
+        "slug": "andrew-mcgown",
+        "name": "Andrew McGown",
+        "display": "Mcgown, A.",
         "isFirst": false,
         "isLast": false,
         "isSussex": true
@@ -13782,78 +13720,22 @@
       "Biochemistry"
     ],
     "scrcAuthors": [
-      "aaron-goff",
+      "timothy-chevassut",
       "leandro-castellano",
-      "okan-sevim",
-      "rhys-morgan",
-      "sarah-newbury",
+      "aaron-goff",
+      "benjamin-towler",
       "megan-wagstaff",
       "erika-mancini",
+      "okan-sevim",
+      "sarah-newbury",
       "hyun-park",
-      "benjamin-towler",
-      "timothy-chevassut"
+      "rhys-morgan"
     ],
     "authorLinks": [
-      {
-        "slug": "okan-sevim",
-        "name": "Okan Sevim",
-        "display": "Sevim, O.",
-        "isFirst": false,
-        "isLast": false,
-        "isSussex": true
-      },
-      {
-        "slug": "timothy-chevassut",
-        "name": "Timothy Chevassut",
-        "display": "Chevassut, T.",
-        "isFirst": false,
-        "isLast": false,
-        "isSussex": true
-      },
-      {
-        "slug": "erika-mancini",
-        "name": "Erika Mancini",
-        "display": "Mancini, E.",
-        "isFirst": false,
-        "isLast": false,
-        "isSussex": true
-      },
-      {
-        "slug": "megan-wagstaff",
-        "name": "Megan Wagstaff",
-        "display": "Wagstaff, M.",
-        "isFirst": false,
-        "isLast": false,
-        "isSussex": true
-      },
-      {
-        "slug": "rhys-morgan",
-        "name": "Rhys Morgan",
-        "display": "Morgan, R.",
-        "isFirst": false,
-        "isLast": false,
-        "isSussex": true
-      },
       {
         "slug": "benjamin-towler",
         "name": "Benjamin Towler",
         "display": "Towler, B.",
-        "isFirst": false,
-        "isLast": false,
-        "isSussex": true
-      },
-      {
-        "slug": "leandro-castellano",
-        "name": "Leandro Castellano",
-        "display": "Castellano, L.",
-        "isFirst": false,
-        "isLast": false,
-        "isSussex": true
-      },
-      {
-        "slug": "aaron-goff",
-        "name": "Aaron Goff",
-        "display": "Goff, A.",
         "isFirst": false,
         "isLast": false,
         "isSussex": true
@@ -13867,9 +13749,65 @@
         "isSussex": true
       },
       {
+        "slug": "erika-mancini",
+        "name": "Erika Mancini",
+        "display": "Mancini, E.",
+        "isFirst": false,
+        "isLast": false,
+        "isSussex": true
+      },
+      {
+        "slug": "timothy-chevassut",
+        "name": "Timothy Chevassut",
+        "display": "Chevassut, T.",
+        "isFirst": false,
+        "isLast": false,
+        "isSussex": true
+      },
+      {
+        "slug": "rhys-morgan",
+        "name": "Rhys Morgan",
+        "display": "Morgan, R.",
+        "isFirst": false,
+        "isLast": false,
+        "isSussex": true
+      },
+      {
         "slug": "hyun-park",
         "name": "Hyun Park",
         "display": "Park, H.",
+        "isFirst": false,
+        "isLast": false,
+        "isSussex": true
+      },
+      {
+        "slug": "megan-wagstaff",
+        "name": "Megan Wagstaff",
+        "display": "Wagstaff, M.",
+        "isFirst": false,
+        "isLast": false,
+        "isSussex": true
+      },
+      {
+        "slug": "okan-sevim",
+        "name": "Okan Sevim",
+        "display": "Sevim, O.",
+        "isFirst": false,
+        "isLast": false,
+        "isSussex": true
+      },
+      {
+        "slug": "aaron-goff",
+        "name": "Aaron Goff",
+        "display": "Goff, A.",
+        "isFirst": false,
+        "isLast": false,
+        "isSussex": true
+      },
+      {
+        "slug": "leandro-castellano",
+        "name": "Leandro Castellano",
+        "display": "Castellano, L.",
         "isFirst": false,
         "isLast": false,
         "isSussex": true
@@ -13890,23 +13828,23 @@
       "Biochemistry"
     ],
     "scrcAuthors": [
-      "okan-sevim",
       "hyun-park",
-      "rhys-morgan"
+      "rhys-morgan",
+      "okan-sevim"
     ],
     "authorLinks": [
       {
-        "slug": "rhys-morgan",
-        "name": "Rhys Morgan",
-        "display": "Morgan, R.",
+        "slug": "hyun-park",
+        "name": "Hyun Park",
+        "display": "Park, H.",
         "isFirst": false,
         "isLast": false,
         "isSussex": true
       },
       {
-        "slug": "hyun-park",
-        "name": "Hyun Park",
-        "display": "Park, H.",
+        "slug": "rhys-morgan",
+        "name": "Rhys Morgan",
+        "display": "Morgan, R.",
         "isFirst": false,
         "isLast": false,
         "isSussex": true
@@ -13963,9 +13901,9 @@
     ],
     "scrcAuthors": [
       "john-spencer",
+      "andrew-mcgown",
       "claire-adcock",
-      "damien-crepin",
-      "andrew-mcgown"
+      "damien-crepin"
     ],
     "authorLinks": [
       {
@@ -14017,22 +13955,22 @@
       "Patient Reported Outcomes"
     ],
     "scrcAuthors": [
-      "jeanne-dekerle",
-      "neil-a-harrison"
+      "neil-a-harrison",
+      "jeanne-dekerle"
     ],
     "authorLinks": [
       {
-        "slug": "jeanne-dekerle",
-        "name": "Jeanne Dekerle",
-        "display": "Dekerle, J.",
+        "slug": "neil-a-harrison",
+        "name": "Neil A Harrison",
+        "display": "Harrison, N.",
         "isFirst": false,
         "isLast": false,
         "isSussex": true
       },
       {
-        "slug": "neil-a-harrison",
-        "name": "Neil A Harrison",
-        "display": "Harrison, N.",
+        "slug": "jeanne-dekerle",
+        "name": "Jeanne Dekerle",
+        "display": "Dekerle, J.",
         "isFirst": false,
         "isLast": false,
         "isSussex": true
@@ -14085,17 +14023,17 @@
     ],
     "authorLinks": [
       {
-        "slug": "alexander-c-dixon",
-        "name": "Alexander C Dixon",
-        "display": "Dixon, A.",
+        "slug": "john-spencer",
+        "name": "John Spencer",
+        "display": "Spencer, J.",
         "isFirst": false,
         "isLast": false,
         "isSussex": true
       },
       {
-        "slug": "john-spencer",
-        "name": "John Spencer",
-        "display": "Spencer, J.",
+        "slug": "alexander-c-dixon",
+        "name": "Alexander C Dixon",
+        "display": "Dixon, A.",
         "isFirst": false,
         "isLast": false,
         "isSussex": true
@@ -14245,23 +14183,23 @@
       "Microenvironment"
     ],
     "scrcAuthors": [
-      "william-jones",
       "georgios-giamas",
-      "mark-samuels"
+      "mark-samuels",
+      "william-jones"
     ],
     "authorLinks": [
       {
-        "slug": "georgios-giamas",
-        "name": "Georgios Giamas",
-        "display": "Giamas, G.",
+        "slug": "william-jones",
+        "name": "William Jones",
+        "display": "Jones, W.",
         "isFirst": false,
         "isLast": false,
         "isSussex": true
       },
       {
-        "slug": "william-jones",
-        "name": "William Jones",
-        "display": "Jones, W.",
+        "slug": "georgios-giamas",
+        "name": "Georgios Giamas",
+        "display": "Giamas, G.",
         "isFirst": false,
         "isLast": false,
         "isSussex": true
@@ -14384,8 +14322,8 @@
     ],
     "scrcAuthors": [
       "fabio-simoes",
-      "eleni-ladikou",
-      "andrea-pepper"
+      "andrea-pepper",
+      "eleni-ladikou"
     ],
     "authorLinks": [
       {
@@ -14520,9 +14458,9 @@
       "Patient Reported Outcomes"
     ],
     "scrcAuthors": [
-      "valerie-jenkins",
       "lesley-fallowfield",
-      "rachel-starkings"
+      "rachel-starkings",
+      "valerie-jenkins"
     ],
     "authorLinks": [
       {
@@ -14603,28 +14541,12 @@
       "Clinical Trials"
     ],
     "scrcAuthors": [
-      "peter-williams",
       "melanie-flint",
+      "peter-williams",
       "thumuluru-kavitha-madhuri",
       "lusine-sevinyan"
     ],
     "authorLinks": [
-      {
-        "slug": "lusine-sevinyan",
-        "name": "Lusine Sevinyan",
-        "display": "Sevinyan, L.",
-        "isFirst": false,
-        "isLast": false,
-        "isSussex": true
-      },
-      {
-        "slug": "thumuluru-kavitha-madhuri",
-        "name": "Thumuluru Kavitha Madhuri",
-        "display": "Madhuri, T.",
-        "isFirst": false,
-        "isLast": false,
-        "isSussex": true
-      },
       {
         "slug": "peter-williams",
         "name": "Peter Williams",
@@ -14637,6 +14559,22 @@
         "slug": "melanie-flint",
         "name": "Melanie Flint",
         "display": "Flint, M.",
+        "isFirst": false,
+        "isLast": false,
+        "isSussex": true
+      },
+      {
+        "slug": "lusine-sevinyan",
+        "name": "Lusine Sevinyan",
+        "display": "Sevinyan, L.",
+        "isFirst": false,
+        "isLast": false,
+        "isSussex": true
+      },
+      {
+        "slug": "thumuluru-kavitha-madhuri",
+        "name": "Thumuluru Kavitha Madhuri",
+        "display": "Madhuri, T.",
         "isFirst": false,
         "isLast": false,
         "isSussex": true
@@ -14676,8 +14614,8 @@
       "Clinical Trials"
     ],
     "scrcAuthors": [
-      "valerie-shilling",
       "lesley-fallowfield",
+      "valerie-shilling",
       "rachel-starkings"
     ],
     "authorLinks": [
@@ -14748,17 +14686,17 @@
     ],
     "authorLinks": [
       {
-        "slug": "nicolas-stewart",
-        "name": "Nicolas Stewart",
-        "display": "Stewart, N.",
+        "slug": "melanie-flint",
+        "name": "Melanie Flint",
+        "display": "Flint, M.",
         "isFirst": false,
         "isLast": false,
         "isSussex": true
       },
       {
-        "slug": "melanie-flint",
-        "name": "Melanie Flint",
-        "display": "Flint, M.",
+        "slug": "nicolas-stewart",
+        "name": "Nicolas Stewart",
+        "display": "Stewart, N.",
         "isFirst": false,
         "isLast": false,
         "isSussex": true
@@ -14780,11 +14718,11 @@
       "Microenvironment"
     ],
     "scrcAuthors": [
-      "viviana-vella",
+      "william-jones",
       "georgios-giamas",
       "mark-samuels",
-      "william-jones",
-      "stephen-robinson"
+      "stephen-robinson",
+      "viviana-vella"
     ],
     "authorLinks": [
       {
@@ -14804,9 +14742,9 @@
         "isSussex": true
       },
       {
-        "slug": "mark-samuels",
-        "name": "Mark Samuels",
-        "display": "Samuels, M.",
+        "slug": "viviana-vella",
+        "name": "Viviana Vella",
+        "display": "Vella, V.",
         "isFirst": false,
         "isLast": false,
         "isSussex": true
@@ -14820,9 +14758,9 @@
         "isSussex": true
       },
       {
-        "slug": "viviana-vella",
-        "name": "Viviana Vella",
-        "display": "Vella, V.",
+        "slug": "mark-samuels",
+        "name": "Mark Samuels",
+        "display": "Samuels, M.",
         "isFirst": false,
         "isLast": false,
         "isSussex": true
@@ -14954,17 +14892,17 @@
         "isSussex": true
       },
       {
-        "slug": "sally-wheelwright",
-        "name": "Sally Wheelwright",
-        "display": "Wheelwright, S.",
+        "slug": "ollie-minton",
+        "name": "Ollie Minton",
+        "display": "Minton, O.",
         "isFirst": false,
         "isLast": false,
         "isSussex": true
       },
       {
-        "slug": "ollie-minton",
-        "name": "Ollie Minton",
-        "display": "Minton, O.",
+        "slug": "sally-wheelwright",
+        "name": "Sally Wheelwright",
+        "display": "Wheelwright, S.",
         "isFirst": false,
         "isLast": false,
         "isSussex": true
@@ -14988,19 +14926,11 @@
     ],
     "scrcAuthors": [
       "helena-harder",
-      "valerie-shilling",
       "lesley-fallowfield",
+      "valerie-shilling",
       "rachel-starkings"
     ],
     "authorLinks": [
-      {
-        "slug": "rachel-starkings",
-        "name": "Rachel Starkings",
-        "display": "Starkings, R.",
-        "isFirst": false,
-        "isLast": false,
-        "isSussex": true
-      },
       {
         "slug": "lesley-fallowfield",
         "name": "Lesley Fallowfield",
@@ -15010,17 +14940,25 @@
         "isSussex": true
       },
       {
-        "slug": "helena-harder",
-        "name": "Helena Harder",
-        "display": "Harder, H.",
+        "slug": "valerie-shilling",
+        "name": "Valerie Shilling",
+        "display": "Shilling, V.",
         "isFirst": false,
         "isLast": false,
         "isSussex": true
       },
       {
-        "slug": "valerie-shilling",
-        "name": "Valerie Shilling",
-        "display": "Shilling, V.",
+        "slug": "rachel-starkings",
+        "name": "Rachel Starkings",
+        "display": "Starkings, R.",
+        "isFirst": false,
+        "isLast": false,
+        "isSussex": true
+      },
+      {
+        "slug": "helena-harder",
+        "name": "Helena Harder",
+        "display": "Harder, H.",
         "isFirst": false,
         "isLast": false,
         "isSussex": true
@@ -15090,28 +15028,12 @@
       "Public Health"
     ],
     "scrcAuthors": [
+      "helena-harder",
       "lesley-fallowfield",
       "valerie-shilling",
-      "helena-harder",
       "rachel-starkings"
     ],
     "authorLinks": [
-      {
-        "slug": "rachel-starkings",
-        "name": "Rachel Starkings",
-        "display": "Starkings, R.",
-        "isFirst": false,
-        "isLast": false,
-        "isSussex": true
-      },
-      {
-        "slug": "helena-harder",
-        "name": "Helena Harder",
-        "display": "Harder, H.",
-        "isFirst": false,
-        "isLast": false,
-        "isSussex": true
-      },
       {
         "slug": "lesley-fallowfield",
         "name": "Lesley Fallowfield",
@@ -15124,6 +15046,22 @@
         "slug": "valerie-shilling",
         "name": "Valerie Shilling",
         "display": "Shilling, V.",
+        "isFirst": false,
+        "isLast": false,
+        "isSussex": true
+      },
+      {
+        "slug": "rachel-starkings",
+        "name": "Rachel Starkings",
+        "display": "Starkings, R.",
+        "isFirst": false,
+        "isLast": false,
+        "isSussex": true
+      },
+      {
+        "slug": "helena-harder",
+        "name": "Helena Harder",
+        "display": "Harder, H.",
         "isFirst": false,
         "isLast": false,
         "isSussex": true
@@ -15279,10 +15217,10 @@
       "Patient Reported Outcomes"
     ],
     "scrcAuthors": [
-      "valerie-jenkins",
       "lesley-fallowfield",
+      "rachel-starkings",
       "shirley-may",
-      "rachel-starkings"
+      "valerie-jenkins"
     ],
     "authorLinks": [
       {
@@ -15302,17 +15240,17 @@
         "isSussex": true
       },
       {
-        "slug": "shirley-may",
-        "name": "Shirley May",
-        "display": "May, S.",
+        "slug": "rachel-starkings",
+        "name": "Rachel Starkings",
+        "display": "Starkings, R.",
         "isFirst": false,
         "isLast": false,
         "isSussex": true
       },
       {
-        "slug": "rachel-starkings",
-        "name": "Rachel Starkings",
-        "display": "Starkings, R.",
+        "slug": "shirley-may",
+        "name": "Shirley May",
+        "display": "May, S.",
         "isFirst": false,
         "isLast": false,
         "isSussex": true
@@ -15434,6 +15372,14 @@
     ],
     "authorLinks": [
       {
+        "slug": "anjum-memon",
+        "name": "Anjum Memon",
+        "display": "Memon, A.",
+        "isFirst": false,
+        "isLast": false,
+        "isSussex": true
+      },
+      {
         "slug": "elizabeth-ford",
         "name": "Elizabeth Ford",
         "display": "Ford, E.",
@@ -15453,14 +15399,6 @@
         "slug": "imogen-rogers",
         "name": "Imogen Rogers",
         "display": "Rogers, I.",
-        "isFirst": false,
-        "isLast": false,
-        "isSussex": true
-      },
-      {
-        "slug": "anjum-memon",
-        "name": "Anjum Memon",
-        "display": "Memon, A.",
         "isFirst": false,
         "isLast": false,
         "isSussex": true
@@ -15502,8 +15440,8 @@
       "Public Health"
     ],
     "scrcAuthors": [
-      "john-jones",
-      "hyun-park"
+      "hyun-park",
+      "john-jones"
     ],
     "authorLinks": [
       {
@@ -15556,7 +15494,7 @@
   {
     "citation": "Santoso, A., Levink, I., Pihlak, R., & Chau, I. (2024). The Immune Landscape and Its Potential for Immunotherapy in Advanced Biliary Tract Cancer. Current oncology (Toronto, Ont.), 32(1), 24.",
     "title": "The Immune Landscape and Its Potential for Immunotherapy in Advanced Biliary Tract Cancer",
-    "journal": "Current oncology (Toronto",
+    "journal": "Current oncology (Toronto, Ont.)",
     "year": 2024,
     "pubDate": "2024-12-31",
     "abstract": "Biliary tract cancers (BTC) are a highly heterogeneous group of cancers at the genomic, epigenetic and molecular levels. The vast majority of patients initially present at an advanced (unresectable) disease stage due to a lack of symptoms and an aggressive tumour biology. Chemotherapy has been the mainstay of treatment in patients with advanced BTC but the survival outcomes and prognosis remain poor. The addition of immune checkpoint inhibitors (ICI) to chemotherapy have shown only a marginal benefit over chemotherapy alone due to the complex tumour immune microenvironment of these cancers. This review appraises our current understanding of the immune landscape of advanced BTC, including emerging transcriptome-based classifications, highlighting the mechanisms of immune evasion and resistance to ICI and their therapeutic implications. It describes the shifting treatment paradigm from traditional chemotherapy to immunotherapy combinations as well as the potential biomarkers for predicting response to ICI.",
@@ -15622,14 +15560,14 @@
   },
   {
     "citation": "Hunter, A., Roche, M., Robeel, M., & Hodgson, L. (2024). Association Between Frailty Scoring and Cardiopulmonary Exercise Testing. A Retrospective Cohort Study. Preprints.org.",
-    "title": "Association Between Frailty Scoring and Cardiopulmonary Exercise Testing",
-    "journal": "A Retrospective Cohort Study. Preprints.org",
+    "title": "Association Between Frailty Scoring and Cardiopulmonary Exercise Testing. A Retrospective Cohort Study",
+    "journal": "Preprints.org",
     "year": 2024,
     "pubDate": "2024-12-23",
     "abstract": "Introduction: Cardiopulmonary exercise testing (CPET), is the gold standard assessment of functional capacity and predicts postoperative outcomes in major abdominal and thoracic surgery, as well as in older individuals undergoing elective surgery for colorectal cancer. However, CPET is resource intensive and not universally available. Simpler objective assessments of functional capacity, such as clinical frailty scale (CFS) scoring, predict post operative complications and may be useful to aid shared decision and perioperative planning. Objectives To assess local cohort data and investigate the association between clinical frailty scoring, CPET outcomes and length of hospital stay. Methods A retrospective cohort analysis of all patients that received a cardiopulmonary exercise test as part of their pre-operative assessment for major abdominal and thoracic surgery between May 2018-December 2022 from four district general hospitals. Results 174 patients, age 73 (mean) CFS 3 (mean), underwent CPET testing with associated CFS scoring. CFS scores were weakly correlated with anaerobic threshold, VO2 peak and ventilatory equivalents, -0.34,-0.36 and 0.31 (all p<0.001) respectively. Linear regression demonstrated a negative coefficient for association of CFS with VO2 peak and AT, -1.22 and -1.70 respectively, both p<0.001. CFS score was not predictive of 1 year mortality in this group. In a subgroup analysis (n=59) there was no association with CFS score and length of stay. Conclusions Our data suggests a weak signal between CFS score and CPET results. Further investigation with larger datasets is required to explore the use of CFS as a surrogate for CPET testing and its use as an independent predictor for perioperative outcomes. This study supports the limited literature available.",
     "doiUrl": "https://doi.org/10.20944/preprints202412.1840.v1",
     "interests": [
-      "Cancer Care"
+      "Clinical Trials"
     ],
     "scrcAuthors": [
       "luke-hodgson"
@@ -15640,11 +15578,11 @@
         "name": "Luke Hodgson",
         "display": "Hodgson, L.",
         "isFirst": false,
-        "isLast": false,
-        "isSussex": true
+        "isLast": true,
+        "isSussex": false
       }
     ],
-    "sussexLeadAuthor": true,
+    "sussexLeadAuthor": false,
     "journalImpactScore": 30
   },
   {
@@ -16086,7 +16024,7 @@
         "name": "Awa Tansie",
         "display": "Tansie, A.",
         "isFirst": false,
-        "isLast": false,
+        "isLast": true,
         "isSussex": true
       }
     ],
@@ -16132,24 +16070,24 @@
       "Public Health"
     ],
     "scrcAuthors": [
-      "anouk-van-der-avoirt",
-      "mohamed-albendary"
+      "mohamed-albendary",
+      "anouk-van-der-avoirt"
     ],
     "authorLinks": [
       {
         "slug": "mohamed-albendary",
         "name": "Mohamed Albendary",
         "display": "Albendary, M.",
-        "isFirst": false,
+        "isFirst": true,
         "isLast": false,
         "isSussex": true
       },
       {
         "slug": "anouk-van-der-avoirt",
         "name": "Anouk Van Der Avoirt",
-        "display": "Avoirt, A.",
+        "display": "Van Der Avoirt, A.",
         "isFirst": false,
-        "isLast": false,
+        "isLast": true,
         "isSussex": true
       }
     ],
@@ -16235,8 +16173,8 @@
       {
         "slug": "giordana-m-s-peregrino",
         "name": "Giordana M S Peregrino",
-        "display": "Peregrino, G.",
-        "isFirst": false,
+        "display": "Peregrino, G. M. S.",
+        "isFirst": true,
         "isLast": false,
         "isSussex": true
       },
@@ -16253,7 +16191,7 @@
         "name": "Matteo Santin",
         "display": "Santin, M.",
         "isFirst": false,
-        "isLast": false,
+        "isLast": true,
         "isSussex": true
       }
     ],
@@ -16275,15 +16213,15 @@
       "Immunology"
     ],
     "scrcAuthors": [
-      "zaid-munir",
-      "mirac-burak-tak"
+      "mirac-burak-tak",
+      "zaid-munir"
     ],
     "authorLinks": [
       {
         "slug": "mirac-burak-tak",
         "name": "Mirac Burak Tak",
-        "display": "Tak, M.",
-        "isFirst": false,
+        "display": "Tak, M. B.",
+        "isFirst": true,
         "isLast": false,
         "isSussex": true
       },
@@ -16357,7 +16295,7 @@
         "name": "Andleeb Manzoor",
         "display": "Manzoor, A.",
         "isFirst": false,
-        "isLast": false,
+        "isLast": true,
         "isSussex": true
       }
     ],
@@ -16755,7 +16693,7 @@
         "slug": "ragaul-rajagopal",
         "name": "Ragaul Rajagopal",
         "display": "Rajagopal, R.",
-        "isFirst": false,
+        "isFirst": true,
         "isLast": false,
         "isSussex": true
       }
@@ -16925,7 +16863,7 @@
         "name": "Sally Wheelwright",
         "display": "Wheelwright, S.",
         "isFirst": false,
-        "isLast": false,
+        "isLast": true,
         "isSussex": true
       }
     ],
@@ -17072,7 +17010,7 @@
   {
     "citation": "Alakonya, H., Koustoulidou, S., Hopkins, S. L., Veal, M., Ajenjo, J., Sneddon, D., ..., & Cornelissen, B. (2024). Molecular Imaging of p53 in Mouse Models of Cancer Using a Radiolabeled Antibody TAT Conjugate with SPECT. Journal of nuclear medicine : official publication, Society of Nuclear Medicine, 65(10), 1626-1632.",
     "title": "Molecular Imaging of p53 in Mouse Models of Cancer Using a Radiolabeled Antibody TAT Conjugate with SPECT",
-    "journal": "Journal of nuclear medicine : official publication",
+    "journal": "Journal of nuclear medicine : official publication, Society of Nuclear Medicine",
     "year": 2024,
     "pubDate": "2024-10-01",
     "abstract": "Mutations of p53 protein occur in over half of all cancers, with profound effects on tumor biology. We present the first-to our knowledge-method for noninvasive visualization of p53 in tumor tissue in vivo, using SPECT, in 3 different models of cancer. Methods: Anti-p53 monoclonal antibodies were conjugated to the cell-penetrating transactivator of transcription (TAT) peptide and a metal ion chelator and then radiolabeled with 111 In to allow SPECT imaging. 111 In-anti-p53-TAT conjugates were retained longer in cells overexpressing p53-specific than non-p53-specific 111 In-mIgG (mouse IgG from murine plasma)-TAT controls, but not in null p53 cells. Results: In vivo SPECT imaging showed enhanced uptake of 111 In-anti-p53-TAT, versus 111 In-mIgG-TAT, in high-expression p53 R175H and medium-expression wild-type p53 but not in null p53 tumor xenografts. The results were confirmed in mice bearing genetically engineered KPC mouse-derived pancreatic ductal adenocarcinoma tumors. Imaging with 111 In-anti-p53-TAT was possible in KPC mice bearing spontaneous p53 R172H pancreatic ductal adenocarcinoma tumors. Conclusion: We demonstrate the feasibility of noninvasive in vivo molecular imaging of p53 in tumor tissue using a radiolabeled TAT-modified monoclonal antibody.",
@@ -17090,7 +17028,7 @@
         "display": "Sneddon, D.",
         "isFirst": false,
         "isLast": false,
-        "isSussex": true
+        "isSussex": false
       }
     ],
     "sussexLeadAuthor": false,
@@ -17325,16 +17263,16 @@
       "Cancer Care"
     ],
     "scrcAuthors": [
-      "malcolm-mckenzie",
       "thomas-oswald",
-      "sarah-curtis"
+      "sarah-curtis",
+      "malcolm-mckenzie"
     ],
     "authorLinks": [
       {
         "slug": "thomas-oswald",
         "name": "Thomas Oswald",
         "display": "Oswald, T.",
-        "isFirst": false,
+        "isFirst": true,
         "isLast": false,
         "isSussex": true
       },
@@ -17351,7 +17289,7 @@
         "name": "Malcolm Mckenzie",
         "display": "Mckenzie, M.",
         "isFirst": false,
-        "isLast": false,
+        "isLast": true,
         "isSussex": true
       }
     ],
@@ -17488,9 +17426,9 @@
       {
         "slug": "md-zahidul-i-pranjol",
         "name": "Md Zahidul I Pranjol",
-        "display": "Pranjol, M.",
+        "display": "Pranjol, M. Z. I.",
         "isFirst": false,
-        "isLast": false,
+        "isLast": true,
         "isSussex": true
       }
     ],
@@ -17751,7 +17689,7 @@
         "name": "Shahaduz Zaman",
         "display": "Zaman, S.",
         "isFirst": false,
-        "isLast": false,
+        "isLast": true,
         "isSussex": true
       }
     ],
@@ -17870,7 +17808,7 @@
   {
     "citation": "McGee, S. F., Clemons, M., Pond, G., Caudrelier, J. M., Liu, M., Alzahrani, M. J., ..., & Bourque, J. M. (2024). A Randomized Trial Comparing Concurrent versus Sequential Radiation and Endocrine Therapy in Early-Stage, Hormone-Responsive Breast Cancer. Current oncology (Toronto, Ont.), 31(8), 4531-4545.",
     "title": "A Randomized Trial Comparing Concurrent versus Sequential Radiation and Endocrine Therapy in Early-Stage, Hormone-Responsive Breast Cancer",
-    "journal": "Current oncology (Toronto",
+    "journal": "Current oncology (Toronto, Ont.)",
     "year": 2024,
     "pubDate": "2024-08-07",
     "abstract": "Concerns exist regarding increased toxicities, including endocrine therapy toxicity, with concurrent radiation and endocrine therapy in early breast cancer (EBC). We present a pragmatic, randomized trial comparing concurrent versus sequential endocrine and radiotherapy in hormone-responsive EBC. In this multicenter trial, patients were randomized to receive adjuvant endocrine therapy concurrent with, or sequential to, radiotherapy. The primary outcome was change in endocrine therapy toxicity from baseline to 3 months post radiotherapy using the Functional Assessment of Cancer Therapy-Endocrine Symptom (FACT-ES) score. From September 2019 to January 2021, 133 patients were randomized to concurrent endocrine and radiotherapy, and 127 to sequential treatment. Most patients were post-menopausal (72.7%, 189/260) with stage 1 disease (65.8%, 171/260). Tamoxifen was the endocrine therapy of choice for 69.6% (181/260) of patients, and an aromatase inhibitor for the remainder. The median total radiation dose and fractions were 40.1 Gray (range 26-50) and 15 fractions (range 5-25), respectively. For the primary outcome of change in endocrine therapy toxicity per FACT-ES scores from baseline to 3 months post radiotherapy, no significant difference was found between the groups (median [range] = -4.9 (-82, 38.8) for concurrent and -5.1 (-42, 40) for sequential, p = 0.87). This is the first trial to investigate the impact of concurrent versus sequential adjuvant endocrine and radiotherapy on endocrine therapy-related toxicities. The findings provide further support to allow the optimal timing of radiation and endocrine therapy to be tailored for the individual patient.",
@@ -18184,7 +18122,7 @@
   {
     "citation": "Bauckneht, M., Fornarini, G., Di Raimondo, T., Pardini, M., Donegani, M. I., Banna, G. L., Di Maio, M., & Morbelli, S. (2024). Brain Metabolic Correlates of the Off-Target Effects of Enzalutamide on the Central Nervous System of Patients with Advanced Prostate Cancer. Journal of nuclear medicine : official publication, Society of Nuclear Medicine, 65(8), 1327.",
     "title": "Brain Metabolic Correlates of the Off-Target Effects of Enzalutamide on the Central Nervous System of Patients with Advanced Prostate Cancer",
-    "journal": "Journal of nuclear medicine : official publication",
+    "journal": "Journal of nuclear medicine : official publication, Society of Nuclear Medicine",
     "year": 2024,
     "pubDate": "2024-08-01",
     "abstract": "",
@@ -18199,10 +18137,10 @@
       {
         "slug": "giuseppe-luigi-banna",
         "name": "Giuseppe Luigi Banna",
-        "display": "Banna, G.",
+        "display": "Banna, G. L.",
         "isFirst": false,
         "isLast": false,
-        "isSussex": true
+        "isSussex": false
       }
     ],
     "sussexLeadAuthor": false,
@@ -18397,18 +18335,18 @@
       "Public Health"
     ],
     "scrcAuthors": [
-      "rachel-papps-williams",
-      "lesley-fallowfield",
-      "virginia-hall",
+      "valerie-jenkins",
       "ruth-habibi",
-      "valerie-jenkins"
+      "virginia-hall",
+      "rachel-papps-williams",
+      "lesley-fallowfield"
     ],
     "authorLinks": [
       {
         "slug": "valerie-jenkins",
         "name": "Valerie Jenkins",
         "display": "Jenkins, V.",
-        "isFirst": false,
+        "isFirst": true,
         "isLast": false,
         "isSussex": true
       },
@@ -18431,7 +18369,7 @@
       {
         "slug": "rachel-papps-williams",
         "name": "Rachel Papps-Williams",
-        "display": "Williams, R.",
+        "display": "Papps-Williams, R.",
         "isFirst": false,
         "isLast": false,
         "isSussex": true
@@ -18441,7 +18379,7 @@
         "name": "Lesley Fallowfield",
         "display": "Fallowfield, L.",
         "isFirst": false,
-        "isLast": false,
+        "isLast": true,
         "isSussex": true
       }
     ],
@@ -18794,10 +18732,10 @@
       {
         "slug": "giuseppe-luigi-banna",
         "name": "Giuseppe Luigi Banna",
-        "display": "Banna, G.",
+        "display": "Banna, G. L.",
         "isFirst": false,
         "isLast": false,
-        "isSussex": true
+        "isSussex": false
       }
     ],
     "sussexLeadAuthor": false,
@@ -18815,18 +18753,18 @@
       "Cancer Care"
     ],
     "scrcAuthors": [
-      "neil-crickmore",
-      "mojtaba-nasiri",
       "nicole-bryce-sharron",
+      "mojtaba-nasiri",
+      "tom-powell",
       "michelle-west",
-      "tom-powell"
+      "neil-crickmore"
     ],
     "authorLinks": [
       {
         "slug": "nicole-bryce-sharron",
         "name": "Nicole Bryce-Sharron",
-        "display": "Sharron, N.",
-        "isFirst": false,
+        "display": "Bryce-Sharron, N.",
+        "isFirst": true,
         "isLast": false,
         "isSussex": true
       },
@@ -18849,7 +18787,7 @@
       {
         "slug": "michelle-west",
         "name": "Michelle West",
-        "display": "West, M.",
+        "display": "West, M. J.",
         "isFirst": false,
         "isLast": false,
         "isSussex": true
@@ -18859,7 +18797,7 @@
         "name": "Neil Crickmore",
         "display": "Crickmore, N.",
         "isFirst": false,
-        "isLast": false,
+        "isLast": true,
         "isSussex": true
       }
     ],
@@ -19025,18 +18963,18 @@
       "Imaging"
     ],
     "scrcAuthors": [
-      "periasamy-sathiskumar",
-      "stefano-berliti",
       "mahmoud-abouibrahim",
       "mizanour-rahman",
-      "umesh-dashora"
+      "stefano-berliti",
+      "umesh-dashora",
+      "periasamy-sathiskumar"
     ],
     "authorLinks": [
       {
         "slug": "mahmoud-abouibrahim",
         "name": "Mahmoud Abouibrahim",
         "display": "Abouibrahim, M.",
-        "isFirst": false,
+        "isFirst": true,
         "isLast": false,
         "isSussex": true
       },
@@ -19069,7 +19007,7 @@
         "name": "Periasamy Sathiskumar",
         "display": "Sathiskumar, P.",
         "isFirst": false,
-        "isLast": false,
+        "isLast": true,
         "isSussex": true
       }
     ],
@@ -19366,8 +19304,8 @@
       {
         "slug": "md-zahidul-i-pranjol",
         "name": "Md Zahidul I Pranjol",
-        "display": "Pranjol, M.",
-        "isFirst": false,
+        "display": "Pranjol, M. Z. I.",
+        "isFirst": true,
         "isLast": false,
         "isSussex": true
       }
@@ -19415,17 +19353,17 @@
       "Cancer Care"
     ],
     "scrcAuthors": [
+      "lusine-sevinyan",
       "peter-williams",
       "melanie-flint",
-      "thumuluru-kavitha-madhuri",
-      "lusine-sevinyan"
+      "thumuluru-kavitha-madhuri"
     ],
     "authorLinks": [
       {
         "slug": "lusine-sevinyan",
         "name": "Lusine Sevinyan",
         "display": "Sevinyan, L.",
-        "isFirst": false,
+        "isFirst": true,
         "isLast": false,
         "isSussex": true
       },
@@ -19435,12 +19373,12 @@
         "display": "Williams, P.",
         "isFirst": false,
         "isLast": false,
-        "isSussex": true
+        "isSussex": false
       },
       {
         "slug": "melanie-flint",
         "name": "Melanie Flint",
-        "display": "Flint, M.",
+        "display": "Flint, M. S.",
         "isFirst": false,
         "isLast": false,
         "isSussex": true
@@ -19448,9 +19386,9 @@
       {
         "slug": "thumuluru-kavitha-madhuri",
         "name": "Thumuluru Kavitha Madhuri",
-        "display": "Madhuri, T.",
+        "display": "Madhuri, T. K.",
         "isFirst": false,
-        "isLast": false,
+        "isLast": true,
         "isSussex": true
       }
     ],
@@ -19561,7 +19499,7 @@
   {
     "citation": "Catalano, F., Brunelli, M., Signori, A., Rescigno, P., Buti, S., Galli, L., ..., & Rebuzzi, S. E. (2024). Analyses of tumor microenvironment in patients with advanced renal cell carcinoma receiving immunotherapy (Meet-URO 18 study). Future oncology (London, England), 20(21), 1495-1503.",
     "title": "Analyses of tumor microenvironment in patients with advanced renal cell carcinoma receiving immunotherapy (Meet-URO 18 study)",
-    "journal": "Future oncology (London",
+    "journal": "Future oncology (London, England)",
     "year": 2024,
     "pubDate": "2024-06-12",
     "abstract": "Introduction: The Meet-URO 18 study is a multicentric study of patients with metastatic renal cell carcinoma receiving nivolumab in the second-line and beyond, categorized as responders (progression-free survival ≥ 12 months) and non-responders (progression-free survival Areas covered: The current study includes extensive immunohistochemical analysis of T-lineage markers (CD3, CD4, CD8, CD8/CD4 ratio), macrophages (CD68), ph-mTOR, CD15 and CD56 expression on tumor cells, and PD-L1 expression, on an increased sample size including 161 tumor samples (113 patients) compared with preliminary presented data. Responders ' tumor tissue (n = 90; 55.9%) was associated with lower CD4 expression ( p = 0.014), higher CD56 expression ( p = 0.046) and higher CD8/CD4 ratio ( p = 0.030). Expert opinion/commentary: The present work suggests the regulatory role of a subpopulation of T cells on antitumor response and identifies CD56 as a putative biomarker of immunotherapy efficacy.",
@@ -19578,10 +19516,10 @@
       {
         "slug": "giuseppe-luigi-banna",
         "name": "Giuseppe Luigi Banna",
-        "display": "Banna, G.",
+        "display": "Banna, G. L.",
         "isFirst": false,
         "isLast": false,
-        "isSussex": true
+        "isSussex": false
       }
     ],
     "sussexLeadAuthor": false,
@@ -19599,20 +19537,20 @@
       "Cancer Care"
     ],
     "scrcAuthors": [
-      "neil-crickmore",
-      "mojtaba-nasiri",
       "nicole-bryce-sharron",
+      "mojtaba-nasiri",
+      "tom-powell",
       "michelle-west",
-      "tom-powell"
+      "neil-crickmore"
     ],
     "authorLinks": [
       {
         "slug": "nicole-bryce-sharron",
         "name": "Nicole Bryce-Sharron",
-        "display": "Sharron, N.",
-        "isFirst": false,
+        "display": "Bryce-Sharron, N.",
+        "isFirst": true,
         "isLast": false,
-        "isSussex": true
+        "isSussex": false
       },
       {
         "slug": "mojtaba-nasiri",
@@ -19620,7 +19558,7 @@
         "display": "Nasiri, M.",
         "isFirst": false,
         "isLast": false,
-        "isSussex": true
+        "isSussex": false
       },
       {
         "slug": "tom-powell",
@@ -19628,26 +19566,26 @@
         "display": "Powell, T.",
         "isFirst": false,
         "isLast": false,
-        "isSussex": true
+        "isSussex": false
       },
       {
         "slug": "michelle-west",
         "name": "Michelle West",
-        "display": "West, M.",
+        "display": "West, M. J.",
         "isFirst": false,
         "isLast": false,
-        "isSussex": true
+        "isSussex": false
       },
       {
         "slug": "neil-crickmore",
         "name": "Neil Crickmore",
         "display": "Crickmore, N.",
         "isFirst": false,
-        "isLast": false,
-        "isSussex": true
+        "isLast": true,
+        "isSussex": false
       }
     ],
-    "sussexLeadAuthor": true,
+    "sussexLeadAuthor": false,
     "journalImpactScore": 30
   },
   {
@@ -19834,13 +19772,13 @@
       {
         "slug": "frank-dickson-antwi",
         "name": "Frank Dickson Antwi",
-        "display": "Antwi, F.",
-        "isFirst": false,
+        "display": "Antwi, F. D.",
+        "isFirst": true,
         "isLast": false,
-        "isSussex": true
+        "isSussex": false
       }
     ],
-    "sussexLeadAuthor": true,
+    "sussexLeadAuthor": false,
     "journalImpactScore": 30
   },
   {

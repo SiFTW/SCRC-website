@@ -42,6 +42,8 @@ jobs:
         env:
           # Optional: add GEMINI_API_KEY in Repo Settings -> Secrets for AI triage of indirect papers
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          # Optional: add OPENALEX_API_KEY for native OpenAlex FWCI (otherwise NIH iCite RCR is used automatically)
+          OPENALEX_API_KEY: ${{ secrets.OPENALEX_API_KEY }}
         run: |
           DAYS="${{ inputs.days || '45' }}"
           EXTRA_ARGS=""
@@ -79,7 +81,7 @@ jobs:
           git config user.name "scrc-publications-bot"
           git config user.email "actions@github.com"
           git checkout -B "$BRANCH"
-          git add src/data/publications.json src/content/people/
+          git add src/data/publications.json src/data/publication-metrics.json src/content/people/
           git commit -m "chore: sync recent SCRC publications and discovered researchers"
           git push --force origin "$BRANCH"
 
