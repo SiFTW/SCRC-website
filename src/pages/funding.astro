@@ -7,6 +7,8 @@ interface FollowOnAward {
   funder: string;
   amount?: number | null;
   currency?: string;
+  leadPi?: string;
+  leadPiSlug?: string;
   title?: string;
   url: string;
 }
@@ -29,6 +31,7 @@ interface SyncedGrant {
   amount?: number | null;
   currency?: string;
   startDate?: string;
+  investigators?: string[];
   scrcMembers?: string[];
   sources?: { label: string; url: string }[];
 }
@@ -76,6 +79,11 @@ function normTitle(t: string): string {
   return (t || '').toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim();
 }
 
+function surnameOf(name: string | undefined): string {
+  const parts = (name || '').toLowerCase().replace(/[^a-z\s-]/g, '').trim().split(/\s+/).filter(Boolean);
+  return parts.length ? parts[parts.length - 1] : '';
+}
+
 /**
  * Combine verified follow-on awards on the project with any newer external grants
  * automatically discovered for that PI in src/data/grants.json (excluding SCF / SCRC).
@@ -87,6 +95,7 @@ function getFollowOnAwards(proj: FundedProject): FollowOnAward[] {
   );
   const seenTitleNorms = new Set<string>(awards.map((a) => normTitle(a.title || '')).filter(Boolean));
   const projNorm = normTitle(proj.title);
+  const projPiSurname = surnameOf(proj.piName);
 
   if (proj.piSlug && proj.awardDate) {
     for (const grant of rawGrants as SyncedGrant[]) {
@@ -121,10 +130,15 @@ function getFollowOnAwards(proj: FundedProject): FollowOnAward[] {
       seenKeys.add(key);
       seenTitleNorms.add(gNorm);
 
+      const firstInv = (grant.investigators || [])[0]?.trim() || '';
+      const invSurname = surnameOf(firstInv);
+      const diffLeadPi = firstInv && projPiSurname && invSurname && invSurname !== projPiSurname ? firstInv : undefined;
+
       awards.push({
         funder: cleanFunder,
         amount: grant.amount,
         currency: grant.currency || 'GBP',
+        leadPi: diffLeadPi,
         title: grant.title,
         url: primaryUrl,
       });
@@ -302,6 +316,7 @@ const studentshipProjects = (funding.fundedProjects.studentships as FundedProjec
                     >
                       <span>{award.funder}</span>
                       {amt && <span class="follow-on-amt">{amt}</span>}
+                      {award.leadPi && <span class="follow-on-pi">· PI: {award.leadPi}</span>}
                       <span aria-hidden="true">↗</span>
                     </a>
                   );
@@ -365,6 +380,7 @@ const studentshipProjects = (funding.fundedProjects.studentships as FundedProjec
                     >
                       <span>{award.funder}</span>
                       {amt && <span class="follow-on-amt">{amt}</span>}
+                      {award.leadPi && <span class="follow-on-pi">· PI: {award.leadPi}</span>}
                       <span aria-hidden="true">↗</span>
                     </a>
                   );
@@ -433,6 +449,7 @@ const studentshipProjects = (funding.fundedProjects.studentships as FundedProjec
                     >
                       <span>{award.funder}</span>
                       {amt && <span class="follow-on-amt">{amt}</span>}
+                      {award.leadPi && <span class="follow-on-pi">· PI: {award.leadPi}</span>}
                       <span aria-hidden="true">↗</span>
                     </a>
                   );
@@ -617,5 +634,10 @@ const studentshipProjects = (funding.fundedProjects.studentships as FundedProjec
     font-weight: 600;
     color: var(--scrc-teal-deep);
     font-variant-numeric: tabular-nums;
+  }
+
+  .follow-on-pi {
+    font-weight: 400;
+    color: var(--scrc-muted);
   }
 </style>

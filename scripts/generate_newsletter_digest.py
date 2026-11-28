@@ -571,30 +571,56 @@ def titles_overlap(t1: str, t2: str) -> bool:
     return False
 
 
-def find_featured_issue_for_award(pi_name: str, funder: str, title: str, rss_issues: list[dict]) -> int | None:
+def surname_of(name: str | None) -> str:
+    words = [
+        w for w in norm_text(name or "").split()
+        if w not in {"dr", "prof", "professor", "dame", "sir", "mr", "ms", "mrs"}
+    ]
+    return words[-1] if words else ""
+
+
+def find_featured_issue_for_award(
+    pi_name: str,
+    funder: str,
+    title: str,
+    rss_issues: list[dict],
+    lead_pi: str | None = None,
+) -> int | None:
     """
     Check whether a follow-on award was already featured in a previous Curated.co
     newsletter issue (so the "Since Last Newsletter" view avoids re-announcing old awards).
     """
-    pi_words = [w for w in norm_text(pi_name).split() if w not in {"dr", "prof", "professor", "dame", "sir", "mr", "ms", "mrs"}]
-    surname = pi_words[-1] if pi_words else ""
+    names_to_check = [pi_name] + ([lead_pi] if lead_pi else [])
     funder_norm = norm_text(funder)
     funder_key = "ukri" if "ukri" in funder_norm else funder_norm
+    if not funder_key:
+        return None
 
     for issue in rss_issues:
         pt = issue.get("plainText") or ""
-        if not pt or not surname or not funder_key:
+        if not pt or funder_key not in pt:
             continue
-        # Require full PI name (or "professor/dr <surname>") AND funder mention in the same issue
-        pi_full = " ".join(pi_words)
-        has_pi = (pi_full and pi_full in pt) or (f"prof {surname}" in pt) or (f"professor {surname}" in pt) or (f"dr {surname}" in pt)
-        has_funder = funder_key in pt
-        if has_pi and has_funder:
-            return issue.get("issueNumber") or -1
+        for candidate in names_to_check:
+            pi_words = [
+                w for w in norm_text(candidate).split()
+                if w not in {"dr", "prof", "professor", "dame", "sir", "mr", "ms", "mrs"}
+            ]
+            surname = pi_words[-1] if pi_words else ""
+            if not surname:
+                continue
+            pi_full = " ".join(pi_words)
+            has_pi = (
+                (pi_full and pi_full in pt)
+                or (f"prof {surname}" in pt)
+                or (f"professor {surname}" in pt)
+                or (f"dr {surname}" in pt)
+            )
+            if has_pi:
+                return issue.get("issueNumber") or -1
     return None
 
 
-def collect_follow_on(funding: dict, grants: list[dict], rss_issues: list[dict]):
+def collect_follow_on(funding: dict, grants: list[dict], rss_issues: list[dict], people: dict[str, dict] | None = None):
     """
     Return:
     - verified_items: list of SCRC-funded projects with verified follow-on external awards
@@ -609,6 +635,11 @@ def collect_follow_on(funding: dict, grants: list[dict], rss_issues: list[dict])
     ]
     verified_items = []
     unverified_alerts = []
+    people_by_surname = {}
+    for slug, info in (people or {}).items():
+        sn = surname_of(info["name"])
+        if sn:
+            people_by_surname.setdefault(sn, []).append((slug, info["name"]))
 
     for cat_key, cat_label in categories:
         for proj in funding.get("fundedProjects", {}).get(cat_key, []):
@@ -616,6 +647,7 @@ def collect_follow_on(funding: dict, grants: list[dict], rss_issues: list[dict])
             seen_titles = [a.get("title") or "" for a in awards]
             pi_slug = proj.get("piSlug")
             pi_name = proj.get("piName") or ""
+            proj_pi_surname = surname_of(pi_name)
             award_date = proj.get("awardDate") or ""
             proj_title = proj.get("title") or ""
 
@@ -643,10 +675,21 @@ def collect_follow_on(funding: dict, grants: list[dict], rss_issues: list[dict])
 
                     if funder_raw:
                         clean_funder = format_funder(funder_raw)
+                        first_inv = ((g.get("investigators") or [""])[0] or "").strip()
+                        inv_sn = surname_of(first_inv)
+                        diff_lead_pi = ""
+                        diff_lead_slug = ""
+                        if first_inv and proj_pi_surname and inv_sn and inv_sn != proj_pi_surname:
+                            diff_lead_pi = first_inv
+                            matches = people_by_surname.get(inv_sn) or []
+                            if len(matches) == 1:
+                                diff_lead_slug = matches[0][0]
                         awards.append({
                             "funder": clean_funder,
                             "amount": g.get("amount"),
                             "currency": g.get("currency") or "GBP",
+                            **({"leadPi": diff_lead_pi} if diff_lead_pi else {}),
+                            **({"leadPiSlug": diff_lead_slug} if diff_lead_slug else {}),
                             "title": g_title,
                             "url": primary_url,
                             "startDate": g.get("startDate") or "",
@@ -671,7 +714,11 @@ def collect_follow_on(funding: dict, grants: list[dict], rss_issues: list[dict])
             if awards:
                 for a in awards:
                     a["previouslyFeaturedInIssue"] = find_featured_issue_for_award(
-                        pi_name, a.get("funder") or "", a.get("title") or "", rss_issues
+                        pi_name,
+                        a.get("funder") or "",
+                        a.get("title") or "",
+                        rss_issues,
+                        lead_pi=a.get("leadPi"),
                     )
                 verified_items.append({
                     "projectTitle": proj_title,
@@ -887,9 +934,17 @@ def render_follow_on_md(verified_items: list[dict], people: dict[str, dict]) -> 
             amt_headline = f" ({amt})" if amt else ""
             funder = a.get("funder") or "External Funder"
             url = a.get("url") or f"{SITE_URL}/funding"
-            lines.append(
-                f"- **{item['piName']} — {funder}{amt_headline}:** Following their {award_phrase} (*\"{proj_title}\"*), {pi_text} has secured external funding from **{funder}**{(' of **' + amt + '**') if amt else ''} ([view award details]({url}))."
-            )
+            lead_pi = (a.get("leadPi") or "").strip()
+            lead_pi_slug = (a.get("leadPiSlug") or "").strip()
+            if lead_pi and surname_of(lead_pi) != surname_of(item["piName"]):
+                lead_pi_text = person_md(lead_pi_slug, people, lead_pi) if lead_pi_slug else lead_pi
+                lines.append(
+                    f"- **{item['piName']} & {lead_pi} — {funder}{amt_headline}:** Following the {award_phrase} led by {pi_text} (*\"{proj_title}\"*), the team has secured external funding from **{funder}**{(' of **' + amt + '**') if amt else ''} with {lead_pi_text} as Lead PI ([view award details]({url}))."
+                )
+            else:
+                lines.append(
+                    f"- **{item['piName']} — {funder}{amt_headline}:** Following their {award_phrase} (*\"{proj_title}\"*), {pi_text} has secured external funding from **{funder}**{(' of **' + amt + '**') if amt else ''} ([view award details]({url}))."
+                )
         else:
             award_parts = []
             funders_headline = []
@@ -899,8 +954,14 @@ def render_follow_on_md(verified_items: list[dict], people: dict[str, dict]) -> 
                 amt = format_currency(a.get("amount"), a.get("currency"))
                 amt_str = f" ({amt})" if amt else ""
                 title_str = f" — *{a['title']}*" if a.get("title") else ""
+                lead_pi = (a.get("leadPi") or "").strip()
+                lead_pi_slug = (a.get("leadPiSlug") or "").strip()
+                lead_str = ""
+                if lead_pi and surname_of(lead_pi) != surname_of(item["piName"]):
+                    lead_pi_text = person_md(lead_pi_slug, people, lead_pi) if lead_pi_slug else lead_pi
+                    lead_str = f", with {lead_pi_text} as Lead PI"
                 url = a.get("url") or f"{SITE_URL}/funding"
-                award_parts.append(f"**{funder}**{amt_str}{title_str} ([view details]({url}))")
+                award_parts.append(f"**{funder}**{amt_str}{title_str}{lead_str} ([view details]({url}))")
             joined_awards = "; and ".join(award_parts) if len(award_parts) == 2 else "; ".join(award_parts)
             headline_funders = " & ".join(funders_headline)
             lines.append(
@@ -1291,7 +1352,7 @@ def main():
                 new_grant_titles.add(gt)
                 new_grants_list.append(g)
 
-    verified_follow_on_all, unverified_alerts = collect_follow_on(funding, grants, rss_issues)
+    verified_follow_on_all, unverified_alerts = collect_follow_on(funding, grants, rss_issues, people=people)
     unfeatured_follow_on, already_featured_notes = filter_follow_on_unfeatured(verified_follow_on_all)
     follow_on_titles = [
         a.get("title") or ""
