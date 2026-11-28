@@ -1,0 +1,42 @@
+---
+interface Props {
+  slug: string;
+  name: string;
+  role: string;
+  image?: string;
+  initials: string;
+  loading?: 'eager' | 'lazy';
+  titleSize?: string;
+}
+
+const {
+  slug,
+  name,
+  role,
+  image = '',
+  initials,
+  loading = 'lazy',
+  titleSize,
+} = Astro.props;
+---
+
+<article class="card">
+  <a href={`/directory/${slug}`} class="card-media person-media">
+    {image ? (
+      <img src={image} alt={name} loading={loading} />
+    ) : (
+      <div class="avatar-placeholder" aria-hidden="true">
+        <span>{initials}</span>
+      </div>
+    )}
+  </a>
+  <div class="card-body">
+    <h3 class="card-title" style={titleSize ? `font-size:${titleSize};` : undefined}>
+      <a href={`/directory/${slug}`}>{name}</a>
+    </h3>
+    <p class="person-role">{role}</p>
+    <div class="card-footer">
+      <a href={`/directory/${slug}`} class="read-more">View profile →</a>
+    </div>
+  </div>
+</article>

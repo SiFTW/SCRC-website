@@ -1,7 +1,9 @@
 ---
 import { getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import PersonCard from '../../components/PersonCard.astro';
 import featured from '../../data/featured-people.json';
+import { getCleanImage, getInitials, resolveFeaturedGroup } from '../../lib/people';
 
 const allPeople = (await getCollection('people')).sort((a, b) =>
   a.data.name.localeCompare(b.data.name)
@@ -9,35 +11,9 @@ const allPeople = (await getCollection('people')).sort((a, b) =>
 
 const bySlug = new Map(allPeople.map((p) => [p.id, p]));
 
-function getInitials(name: string) {
-  const parts = name.trim().split(/\s+/).filter(Boolean);
-  if (parts.length === 0) return 'SC';
-  if (parts.length === 1) return parts[0].slice(0, 2).toUpperCase();
-  return (parts[0][0] + parts[parts.length - 1][0]).toUpperCase();
-}
-
-function getCleanImage(img?: string) {
-  if (!img || img.toLowerCase().includes('photoholder')) return '';
-  return img;
-}
-
-function resolveGroup(list: { slug: string; name: string; role: string }[]) {
-  return list.map((entry) => {
-    const profile = bySlug.get(entry.slug);
-    return {
-      slug: entry.slug,
-      name: entry.name,
-      role: entry.role,
-      image: getCleanImage(profile?.data.image),
-      initials: getInitials(entry.name),
-      hasProfile: Boolean(profile),
-    };
-  });
-}
-
-const leadership = resolveGroup(featured.leadership);
-const livedExperience = resolveGroup(featured.livedExperience);
-const management = resolveGroup(featured.management);
+const leadership = resolveFeaturedGroup(featured.leadership, bySlug);
+const livedExperience = resolveFeaturedGroup(featured.livedExperience, bySlug);
+const management = resolveFeaturedGroup(featured.management, bySlug);
 
 const interestCounts = new Map<string, number>();
 allPeople.forEach((p) => {
@@ -76,26 +52,14 @@ const interests = Array.from(interestCounts.entries()).sort((a, b) => a[0].local
 
       <div class="grid grid--4">
         {leadership.map((person) => (
-          <article class="card">
-            <a href={`/directory/${person.slug}`} class="card-media person-media">
-              {person.image ? (
-                <img src={person.image} alt={person.name} loading="eager" />
-              ) : (
-                <div class="avatar-placeholder" aria-hidden="true">
-                  <span>{person.initials}</span>
-                </div>
-              )}
-            </a>
-            <div class="card-body">
-              <h3 class="card-title">
-                <a href={`/directory/${person.slug}`}>{person.name}</a>
-              </h3>
-              <p class="person-role">{person.role}</p>
-              <div class="card-footer">
-                <a href={`/directory/${person.slug}`} class="read-more">View profile →</a>
-              </div>
-            </div>
-          </article>
+          <PersonCard
+            slug={person.slug}
+            name={person.name}
+            role={person.role}
+            image={person.image}
+            initials={person.initials}
+            loading="eager"
+          />
         ))}
       </div>
     </div>
@@ -114,26 +78,13 @@ const interests = Array.from(interestCounts.entries()).sort((a, b) => a[0].local
 
       <div class="grid grid--3">
         {livedExperience.map((person) => (
-          <article class="card">
-            <a href={`/directory/${person.slug}`} class="card-media person-media">
-              {person.image ? (
-                <img src={person.image} alt={person.name} loading="lazy" />
-              ) : (
-                <div class="avatar-placeholder" aria-hidden="true">
-                  <span>{person.initials}</span>
-                </div>
-              )}
-            </a>
-            <div class="card-body">
-              <h3 class="card-title">
-                <a href={`/directory/${person.slug}`}>{person.name}</a>
-              </h3>
-              <p class="person-role">{person.role}</p>
-              <div class="card-footer">
-                <a href={`/directory/${person.slug}`} class="read-more">View profile →</a>
-              </div>
-            </div>
-          </article>
+          <PersonCard
+            slug={person.slug}
+            name={person.name}
+            role={person.role}
+            image={person.image}
+            initials={person.initials}
+          />
         ))}
       </div>
     </div>
@@ -151,26 +102,14 @@ const interests = Array.from(interestCounts.entries()).sort((a, b) => a[0].local
 
       <div class="grid grid--4">
         {management.map((person) => (
-          <article class="card">
-            <a href={`/directory/${person.slug}`} class="card-media person-media">
-              {person.image ? (
-                <img src={person.image} alt={person.name} loading="lazy" />
-              ) : (
-                <div class="avatar-placeholder" aria-hidden="true">
-                  <span>{person.initials}</span>
-                </div>
-              )}
-            </a>
-            <div class="card-body">
-              <h3 class="card-title" style="font-size:1.08rem;">
-                <a href={`/directory/${person.slug}`}>{person.name}</a>
-              </h3>
-              <p class="person-role">{person.role}</p>
-              <div class="card-footer">
-                <a href={`/directory/${person.slug}`} class="read-more">View profile →</a>
-              </div>
-            </div>
-          </article>
+          <PersonCard
+            slug={person.slug}
+            name={person.name}
+            role={person.role}
+            image={person.image}
+            initials={person.initials}
+            titleSize="1.08rem"
+          />
         ))}
       </div>
     </div>
@@ -268,52 +207,6 @@ const interests = Array.from(interestCounts.entries()).sort((a, b) => a[0].local
     </div>
   </section>
 </BaseLayout>
-
-<style>
-  .person-media {
-    aspect-ratio: 1 / 1;
-  }
-
-  .person-media img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: top center;
-  }
-
-  .person-role {
-    font-size: 0.9rem;
-    font-weight: 400;
-    color: var(--scrc-teal-deep);
-    line-height: 1.5;
-    margin-bottom: 0.9rem;
-  }
-
-  .avatar-placeholder {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: linear-gradient(135deg, var(--scrc-mint-soft) 0%, #d4efe4 100%);
-    color: var(--scrc-teal-deep);
-  }
-
-  .avatar-placeholder span {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 92px;
-    height: 92px;
-    border-radius: 50%;
-    background: rgba(255, 255, 255, 0.82);
-    border: 2px solid rgba(100, 146, 141, 0.28);
-    font-size: 1.85rem;
-    font-weight: 500;
-    letter-spacing: 0.04em;
-    color: var(--scrc-teal-deep);
-  }
-</style>
 
 <script>
   const PAGE_SIZE = 48;

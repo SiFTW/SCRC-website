@@ -788,6 +788,51 @@ strong, b {
   color: var(--scrc-black);
 }
 
+/* Person Cards */
+.person-media {
+  aspect-ratio: 1 / 1;
+}
+
+.person-media img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+}
+
+.person-role {
+  font-size: 0.9rem;
+  font-weight: 400;
+  color: var(--scrc-teal-deep);
+  line-height: 1.5;
+  margin-bottom: 0.9rem;
+}
+
+.avatar-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, var(--scrc-mint-soft) 0%, #d4efe4 100%);
+  color: var(--scrc-teal-deep);
+}
+
+.avatar-placeholder span {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 92px;
+  height: 92px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.82);
+  border: 2px solid rgba(100, 146, 141, 0.28);
+  font-size: 1.85rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: var(--scrc-teal-deep);
+}
+
 /* Badges / Tags */
 .tag {
   display: inline-block;

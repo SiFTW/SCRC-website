@@ -1,11 +1,19 @@
 ---
+import { getCollection } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
+import PersonCard from '../components/PersonCard.astro';
+import featured from '../data/featured-people.json';
 import site from '../data/site.json';
+import { resolveFeaturedGroup } from '../lib/people';
+
+const allPeople = await getCollection('people');
+const bySlug = new Map(allPeople.map((p) => [p.id, p]));
+const livedExperience = resolveFeaturedGroup(featured.livedExperience, bySlug);
 ---
 
 <BaseLayout
   title="Experts by Experience"
-  description="Shape the future of cancer research in Sussex as an Expert by Experience — patients, carers, and family members welcome."
+  description="Meet our Experts by Experience and learn how to shape the future of cancer research in Sussex — patients, carers, and family members welcome."
 >
   <section class="page-banner page-banner--image">
     <img src="/images/pages/unsplash-image-jzonfmrewok-4bc90c1e.jpg" alt="" class="hero-bg" />
@@ -17,7 +25,32 @@ import site from '../data/site.json';
     </div>
   </section>
 
-  <section class="section section--bright">
+  <section class="section section--white" id="lived-experience">
+    <div class="container">
+      <div class="section-header">
+        <div>
+          <span class="eyebrow">Patients, Carers &amp; Community</span>
+          <h2 style="margin-bottom:0;">Our Experts by Experience</h2>
+        </div>
+        <a href="#apply" class="btn btn--outline btn--sm">Apply to join →</a>
+      </div>
+
+      <div class="grid grid--3">
+        {livedExperience.map((person) => (
+          <PersonCard
+            slug={person.slug}
+            name={person.name}
+            role={person.role}
+            image={person.image}
+            initials={person.initials}
+            loading="eager"
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--bright" id="apply">
     <div class="container">
       <div class="split">
         <div>
