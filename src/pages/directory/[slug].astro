@@ -2,10 +2,38 @@
 import { getCollection, render, type CollectionEntry } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import publications from '../../data/publications.json';
+import rawGrants from '../../data/grants.json';
 import {
   buildPeopleNameIndex,
   findMentionedPeopleInNews,
 } from '../../utils/scrcPeopleLinks';
+
+interface GrantInvestigator {
+  name: string;
+  slug?: string;
+  role?: string;
+}
+
+interface GrantSource {
+  label: string;
+  url: string;
+}
+
+interface Grant {
+  title: string;
+  funder?: string;
+  funderRef?: string;
+  amount?: number | null;
+  currency?: string;
+  startDate?: string;
+  endDate?: string;
+  startYear?: number | null;
+  endYear?: number | null;
+  active?: boolean;
+  investigators?: GrantInvestigator[];
+  scrcMembers?: string[];
+  sources?: GrantSource[];
+}
 
 export async function getStaticPaths() {
   const [people, newsPosts] = await Promise.all([
@@ -30,11 +58,22 @@ export async function getStaticPaths() {
     }
   }
 
+  // Map active & 2024+ grants to every SCRC member listed on each grant
+  const grantsBySlug = new Map<string, Grant[]>();
+  for (const grant of rawGrants as Grant[]) {
+    for (const slug of grant.scrcMembers || []) {
+      const list = grantsBySlug.get(slug) || [];
+      list.push(grant);
+      grantsBySlug.set(slug, list);
+    }
+  }
+
   return people.map((person) => ({
     params: { slug: person.id },
     props: {
       person,
       memberNews: newsBySlug.get(person.id) || [],
+      memberGrants: grantsBySlug.get(person.id) || [],
     },
   }));
 }
@@ -42,10 +81,74 @@ export async function getStaticPaths() {
 interface Props {
   person: CollectionEntry<'people'>;
   memberNews: CollectionEntry<'news'>[];
+  memberGrants: Grant[];
 }
 
-const { person, memberNews } = Astro.props;
+const { person, memberNews, memberGrants } = Astro.props;
 const { Content } = await render(person);
+
+function formatGrantAmount(amount: number | null | undefined, currency = 'GBP'): string {
+  if (!amount || amount <= 0) return '';
+  try {
+    return new Intl.NumberFormat('en-GB', {
+      style: 'currency',
+      currency: currency || 'GBP',
+      maximumFractionDigits: 0,
+    }).format(amount);
+  } catch {
+    return `£${Math.round(amount).toLocaleString('en-GB')}`;
+  }
+}
+
+const SHORT_MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+
+function formatGrantDate(iso: string | undefined): string {
+  if (!iso) return '';
+  const m = iso.match(/^(\d{4})(?:-(\d{2}))?/);
+  if (!m) return iso;
+  const yr = m[1];
+  const mo = m[2] ? Number(m[2]) : 0;
+  if (mo >= 1 && mo <= 12 && !iso.endsWith('-01-01') && !iso.endsWith('-12-31')) {
+    return `${SHORT_MONTHS[mo - 1]} ${yr}`;
+  }
+  return yr;
+}
+
+function formatGrantRange(startDate?: string, endDate?: string): string {
+  const s = formatGrantDate(startDate);
+  const e = formatGrantDate(endDate);
+  if (s && e) return s === e ? s : `${s} – ${e}`;
+  if (s) return `From ${s}`;
+  if (e) return `Until ${e}`;
+  return '';
+}
+
+const FUNDER_ACRONYMS = new Set([
+  'UK', 'UKRI', 'MRC', 'BBSRC', 'EPSRC', 'ESRC', 'AHRC', 'NERC', 'STFC',
+  'NIHR', 'NHS', 'CRUK', 'ERC', 'EU', 'BHF', 'MNDA', 'BSH', 'SCRC', 'BSMS', 'US', 'USA', 'NIH',
+]);
+const FUNDER_MINOR = new Set(['of', 'for', 'and', 'the', 'in', 'on', 'to', 'by', 'at', 'with', '&']);
+
+function formatFunderName(raw: string | undefined): string {
+  if (!raw) return '';
+  const trimmed = raw.trim();
+  // Only re-case if the string is predominantly ALL CAPS (common in Elements exports)
+  const letters = trimmed.replace(/[^A-Za-z]/g, '');
+  if (!letters || letters !== letters.toUpperCase()) return trimmed;
+  return trimmed
+    .split(/(\s+|-)/)
+    .map((tok, idx) => {
+      if (!tok || /^\s+$/.test(tok) || tok === '-') return tok;
+      const upper = tok.toUpperCase();
+      if (FUNDER_ACRONYMS.has(upper)) return upper;
+      const lower = tok.toLowerCase();
+      if (idx > 0 && FUNDER_MINOR.has(lower)) return lower;
+      // Handle alphanumeric tokens like "2NDS" -> "2nds"
+      if (/^\d+[a-z]+$/i.test(tok)) return lower;
+      return lower.charAt(0).toUpperCase() + lower.slice(1);
+    })
+    .join('');
+}
 
 const cleanImage =
   person.data.image && !person.data.image.toLowerCase().includes('photoholder')
@@ -137,6 +240,85 @@ const memberPubs = publications.filter((pub: any) => {
         <Content />
       </div>
 
+      {memberGrants.length > 0 && (
+        <section style="margin-top:3rem; padding-top:2rem; border-top:1px solid var(--scrc-border);">
+          <span class="eyebrow">Research Funding</span>
+          <h2 style="margin-bottom:1.25rem;">Recent Grants ({memberGrants.length})</h2>
+          <div class="member-grants-list">
+            {memberGrants.map((grant) => {
+              const amountText = formatGrantAmount(grant.amount, grant.currency);
+              const dateRange = formatGrantRange(grant.startDate, grant.endDate);
+              const primarySource = (grant.sources || [])[0];
+              const coInvestigators = (grant.investigators || []).filter(
+                (inv) => inv.slug !== person.id
+              );
+              return (
+                <article class="member-grant-card">
+                  <div class="grant-top-row">
+                    <div class="grant-badges">
+                      {grant.active && <span class="grant-status-pill">Active</span>}
+                      {dateRange && <span class="grant-date">{dateRange}</span>}
+                    </div>
+                    {amountText && <span class="grant-amount">{amountText}</span>}
+                  </div>
+
+                  <h3 class="grant-title">
+                    {primarySource?.url ? (
+                      <a href={primarySource.url} target="_blank" rel="noopener noreferrer">
+                        {grant.title}
+                      </a>
+                    ) : (
+                      grant.title
+                    )}
+                  </h3>
+
+                  {(grant.funder || grant.funderRef) && (
+                    <p class="grant-funder">
+                      {grant.funder && <span>{formatFunderName(grant.funder)}</span>}
+                      {grant.funder && grant.funderRef && <span aria-hidden="true"> · </span>}
+                      {grant.funderRef && <span class="grant-ref">{grant.funderRef}</span>}
+                    </p>
+                  )}
+
+                  {coInvestigators.length > 0 && (
+                    <div class="grant-team">
+                      <span class="grant-team-label">With:</span>
+                      {coInvestigators.slice(0, 6).map((inv) =>
+                        inv.slug ? (
+                          <a href={`/directory/${inv.slug}`} class="scrc-author-link">
+                            {inv.name}
+                          </a>
+                        ) : (
+                          <span class="grant-co-name">{inv.name}</span>
+                        )
+                      )}
+                      {coInvestigators.length > 6 && (
+                        <span class="grant-co-name">+{coInvestigators.length - 6} more</span>
+                      )}
+                    </div>
+                  )}
+
+                  {(grant.sources || []).length > 0 && (
+                    <div class="grant-sources">
+                      {(grant.sources || []).map((src) => (
+                        <a
+                          href={src.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          class="grant-source-link"
+                        >
+                          {src.label} ↗
+                        </a>
+                      ))}
+                    </div>
+                  )}
+                </article>
+              );
+            })}
+          </div>
+        </section>
+      )}
+
       {memberNews.length > 0 && (
         <section style="margin-top:3rem; padding-top:2rem; border-top:1px solid var(--scrc-border);">
           <span class="eyebrow">SCRC News</span>
@@ -211,6 +393,138 @@ const memberPubs = publications.filter((pub: any) => {
 </BaseLayout>
 
 <style>
+  .member-grants-list {
+    display: grid;
+    gap: 1rem;
+  }
+
+  .member-grant-card {
+    padding: 1.15rem 1.3rem;
+    border: 1px solid var(--scrc-border);
+    border-radius: var(--radius-card);
+    background: var(--scrc-white);
+    transition: border-color var(--transition), box-shadow var(--transition);
+  }
+
+  .member-grant-card:hover {
+    border-color: var(--scrc-teal);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .grant-top-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem 1rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .grant-badges {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  .grant-status-pill {
+    display: inline-block;
+    padding: 0.14rem 0.58rem;
+    border-radius: 999px;
+    background: var(--scrc-mint);
+    color: var(--scrc-black);
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  .grant-date {
+    font-size: 0.83rem;
+    font-weight: 500;
+    color: var(--scrc-muted);
+  }
+
+  .grant-amount {
+    display: inline-block;
+    padding: 0.18rem 0.65rem;
+    border-radius: 999px;
+    background: var(--scrc-cream);
+    border: 1px solid var(--scrc-border);
+    color: var(--scrc-black);
+    font-size: 0.86rem;
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .grant-title {
+    font-size: 1.03rem;
+    font-weight: 500;
+    line-height: 1.4;
+    margin: 0 0 0.4rem;
+    color: var(--scrc-black);
+  }
+
+  .grant-title a {
+    color: var(--scrc-black);
+    text-decoration: none;
+  }
+
+  .grant-title a:hover {
+    color: var(--scrc-teal-deep);
+  }
+
+  .grant-funder {
+    font-size: 0.88rem;
+    color: var(--scrc-muted);
+    margin: 0 0 0.55rem;
+  }
+
+  .grant-ref {
+    font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+    font-size: 0.8rem;
+  }
+
+  .grant-team {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.35rem;
+    margin-bottom: 0.65rem;
+    font-size: 0.84rem;
+  }
+
+  .grant-team-label {
+    font-size: 0.78rem;
+    font-weight: 500;
+    color: var(--scrc-muted);
+  }
+
+  .grant-co-name {
+    font-size: 0.82rem;
+    color: var(--scrc-muted);
+    padding: 0.04rem 0.35rem;
+  }
+
+  .grant-sources {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    padding-top: 0.55rem;
+    border-top: 1px solid rgba(17, 24, 22, 0.07);
+  }
+
+  .grant-source-link {
+    font-size: 0.83rem;
+    font-weight: 500;
+    color: var(--scrc-teal-deep);
+    text-decoration: none;
+  }
+
+  .grant-source-link:hover {
+    color: var(--scrc-black);
+    text-decoration: underline;
+  }
   .member-news-list {
     display: grid;
     gap: 1rem;

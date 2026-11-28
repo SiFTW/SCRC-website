@@ -1,0 +1,1784 @@
+[
+  {
+    "title": "The Living With Metastatic Breast Cancer 3 (LIMBER3) study",
+    "funder": "",
+    "funderRef": "",
+    "amount": null,
+    "currency": "GBP",
+    "startDate": "2027-02-01",
+    "endDate": "2029-01-31",
+    "active": true,
+    "investigators": [
+      {
+        "name": "Valerie Shilling",
+        "slug": "valerie-shilling"
+      }
+    ],
+    "scrcMembers": [
+      "valerie-shilling"
+    ],
+    "sources": [
+      {
+        "label": "Sussex Elements",
+        "url": "https://profiles.sussex.ac.uk/p126957-valerie-shilling/grants"
+      }
+    ],
+    "startYear": 2027,
+    "endYear": 2029
+  },
+  {
+    "title": "Improving communication about the complexity of modern breast cancer treatment",
+    "funder": "The Breast Cancer Research Foundation Inc.",
+    "funderRef": "BCRF-26-050",
+    "amount": 449879,
+    "currency": "USD",
+    "startDate": "2026-10-01",
+    "endDate": "2028-09-30",
+    "active": true,
+    "investigators": [
+      {
+        "name": "Lesley Fallowfield",
+        "slug": "lesley-fallowfield"
+      },
+      {
+        "name": "Valerie Jenkins",
+        "slug": "valerie-jenkins"
+      }
+    ],
+    "scrcMembers": [
+      "lesley-fallowfield",
+      "valerie-jenkins"
+    ],
+    "sources": [
+      {
+        "label": "Sussex Elements",
+        "url": "https://profiles.sussex.ac.uk/p40578-lesley-fallowfield/grants"
+      },
+      {
+        "label": "ORCID",
+        "url": "https://orcid.org/0000-0003-0577-4518"
+      }
+    ],
+    "startYear": 2026,
+    "endYear": 2028
+  },
+  {
+    "title": "Deciphering the Role of Haem-Regulated Inhibitor Kinase (HRI) in Blood Cancer Resistance",
+    "funder": "",
+    "funderRef": "",
+    "amount": null,
+    "currency": "GBP",
+    "startDate": "2026-10-01",
+    "endDate": "2030-03-31",
+    "active": true,
+    "investigators": [
+      {
+        "name": "Erika Mancini",
+        "slug": "erika-mancini"
+      },
+      {
+        "name": "John Spencer",
+        "slug": "john-spencer"
+      }
+    ],
+    "scrcMembers": [
+      "erika-mancini",
+      "john-spencer"
+    ],
+    "sources": [
+      {
+        "label": "Sussex Elements",
+        "url": "https://profiles.sussex.ac.uk/p355699-erika-mancini/grants"
+      }
+    ],
+    "startYear": 2026,
+    "endYear": 2030
+  },
+  {
+    "title": "Targeting the Aspergillus fumigatus Siderophore Pathway for Novel Antifungal Drug Discovery",
+    "funder": "",
+    "funderRef": "",
+    "amount": null,
+    "currency": "GBP",
+    "startDate": "2026-09-30",
+    "endDate": "2027-09-30",
+    "active": true,
+    "investigators": [
+      {
+        "name": "Erika Mancini",
+        "slug": "erika-mancini"
+      },
+      {
+        "name": "Andrew McGown",
+        "slug": "andrew-mcgown"
+      }
+    ],
+    "scrcMembers": [
+      "andrew-mcgown",
+      "erika-mancini"
+    ],
+    "sources": [
+      {
+        "label": "Sussex Elements",
+        "url": "https://profiles.sussex.ac.uk/p437470-andrew-mcgown/grants"
+      }
+    ],
+    "startYear": 2026,
+    "endYear": 2027
+  },
+  {
+    "title": "Proof-of-Concept: Validation of AML FLT3- ID Vulnerability to BLM Helicase Inhibition",
+    "funder": "",
+    "funderRef": "",
+    "amount": null,
+    "currency": "GBP",
+    "startDate": "2026-07-01",
+    "endDate": "2027-03-31",
+    "active": true,
+    "investigators": [
+      {
+        "name": "Erika Mancini",
+        "slug": "erika-mancini"
+      },
+      {
+        "name": "Antony Oliver",
+        "slug": "antony-oliver"
+      }
+    ],
+    "scrcMembers": [
+      "antony-oliver",
+      "erika-mancini"
+    ],
+    "sources": [
+      {
+        "label": "Sussex Elements",
+        "url": "https://profiles.sussex.ac.uk/p265618-antony-oliver/grants"
+      }
+    ],
+    "startYear": 2026,
+    "endYear": 2027
+  },
+  {
+    "title": "Leukaemia UK - John Goldman Fellowship follow-on",
+    "funder": "",
+    "funderRef": "",
+    "amount": null,
+    "currency": "GBP",
+    "startDate": "2026-06-01",
+    "endDate": "2029-05-31",
+    "active": true,
+    "investigators": [
+      {
+        "name": "Simon Mitchell",
+        "slug": "simon-mitchell"
+      }
+    ],
+    "scrcMembers": [
+      "simon-mitchell"
+    ],
+    "sources": [
+      {
+        "label": "Sussex Elements",
+        "url": "https://profiles.sussex.ac.uk/p474229-simon-mitchell/grants"
+      }
+    ],
+    "startYear": 2026,
+    "endYear": 2029
+  },
+  {
+    "title": "Detecting and targeting translation inhibitor sensitive RUNX1 mutations in chronic myeloid leukaemia",
+    "funder": "",
+    "funderRef": "",
+    "amount": null,
+    "currency": "GBP",
+    "startDate": "2026-05-01",
+    "endDate": "2029-04-30",
+    "active": true,
+    "investigators": [
+      {
+        "name": "Rhys Morgan",
+        "slug": "rhys-morgan"
+      },
+      {
+        "name": "Fabio Amaral"
+      }
+    ],
+    "scrcMembers": [
+      "rhys-morgan"
+    ],
+    "sources": [
+      {
+        "label": "Sussex Elements",
+        "url": "https://profiles.sussex.ac.uk/p455013-rhys-morgan/grants"
+      }
+    ],
+    "startYear": 2026,
+    "endYear": 2029
+  },
+  {
+    "title": "Cancer Cell Poisoning by targeting PANK4",
+    "funder": "",
+    "funderRef": "",
+    "amount": null,
+    "currency": "GBP",
+    "startDate": "2026-04-01",
+    "endDate": "2027-03-31",
+    "active": true,
+    "investigators": [
+      {
+        "name": "Viviana Vella",
+        "slug": "viviana-vella"
+      },
+      {
+        "name": "Erika Mancini",
+        "slug": "erika-mancini"
+      },
+      {
+        "name": "Timothy Chevassut",
+        "slug": "timothy-chevassut"
+      },
+      {
+        "name": "Rhys Morgan",
+        "slug": "rhys-morgan"
+      }
+    ],
+    "scrcMembers": [
+      "erika-mancini",
+      "rhys-morgan",
+      "timothy-chevassut",
+      "viviana-vella"
+    ],
+    "sources": [
+      {
+        "label": "Sussex Elements",
+        "url": "https://profiles.sussex.ac.uk/p355699-erika-mancini/grants"
+      }
+    ],
+    "startYear": 2026,
+    "endYear": 2027
+  },
+  {
+    "title": "A Systems-Biology Approach Characterising NFkB Induction of CD70 in Diffuse Large B-Cell Lymphoma.",
+    "funder": "",
+    "funderRef": "",
+    "amount": null,
+    "currency": "GBP",
+    "startDate": "2026-04-01",
+    "endDate": "2027-03-31",
+    "active": true,
+    "investigators": [
+      {
+        "name": "Simon Mitchell",
+        "slug": "simon-mitchell"
+      }
+    ],
+    "scrcMembers": [
+      "simon-mitchell"
+    ],
+    "sources": [
+      {
+        "label": "Sussex Elements",
+        "url": "https://profiles.sussex.ac.uk/p474229-simon-mitchell/grants"
+      }
+    ],
+    "startYear": 2026,
+    "endYear": 2027
+  },
+  {
+    "title": "MRC: Understanding the linked and independent roles of Timeless and PARP1 regulation in genome stability",
+    "funder": "",
+    "funderRef": "",
+    "amount": null,
+    "currency": "GBP",
+    "startDate": "2026-03-01",
+    "endDate": "2029-02-28",
+    "active": true,
+    "investigators": [
+      {
+        "name": "Jon Baxter"
+      },
+      {
+        "name": "Keith Caldecott",
+        "slug": "keith-caldecott"
+      },
+      {
+        "name": "Andrea Keszthelyi",
+        "slug": "andrea-keszthelyi"
+      }
+    ],
+    "scrcMembers": [
+      "andrea-keszthelyi",
+      "keith-caldecott"
+    ],
+    "sources": [
+      {
+        "label": "Sussex Elements",
+        "url": "https://profiles.sussex.ac.uk/p329293-andrea-keszthelyi/grants"
+      }
+    ],
+    "startYear": 2026,
+    "endYear": 2029
+  },
+  {
+    "title": "Determining the functions of TIMELESS during DNA replication",
+    "funder": "UK Research and Innovation (UKRI)",
+    "funderRef": "UKRI3676",
+    "amount": 588234,
+    "currency": "GBP",
+    "startDate": "2026-02-28",
+    "endDate": "2029-02-28",
+    "active": true,
+    "investigators": [
+      {
+        "name": "Keith Caldecott",
+        "slug": "keith-caldecott"
+      },
+      {
+        "name": "Jonathon Baxter"
+      },
+      {
+        "name": "Andrea Keszthelyi",
+        "slug": "andrea-keszthelyi"
+      }
+    ],
+    "scrcMembers": [
+      "andrea-keszthelyi",
+      "keith-caldecott"
+    ],
+    "sources": [
+      {
+        "label": "UKRI Gateway to Research",
+        "url": "https://gtr.ukri.org/projects?ref=UKRI3676"
+      },
+      {
+        "label": "Sussex Elements",
+        "url": "https://profiles.sussex.ac.uk/p132762-keith-caldecott/grants"
+      }
+    ],
+    "startYear": 2026,
+    "endYear": 2029
+  },
+  {
+    "title": "Investigating Wnt-NF-κB crosstalk in aggressive lymphomas to guide targeted therapy",
+    "funder": "",
+    "funderRef": "",
+    "amount": null,
+    "currency": "GBP",
+    "startDate": "2025-12-01",
+    "endDate": "2026-11-30",
+    "active": true,
+    "investigators": [
+      {
+        "name": "Emily Vareli"
+      },
+      {
+        "name": "Rhys Morgan",
+        "slug": "rhys-morgan"
+      },
+      {
+        "name": "Simon Mitchell",
+        "slug": "simon-mitchell"
+      }
+    ],
+    "scrcMembers": [
+      "rhys-morgan",
+      "simon-mitchell"
+    ],
+    "sources": [
+      {
+        "label": "Sussex Elements",
+        "url": "https://profiles.sussex.ac.uk/p455013-rhys-morgan/grants"
+      }
+    ],
+    "startYear": 2025,
+    "endYear": 2026
+  },
+  {
+    "title": "Targeting beta-catenin post-transcriptional activity in acute myeloid leukaemia (AML)",
+    "funder": "Blood Cancer UK Research",
+    "funderRef": "",
+    "amount": null,
+    "currency": "GBP",
+    "startDate": "2025-10-01",
+    "endDate": "2028-09-30",
+    "active": true,
+    "investigators": [
+      {
+        "name": "Rhys Morgan",
+        "slug": "rhys-morgan"
+      },
+      {
+        "name": "Benjamin Towler",
+        "slug": "benjamin-towler"
+      }
+    ],
+    "scrcMembers": [
+      "benjamin-towler",
+      "rhys-morgan"
+    ],
+    "sources": [
+      {
+        "label": "Sussex Elements",
+        "url": "https://profiles.sussex.ac.uk/p247980-benjamin-towler/grants"
+      }
+    ],
+    "startYear": 2025,
+    "endYear": 2028
+  },
+  {
+    "title": "Identifying patients most at risk of developing cancer related fatigue",
+    "funder": "Sussex Cancer Fund",
+    "funderRef": "",
+    "amount": null,
+    "currency": "GBP",
+    "startDate": "2025-10-01",
+    "endDate": "2028-09-30",
+    "active": true,
+    "investigators": [
+      {
+        "name": "Sally Wheelwright",
+        "slug": "sally-wheelwright"
+      },
+      {
+        "name": "Ethan Morgan",
+        "slug": "ethan-morgan"
+      },
+      {
+        "name": "Erika Mancini",
+        "slug": "erika-mancini"
+      }
+    ],
+    "scrcMembers": [
+      "erika-mancini",
+      "ethan-morgan",
+      "sally-wheelwright"
+    ],
+    "sources": [
+      {
+        "label": "Sussex Elements",
+        "url": "https://profiles.sussex.ac.uk/p355699-erika-mancini/grants"
+      }
+    ],
+    "startYear": 2025,
+    "endYear": 2028
+  },
+  {
+    "title": "Structure, mechanisms of regulation and targeting of oncogenic tyrosine fusion kinases in Leukaemia",
+    "funder": "UK Research and Innovation (UKRI)",
+    "funderRef": "UKRI1416",
+    "amount": 1442770,
+    "currency": "GBP",
+    "startDate": "2025-09-30",
+    "endDate": "2030-09-30",
+    "active": true,
+    "investigators": [
+      {
+        "name": "Jasmeen Oberoi",
+        "slug": "jasmeen-oberoi"
+      }
+    ],
+    "scrcMembers": [
+      "jasmeen-oberoi"
+    ],
+    "sources": [
+      {
+        "label": "UKRI Gateway to Research",
+        "url": "https://gtr.ukri.org/projects?ref=UKRI1416"
+      },
+      {
+        "label": "Sussex Elements",
+        "url": "https://profiles.sussex.ac.uk/p372952-jasmeen-oberoi/grants"
+      }
+    ],
+    "startYear": 2025,
+    "endYear": 2030
+  },
+  {
+    "title": "Extending personalised modelling towards clinical use in multiple malignancies",
+    "funder": "UK Research and Innovation (UKRI)",
+    "funderRef": "UKRI1061",
+    "amount": 594514,
+    "currency": "GBP",
+    "startDate": "2025-07-31",
+    "endDate": "2028-07-31",
+    "active": true,
+    "investigators": [
+      {
+        "name": "Simon Mitchell",
+        "slug": "simon-mitchell"
+      }
+    ],
+    "scrcMembers": [
+      "simon-mitchell"
+    ],
+    "sources": [
+      {
+        "label": "UKRI Gateway to Research",
+        "url": "https://gtr.ukri.org/projects?ref=UKRI1061"
+      },
+      {
+        "label": "Sussex Elements",
+        "url": "https://profiles.sussex.ac.uk/p474229-simon-mitchell/grants"
+      }
+    ],
+    "startYear": 2025,
+    "endYear": 2028
+  },
+  {
+    "title": "HER2-CNS SURVEILLANCE: A Study of the feasibility of randomising women and men with HER2 Positive metastatic breast cancer to Central Nervous System surveillance versus no surveillance.",
+    "funder": "MAKE 2NDS COUNT",
+    "funderRef": "",
+    "amount": null,
+    "currency": "GBP",
+    "startDate": "2025-07-01",
+    "endDate": "2027-07-01",
+    "active": true,
+    "investigators": [
+      {
+        "name": "Valerie Jenkins",
+        "slug": "valerie-jenkins"
+      },
+      {
+        "name": "Helena Harder",
+        "slug": "helena-harder"
+      }
+    ],
+    "scrcMembers": [
+      "helena-harder",
+      "valerie-jenkins"
+    ],
+    "sources": [
+      {
+        "label": "Sussex Elements",
+        "url": "https://profiles.sussex.ac.uk/p263510-helena-harder/grants"
+      }
+    ],
+    "startYear": 2025,
+    "endYear": 2027
+  },
+  {
+    "title": "Strategy for the findability and accessibility of CRUK data",
+    "funder": "",
+    "funderRef": "",
+    "amount": null,
+    "currency": "GBP",
+    "startDate": "2025-06-01",
+    "endDate": "2027-04-30",
+    "active": true,
+    "investigators": [
+      {
+        "name": "Frances Pearl",
+        "slug": "frances-pearl"
+      }
+    ],
+    "scrcMembers": [
+      "frances-pearl"
+    ],
+    "sources": [
+      {
+        "label": "Sussex Elements",
+        "url": "https://profiles.sussex.ac.uk/p140897-frances-pearl/grants"
+      }
+    ],
+    "startYear": 2025,
+    "endYear": 2027
+  },
+  {
+    "title": "A Novel Human Pathway for Repair of Sunlight-induced DNA Photodimers",
+    "funder": "Medical Research Council (UKRI)",
+    "funderRef": "MR/Z505997/1",
+    "amount": 523297,
+    "currency": "GBP",
+    "startDate": "2025-02-01",
+    "endDate": "2028-01-31",
+    "active": true,
+    "investigators": [
+      {
+        "name": "Keith Caldecott",
+        "slug": "keith-caldecott"
+      }
+    ],
+    "scrcMembers": [
+      "keith-caldecott"
+    ],
+    "sources": [
+      {
+        "label": "UKRI Gateway to Research",
+        "url": "https://gtr.ukri.org/projects?ref=MR/Z505997/1"
+      },
+      {
+        "label": "Sussex Elements",
+        "url": "https://profiles.sussex.ac.uk/p132762-keith-caldecott/grants"
+      }
+    ],
+    "startYear": 2025,
+    "endYear": 2028
+  },
+  {
+    "title": "Mechanisms of Nascent Strand Maturation During DNA Replication in Human Cells",
+    "funder": "Cancer Research UK",
+    "funderRef": "",
+    "amount": null,
+    "currency": "GBP",
+    "startDate": "2025-02-01",
+    "endDate": "2030-01-31",
+    "active": true,
+    "investigators": [
+      {
+        "name": "Keith Caldecott",
+        "slug": "keith-caldecott"
+      }
+    ],
+    "scrcMembers": [
+      "keith-caldecott"
+    ],
+    "sources": [
+      {
+        "label": "Sussex Elements",
+        "url": "https://profiles.sussex.ac.uk/p132762-keith-caldecott/grants"
+      }
+    ],
+    "startYear": 2025,
+    "endYear": 2030
+  },
+  {
+    "title": "Characterizing and targeting chemo resistant AML cells utilising a novel in vitro model of the bone marrow microenvironment.",
+    "funder": "SUSSEX CANCER FUND FOR TREATMENT AND RESEARCH",
+    "funderRef": "",
+    "amount": null,
+    "currency": "GBP",
+    "startDate": "2024-10-01",
+    "endDate": "2028-03-31",
+    "active": true,
+    "investigators": [
+      {
+        "name": "Fabio Simoes",
+        "slug": "fabio-simoes"
+      },
+      {
+        "name": "Andrea Pepper",
+        "slug": "andrea-pepper"
+      },
+      {
+        "name": "Eleni Ladikou",
+        "slug": "eleni-ladikou"
+      }
+    ],
+    "scrcMembers": [
+      "andrea-pepper",
+      "eleni-ladikou",
+      "fabio-simoes"
+    ],
+    "sources": [
+      {
+        "label": "Sussex Elements",
+        "url": "https://profiles.sussex.ac.uk/p414640-andrea-pepper/grants"
+      }
+    ],
+    "startYear": 2024,
+    "endYear": 2028
+  },
+  {
+    "title": "Centromeric Recombination: friend or foe?",
+    "funder": "WELLCOME TRUST",
+    "funderRef": "",
+    "amount": null,
+    "currency": "GBP",
+    "startDate": "2024-10-01",
+    "endDate": "2032-09-30",
+    "active": true,
+    "investigators": [
+      {
+        "name": "Evi Soutoglou",
+        "slug": "moycqpc26zye4abr8pevuvrs0dzyyp"
+      }
+    ],
+    "scrcMembers": [
+      "moycqpc26zye4abr8pevuvrs0dzyyp"
+    ],
+    "sources": [
+      {
+        "label": "Sussex Elements",
+        "url": "https://profiles.sussex.ac.uk/p447353-evi-soutoglou/grants"
+      }
+    ],
+    "startYear": 2024,
+    "endYear": 2032
+  },
+  {
+    "title": "B-cells within lymph nodes are exposed to cell-to-cell interactions, and mutliple cytokines.",
+    "funder": "Biotechnology and Biological Sciences Research Council",
+    "funderRef": "",
+    "amount": null,
+    "currency": "GBP",
+    "startDate": "2024-09-30",
+    "endDate": "2028-09-29",
+    "active": true,
+    "investigators": [],
+    "scrcMembers": [
+      "simon-mitchell"
+    ],
+    "sources": [
+      {
+        "label": "Sussex Elements",
+        "url": "https://profiles.sussex.ac.uk/p474229-simon-mitchell/grants"
+      }
+    ],
+    "startYear": 2024,
+    "endYear": 2028
+  },
+  {
+    "title": "Unravelling the role of gain(1q) in Multiple Myeloma",
+    "funder": "SUSSEX CANCER FUND FOR TREATMENT AND RESEARCH",
+    "funderRef": "",
+    "amount": null,
+    "currency": "GBP",
+    "startDate": "2024-09-01",
+    "endDate": "2027-08-31",
+    "active": true,
+    "investigators": [
+      {
+        "name": "Simon Mitchell",
+        "slug": "simon-mitchell"
+      },
+      {
+        "name": "Erika Mancini",
+        "slug": "erika-mancini"
+      },
+      {
+        "name": "John Jones",
+        "slug": "john-jones"
+      }
+    ],
+    "scrcMembers": [
+      "erika-mancini",
+      "john-jones",
+      "simon-mitchell"
+    ],
+    "sources": [
+      {
+        "label": "Sussex Elements",
+        "url": "https://profiles.sussex.ac.uk/p355699-erika-mancini/grants"
+      }
+    ],
+    "startYear": 2024,
+    "endYear": 2027
+  },
+  {
+    "title": "Enhancing patient-centred care in motor neuron disease by integrating a personalised care prediction model into patient decision aids and services",
+    "funder": "MNDA-MOTOR NEURONE DISEASE ASSOCIATION",
+    "funderRef": "",
+    "amount": null,
+    "currency": "GBP",
+    "startDate": "2024-09-01",
+    "endDate": "2027-12-31",
+    "active": true,
+    "investigators": [
+      {
+        "name": "Sally Wheelwright",
+        "slug": "sally-wheelwright"
+      }
+    ],
+    "scrcMembers": [
+      "sally-wheelwright"
+    ],
+    "sources": [
+      {
+        "label": "Sussex Elements",
+        "url": "https://profiles.sussex.ac.uk/p554052-sally-wheelwright/grants"
+      }
+    ],
+    "startYear": 2024,
+    "endYear": 2027
+  },
+  {
+    "title": "Investigating the role of DNA2 and homologous recombination in the recovery of stalled DNA replication forks",
+    "funder": "BBSRC (UKRI)",
+    "funderRef": "BB/Y01166X/1",
+    "amount": 538223,
+    "currency": "GBP",
+    "startDate": "2024-06-30",
+    "endDate": "2027-06-30",
+    "active": true,
+    "investigators": [
+      {
+        "name": "Ulrich Rass",
+        "slug": "ulrich-rass"
+      }
+    ],
+    "scrcMembers": [
+      "ulrich-rass"
+    ],
+    "sources": [
+      {
+        "label": "UKRI Gateway to Research",
+        "url": "https://gtr.ukri.org/projects?ref=BB/Y01166X/1"
+      },
+      {
+        "label": "Sussex Elements",
+        "url": "https://profiles.sussex.ac.uk/p466497-ulrich-rass/grants"
+      }
+    ],
+    "startYear": 2024,
+    "endYear": 2027
+  },
+  {
+    "title": "The South Wales and South West England Mental Health Platform Hub",
+    "funder": "Medical Research Council (UKRI)",
+    "funderRef": "MR/Z503745/1",
+    "amount": 3703031,
+    "currency": "GBP",
+    "startDate": "2024-03-31",
+    "endDate": "2029-03-30",
+    "active": true,
+    "investigators": [
+      {
+        "name": "Neil A Harrison",
+        "slug": "neil-a-harrison"
+      }
+    ],
+    "scrcMembers": [
+      "neil-a-harrison"
+    ],
+    "sources": [
+      {
+        "label": "UKRI Gateway to Research",
+        "url": "https://gtr.ukri.org/projects?ref=MR/Z503745/1"
+      }
+    ],
+    "startYear": 2024,
+    "endYear": 2029
+  },
+  {
+    "title": "Using AI and big data to identify a set of biologically validated drug targets for hard-to-treat cancers",
+    "funder": "Biotechnology and Biological Sciences Research Council",
+    "funderRef": "",
+    "amount": null,
+    "currency": "GBP",
+    "startDate": "2023-09-30",
+    "endDate": "2027-10-30",
+    "active": true,
+    "investigators": [],
+    "scrcMembers": [
+      "frances-pearl"
+    ],
+    "sources": [
+      {
+        "label": "Sussex Elements",
+        "url": "https://profiles.sussex.ac.uk/p140897-frances-pearl/grants"
+      }
+    ],
+    "startYear": 2023,
+    "endYear": 2027
+  },
+  {
+    "title": "The shielding role of the nuclear periphery against the genetic and non-genetic consequences of DNA damage",
+    "funder": "EPSRC-ENGINEERING & PHYSICAL SCIENCES RESEARCH COUNCIL",
+    "funderRef": "",
+    "amount": null,
+    "currency": "GBP",
+    "startDate": "2023-08-01",
+    "endDate": "2028-10-31",
+    "active": true,
+    "investigators": [
+      {
+        "name": "Evi Soutoglou",
+        "slug": "moycqpc26zye4abr8pevuvrs0dzyyp"
+      }
+    ],
+    "scrcMembers": [
+      "moycqpc26zye4abr8pevuvrs0dzyyp"
+    ],
+    "sources": [
+      {
+        "label": "Sussex Elements",
+        "url": "https://profiles.sussex.ac.uk/p447353-evi-soutoglou/grants"
+      }
+    ],
+    "startYear": 2023,
+    "endYear": 2028
+  },
+  {
+    "title": "HeartRater:Clinical. Optimizing ADIE therapy for the treatment of anxiety in underserved populations. Follow up to Outline proposal (ref MR/X005755/1)",
+    "funder": "Medical Research Council (UKRI)",
+    "funderRef": "MR/X030210/1",
+    "amount": 1289731,
+    "currency": "GBP",
+    "startDate": "2023-06-30",
+    "endDate": "2027-06-29",
+    "active": true,
+    "investigators": [
+      {
+        "name": "Anna-Marie Bibby-Jones",
+        "slug": "anna-marie-bibby-jones"
+      },
+      {
+        "name": "Stephen Bremner",
+        "slug": "stephen-bremner"
+      }
+    ],
+    "scrcMembers": [
+      "anna-marie-bibby-jones",
+      "stephen-bremner"
+    ],
+    "sources": [
+      {
+        "label": "UKRI Gateway to Research",
+        "url": "https://gtr.ukri.org/projects?ref=MR/X030210/1"
+      }
+    ],
+    "startYear": 2023,
+    "endYear": 2027
+  },
+  {
+    "title": "The role of chromatin compaction in Alternative lengthening of telomeres: lessons from the Heterochromatin Protein binding Partner 3 (HP1BP3).",
+    "funder": "MRC-MEDICAL RESEARCH COUNCIL",
+    "funderRef": "",
+    "amount": null,
+    "currency": "GBP",
+    "startDate": "2023-06-01",
+    "endDate": "2027-01-31",
+    "active": true,
+    "investigators": [
+      {
+        "name": "Evi Soutoglou",
+        "slug": "moycqpc26zye4abr8pevuvrs0dzyyp"
+      }
+    ],
+    "scrcMembers": [
+      "moycqpc26zye4abr8pevuvrs0dzyyp"
+    ],
+    "sources": [
+      {
+        "label": "Sussex Elements",
+        "url": "https://profiles.sussex.ac.uk/p447353-evi-soutoglou/grants"
+      }
+    ],
+    "startYear": 2023,
+    "endYear": 2027
+  },
+  {
+    "title": "Chromosome Breaks and the DNA Damage Response in Transcribed Genes",
+    "funder": "Medical Research Council (UKRI)",
+    "funderRef": "MR/X006778/2",
+    "amount": 1728809,
+    "currency": "GBP",
+    "startDate": "2023-05-31",
+    "endDate": "2027-09-30",
+    "active": true,
+    "investigators": [
+      {
+        "name": "Timothy Humphrey",
+        "slug": "timothy-humphrey"
+      }
+    ],
+    "scrcMembers": [
+      "timothy-humphrey"
+    ],
+    "sources": [
+      {
+        "label": "UKRI Gateway to Research",
+        "url": "https://gtr.ukri.org/projects?ref=MR/X006778/2"
+      },
+      {
+        "label": "Sussex Elements",
+        "url": "https://profiles.sussex.ac.uk/p119611-timothy-humphrey/grants"
+      }
+    ],
+    "startYear": 2023,
+    "endYear": 2027
+  },
+  {
+    "title": "The role of chromatin structure in Alternative Lengthening of Telomeres (ALT): lessons from the Heterochromatin Protein 1 Binding Partner 3 (HP1BP3).",
+    "funder": "Medical Research Council (UKRI)",
+    "funderRef": "MR/X018709/1",
+    "amount": 653488,
+    "currency": "GBP",
+    "startDate": "2023-05-31",
+    "endDate": "2027-01-31",
+    "active": true,
+    "investigators": [
+      {
+        "name": "Evi Soutoglou",
+        "slug": "moycqpc26zye4abr8pevuvrs0dzyyp"
+      }
+    ],
+    "scrcMembers": [
+      "moycqpc26zye4abr8pevuvrs0dzyyp"
+    ],
+    "sources": [
+      {
+        "label": "UKRI Gateway to Research",
+        "url": "https://gtr.ukri.org/projects?ref=MR/X018709/1"
+      }
+    ],
+    "startYear": 2023,
+    "endYear": 2027
+  },
+  {
+    "title": "A biomimetic macromolecular platform for tissue healing and diagnostics at medical device interfaces: a personalised wound dressing model",
+    "funder": "EPSRC (UKRI)",
+    "funderRef": "EP/W023164/1",
+    "amount": 2886291,
+    "currency": "GBP",
+    "startDate": "2022-09-19",
+    "endDate": "2028-09-18",
+    "active": true,
+    "investigators": [
+      {
+        "name": "Andrew Hesketh",
+        "slug": "andrew-hesketh"
+      },
+      {
+        "name": "Matteo Santin",
+        "slug": "bw9q96vc04ypghzsztlhp8t0awyvl9"
+      },
+      {
+        "name": "Cyril Crua",
+        "slug": "cyril-crua"
+      },
+      {
+        "name": "Dipak Sarker",
+        "slug": "dipak-sarker"
+      },
+      {
+        "name": "Laila Kudsiova",
+        "slug": "laila-kudsiova"
+      },
+      {
+        "name": "Nadia Terrazzini",
+        "slug": "nadia-terrazzini"
+      },
+      {
+        "name": "Susan Sandeman",
+        "slug": "susan-sandeman"
+      }
+    ],
+    "scrcMembers": [
+      "andrew-hesketh",
+      "bw9q96vc04ypghzsztlhp8t0awyvl9",
+      "cyril-crua",
+      "dipak-sarker",
+      "laila-kudsiova",
+      "nadia-terrazzini",
+      "susan-sandeman"
+    ],
+    "sources": [
+      {
+        "label": "UKRI Gateway to Research",
+        "url": "https://gtr.ukri.org/projects?ref=EP/W023164/1"
+      }
+    ],
+    "startYear": 2022,
+    "endYear": 2028
+  },
+  {
+    "title": "Palliative Long-term Abdominal Drains Versus Repeated Drainage in Untreatable Ascites Due to Advanced Cirrhosis: A Randomised Controlled Trial (REDUCe 2 Study)",
+    "funder": "NIHR (Health Technology Assessment)",
+    "funderRef": "NIHR133889",
+    "amount": 1936183,
+    "currency": "GBP",
+    "startDate": "2022-05-01",
+    "endDate": "2027-01-31",
+    "active": true,
+    "investigators": [
+      {
+        "name": "Sumita Verma",
+        "slug": "sumita-verma",
+        "role": "PI"
+      },
+      {
+        "name": "Rachel Starkings",
+        "slug": "rachel-starkings"
+      },
+      {
+        "name": "Helena Harder",
+        "slug": "helena-harder"
+      },
+      {
+        "name": "Stephen Bremner",
+        "slug": "stephen-bremner"
+      }
+    ],
+    "scrcMembers": [
+      "helena-harder",
+      "rachel-starkings",
+      "stephen-bremner",
+      "sumita-verma"
+    ],
+    "sources": [
+      {
+        "label": "NIHR Funding & Awards",
+        "url": "https://fundingawards.nihr.ac.uk/award/NIHR133889"
+      },
+      {
+        "label": "Funder Record",
+        "url": "https://app.dimensions.ai/details/grant/grant.12954217"
+      },
+      {
+        "label": "Sussex Elements",
+        "url": "https://profiles.sussex.ac.uk/p263510-helena-harder/grants"
+      },
+      {
+        "label": "ORCID",
+        "url": "https://orcid.org/0000-0003-0790-7070"
+      }
+    ],
+    "startYear": 2022,
+    "endYear": 2027
+  },
+  {
+    "title": "Exploiting a new cell cycle control pathway for cancer therapy",
+    "funder": "CANCER RESEARCH UK",
+    "funderRef": "DRCNPG-Nov21\\100010",
+    "amount": 1339180,
+    "currency": "GBP",
+    "startDate": "2022-05-01",
+    "endDate": "2027-10-31",
+    "active": true,
+    "investigators": [
+      {
+        "name": "Helfrid Hochegger",
+        "slug": "helfrid-hochegger"
+      }
+    ],
+    "scrcMembers": [
+      "helfrid-hochegger"
+    ],
+    "sources": [
+      {
+        "label": "Sussex Elements",
+        "url": "https://profiles.sussex.ac.uk/p218740-helfrid-hochegger/grants"
+      },
+      {
+        "label": "ORCID",
+        "url": "https://orcid.org/0000-0001-8366-6198"
+      }
+    ],
+    "startYear": 2022,
+    "endYear": 2027
+  },
+  {
+    "title": "Mechanisms of DNA Single-Strand Break-Induced Genetic Disease and Opportunities for Therapeutic Intervention",
+    "funder": "Medical Research Council (UKRI)",
+    "funderRef": "MR/W024128/1",
+    "amount": 2180120,
+    "currency": "GBP",
+    "startDate": "2022-04-30",
+    "endDate": "2028-04-29",
+    "active": true,
+    "investigators": [
+      {
+        "name": "Keith Caldecott",
+        "slug": "keith-caldecott"
+      }
+    ],
+    "scrcMembers": [
+      "keith-caldecott"
+    ],
+    "sources": [
+      {
+        "label": "UKRI Gateway to Research",
+        "url": "https://gtr.ukri.org/projects?ref=MR/W024128/1"
+      }
+    ],
+    "startYear": 2022,
+    "endYear": 2028
+  },
+  {
+    "title": "Developing personalised prognostic models for glioblastoma patients through computational modelling.",
+    "funder": "Sussex Cancer Research Centre",
+    "funderRef": "",
+    "amount": 15000,
+    "currency": "GBP",
+    "startDate": "2025-10-01",
+    "endDate": "2026-09-30",
+    "active": false,
+    "investigators": [
+      {
+        "name": "Frances Pearl",
+        "slug": "frances-pearl"
+      },
+      {
+        "name": "Elizabeth Ford",
+        "slug": "elizabeth-ford"
+      },
+      {
+        "name": "Stephen Robinson",
+        "slug": "stephen-robinson"
+      }
+    ],
+    "scrcMembers": [
+      "elizabeth-ford",
+      "frances-pearl",
+      "stephen-robinson"
+    ],
+    "sources": [
+      {
+        "label": "Sussex Elements",
+        "url": "https://profiles.sussex.ac.uk/p170603-elizabeth-ford/grants"
+      },
+      {
+        "label": "ORCID",
+        "url": "https://orcid.org/0000-0003-0623-4636"
+      }
+    ],
+    "startYear": 2025,
+    "endYear": 2026
+  },
+  {
+    "title": "Identification of novel DNA2 helicase inhibitors for the treatment of cancer",
+    "funder": "Sussex Cancer Research Centre",
+    "funderRef": "",
+    "amount": null,
+    "currency": "GBP",
+    "startDate": "2025-10-01",
+    "endDate": "2026-09-30",
+    "active": false,
+    "investigators": [
+      {
+        "name": "Ulrich Rass",
+        "slug": "ulrich-rass"
+      },
+      {
+        "name": "Erika Mancini",
+        "slug": "erika-mancini"
+      }
+    ],
+    "scrcMembers": [
+      "erika-mancini",
+      "ulrich-rass"
+    ],
+    "sources": [
+      {
+        "label": "Sussex Elements",
+        "url": "https://profiles.sussex.ac.uk/p355699-erika-mancini/grants"
+      }
+    ],
+    "startYear": 2025,
+    "endYear": 2026
+  },
+  {
+    "title": "LASP1 as a regulator of cell cycle progression",
+    "funder": "Biochemical Society",
+    "funderRef": "",
+    "amount": null,
+    "currency": "GBP",
+    "startDate": "2025-06-16",
+    "endDate": "2025-07-25",
+    "active": false,
+    "investigators": [
+      {
+        "name": "Ethan Morgan",
+        "slug": "ethan-morgan"
+      }
+    ],
+    "scrcMembers": [
+      "ethan-morgan"
+    ],
+    "sources": [
+      {
+        "label": "Sussex Elements",
+        "url": "https://profiles.sussex.ac.uk/p589068-ethan-morgan/grants"
+      }
+    ],
+    "startYear": 2025,
+    "endYear": 2025
+  },
+  {
+    "title": "Targeting SPATS2l upregulation in RUNX1 mutated myeloid leukaemia",
+    "funder": "British Society for Haematology",
+    "funderRef": "",
+    "amount": null,
+    "currency": "GBP",
+    "startDate": "2025-04-01",
+    "endDate": "2026-02-28",
+    "active": false,
+    "investigators": [
+      {
+        "name": "Rhys Morgan",
+        "slug": "rhys-morgan"
+      },
+      {
+        "name": "Timothy Chevassut",
+        "slug": "timothy-chevassut"
+      }
+    ],
+    "scrcMembers": [
+      "rhys-morgan",
+      "timothy-chevassut"
+    ],
+    "sources": [
+      {
+        "label": "Sussex Elements",
+        "url": "https://profiles.sussex.ac.uk/p455013-rhys-morgan/grants"
+      }
+    ],
+    "startYear": 2025,
+    "endYear": 2026
+  },
+  {
+    "title": "Investigation of RNA binding protein activity in cell cycle control",
+    "funder": "Royal Society",
+    "funderRef": "",
+    "amount": null,
+    "currency": "GBP",
+    "startDate": "2025-03-01",
+    "endDate": "2026-05-31",
+    "active": false,
+    "investigators": [
+      {
+        "name": "Benjamin Towler",
+        "slug": "benjamin-towler"
+      }
+    ],
+    "scrcMembers": [
+      "benjamin-towler"
+    ],
+    "sources": [
+      {
+        "label": "Sussex Elements",
+        "url": "https://profiles.sussex.ac.uk/p247980-benjamin-towler/grants"
+      }
+    ],
+    "startYear": 2025,
+    "endYear": 2026
+  },
+  {
+    "title": "Investigating the effect of stress hormones on treatment responses in Chronic Lymphocytic Leukaemia",
+    "funder": "Sussex Cancer Fund",
+    "funderRef": "",
+    "amount": null,
+    "currency": "GBP",
+    "startDate": "2025-01-01",
+    "endDate": "2025-12-31",
+    "active": false,
+    "investigators": [
+      {
+        "name": "Emma Kennedy",
+        "slug": "emma-kennedy"
+      },
+      {
+        "name": "Andrea Pepper",
+        "slug": "andrea-pepper"
+      }
+    ],
+    "scrcMembers": [
+      "andrea-pepper",
+      "emma-kennedy"
+    ],
+    "sources": [
+      {
+        "label": "Sussex Elements",
+        "url": "https://profiles.sussex.ac.uk/p414640-andrea-pepper/grants"
+      }
+    ],
+    "startYear": 2025,
+    "endYear": 2025
+  },
+  {
+    "title": "Global involvement of microRNAs in pancreatic cancer immune escape – A potential therapeutic avenue",
+    "funder": "Pancreatic Cancer UK",
+    "funderRef": "",
+    "amount": 97309,
+    "currency": "GBP",
+    "startDate": "2024-12-01",
+    "endDate": "2025-11-01",
+    "active": false,
+    "investigators": [
+      {
+        "name": "Leandro Castellano",
+        "slug": "leandro-castellano"
+      }
+    ],
+    "scrcMembers": [
+      "leandro-castellano"
+    ],
+    "sources": [
+      {
+        "label": "ORCID",
+        "url": "https://orcid.org/0000-0002-3059-4829"
+      }
+    ],
+    "startYear": 2024,
+    "endYear": 2025
+  },
+  {
+    "title": "Developing a BRAIN metastasis extracellular vesicle based liquid biopsy, BRAINCELL",
+    "funder": "Sussex Cancer Fund",
+    "funderRef": "",
+    "amount": 60000,
+    "currency": "GBP",
+    "startDate": "2024-11-01",
+    "endDate": "",
+    "active": false,
+    "investigators": [
+      {
+        "name": "Stephen Robinson",
+        "slug": "stephen-robinson"
+      }
+    ],
+    "scrcMembers": [
+      "stephen-robinson"
+    ],
+    "sources": [
+      {
+        "label": "ORCID",
+        "url": "https://orcid.org/0000-0003-0623-4636"
+      }
+    ],
+    "startYear": 2024,
+    "endYear": null
+  },
+  {
+    "title": "(CHANGES2 project)",
+    "funder": "SUSSEX CANCER FUND FOR TREATMENT AND RESEARCH",
+    "funderRef": "",
+    "amount": null,
+    "currency": "GBP",
+    "startDate": "2024-11-01",
+    "endDate": "2025-04-30",
+    "active": false,
+    "investigators": [
+      {
+        "name": "Sally Wheelwright",
+        "slug": "sally-wheelwright"
+      }
+    ],
+    "scrcMembers": [
+      "sally-wheelwright"
+    ],
+    "sources": [
+      {
+        "label": "Sussex Elements",
+        "url": "https://profiles.sussex.ac.uk/p554052-sally-wheelwright/grants"
+      }
+    ],
+    "startYear": 2024,
+    "endYear": 2025
+  },
+  {
+    "title": "Helping HCPs to help themselves and their patients with MBC",
+    "funder": "Breast Cancer Research Foundation, Inc",
+    "funderRef": "",
+    "amount": null,
+    "currency": "GBP",
+    "startDate": "2024-10-01",
+    "endDate": "2025-09-30",
+    "active": false,
+    "investigators": [
+      {
+        "name": "Lesley Fallowfield",
+        "slug": "lesley-fallowfield"
+      },
+      {
+        "name": "Valerie Jenkins",
+        "slug": "valerie-jenkins"
+      }
+    ],
+    "scrcMembers": [
+      "lesley-fallowfield",
+      "valerie-jenkins"
+    ],
+    "sources": [
+      {
+        "label": "Sussex Elements",
+        "url": "https://profiles.sussex.ac.uk/p40578-lesley-fallowfield/grants"
+      }
+    ],
+    "startYear": 2024,
+    "endYear": 2025
+  },
+  {
+    "title": "Does Personalised Stratified Follow-Up (PSFU) meet the health and wellbeing needs of people from under-served groups who have completed treatment for breast cancer? A qualitative study.",
+    "funder": "National Institute for Health and Care Research",
+    "funderRef": "NIHR206333",
+    "amount": 162922,
+    "currency": "GBP",
+    "startDate": "2024-09-01",
+    "endDate": "2026-05-31",
+    "active": false,
+    "investigators": [
+      {
+        "name": "Jo Armes",
+        "slug": "jo-armes"
+      }
+    ],
+    "scrcMembers": [
+      "jo-armes"
+    ],
+    "sources": [
+      {
+        "label": "Funder Record",
+        "url": "https://app.dimensions.ai/details/grant/grant.14087509"
+      },
+      {
+        "label": "ORCID",
+        "url": "https://orcid.org/0000-0002-7994-0796"
+      }
+    ],
+    "startYear": 2024,
+    "endYear": 2026
+  },
+  {
+    "title": "PhD salary costs",
+    "funder": "SUSSEX CANCER FUND FOR TREATMENT AND RESEARCH",
+    "funderRef": "",
+    "amount": null,
+    "currency": "GBP",
+    "startDate": "2024-09-01",
+    "endDate": "2025-07-31",
+    "active": false,
+    "investigators": [
+      {
+        "name": "Timothy Chevassut",
+        "slug": "timothy-chevassut"
+      }
+    ],
+    "scrcMembers": [
+      "timothy-chevassut"
+    ],
+    "sources": [
+      {
+        "label": "Sussex Elements",
+        "url": "https://profiles.sussex.ac.uk/p213429-timothy-chevassut/grants"
+      }
+    ],
+    "startYear": 2024,
+    "endYear": 2025
+  },
+  {
+    "title": "Developing drugs for the treatment of Epstein-Barr virus positive blood cancers (OMAZE)",
+    "funder": "Blood Cancer UK",
+    "funderRef": "",
+    "amount": null,
+    "currency": "GBP",
+    "startDate": "2024-08-01",
+    "endDate": "2026-07-31",
+    "active": false,
+    "investigators": [
+      {
+        "name": "Michelle West",
+        "slug": "michelle-west"
+      }
+    ],
+    "scrcMembers": [
+      "michelle-west"
+    ],
+    "sources": [
+      {
+        "label": "Sussex Elements",
+        "url": "https://profiles.sussex.ac.uk/p116026-michelle-west/grants"
+      }
+    ],
+    "startYear": 2024,
+    "endYear": 2026
+  },
+  {
+    "title": "Investigating the β-catenin:TOE1 protein interaction in Acute Myeloid Leukaemia",
+    "funder": "BRITISH SOCIETY FOR HAEMATOLOGY",
+    "funderRef": "",
+    "amount": null,
+    "currency": "GBP",
+    "startDate": "2024-05-01",
+    "endDate": "2025-07-31",
+    "active": false,
+    "investigators": [
+      {
+        "name": "Rhys Morgan",
+        "slug": "rhys-morgan"
+      },
+      {
+        "name": "Hyun Park",
+        "slug": "hyun-park"
+      }
+    ],
+    "scrcMembers": [
+      "hyun-park",
+      "rhys-morgan"
+    ],
+    "sources": [
+      {
+        "label": "Sussex Elements",
+        "url": "https://profiles.sussex.ac.uk/p582613-hyun-park/grants"
+      }
+    ],
+    "startYear": 2024,
+    "endYear": 2025
+  },
+  {
+    "title": "Patient-specific modelling to create virtual breast cancer patients",
+    "funder": "ROYAL SOCIETY",
+    "funderRef": "",
+    "amount": null,
+    "currency": "GBP",
+    "startDate": "2024-04-01",
+    "endDate": "2026-03-30",
+    "active": false,
+    "investigators": [
+      {
+        "name": "Simon Mitchell",
+        "slug": "simon-mitchell"
+      }
+    ],
+    "scrcMembers": [
+      "simon-mitchell"
+    ],
+    "sources": [
+      {
+        "label": "Sussex Elements",
+        "url": "https://profiles.sussex.ac.uk/p474229-simon-mitchell/grants"
+      }
+    ],
+    "startYear": 2024,
+    "endYear": 2026
+  },
+  {
+    "title": "Validating Assessment Tool for Chemotherapy Outcomes",
+    "funder": "Morris Animal Foundation",
+    "funderRef": "D24CA-019",
+    "amount": 128419,
+    "currency": "USD",
+    "startDate": "2024-03-01",
+    "endDate": "2026-01-01",
+    "active": false,
+    "investigators": [
+      {
+        "name": "Jo Armes",
+        "slug": "jo-armes"
+      }
+    ],
+    "scrcMembers": [
+      "jo-armes"
+    ],
+    "sources": [
+      {
+        "label": "Funder Record",
+        "url": "https://www.morrisanimalfoundation.org/study/validating-assessment-tool-chemotherapy-outcomes"
+      },
+      {
+        "label": "ORCID",
+        "url": "https://orcid.org/0000-0002-7994-0796"
+      }
+    ],
+    "startYear": 2024,
+    "endYear": 2026
+  },
+  {
+    "title": "Development of a psychoeducational digital intervention to support coping with cancer and weight loss for lung cancer patients and caregivers (CHANGES project)",
+    "funder": "GILEAD SCIENCES LTD",
+    "funderRef": "",
+    "amount": null,
+    "currency": "GBP",
+    "startDate": "2024-02-01",
+    "endDate": "2024-10-31",
+    "active": false,
+    "investigators": [
+      {
+        "name": "Sally Wheelwright",
+        "slug": "sally-wheelwright"
+      }
+    ],
+    "scrcMembers": [
+      "sally-wheelwright"
+    ],
+    "sources": [
+      {
+        "label": "Sussex Elements",
+        "url": "https://profiles.sussex.ac.uk/p554052-sally-wheelwright/grants"
+      }
+    ],
+    "startYear": 2024,
+    "endYear": 2024
+  },
+  {
+    "title": "Investigating the HPV16 E6/E7 interactome upon radiation treatment in Head and Neck Squamous Cell Carcinoma",
+    "funder": "ROYAL SOCIETY",
+    "funderRef": "RG\\R2\\232331",
+    "amount": 56258,
+    "currency": "GBP",
+    "startDate": "2024-01-01",
+    "endDate": "2025-06-30",
+    "active": false,
+    "investigators": [
+      {
+        "name": "Ethan Morgan",
+        "slug": "ethan-morgan"
+      }
+    ],
+    "scrcMembers": [
+      "ethan-morgan"
+    ],
+    "sources": [
+      {
+        "label": "Sussex Elements",
+        "url": "https://profiles.sussex.ac.uk/p589068-ethan-morgan/grants"
+      },
+      {
+        "label": "ORCID",
+        "url": "https://orcid.org/0000-0002-6487-5450"
+      }
+    ],
+    "startYear": 2024,
+    "endYear": 2025
+  },
+  {
+    "title": "The spatial regulation of genetic and epigenetic integrity in Embryonic Stem cells",
+    "funder": "BBSRC (UKRI)",
+    "funderRef": "BB/X016404/1",
+    "amount": 785586,
+    "currency": "GBP",
+    "startDate": "2023-07-31",
+    "endDate": "2026-07-30",
+    "active": false,
+    "investigators": [
+      {
+        "name": "Evi Soutoglou",
+        "slug": "moycqpc26zye4abr8pevuvrs0dzyyp"
+      }
+    ],
+    "scrcMembers": [
+      "moycqpc26zye4abr8pevuvrs0dzyyp"
+    ],
+    "sources": [
+      {
+        "label": "UKRI Gateway to Research",
+        "url": "https://gtr.ukri.org/projects?ref=BB/X016404/1"
+      }
+    ],
+    "startYear": 2023,
+    "endYear": 2026
+  },
+  {
+    "title": "Determining how EBV episome maintenance is regulated by TIMELESS function",
+    "funder": "Medical Research Council (UKRI)",
+    "funderRef": "MR/X009432/1",
+    "amount": 509586,
+    "currency": "GBP",
+    "startDate": "2023-03-01",
+    "endDate": "2026-09-29",
+    "active": false,
+    "investigators": [
+      {
+        "name": "Jonathan Baxter",
+        "slug": "jonathan-baxter"
+      },
+      {
+        "name": "Michelle West",
+        "slug": "michelle-west"
+      }
+    ],
+    "scrcMembers": [
+      "jonathan-baxter",
+      "michelle-west"
+    ],
+    "sources": [
+      {
+        "label": "UKRI Gateway to Research",
+        "url": "https://gtr.ukri.org/projects?ref=MR/X009432/1"
+      }
+    ],
+    "startYear": 2023,
+    "endYear": 2026
+  }
+]

@@ -55,6 +55,7 @@ jobs:
             $EXTRA_ARGS \
             --summary-out /tmp/sync-summary.md
           python3 scripts/enrich_publications.py
+          python3 scripts/sync_grants.py
 
       - name: Check for changes
         id: diff
@@ -63,7 +64,7 @@ jobs:
             echo "changed=true" >> "$GITHUB_OUTPUT"
           else
             echo "changed=false" >> "$GITHUB_OUTPUT"
-            echo "No new cancer-relevant publications or members found."
+            echo "No new cancer-relevant publications, grants, or members found."
           fi
 
       - name: Verify Astro site builds cleanly
@@ -81,8 +82,8 @@ jobs:
           git config user.name "scrc-publications-bot"
           git config user.email "actions@github.com"
           git checkout -B "$BRANCH"
-          git add src/data/publications.json src/data/publication-metrics.json src/content/people/
-          git commit -m "chore: sync recent SCRC publications and discovered researchers"
+          git add src/data/publications.json src/data/publication-metrics.json src/data/grants.json src/content/people/
+          git commit -m "chore: sync recent SCRC publications, grants, and discovered researchers"
           git push --force origin "$BRANCH"
 
           EXISTING_PR=$(gh pr list --head "$BRANCH" --state open --json number --jq '.[0].number // empty')
